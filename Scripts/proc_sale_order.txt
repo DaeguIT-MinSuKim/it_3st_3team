@@ -1,0 +1,24 @@
+CREATE PROCEDURE software_project.proc_sale_order(
+	in ORD_NO int,
+	in ORD_QUANTITY int,
+	in ORD_DSPOSIT char,
+	in SW_NO int,
+	in C_NO int
+)
+BEGIN
+	DECLARE sw_supply_price int;
+	DECLARE sw_sell_price int;
+	
+	select sg_supply_price, sg_sell_price into sw_supply_price, sw_sell_price
+	from software s where s.sw_no = SW_NO;
+
+	set @ord_supply_price = sw_supply_price * ORD_QUANTITY;
+	set @ord_sell_price = sw_sell_price * ORD_QUANTITY;
+	set @ord_sell_profit = @ord_sell_price - @ord_supply_price;
+	set @ord_tax = (@ord_sell_price * 10) / 100;
+	
+	insert into sale_order(ord_no, ord_quantity, ord_supply_price, ord_sell_price,
+						ord_tax, ord_sell_profit, ord_diposit, ord_datetime, sw_no, c_no)
+	values (ORD_NO, ORD_QUANTITY, @ord_supply_price, @ord_sell_price, @ord_tax, @ord_sell_profit,
+			ORD_DSPOSIT, now(), SW_NO, C_NO);
+END;
