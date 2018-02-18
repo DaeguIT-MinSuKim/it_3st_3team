@@ -1,4 +1,8 @@
-CREATE PROCEDURE software_project.proc_sale_order(
+DROP PROCEDURE IF EXISTS software_project.proc_insert_sale_order ;
+
+DELIMITER $$
+$$
+CREATE PROCEDURE software_project.proc_insert_sale_order(
 	in ORD_NO int,
 	in ORD_QUANTITY int,
 	in ORD_DSPOSIT char,
@@ -9,7 +13,7 @@ BEGIN
 	DECLARE sw_supply_price int;
 	DECLARE sw_sell_price int;
 	
-	select sg_supply_price, sg_sell_price into sw_supply_price, sw_sell_price
+	select sw_supply_price, sw_sell_price into sw_supply_price, sw_sell_price
 	from software s where s.sw_no = SW_NO;
 
 	set @ord_supply_price = sw_supply_price * ORD_QUANTITY;
@@ -21,4 +25,45 @@ BEGIN
 						ord_tax, ord_sell_profit, ord_diposit, ord_datetime, sw_no, c_no)
 	values (ORD_NO, ORD_QUANTITY, @ord_supply_price, @ord_sell_price, @ord_tax, @ord_sell_profit,
 			ORD_DSPOSIT, now(), SW_NO, C_NO);
-END;
+END $$
+DELIMITER ;
+
+
+
+
+DROP PROCEDURE IF EXISTS software_project.proc_update_sale_order ;
+
+DELIMITER $$
+$$
+CREATE PROCEDURE software_project.proc_update_sale_order(
+	in ORD_NO int,
+	in ORD_QUANTITY int,
+	in ORD_DSPOSIT char,
+	in SW_NO int,
+	in C_NO int
+)
+BEGIN
+	DECLARE sw_supply_price int;
+	DECLARE sw_sell_price int; 
+	
+	select sw_supply_price, sw_sell_price into sw_supply_price, sw_sell_price
+	from software s where s.sw_no = SW_NO;
+
+	set @ord_supply_price = sw_supply_price * ORD_QUANTITY;
+	set @ord_sell_price = sw_sell_price * ORD_QUANTITY;
+	set @ord_sell_profit = @ord_sell_price - @ord_supply_price;
+	set @ord_tax = (@ord_sell_price * 10) / 100;
+	
+	update sale_order set 
+	ord_quantity = ORD_QUANTITY,
+	ord_supply_price = @ord_supply_price,
+	ord_sell_price = @ord_sell_price,
+	ord_tax = @ord_tax,
+	ord_sell_profit = @ord_sell_profit,
+	ord_diposit = ORD_DSPOSIT, 
+	ord_datetime = now(), 
+	sw_no = SW_NO,
+	c_no = C_NO
+	where ord_no = ORD_NO;
+END $$
+DELIMITER ;
