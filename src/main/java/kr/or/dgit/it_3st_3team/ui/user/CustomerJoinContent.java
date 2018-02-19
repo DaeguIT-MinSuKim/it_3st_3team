@@ -158,19 +158,19 @@ public class CustomerJoinContent extends JPanel {
 		
 		JPanel pImg = new JPanel();
 		pImg.setPreferredSize(new Dimension(138, 138));
-		add(pImg, BorderLayout.EAST);
 		pImg.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		add(pImg, BorderLayout.EAST);
 		
 		JPanel panel_4 = new JPanel();
-		pImg.add(panel_4);
 		panel_4.setBorder(new EmptyBorder(0, 0, 20, 0));
 		panel_4.setPreferredSize(new Dimension(138, 140));
 		panel_4.setMinimumSize(new Dimension(128, 128));
+		pImg.add(panel_4);
 		
-		JLabel lblNewLabel_2 = new JLabel("");
-		panel_4.add(lblNewLabel_2);
-		lblNewLabel_2.setPreferredSize(new Dimension(128, 128));
-		lblNewLabel_2.setIcon(new ImageIcon("G:\\Programming\\workspaces\\workspace_java\\it_3st_3team\\DataImg\\apple.png"));
+		JLabel lblImage = new JLabel("");
+		lblImage.setPreferredSize(new Dimension(128, 128));
+		lblImage.setIcon(new ImageIcon("D:\\workspaces\\workspace_java\\it_3st_3team\\DataImg\\apple.png"));
+		panel_4.add(lblImage);
 		
 		JPanel panel_1 = new JPanel();
 		pImg.add(panel_1);
