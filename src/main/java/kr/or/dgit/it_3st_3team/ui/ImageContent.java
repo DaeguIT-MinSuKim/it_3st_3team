@@ -9,19 +9,21 @@ import javax.swing.ImageIcon;
 
 @SuppressWarnings("serial")
 public class ImageContent extends JPanel {
-
+	private String imgPath = System.getProperty("user.dir") + "\\DataImg\\";
 	private JLabel lblImage;
+	
 	public ImageContent() {
 		initComponents();
 	}
 	private void initComponents() {
 		setLayout(new BorderLayout(0, 0));
+		setBounds(0, 0, 180, 180);
 		
 		JPanel pImageArea = new JPanel();
 		add(pImageArea, BorderLayout.CENTER);
 		
 		lblImage = new JLabel("");
-		lblImage.setIcon(new ImageIcon("D:\\workspaces\\workspace_java\\it_3st_3team\\DataImg\\mcdonalds.png"));
+		setImagesIcon("nobody.png");
 		lblImage.setHorizontalAlignment(SwingConstants.CENTER);
 		pImageArea.add(lblImage);
 		
@@ -32,4 +34,7 @@ public class ImageContent extends JPanel {
 		pBtnArea.add(btnImageOK);
 	}
 
+	public void setImagesIcon(String imgFileName) {
+		lblImage.setIcon(new ImageIcon(imgPath + imgFileName));
+	}
 }
