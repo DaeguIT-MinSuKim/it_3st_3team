@@ -27,8 +27,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.UIManager;
 
 public class Login extends JPanel {
-	private JTextField pLgnUserId;
-	private JTextField pLgnUserPwd;
+	private JTextField tfLgnUserId;
+	private JTextField tfLgnUserPwd;
 
 	/**
 	 * Create the panel.
@@ -40,109 +40,69 @@ public class Login extends JPanel {
 	private void initComponents() {
 		setBackground(Color.DARK_GRAY);
 		setBorder(null);
-		setToolTipText("login\r\n");
+		setToolTipText("login");
 		setForeground(Color.BLACK);
 		
-		JPanel p1 = new JPanel();
-		p1.setBorder(new EmptyBorder(1, 1, 1, 1));
-		
-		JLabel lblTitle = new JLabel("DGIT s/w sales program");
-		lblTitle.setFont(new Font("나눔바른고딕", Font.BOLD, 39));
-		lblTitle.setForeground(new Color(0, 0, 0));
-		GroupLayout gl_p1 = new GroupLayout(p1);
-		gl_p1.setHorizontalGroup(
-			gl_p1.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_p1.createSequentialGroup()
-					.addContainerGap(185, Short.MAX_VALUE)
-					.addComponent(lblTitle)
-					.addGap(150))
-		);
-		gl_p1.setVerticalGroup(
-			gl_p1.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, gl_p1.createSequentialGroup()
-					.addGap(46)
-					.addComponent(lblTitle)
-					.addContainerGap(118, Short.MAX_VALUE))
-		);
-		p1.setLayout(gl_p1);
-		
 		JPanel p3 = new JPanel();
+		p3.setBackground(Color.DARK_GRAY);
+		p3.setBounds(334, 527, 351, 33);
 		
 		JButton btnFindIdPwd = new JButton("아이디/비밀번호 찾기");
+		btnFindIdPwd.setFont(new Font("나눔바른고딕", Font.PLAIN, 12));
 		btnFindIdPwd.setBackground(Color.DARK_GRAY);
 		p3.add(btnFindIdPwd);
 		
 		JButton btnJoin = new JButton("회원가입");
+		btnJoin.setFont(new Font("나눔바른고딕", Font.PLAIN, 12));
 		btnJoin.setBackground(Color.DARK_GRAY);
 		p3.add(btnJoin);
 		
 		JPanel p2 = new JPanel();
+		p2.setBackground(Color.DARK_GRAY);
+		p2.setBounds(383, 484, 255, 33);
 		FlowLayout flowLayout = (FlowLayout) p2.getLayout();
 		
 		JButton btnLogin = new JButton("로그인");
+		btnLogin.setFont(new Font("나눔바른고딕", Font.PLAIN, 12));
 		btnLogin.setForeground(Color.BLACK);
 		btnLogin.setBackground(Color.DARK_GRAY);
 		p2.add(btnLogin);
 		
 		JCheckBox chkAdmin = new JCheckBox("관리자 로그인");
+		chkAdmin.setBackground(Color.DARK_GRAY);
+		chkAdmin.setFont(new Font("나눔바른고딕", Font.PLAIN, 12));
 		p2.add(chkAdmin);
 		
 		JLabel lblLgnUSerPwd = new JLabel("비밀번호");
+		lblLgnUSerPwd.setFont(new Font("나눔바른고딕", Font.PLAIN, 12));
+		lblLgnUSerPwd.setBounds(395, 436, 59, 28);
 		lblLgnUSerPwd.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		pLgnUserPwd = new JTextField();
-		pLgnUserPwd.setColumns(10);
+		tfLgnUserPwd = new JTextField();
+		tfLgnUserPwd.setBounds(466, 436, 172, 30);
+		tfLgnUserPwd.setColumns(10);
 		
-		pLgnUserId = new JTextField();
-		pLgnUserId.setColumns(10);
+		tfLgnUserId = new JTextField();
+		tfLgnUserId.setBounds(466, 395, 172, 31);
+		tfLgnUserId.setColumns(10);
 		
 		JLabel lblLgnUserId = new JLabel("아이디");
+		lblLgnUserId.setFont(new Font("나눔바른고딕", Font.PLAIN, 12));
+		lblLgnUserId.setBounds(396, 396, 58, 28);
 		lblLgnUserId.setHorizontalAlignment(SwingConstants.RIGHT);
-		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(271)
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addComponent(lblLgnUSerPwd, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblLgnUserId, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(pLgnUserId)
-								.addComponent(pLgnUserPwd, GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(255)
-							.addComponent(p2, GroupLayout.PREFERRED_SIZE, 255, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(207)
-							.addComponent(p3, GroupLayout.PREFERRED_SIZE, 351, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(170)
-							.addComponent(p1, GroupLayout.PREFERRED_SIZE, 476, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(35, Short.MAX_VALUE))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(p1, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
-					.addGap(111)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblLgnUserId, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
-						.addComponent(pLgnUserId, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE))
-					.addGap(10)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblLgnUSerPwd, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
-						.addComponent(pLgnUserPwd, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(p2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(p3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(68, Short.MAX_VALUE))
-		);
-		setLayout(groupLayout);
+		setLayout(null);
+		
+		JLabel lblTitle = new JLabel("DGIT s/w sales program");
+		lblTitle.setBounds(313, 189, 432, 46);
+		lblTitle.setFont(new Font("나눔바른고딕", Font.BOLD, 39));
+		lblTitle.setForeground(new Color(0, 0, 0));
+		add(lblTitle);
+		add(lblLgnUSerPwd);
+		add(lblLgnUserId);
+		add(tfLgnUserId);
+		add(tfLgnUserPwd);
+		add(p2);
+		add(p3);
 	}
 
 }
