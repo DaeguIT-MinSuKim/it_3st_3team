@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import kr.or.dgit.it_3st_3team.ui.admin.AdminCustomerMngContent;
+import kr.or.dgit.it_3st_3team.ui.admin.customer.AdminCustomerContent;
 
 @SuppressWarnings("serial")
 public class TestFrame extends JFrame {
@@ -23,7 +23,7 @@ public class TestFrame extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		AdminCustomerMngContent panel = new AdminCustomerMngContent();
+		AdminCustomerContent panel = new AdminCustomerContent();
 		contentPane.add(panel, BorderLayout.NORTH);
 	}
 
