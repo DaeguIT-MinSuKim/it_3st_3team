@@ -48,7 +48,7 @@ public class Login extends JPanel implements ActionListener {
 	
 	public void img() {
 		try {
-			img = ImageIO.read(new File(imgPath+"loginTitle"));
+			img = ImageIO.read(new File(imgPath+"loginTitle.jpg"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
