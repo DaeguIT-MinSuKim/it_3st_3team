@@ -12,6 +12,9 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.SwingConstants;
+import java.awt.Color;
+import javax.swing.JScrollPane;
 
 public class SearchPost extends JFrame {
 
@@ -54,46 +57,51 @@ public class SearchPost extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblSido = new JLabel("시/도");
-		lblSido.setBounds(67, 53, 57, 15);
+		lblSido.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblSido.setBounds(38, 53, 57, 15);
 		contentPane.add(lblSido);
 		
 		JComboBox cmbSido = new JComboBox();
-		cmbSido.setBounds(119, 50, 146, 21);
+		cmbSido.setBounds(129, 50, 146, 21);
 		contentPane.add(cmbSido);
 		
 		JLabel lblSigungu = new JLabel("시/군/구");
-		lblSigungu.setBounds(50, 89, 57, 15);
+		lblSigungu.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblSigungu.setBounds(38, 89, 57, 15);
 		contentPane.add(lblSigungu);
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(119, 86, 146, 21);
+		comboBox.setBounds(129, 86, 146, 21);
 		contentPane.add(comboBox);
 		
 		JLabel lblDoro = new JLabel("도로명");
+		lblDoro.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblDoro.setBounds(59, 126, 36, 15);
 		contentPane.add(lblDoro);
 		
 		tfDoro = new JTextField();
-		tfDoro.setBounds(119, 123, 196, 21);
+		tfDoro.setBounds(129, 123, 196, 21);
 		contentPane.add(tfDoro);
 		tfDoro.setColumns(10);
 		
 		JLabel label = new JLabel("건물번호");
-		label.setBounds(50, 159, 48, 15);
+		label.setHorizontalAlignment(SwingConstants.RIGHT);
+		label.setBounds(47, 159, 48, 15);
 		contentPane.add(label);
 		
 		textField = new JTextField();
 		textField.setColumns(10);
-		textField.setBounds(119, 156, 91, 21);
+		textField.setBounds(129, 156, 91, 21);
 		contentPane.add(textField);
 		
 		JLabel lbl = new JLabel("-");
-		lbl.setBounds(222, 159, 57, 15);
+		lbl.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl.setBounds(220, 158, 27, 15);
 		contentPane.add(lbl);
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		textField_1.setBounds(243, 156, 91, 21);
+		textField_1.setBounds(250, 156, 91, 21);
 		contentPane.add(textField_1);
 		
 		JButton btnSearch = new JButton("검색");
@@ -104,20 +112,6 @@ public class SearchPost extends JFrame {
 		btnSearchCancel.setBounds(195, 200, 97, 23);
 		contentPane.add(btnSearchCancel);
 		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-			},
-			new String[] {
-				"우편번호", "주소", "지번"
-			}
-		));
-		table.setBounds(12, 233, 345, 175);
-		contentPane.add(table);
-		
 		JButton btnZipCodeOK = new JButton("등록");
 		btnZipCodeOK.setBounds(86, 428, 97, 23);
 		contentPane.add(btnZipCodeOK);
@@ -125,5 +119,34 @@ public class SearchPost extends JFrame {
 		JButton btnCancel = new JButton("취소");
 		btnCancel.setBounds(195, 428, 97, 23);
 		contentPane.add(btnCancel);
+		
+		JPanel pPostTable = new JPanel();
+		pPostTable.setBackground(Color.WHITE);
+		pPostTable.setBounds(12, 233, 358, 185);
+		contentPane.add(pPostTable);
+		pPostTable.setLayout(null);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBackground(Color.WHITE);
+		scrollPane.setBounds(0, 0, 358, 185);
+		pPostTable.add(scrollPane);
+		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null},
+				{null, null},
+			},
+			new String[] {
+				"\uC6B0\uD3B8\uBC88\uD638", "\uC8FC\uC18C"
+			}
+		));
+		table.getColumnModel().getColumn(0).setPreferredWidth(100);
+		table.getColumnModel().getColumn(0).setMinWidth(100);
+		table.getColumnModel().getColumn(0).setMaxWidth(100);
+		table.getColumnModel().getColumn(1).setPreferredWidth(280);
+		table.getColumnModel().getColumn(1).setMinWidth(280);
+		table.getColumnModel().getColumn(1).setMaxWidth(280);
+		scrollPane.setViewportView(table);
 	}
 }
