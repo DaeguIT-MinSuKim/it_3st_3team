@@ -1,4 +1,4 @@
-package kr.or.dgit.it_3st_3team.ui;
+package kr.or.dgit.it_3st_3team.ui.common;
 
 import javax.swing.JPanel;
 import java.awt.GridLayout;
