@@ -25,6 +25,7 @@ public class TestFrame extends JFrame {
 		
 		AdminCustomerContent panel = new AdminCustomerContent();
 		contentPane.add(panel, BorderLayout.NORTH);
+		System.out.println(System.getProperty("user.dir") + "\\DataImg\\");
 	}
 
 }
