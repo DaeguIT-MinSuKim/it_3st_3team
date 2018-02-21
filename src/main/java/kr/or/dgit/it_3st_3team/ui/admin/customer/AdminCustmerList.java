@@ -4,11 +4,11 @@ import java.util.List;
 
 import javax.swing.SwingConstants;
 
-import kr.or.dgit.it_3st_3team.dto.Customer;
+import kr.or.dgit.it_3st_3team.dto.User;
 import kr.or.dgit.it_3st_3team.ui.component.AbtractTableComponent;
 
 @SuppressWarnings("serial")
-public class AdminCustmerList extends AbtractTableComponent<Customer> {
+public class AdminCustmerList extends AbtractTableComponent<User> {
 
 	/**
 	 * Create the panel.
@@ -29,7 +29,7 @@ public class AdminCustmerList extends AbtractTableComponent<Customer> {
 	}
 
 	@Override
-	public Object[][] getRows(List<Customer> list) {
+	public Object[][] getRows(List<User> list) {
 		Object[][] rows = {
 				{ "1", "c_id1", "재밌는게임방", "02-2233-1123", "서울시 도봉구 어쩌구 저쩌구"},
 				{ "2", "c_id2", "재없는게임방", "03-2233-1123", "서울시 도봉구 어쩌구 저쩌구"},
