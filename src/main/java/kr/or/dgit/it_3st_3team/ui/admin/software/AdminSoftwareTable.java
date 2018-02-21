@@ -1,4 +1,4 @@
-package kr.or.dgit.it_3st_3team.ui.admin;
+package kr.or.dgit.it_3st_3team.ui.admin.software;
 
 import javax.swing.JPanel;
 import javax.swing.JTable;
