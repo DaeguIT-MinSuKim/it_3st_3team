@@ -12,7 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import kr.or.dgit.it_3st_3team.table.SupplyingCompanyLists;
+import kr.or.dgit.it_3st_3team.ui.table.SupplyingCompanyLists;
 
 public class SupplyingCompany extends JPanel {
 	private JTextField tfSearchPC;

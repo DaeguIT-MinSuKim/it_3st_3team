@@ -21,7 +21,7 @@ import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
-import kr.or.dgit.it_3st_3team.table.StatusManagementLists;
+import kr.or.dgit.it_3st_3team.ui.table.StatusManagementLists;
 
 public class StatusManagement extends JPanel implements ActionListener {
 	private JTextField tfSearch;

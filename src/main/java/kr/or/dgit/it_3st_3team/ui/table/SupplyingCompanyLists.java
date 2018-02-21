@@ -1,4 +1,4 @@
-package kr.or.dgit.it_3st_3team.table;
+package kr.or.dgit.it_3st_3team.ui.table;
 
 import java.awt.BorderLayout;
 
