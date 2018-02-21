@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import kr.or.dgit.it_3st_3team.panel.StatusManagement;
 import kr.or.dgit.it_3st_3team.panel.SupplyingCompany;
 
 
@@ -49,8 +50,8 @@ public class SoftwareFrameUi extends JFrame {
 		
 		
 		
-		SupplyingCompany panel = new SupplyingCompany();
-	//	StatusManagement panel = new StatusManagement();
+	//	SupplyingCompany panel = new SupplyingCompany();
+		StatusManagement panel = new StatusManagement();
 	//	StatusSalesTeam panel = new StatusSalesTeam();
 		contentPane.add(panel, BorderLayout.CENTER);
 	}
