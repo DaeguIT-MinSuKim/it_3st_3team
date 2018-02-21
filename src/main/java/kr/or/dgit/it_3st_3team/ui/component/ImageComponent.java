@@ -1,4 +1,4 @@
-package kr.or.dgit.it_3st_3team.ui.common;
+package kr.or.dgit.it_3st_3team.ui.component;
 
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
@@ -8,11 +8,11 @@ import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 
 @SuppressWarnings("serial")
-public class ImageContent extends JPanel {
+public class ImageComponent extends JPanel {
 	private String imgPath = System.getProperty("user.dir") + "\\DataImg\\";
 	private JLabel lblImage;
 	
-	public ImageContent() {
+	public ImageComponent() {
 		initComponents();
 	}
 	private void initComponents() {

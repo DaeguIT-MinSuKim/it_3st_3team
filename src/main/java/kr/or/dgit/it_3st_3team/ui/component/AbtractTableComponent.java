@@ -1,4 +1,4 @@
-package kr.or.dgit.it_3st_3team.ui.common;
+package kr.or.dgit.it_3st_3team.ui.component;
 
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
@@ -13,11 +13,11 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
 @SuppressWarnings("serial")
-public abstract class AbtractTableContent<T> extends JPanel {
+public abstract class AbtractTableComponent<T> extends JPanel {
 	protected JTable table;
 	private JScrollPane scrollPane;
 
-	public AbtractTableContent() {
+	public AbtractTableComponent() {
 		initComponents();
 	}
 

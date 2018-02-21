@@ -5,7 +5,7 @@ import java.awt.FlowLayout;
 
 import javax.swing.JPanel;
 
-import kr.or.dgit.it_3st_3team.ui.common.ImageContent;
+import kr.or.dgit.it_3st_3team.ui.component.ImageComponent;
 
 @SuppressWarnings("serial")
 public class AdminCustomerMngContent extends JPanel {
@@ -22,7 +22,7 @@ public class AdminCustomerMngContent extends JPanel {
 		pInputData.setBounds(0, 0, 180, 180);
 		pInputData.setLayout(new BorderLayout(0, 0));
 		
-		ImageContent panel = new ImageContent();
+		ImageComponent panel = new ImageComponent();
 		pInputData.add(panel, BorderLayout.WEST);
 		
 		JPanel panel_1 = new JPanel();

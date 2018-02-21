@@ -2,7 +2,7 @@ package kr.or.dgit.it_3st_3team.ui.admin.management;
 
 import javax.swing.JPanel;
 
-import kr.or.dgit.it_3st_3team.ui.common.PagingContent;
+import kr.or.dgit.it_3st_3team.ui.component.PagingComponent;
 
 @SuppressWarnings("serial")
 public class AdminManagementContent extends JPanel {
@@ -28,7 +28,7 @@ public class AdminManagementContent extends JPanel {
 		panel.setBounds(12, 333, 776, 320);
 		add(panel);
 		
-		PagingContent pPaging = new PagingContent();
+		PagingComponent pPaging = new PagingComponent();
 		pPaging.setBounds(12, 663, 776, 40);
 		add(pPaging);
 	}

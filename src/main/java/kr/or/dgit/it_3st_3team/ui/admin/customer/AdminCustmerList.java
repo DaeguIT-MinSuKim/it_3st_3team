@@ -5,10 +5,10 @@ import java.util.List;
 import javax.swing.SwingConstants;
 
 import kr.or.dgit.it_3st_3team.dto.Customer;
-import kr.or.dgit.it_3st_3team.ui.common.AbtractTableContent;
+import kr.or.dgit.it_3st_3team.ui.component.AbtractTableComponent;
 
 @SuppressWarnings("serial")
-public class AdminCustmerList extends AbtractTableContent<Customer> {
+public class AdminCustmerList extends AbtractTableComponent<Customer> {
 
 	/**
 	 * Create the panel.

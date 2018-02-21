@@ -2,8 +2,6 @@ package kr.or.dgit.it_3st_3team.ui.admin.customer;
 
 import javax.swing.JPanel;
 
-import kr.or.dgit.it_3st_3team.ui.common.PagingContent;
-
 @SuppressWarnings("serial")
 public class AdminCustomerContent extends JPanel {
 
@@ -25,9 +23,9 @@ public class AdminCustomerContent extends JPanel {
 		AdminCustmerList pTableArea = new AdminCustmerList();
 		pTableArea.setBounds(12, 330, 776, 360);
 		add(pTableArea);
-		
-		PagingContent pPaging = new PagingContent();
-		pPaging.setBounds(12, 700, 776, 40);
-		add(pPaging);
+
+		JPanel panel = new JPanel();
+		panel.setBounds(12, 700, 776, 50);
+		add(panel);
 	}
 }

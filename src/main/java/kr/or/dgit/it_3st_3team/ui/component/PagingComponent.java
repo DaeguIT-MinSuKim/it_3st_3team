@@ -1,4 +1,4 @@
-package kr.or.dgit.it_3st_3team.ui.common;
+package kr.or.dgit.it_3st_3team.ui.component;
 
 import javax.swing.JPanel;
 import javax.swing.JButton;
@@ -6,9 +6,9 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 
 @SuppressWarnings("serial")
-public class PagingContent extends JPanel {
+public class PagingComponent extends JPanel {
 
-	public PagingContent() {
+	public PagingComponent() {
 
 		initComponents();
 	}
