@@ -1,4 +1,4 @@
-package kr.or.dgit.it_3st_3team.ui.software.sort;
+package kr.or.dgit.it_3st_3team.ui.common;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;

@@ -1,4 +1,4 @@
-package kr.or.dgit.it_3st_3team.ui.orderManagement;
+package kr.or.dgit.it_3st_3team.ui.admin.order;
 
 import javax.swing.JPanel;
 import java.awt.Color;

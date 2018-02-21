@@ -1,4 +1,4 @@
-package kr.or.dgit.it_3st_3team.ui.software;
+package kr.or.dgit.it_3st_3team.ui.admin;
 
 import javax.swing.JPanel;
 import javax.swing.JComboBox;
