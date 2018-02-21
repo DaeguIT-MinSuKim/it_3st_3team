@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
+import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class LabelInputBtnComponent extends JPanel {
@@ -19,6 +20,7 @@ public class LabelInputBtnComponent extends JPanel {
 
 	public LabelInputBtnComponent(String title, String btnName) {
 		lbltitle = new JLabel(title);
+		lbltitle.setHorizontalAlignment(SwingConstants.RIGHT);
 		btn = new JButton(btnName);
 		
 		initComponents();

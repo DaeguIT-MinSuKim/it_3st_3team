@@ -29,16 +29,16 @@ public abstract class AbstractLabelComboBox<T> extends JPanel {
 		pLC.setLayout(new BorderLayout(0, 0));
 		add(pLC);
 		
-
-		
 		lblName.setBorder(new EmptyBorder(0, 0, 0, 20));
 		lblName.setHorizontalAlignment(SwingConstants.RIGHT);
 		pLC.add(lblName, BorderLayout.WEST);
 
-		
 		cmbBox = new JComboBox<>();
 		pLC.add(cmbBox);
 	}
 	
-	public abstract void loadData(T[] data);
+	public void loadData(T[] data) {
+		dcbm = new DefaultComboBoxModel<>(data);
+		cmbBox.setModel(dcbm);
+	}
 }

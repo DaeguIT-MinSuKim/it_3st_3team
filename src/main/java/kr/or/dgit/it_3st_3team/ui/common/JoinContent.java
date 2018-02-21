@@ -1,4 +1,4 @@
-package kr.or.dgit.it_3st_3team.ui.company;
+package kr.or.dgit.it_3st_3team.ui.common;
 
 import java.awt.BorderLayout;
 
@@ -15,7 +15,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JPasswordField;
 
 @SuppressWarnings("serial")
-public class UserJoinContent extends JFrame {
+public class JoinContent extends JFrame {
 	private JPanel contentPane;
 	private JTextField tfUserId;
 	private JPasswordField pfUserPwd;
@@ -29,7 +29,7 @@ public class UserJoinContent extends JFrame {
 	private JButton btnUserJoinOK;
 	private JButton btnUserJoinCancel;
 
-	public UserJoinContent() {
+	public JoinContent() {
 		initComponents();
 	}
 

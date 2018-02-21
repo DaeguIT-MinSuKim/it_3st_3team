@@ -1,7 +1,6 @@
 package kr.or.dgit.it_3st_3team.ui.component;
 
 import javax.swing.JPanel;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import java.awt.BorderLayout;
 

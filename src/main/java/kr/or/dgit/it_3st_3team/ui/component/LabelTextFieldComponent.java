@@ -5,25 +5,33 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import java.awt.GridLayout;
+import java.awt.Color;
 
-public class AbstractLabelTf extends JPanel {
+@SuppressWarnings("serial")
+public class LabelTextFieldComponent extends JPanel {
 	private JTextField textField;
-	private JLabel lblNewLabel;
+	private JLabel lblTitle;
 
-	public AbstractLabelTf(String title) {
-		lblNewLabel = new JLabel(title);
+	public LabelTextFieldComponent(String title) {
+		lblTitle = new JLabel(title);
 		initComponents();
 	}
 
 	private void initComponents() {
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-
-		lblNewLabel.setBorder(new EmptyBorder(10, 10, 10, 10));
-		add(lblNewLabel);
+		
+		JPanel pTitleArea = new JPanel();
+		pTitleArea.setBorder(new EmptyBorder(0, 0, 0, 20));
+		pTitleArea.setLayout(new GridLayout(0, 1, 0, 0));
+		pTitleArea.setBackground(Color.WHITE);
+		pTitleArea.add(lblTitle);
+		
+		add(pTitleArea);
 
 		textField = new JTextField();
-		add(textField);
 		textField.setColumns(10);
+		add(textField);
 	}
 
 	public void setTfText(String text) {
