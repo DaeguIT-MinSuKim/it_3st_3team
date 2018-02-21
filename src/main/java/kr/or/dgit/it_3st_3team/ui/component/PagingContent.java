@@ -1,4 +1,4 @@
-package kr.or.dgit.it_3st_3team.ui.common;
+package kr.or.dgit.it_3st_3team.ui.component;
 
 import javax.swing.JPanel;
 import javax.swing.JButton;

@@ -14,6 +14,7 @@ public class TestFrame extends JFrame {
 
 	public TestFrame() {
 		initComponents();
+		System.out.println(System.getProperty("user.dir") + "\\DataImg\\");
 	}
 	private void initComponents() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

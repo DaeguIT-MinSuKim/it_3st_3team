@@ -5,7 +5,7 @@ import java.awt.FlowLayout;
 
 import javax.swing.JPanel;
 
-import kr.or.dgit.it_3st_3team.ui.common.ImageContent;
+import kr.or.dgit.it_3st_3team.ui.component.ImageContent;
 
 @SuppressWarnings("serial")
 public class AdminCustomerMngContent extends JPanel {

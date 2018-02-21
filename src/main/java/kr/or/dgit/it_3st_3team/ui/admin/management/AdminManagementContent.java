@@ -2,7 +2,7 @@ package kr.or.dgit.it_3st_3team.ui.admin.management;
 
 import javax.swing.JPanel;
 
-import kr.or.dgit.it_3st_3team.ui.common.PagingContent;
+import kr.or.dgit.it_3st_3team.ui.component.PagingContent;
 
 @SuppressWarnings("serial")
 public class AdminManagementContent extends JPanel {
