@@ -8,6 +8,8 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import kr.or.dgit.it_3st_3team.ui.component.ImageContent;
+import java.awt.Color;
 
 @SuppressWarnings("serial")
 public class AdminCustomerRegister extends JPanel {
@@ -25,20 +27,12 @@ public class AdminCustomerRegister extends JPanel {
 	}
 
 	private void initComponents() {
+		setBackground(Color.WHITE);
 		setLayout(null);
-
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(12, 10, 188, 230);
-		add(panel_1);
-		panel_1.setLayout(new BorderLayout(0, 0));
 		
-		JLabel label_7 = new JLabel("");
-		label_7.setIcon(new ImageIcon("D:\\workspaces\\workspace_java\\it_3st_3team\\DataImg\\nobody.png"));
-		label_7.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_1.add(label_7, BorderLayout.CENTER);
-		
-		JButton button_4 = new JButton("사진 등록");
-		panel_1.add(button_4, BorderLayout.SOUTH);
+		ImageContent pImgArea = new ImageContent();
+		pImgArea.setBounds(12, 10, 188, 230);
+		add(pImgArea);
 
 		JPanel panel_2 = new JPanel();
 		panel_2.setBounds(212, 10, 552, 230);
