@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import kr.or.dgit.it_3st_3team.ui.admin.customer.AdminCustomerContent;
+import kr.or.dgit.it_3st_3team.ui.admin.management.AdminManagementContent;
 
 @SuppressWarnings("serial")
 public class TestFrame extends JFrame {
@@ -23,9 +23,8 @@ public class TestFrame extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		AdminCustomerContent panel = new AdminCustomerContent();
-		contentPane.add(panel, BorderLayout.NORTH);
-		System.out.println(System.getProperty("user.dir") + "\\DataImg\\");
+		AdminManagementContent panel = new AdminManagementContent();
+		contentPane.add(panel, BorderLayout.CENTER);
 	}
 
 }
