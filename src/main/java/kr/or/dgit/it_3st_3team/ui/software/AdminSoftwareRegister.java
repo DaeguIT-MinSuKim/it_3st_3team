@@ -3,10 +3,14 @@ package kr.or.dgit.it_3st_3team.ui.software;
 import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -16,6 +20,8 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 	private JTextField tfSupplyPrice;
 	private JTextField tfSalePrice;
 	private JButton btnSWImgUp;
+	private JFileChooser chooser;
+	private JLabel lblSWImg;
 
 	/**
 	 * Create the panel.
@@ -34,7 +40,7 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 		add(pRegister);
 		pRegister.setLayout(null);
 		
-		JLabel lblSWImg = new JLabel("");
+		lblSWImg = new JLabel("");
 		lblSWImg.setBorder(new LineBorder(new Color(0, 0, 0)));
 		lblSWImg.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSWImg.setBounds(22, 10, 143, 134);
@@ -107,9 +113,20 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 	}
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnSWImgUp) {
+			chooser = new JFileChooser();
 			actionPerformedBtnSWImgUp(e);
 		}
 	}
 	protected void actionPerformedBtnSWImgUp(ActionEvent e) {
+
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & PNG Images", "jpg","png");
+		chooser.setFileFilter(filter);
+		int ret = chooser.showOpenDialog(null);
+		if(ret != JFileChooser.APPROVE_OPTION) {
+			JOptionPane.showMessageDialog(null, "파일을 선택하지 않았습니다.","경고",JOptionPane.WARNING_MESSAGE);
+			return;
+		}
+		String filePath = chooser.getSelectedFile().getPath();
+		lblSWImg.setIcon(new ImageIcon(filePath));
 	}
 }

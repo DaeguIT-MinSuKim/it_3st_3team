@@ -36,7 +36,7 @@ public class Login extends JPanel implements ActionListener {
 	private JTextField tfLgnUserId;
 	private JPasswordField tfLgnUserPwd;
 	private JButton btnLogin;
-	private String imgPath = System.getProperty("user.dir")+"/DataImg/";
+	private String imgPath = System.getProperty("user.dir")+"\\DataImg\\";
 	private BufferedImage img=null;
 	/**
 	 * Create the panel.
@@ -48,7 +48,7 @@ public class Login extends JPanel implements ActionListener {
 	
 	public void img() {
 		try {
-			img = ImageIO.read(new File(imgPath+"loginTitle.jpg"));
+			img = ImageIO.read(new File(imgPath+"background.jpg"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -58,7 +58,7 @@ public class Login extends JPanel implements ActionListener {
 	
 	class ImgPanel extends JPanel{
         public void paint(Graphics g){
-            g.drawImage(img, 0, 0, null);
+            g.drawImage(img, 0, 0, this.getWidth(),this.getHeight(),this);
         }
     }
 
@@ -71,7 +71,17 @@ public class Login extends JPanel implements ActionListener {
 		setForeground(Color.BLACK);
 		setLayout(null);
 		
-		JPanel pLogin = new JPanel();
+		try {
+			img = ImageIO.read(new File(imgPath+"background.jpg"));
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("이미지 불러오기 실패");
+		}
+		
+		ImgPanel pLogin = new ImgPanel();
+		
 		pLogin.setBounds(0, 0, 900, 500);
 		add(pLogin);
 		pLogin.setLayout(null);
@@ -141,6 +151,7 @@ public class Login extends JPanel implements ActionListener {
 		btnJoin.setForeground(Color.BLACK);
 		btnJoin.setFont(new Font("나눔바른고딕", Font.PLAIN, 12));
 		btnJoin.setBackground(Color.WHITE);
+		
 	}
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnLogin) {

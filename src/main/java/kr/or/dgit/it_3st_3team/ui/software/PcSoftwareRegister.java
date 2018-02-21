@@ -5,22 +5,31 @@ import java.awt.Rectangle;
 import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.SwingConstants;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class PcSoftwareRegister extends JPanel {
+public class PcSoftwareRegister extends JPanel implements ActionListener {
 	private JTextField tfSWName;
 	private JTextField tfSupplyPrice;
 	private JTextField tfSalePrice;
 	private JTextField tfPCName;
 	private JTextField tfSearch;
 	private JTable PCswTable;
+	private JButton btnSWImgUp;
+	private JFileChooser chooser;
+	private JLabel lblSWImg;
 
 	/**
 	 * Create the panel.
@@ -39,13 +48,14 @@ public class PcSoftwareRegister extends JPanel {
 		pPcRegister.setBounds(12, 10, 897, 183);
 		add(pPcRegister);
 		
-		JLabel lblSWImg = new JLabel("");
+		lblSWImg = new JLabel("");
 		lblSWImg.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSWImg.setBorder(new LineBorder(new Color(0, 0, 0)));
 		lblSWImg.setBounds(22, 10, 143, 134);
 		pPcRegister.add(lblSWImg);
 		
-		JButton btnSWImgUp = new JButton("이미지 등록");
+		btnSWImgUp = new JButton("이미지 등록");
+		btnSWImgUp.addActionListener(this);
 		btnSWImgUp.setBounds(48, 154, 97, 23);
 		pPcRegister.add(btnSWImgUp);
 		
@@ -152,4 +162,23 @@ public class PcSoftwareRegister extends JPanel {
 		scrollPane.setViewportView(PCswTable);
 	}
 
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnSWImgUp) {
+			chooser = new JFileChooser();
+			actionPerformedBtnSWImgUp(e);
+		}
+	}
+	protected void actionPerformedBtnSWImgUp(ActionEvent e) {
+		
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & PNG Images", "jpg","png");
+		chooser.setFileFilter(filter);
+		int ret = chooser.showOpenDialog(null);
+		if(ret != JFileChooser.APPROVE_OPTION) {
+			JOptionPane.showMessageDialog(null, "파일을 선택하지 않았습니다.","경고",JOptionPane.WARNING_MESSAGE);
+			return;
+		}
+		String filePath = chooser.getSelectedFile().getPath();
+		lblSWImg.setIcon(new ImageIcon(filePath));
+		
+	}
 }
