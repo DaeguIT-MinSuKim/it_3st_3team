@@ -5,7 +5,7 @@ import java.util.List;
 import javax.swing.SwingConstants;
 
 import kr.or.dgit.it_3st_3team.dto.Customer;
-import kr.or.dgit.it_3st_3team.ui.AbtractTableContent;
+import kr.or.dgit.it_3st_3team.ui.common.AbtractTableContent;
 
 @SuppressWarnings("serial")
 public class AdminCustmerList extends AbtractTableContent<Customer> {
