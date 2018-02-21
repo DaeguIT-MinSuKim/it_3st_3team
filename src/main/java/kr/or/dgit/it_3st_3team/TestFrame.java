@@ -22,5 +22,4 @@ public class TestFrame extends JFrame {
 		setContentPane(contentPane);
 		
 	}
-
 }
