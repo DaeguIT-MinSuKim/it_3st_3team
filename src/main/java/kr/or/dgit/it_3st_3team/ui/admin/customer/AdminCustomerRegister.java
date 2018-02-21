@@ -1,15 +1,14 @@
 package kr.or.dgit.it_3st_3team.ui.admin.customer;
 
 import javax.swing.JPanel;
-import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import kr.or.dgit.it_3st_3team.ui.component.ImageContent;
 import java.awt.Color;
+
+import kr.or.dgit.it_3st_3team.ui.component.ImageComponent;
 
 @SuppressWarnings("serial")
 public class AdminCustomerRegister extends JPanel {
@@ -29,9 +28,9 @@ public class AdminCustomerRegister extends JPanel {
 	private void initComponents() {
 		setBackground(Color.WHITE);
 		setLayout(null);
-		
-		ImageContent pImgArea = new ImageContent();
-		pImgArea.setBounds(12, 10, 188, 230);
+				
+		ImageComponent pImgArea = new ImageComponent();
+		pImgArea.setBounds(0, 10, 200, 230);
 		add(pImgArea);
 
 		JPanel panel_2 = new JPanel();
@@ -133,5 +132,4 @@ public class AdminCustomerRegister extends JPanel {
 		button_3.setBounds(431, 197, 97, 30);
 		panel_2.add(button_3);
 	}
-
 }
