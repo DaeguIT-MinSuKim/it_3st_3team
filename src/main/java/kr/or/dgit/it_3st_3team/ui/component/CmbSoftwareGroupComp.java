@@ -2,19 +2,18 @@ package kr.or.dgit.it_3st_3team.ui.component;
 
 import javax.swing.DefaultComboBoxModel;
 
-import kr.or.dgit.it_3st_3team.dto.Address;
-import kr.or.dgit.it_3st_3team.dto.Software_group;
+import kr.or.dgit.it_3st_3team.dto.SoftwareGroup;
 
 @SuppressWarnings("serial")
-public class SoftwareSortCombobox extends AbstractLabelComboBox<Software_group>{
+public class CmbSoftwareGroupComp extends AbstractLabelComboBox<SoftwareGroup>{
 
-	public SoftwareSortCombobox(String label) {
+	public CmbSoftwareGroupComp(String label) {
 		super(label);
 		// TODO Auto-generated constructor stub
 	}
 	
 	@Override
-	public void loadData(Software_group[] data) {
+	public void loadData(SoftwareGroup[] data) {
 		dcbm = new DefaultComboBoxModel<>(data);
 		cmbBox.setModel(dcbm);
 		

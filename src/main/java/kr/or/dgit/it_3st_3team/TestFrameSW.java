@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import kr.or.dgit.it_3st_3team.ui.admin.AdminSoftware;
+import kr.or.dgit.it_3st_3team.ui.admin.software.AdminSoftware;
 
 public class TestFrameSW extends JFrame {
 

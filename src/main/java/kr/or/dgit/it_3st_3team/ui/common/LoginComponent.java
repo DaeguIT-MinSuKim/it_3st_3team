@@ -52,7 +52,7 @@ public class LoginComponent extends JPanel implements ActionListener {
 		JPanel pCheck = new JPanel();
 		pCheck.setLayout(null);
 		pCheck.setBackground(Color.WHITE);
-		pCheck.setBounds(616, 558, 255, 33);
+		pCheck.setBounds(636, 557, 255, 33);
 		pLogin.add(pCheck);
 		
 		button = new JButton("로그인");

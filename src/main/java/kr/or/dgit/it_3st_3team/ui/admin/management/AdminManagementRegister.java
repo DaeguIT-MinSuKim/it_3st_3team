@@ -9,7 +9,7 @@ import kr.or.dgit.it_3st_3team.ui.component.ImageComponent;
 import kr.or.dgit.it_3st_3team.ui.component.LabelInputBtnComponent;
 import kr.or.dgit.it_3st_3team.ui.component.LabelTextFieldComponent;
 import kr.or.dgit.it_3st_3team.ui.component.LabelPwdFieldComponent;
-import kr.or.dgit.it_3st_3team.ui.component.AdminGroupComboComponent;
+import kr.or.dgit.it_3st_3team.ui.component.LblCmbAdminGroupComp;
 
 @SuppressWarnings("serial")
 public class AdminManagementRegister extends JPanel {
@@ -52,7 +52,7 @@ public class AdminManagementRegister extends JPanel {
 		pAdminPhone.setBounds(320, 89, 210, 30);
 		pInput.add(pAdminPhone);
 		
-		AdminGroupComboComponent pAdminGroup = new AdminGroupComboComponent("직책");
+		LblCmbAdminGroupComp pAdminGroup = new LblCmbAdminGroupComp("직책");
 		pAdminGroup.setBounds(48, 138, 198, 30);
 		pInput.add(pAdminGroup);
 		

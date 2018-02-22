@@ -8,9 +8,14 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import kr.or.dgit.it_3st_3team.ui.component.SearchSoftwareCombobox;
+import kr.or.dgit.it_3st_3team.ui.component.SoftwareComboboxComponent;
+import kr.or.dgit.it_3st_3team.ui.component.AdminGroupComboboxComponent;
+import kr.or.dgit.it_3st_3team.ui.component.StartAndEndDate;
+import kr.or.dgit.it_3st_3team.ui.component.StringCombobox;
+import kr.or.dgit.it_3st_3team.ui.component.StatusSearchBottom;
+import kr.or.dgit.it_3st_3team.ui.component.OnlySearchBottom;
 
 public class AdminOrderSearch extends JPanel {
-	private JTextField tfSearch;
 
 	/**
 	 * Create the panel.
@@ -24,26 +29,30 @@ public class AdminOrderSearch extends JPanel {
 		
 		JPanel pOrderSearch = new JPanel();
 		pOrderSearch.setBackground(Color.WHITE);
-		pOrderSearch.setBounds(0, 0, 1190, 43);
+		pOrderSearch.setBounds(0, 0, 1190, 94);
 		add(pOrderSearch);
 		pOrderSearch.setLayout(null);
 		
-		tfSearch = new JTextField();
-		tfSearch.setColumns(10);
-		tfSearch.setBounds(901, 7, 208, 30);
-		pOrderSearch.add(tfSearch);
-		
-		JButton btnSearch = new JButton("검색");
-		btnSearch.setBounds(1121, 8, 57, 23);
-		pOrderSearch.add(btnSearch);
-		
-		SearchSoftwareCombobox pSearchSoftwareName = new SearchSoftwareCombobox();
-		pSearchSoftwareName.setBounds(22, 7, 120, 30);
-		pOrderSearch.add(pSearchSoftwareName);
-		
-		JPanel pSearchSoftwareSort = new JPanel();
-		pSearchSoftwareSort.setBounds(154, 7, 120, 30);
+		SoftwareComboboxComponent pSearchSoftwareSort = new SoftwareComboboxComponent();
+		pSearchSoftwareSort.setBounds(168, 34, 120, 30);
 		pOrderSearch.add(pSearchSoftwareSort);
+		
+		AdminGroupComboboxComponent pAdminGroup = new AdminGroupComboboxComponent();
+		pAdminGroup.setBounds(325, 34, 120, 30);
+		pOrderSearch.add(pAdminGroup);
+		
+		StartAndEndDate pDate = new StartAndEndDate();
+		pDate.setBackground(Color.WHITE);
+		pDate.setBounds(488, 10, 690, 43);
+		pOrderSearch.add(pDate);
+		
+		StringCombobox pSortUserNameSWName = new StringCombobox();
+		pSortUserNameSWName.setBounds(493, 54, 120, 30);
+		pOrderSearch.add(pSortUserNameSWName);
+		
+		OnlySearchBottom pSearch = new OnlySearchBottom();
+		pSearch.setBounds(638, 54, 540, 30);
+		pOrderSearch.add(pSearch);
 	}
 
 }

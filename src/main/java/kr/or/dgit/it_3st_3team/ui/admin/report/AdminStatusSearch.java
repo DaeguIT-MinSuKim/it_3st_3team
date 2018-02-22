@@ -7,6 +7,7 @@ import javax.swing.border.EmptyBorder;
 import kr.or.dgit.it_3st_3team.dto.AdminGroup;
 import kr.or.dgit.it_3st_3team.dto.SoftwareGroup;
 import kr.or.dgit.it_3st_3team.dto.User;
+import kr.or.dgit.it_3st_3team.type.AdminGroupAuth;
 import kr.or.dgit.it_3st_3team.ui.component.AdminGroupComboboxComponent;
 import kr.or.dgit.it_3st_3team.ui.component.SoftwareComboboxComponent;
 import kr.or.dgit.it_3st_3team.ui.component.StartAndEndDate;
@@ -66,7 +67,7 @@ public class AdminStatusSearch extends JPanel {
 	
 	
 	public void setAdminGroupData() {
-		AdminGroup[] admin = {new AdminGroup("영업1팀"), new AdminGroup("영업2팀")};
+		AdminGroup[] admin = {new AdminGroup(1, "영업1팀", AdminGroupAuth.SALESMAN), new AdminGroup(1, "영업2팀", AdminGroupAuth.SALESMAN)};
 		pAdminGroup.loadData(admin);
 	}
 	
