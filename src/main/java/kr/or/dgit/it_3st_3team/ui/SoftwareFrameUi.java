@@ -12,6 +12,7 @@ import kr.or.dgit.it_3st_3team.panel.SupplyingCompany;
 import kr.or.dgit.it_3st_3team.ui.admin.report.AdminSalesStatusSearch;
 import kr.or.dgit.it_3st_3team.ui.admin.report.AdminStatusSearch;
 import kr.or.dgit.it_3st_3team.ui.admin.report.UserStatusSearch;
+import kr.or.dgit.it_3st_3team.ui.table.AdminStatusLists;
 
 
 
@@ -54,10 +55,13 @@ public class SoftwareFrameUi extends JFrame {
 	
 	//	SupplyingCompany panel = new SupplyingCompany();
 	//	AdminStatusSearch panel = new AdminStatusSearch();
-		AdminSalesStatusSearch panel = new AdminSalesStatusSearch();
+	//	AdminSalesStatusSearch panel = new AdminSalesStatusSearch();
 	//	UserStatusSearch panel = new UserStatusSearch();
 	//	StatusSalesTeam panel = new StatusSalesTeam();
-		contentPane.add(panel, BorderLayout.CENTER);
+	
+		
+		AdminStatusLists panel = new AdminStatusLists();
+		contentPane.add(panel, BorderLayout.SOUTH);
 	}
 
 }
