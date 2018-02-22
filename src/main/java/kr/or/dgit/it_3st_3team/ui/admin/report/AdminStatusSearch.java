@@ -11,12 +11,13 @@ import kr.or.dgit.it_3st_3team.ui.component.AdminGroupComboboxComponent;
 import kr.or.dgit.it_3st_3team.ui.component.SoftwareComboboxComponent;
 import kr.or.dgit.it_3st_3team.ui.component.StartAndEndDate;
 import kr.or.dgit.it_3st_3team.ui.component.StatusSearchBottom;
+import kr.or.dgit.it_3st_3team.ui.component.StatusSearchComboboxBottom;
 import kr.or.dgit.it_3st_3team.ui.component.UserComboboxComponent;
 
 public class AdminStatusSearch extends JPanel {
-	private UserComboboxComponent pUserGroup;
 	private SoftwareComboboxComponent pSoftwareGroup;
 	private AdminGroupComboboxComponent pAdminGroup;
+	private StatusSearchComboboxBottom pComboSerach;
 	
 	
 	public AdminStatusSearch() {
@@ -27,37 +28,29 @@ public class AdminStatusSearch extends JPanel {
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(null);
 		
-		
-		pUserGroup = new UserComboboxComponent();
-		pUserGroup.setBounds(12, 10, 125, 30);
-		add(pUserGroup);
-		
 		pSoftwareGroup = new SoftwareComboboxComponent();
-		pSoftwareGroup.setBounds(169, 10, 125, 30);
+		pSoftwareGroup.setBounds(12, 10, 125, 30);
 		add(pSoftwareGroup);
 		
 		pAdminGroup = new AdminGroupComboboxComponent();
-		pAdminGroup.setBounds(324, 10, 125, 30);
+		pAdminGroup.setBounds(149, 10, 125, 30);
 		add(pAdminGroup);
 		
 		StartAndEndDate pCalendar = new StartAndEndDate();
-		pCalendar.setBounds(769, 0, 425, 43);
+		pCalendar.setBounds(769, 0, 428, 43);
 		add(pCalendar);
 		
-		StatusSearchBottom pStatusSerach = new StatusSearchBottom();
-		pStatusSerach.setBounds(12, 60, 1176, 31);
-		add(pStatusSerach);
-		setUserData();
+		pComboSerach = new StatusSearchComboboxBottom();
+		pComboSerach.setBounds(12, 60, 1182, 30);
+		add(pComboSerach);
+		
 		setSoftwareGroupData();
 		setAdminGroupData();
 		
 
 	}
 	
-	public void setUserData() {
-		User[] users = {new User("재밌는게임방"), new User("대전광역시교육청")};
-		pUserGroup.loadData(users);
-	}
+	
 	
 	public void setSoftwareGroupData() {
 		SoftwareGroup[] software = {new SoftwareGroup(1,"게임"), new SoftwareGroup(2,"사무")};
