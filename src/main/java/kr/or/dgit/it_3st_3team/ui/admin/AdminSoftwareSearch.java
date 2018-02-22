@@ -30,12 +30,12 @@ public class AdminSoftwareSearch extends JPanel {
 		pSWSearch.setLayout(null);
 		
 		tfSearch = new JTextField();
-		tfSearch.setBounds(407, 9, 683, 21);
+		tfSearch.setBounds(407, 7, 642, 30);
 		pSWSearch.add(tfSearch);
 		tfSearch.setColumns(10);
 		
 		JButton btnSearch = new JButton("검색");
-		btnSearch.setBounds(1101, 8, 57, 23);
+		btnSearch.setBounds(1061, 10, 71, 23);
 		pSWSearch.add(btnSearch);
 		
 		SearchUserCmbComponent pSearchSW = new SearchUserCmbComponent();

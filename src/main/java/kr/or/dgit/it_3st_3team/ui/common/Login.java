@@ -1,36 +1,25 @@
 package kr.or.dgit.it_3st_3team.ui.common;
 
-import javax.swing.JPanel;
-import java.awt.BorderLayout;
-import java.awt.SystemColor;
 import java.awt.Color;
-import javax.swing.JDesktopPane;
-import java.awt.GridLayout;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import java.awt.FlowLayout;
-
-import javax.imageio.ImageIO;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import java.awt.Component;
 import java.awt.Font;
 import java.awt.Graphics;
-
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.UIManager;
-import javax.swing.JPasswordField;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.awt.event.ActionEvent;
+
+import javax.imageio.ImageIO;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
+import kr.or.dgit.it_3st_3team.TestFrameSW;
 
 public class Login extends JPanel implements ActionListener {
 	private JTextField tfLgnUserId;
@@ -165,7 +154,9 @@ public class Login extends JPanel implements ActionListener {
 		if(id.equals("UserId") || password.equals("")) {
 			JOptionPane.showMessageDialog(null, "아이디,비밀번호를 입력해주세요");
 		}else {
-			
+			TestFrameSW Adminsw = new TestFrameSW();
+			add(Adminsw);
+			setVisible(true);
 		}
 		
 	}

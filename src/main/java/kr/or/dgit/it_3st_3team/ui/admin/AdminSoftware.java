@@ -11,6 +11,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.SwingConstants;
 import java.awt.Rectangle;
+import kr.or.dgit.it_3st_3team.ui.component.PagingComponent;
 
 public class AdminSoftware extends JPanel {
 
@@ -22,19 +23,25 @@ public class AdminSoftware extends JPanel {
 		initComponents();
 	}
 	private void initComponents() {
-		setBounds(new Rectangle(0, 0, 900, 500));
+		setBounds(new Rectangle(0, 0, 1200, 850));
 		setLayout(null);
 		
 		AdminSoftwareRegister pRegister = new AdminSoftwareRegister();
-		pRegister.setBounds(12, 10, 877, 183);
+		pRegister.setBounds(0, 0, 1190, 183);
 		add(pRegister);
 		
 		AdminSoftwareSearch pSearch = new AdminSoftwareSearch();
-		pSearch.setBounds(12, 198, 877, 39);
+		pSearch.setBounds(0, 193, 1190, 39);
 		add(pSearch);
 		
 		AdminSoftwareTable pTable = new AdminSoftwareTable();
-		pTable.setBounds(12, 243, 877, 268);
+		pTable.setBackground(Color.WHITE);
+		pTable.setBounds(0, 242, 1190, 562);
 		add(pTable);
+		
+		PagingComponent pPageing = new PagingComponent();
+		pPageing.setBackground(Color.WHITE);
+		pPageing.setBounds(0, 814, 1190, 39);
+		add(pPageing);
 	}
 }

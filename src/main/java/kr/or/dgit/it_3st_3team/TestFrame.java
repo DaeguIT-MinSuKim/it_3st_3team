@@ -49,12 +49,8 @@ public class TestFrame extends JFrame implements ActionListener {
 		contentPane.add(panel, BorderLayout.CENTER);*/
 		contentPane.setLayout(null);
 		
-		JPanel pMenu = new JPanel();
-		pMenu.setBounds(0, 0, 262, 961);
-		contentPane.add(pMenu);
-		
 		JPanel pMain = new JPanel();
-		pMain.setBounds(263, 0, 1221, 961);
+		pMain.setBounds(0, 0, 1484, 961);
 		contentPane.add(pMain);
 	}
 	public void actionPerformed(ActionEvent e) {

@@ -11,8 +11,8 @@ import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public abstract class AbstractLabelAddress<T> extends JPanel {
-	private JTextField tfAddress;
-	private JTextField tfAddress_1;
+	private JTextField tfAddress1;
+	private JTextField tfAddress2;
 	private JLabel lblAdd;
 	private JPanel panel;
 
@@ -36,14 +36,14 @@ public abstract class AbstractLabelAddress<T> extends JPanel {
 		pAddress.add(pSpace, BorderLayout.CENTER);
 		pSpace.setLayout(new GridLayout(2, 0, 5, 5));
 		
-		tfAddress = new JTextField();
+		tfAddress1 = new JTextField();
 		
-		pSpace.add(tfAddress);
-		tfAddress.setColumns(10);
+		pSpace.add(tfAddress1);
+		tfAddress1.setColumns(10);
 		
-		tfAddress_1 = new JTextField();
-		pSpace.add(tfAddress_1);
-		tfAddress_1.setColumns(10);
+		tfAddress2 = new JTextField();
+		pSpace.add(tfAddress2);
+		tfAddress2.setColumns(10);
 		
 		panel = new JPanel();
 		panel.setBorder(new EmptyBorder(0, 0, 0, 20));
@@ -54,6 +54,22 @@ public abstract class AbstractLabelAddress<T> extends JPanel {
 		lblAdd.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblAdd.setHorizontalAlignment(SwingConstants.RIGHT);
 		panel.add(lblAdd);
+	}
+	
+	public void setTfAddress1(String text) {
+		tfAddress1.setText(text);
+	}
+
+	public String getTfAddress1() {
+		return tfAddress1.getText();
+	}
+	
+	public void setTfAddress2(String text) {
+		tfAddress2.setText(text);
+	}
+
+	public String getTfAddress2() {
+		return tfAddress2.getText();
 	}
 	
 	
