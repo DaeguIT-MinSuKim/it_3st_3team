@@ -3,18 +3,17 @@ package kr.or.dgit.it_3st_3team.ui.component;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
 import java.awt.Color;
-import javax.swing.JPasswordField;
-import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
-public class LabelPwdFieldComponent extends JPanel {
+public class LblTfComp extends JPanel {
+	private JTextField textField;
 	private JLabel lblTitle;
-	private JPasswordField pwdField;
 
-	public LabelPwdFieldComponent(String title) {
+	public LblTfComp(String title) {
 		lblTitle = new JLabel(title);
 		initComponents();
 	}
@@ -29,17 +28,17 @@ public class LabelPwdFieldComponent extends JPanel {
 		pTitleArea.add(lblTitle);
 		
 		add(pTitleArea);
-		
-		pwdField = new JPasswordField();
-		pwdField.setHorizontalAlignment(SwingConstants.LEFT);
-		add(pwdField);
+
+		textField = new JTextField();
+		textField.setColumns(10);
+		add(textField);
 	}
 
 	public void setTfText(String text) {
-		pwdField.setText(text);
+		textField.setText(text);
 	}
 
 	public String getTfText() {
-		return pwdField.getSelectedText();
+		return textField.getText();
 	}
 }

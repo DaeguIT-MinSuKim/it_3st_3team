@@ -5,9 +5,9 @@ import javax.swing.DefaultComboBoxModel;
 import kr.or.dgit.it_3st_3team.dto.Software;
 
 @SuppressWarnings("serial")
-public class SoftwareNameCmbComponent extends AbstractLabelComboBox<Software> {
+public class LblCmbSoftwareComp extends AbstractLabelComboBox<Software> {
 
-	public SoftwareNameCmbComponent(String label) {
+	public LblCmbSoftwareComp(String label) {
 		super(label);
 	}
 	@Override

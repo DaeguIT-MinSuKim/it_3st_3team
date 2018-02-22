@@ -13,11 +13,11 @@ import javax.swing.border.EmptyBorder;
 
 
 @SuppressWarnings("serial")
-public class ImageComponent extends JPanel {
+public class ImageComp extends JPanel {
 	private String imgPath = System.getProperty("user.dir") + "/DataImg/";
 	private JLabel lblImg;
 
-	public ImageComponent() {
+	public ImageComp() {
 		initComponents();
 	}
 

@@ -11,7 +11,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.SwingConstants;
 import java.awt.Rectangle;
-import kr.or.dgit.it_3st_3team.ui.component.PagingComponent;
+import kr.or.dgit.it_3st_3team.ui.component.PagingComp;
 
 public class AdminSoftware extends JPanel {
 
@@ -39,7 +39,7 @@ public class AdminSoftware extends JPanel {
 		pTable.setBounds(0, 242, 1190, 562);
 		add(pTable);
 		
-		PagingComponent pPageing = new PagingComponent();
+		PagingComp pPageing = new PagingComp();
 		pPageing.setBackground(Color.WHITE);
 		pPageing.setBounds(0, 814, 1190, 39);
 		add(pPageing);

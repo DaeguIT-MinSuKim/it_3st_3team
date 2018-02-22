@@ -2,10 +2,10 @@ package kr.or.dgit.it_3st_3team.ui.component;
 
 import javax.swing.DefaultComboBoxModel;
 
-public class StringCombobox extends AbstractCombobox<String> {
+public class CmbStringComp extends AbstractCombobox<String> {
 
 	
-	public StringCombobox() {
+	public CmbStringComp() {
 
 	}
 

@@ -2,15 +2,17 @@ package kr.or.dgit.it_3st_3team.ui.component;
 
 import javax.swing.DefaultComboBoxModel;
 
-@SuppressWarnings("serial")
-public class StringLabelComboxComp extends AbstractLabelComboBox<String> {
+import kr.or.dgit.it_3st_3team.dto.User;
 
-	public StringLabelComboxComp(String title) {
+@SuppressWarnings("serial")
+public class LblCmbUserComp extends AbstractLabelComboBox<User> {
+
+	public LblCmbUserComp(String title) {
 		super(title);
 	}
 
 	@Override
-	public void loadData(String[] data) {
+	public void loadData(User[] data) {
 		dcbm = new DefaultComboBoxModel<>(data);
 		cmbBox.setModel(dcbm);
 	}

@@ -7,13 +7,13 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-import kr.or.dgit.it_3st_3team.ui.component.SearchSoftwareCombobox;
-import kr.or.dgit.it_3st_3team.ui.component.SoftwareComboboxComponent;
-import kr.or.dgit.it_3st_3team.ui.component.AdminGroupComboboxComponent;
+import kr.or.dgit.it_3st_3team.ui.component.CmbSoftwareComp;
+import kr.or.dgit.it_3st_3team.ui.component.CmbSoftwareGroupComp;
+import kr.or.dgit.it_3st_3team.ui.component.CmbAdminGroupComp;
 import kr.or.dgit.it_3st_3team.ui.component.StartAndEndDate;
-import kr.or.dgit.it_3st_3team.ui.component.StringCombobox;
-import kr.or.dgit.it_3st_3team.ui.component.StatusSearchBottom;
-import kr.or.dgit.it_3st_3team.ui.component.OnlySearchBottom;
+import kr.or.dgit.it_3st_3team.ui.component.CmbStringComp;
+import kr.or.dgit.it_3st_3team.ui.component.TfBtnSearchPrintComp;
+import kr.or.dgit.it_3st_3team.ui.component.TfBtnSearchComp;
 
 public class AdminOrderSearch extends JPanel {
 
@@ -33,11 +33,11 @@ public class AdminOrderSearch extends JPanel {
 		add(pOrderSearch);
 		pOrderSearch.setLayout(null);
 		
-		SoftwareComboboxComponent pSearchSoftwareSort = new SoftwareComboboxComponent();
+		CmbSoftwareGroupComp pSearchSoftwareSort = new CmbSoftwareGroupComp();
 		pSearchSoftwareSort.setBounds(168, 34, 120, 30);
 		pOrderSearch.add(pSearchSoftwareSort);
 		
-		AdminGroupComboboxComponent pAdminGroup = new AdminGroupComboboxComponent();
+		CmbAdminGroupComp pAdminGroup = new CmbAdminGroupComp();
 		pAdminGroup.setBounds(325, 34, 120, 30);
 		pOrderSearch.add(pAdminGroup);
 		
@@ -46,11 +46,11 @@ public class AdminOrderSearch extends JPanel {
 		pDate.setBounds(488, 10, 690, 43);
 		pOrderSearch.add(pDate);
 		
-		StringCombobox pSortUserNameSWName = new StringCombobox();
+		CmbStringComp pSortUserNameSWName = new CmbStringComp();
 		pSortUserNameSWName.setBounds(493, 54, 120, 30);
 		pOrderSearch.add(pSortUserNameSWName);
 		
-		OnlySearchBottom pSearch = new OnlySearchBottom();
+		TfBtnSearchComp pSearch = new TfBtnSearchComp();
 		pSearch.setBounds(638, 54, 540, 30);
 		pOrderSearch.add(pSearch);
 	}

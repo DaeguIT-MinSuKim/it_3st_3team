@@ -2,16 +2,10 @@ package kr.or.dgit.it_3st_3team.ui.admin.software;
 
 import java.awt.Color;
 
-import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
-import kr.or.dgit.it_3st_3team.ui.component.SearchSoftwareCombobox;
-import kr.or.dgit.it_3st_3team.ui.component.SearchUserCmbComponent;
-import kr.or.dgit.it_3st_3team.ui.component.UserLabelComboxComponent;
-import kr.or.dgit.it_3st_3team.ui.component.UserComboboxComponent;
-import kr.or.dgit.it_3st_3team.ui.component.StringCombobox;
-import kr.or.dgit.it_3st_3team.ui.component.OnlySearchBottom;
+import kr.or.dgit.it_3st_3team.ui.component.CmbStringComp;
+import kr.or.dgit.it_3st_3team.ui.component.TfBtnSearchComp;
 
 public class AdminSoftwareSearch extends JPanel {
 
@@ -32,11 +26,11 @@ public class AdminSoftwareSearch extends JPanel {
 		add(pSWSearch);
 		pSWSearch.setLayout(null);
 		
-		StringCombobox pSWNamePCName = new StringCombobox();
+		CmbStringComp pSWNamePCName = new CmbStringComp();
 		pSWNamePCName.setBounds(148, 9, 137, 25);
 		pSWSearch.add(pSWNamePCName);
 		
-		OnlySearchBottom pSearch = new OnlySearchBottom();
+		TfBtnSearchComp pSearch = new TfBtnSearchComp();
 		pSearch.setBounds(375, 9, 628, 25);
 		pSWSearch.add(pSearch);
 	}

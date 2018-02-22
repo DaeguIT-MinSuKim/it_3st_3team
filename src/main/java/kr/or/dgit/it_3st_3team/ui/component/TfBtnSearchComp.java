@@ -11,11 +11,11 @@ import java.awt.FlowLayout;
 import java.awt.Color;
 import java.awt.Rectangle;
 
-public class OnlySearchBottom extends JPanel {
+public class TfBtnSearchComp extends JPanel {
 	private JTextField tfSearchItem;
 
 	
-	public OnlySearchBottom() {
+	public TfBtnSearchComp() {
 
 		initComponents();
 	}

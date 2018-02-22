@@ -5,14 +5,14 @@ import javax.swing.border.EmptyBorder;
 
 import kr.or.dgit.it_3st_3team.dto.SoftwareGroup;
 import kr.or.dgit.it_3st_3team.dto.User;
-import kr.or.dgit.it_3st_3team.ui.component.SoftwareComboboxComponent;
+import kr.or.dgit.it_3st_3team.ui.component.CmbSoftwareGroupComp;
+import kr.or.dgit.it_3st_3team.ui.component.CmbUserComp;
 import kr.or.dgit.it_3st_3team.ui.component.StartAndEndDate;
-import kr.or.dgit.it_3st_3team.ui.component.StatusSearchBottom;
-import kr.or.dgit.it_3st_3team.ui.component.UserComboboxComponent;
+import kr.or.dgit.it_3st_3team.ui.component.TfBtnSearchPrintComp;
 
 public class AdminSalesStatusSearch extends JPanel {
-	private UserComboboxComponent pUserGroup;
-	private SoftwareComboboxComponent pSoftwareGroup;
+	private CmbUserComp pUserGroup;
+	private CmbSoftwareGroupComp pSoftwareGroup;
 	
 	public AdminSalesStatusSearch() {
 
@@ -22,11 +22,11 @@ public class AdminSalesStatusSearch extends JPanel {
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(null);
 		
-		pUserGroup = new UserComboboxComponent();
+		pUserGroup = new CmbUserComp();
 		pUserGroup.setBounds(12, 10, 125, 30);
 		add(pUserGroup);
 		
-		pSoftwareGroup = new SoftwareComboboxComponent();
+		pSoftwareGroup = new CmbSoftwareGroupComp();
 		pSoftwareGroup.setBounds(169, 10, 125, 30);
 		add(pSoftwareGroup);
 		
@@ -34,7 +34,7 @@ public class AdminSalesStatusSearch extends JPanel {
 		pCalendar.setBounds(769, 10, 425, 43);
 		add(pCalendar);
 		
-		StatusSearchBottom pStatusSearch = new StatusSearchBottom();
+		TfBtnSearchPrintComp pStatusSearch = new TfBtnSearchPrintComp();
 		pStatusSearch.setBounds(12, 60, 1176, 40);
 		add(pStatusSearch);
 		setUserData();

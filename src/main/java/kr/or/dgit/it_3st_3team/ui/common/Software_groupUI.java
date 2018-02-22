@@ -15,7 +15,7 @@ import java.awt.Color;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import kr.or.dgit.it_3st_3team.ui.component.LabelInputBtnComponent;
+import kr.or.dgit.it_3st_3team.ui.component.LblTfBtnComp;
 
 public class Software_groupUI extends JFrame {
 
@@ -76,7 +76,7 @@ public class Software_groupUI extends JFrame {
 		));
 		scrollPane.setViewportView(table);
 		
-		LabelInputBtnComponent panel_1 = new LabelInputBtnComponent("분류 명", "등록");
+		LblTfBtnComp panel_1 = new LblTfBtnComp("분류 명", "등록");
 		panel_1.setBounds(12, 10, 410, 30);
 		contentPane.add(panel_1);
 	}

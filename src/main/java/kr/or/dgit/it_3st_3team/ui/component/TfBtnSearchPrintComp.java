@@ -8,11 +8,11 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.BoxLayout;
 
-public class StatusSearchBottom extends JPanel {
+public class TfBtnSearchPrintComp extends JPanel {
 	private JTextField tfSearchItem;
 
 	
-	public StatusSearchBottom() {
+	public TfBtnSearchPrintComp() {
 
 		initComponents();
 	}

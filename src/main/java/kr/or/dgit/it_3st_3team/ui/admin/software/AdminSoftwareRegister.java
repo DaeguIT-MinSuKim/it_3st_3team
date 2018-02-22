@@ -6,9 +6,9 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 
-import kr.or.dgit.it_3st_3team.ui.component.ImageComponent;
-import kr.or.dgit.it_3st_3team.ui.component.LabelTextFieldComponent;
-import kr.or.dgit.it_3st_3team.ui.component.StringLabelComboxComp;
+import kr.or.dgit.it_3st_3team.ui.component.ImageComp;
+import kr.or.dgit.it_3st_3team.ui.component.LblTfComp;
+import kr.or.dgit.it_3st_3team.ui.component.LblCmbStringComp;
 
 public class AdminSoftwareRegister extends JPanel {
 	private JFileChooser chooser;
@@ -42,28 +42,28 @@ public class AdminSoftwareRegister extends JPanel {
 		btnSubmitCF.setBounds(779, 29, 97, 23);
 		pRegister.add(btnSubmitCF);
 		
-		StringLabelComboxComp pCompany = new StringLabelComboxComp("공급회사");
+		LblCmbStringComp pCompany = new LblCmbStringComp("공급회사");
 		pCompany.setBorder(null);
 		pCompany.setBounds(238, 27, 243, 30);
 		pRegister.add(pCompany);
 		
-		StringLabelComboxComp pSWsort = new StringLabelComboxComp("분류 회사");
+		LblCmbStringComp pSWsort = new LblCmbStringComp("분류 회사");
 		pSWsort.setBounds(528, 26, 243, 30);
 		pRegister.add(pSWsort);
 		
-		ImageComponent pRegisterImg = new ImageComponent();
+		ImageComp pRegisterImg = new ImageComp();
 		pRegisterImg.setBounds(0, 0, 196, 183);
 		pRegister.add(pRegisterImg);
 		
-		LabelTextFieldComponent pSWName = new LabelTextFieldComponent("품목 명");
+		LblTfComp pSWName = new LblTfComp("품목 명");
 		pSWName.setBounds(538, 66, 340, 30);
 		pRegister.add(pSWName);
 		
-		LabelTextFieldComponent pSupplyPrice = new LabelTextFieldComponent("공급 가격");
+		LblTfComp pSupplyPrice = new LblTfComp("공급 가격");
 		pSupplyPrice.setBounds(239, 120, 242, 30);
 		pRegister.add(pSupplyPrice);
 		
-		LabelTextFieldComponent pSalePrice = new LabelTextFieldComponent("판매 가격");
+		LblTfComp pSalePrice = new LblTfComp("판매 가격");
 		pSalePrice.setBounds(238, 73, 243, 30);
 		pRegister.add(pSalePrice);
 	}

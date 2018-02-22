@@ -1,6 +1,5 @@
 package kr.or.dgit.it_3st_3team.ui.admin.report;
 
-import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -8,16 +7,16 @@ import kr.or.dgit.it_3st_3team.dto.AdminGroup;
 import kr.or.dgit.it_3st_3team.dto.SoftwareGroup;
 import kr.or.dgit.it_3st_3team.dto.User;
 import kr.or.dgit.it_3st_3team.type.AdminGroupAuth;
-import kr.or.dgit.it_3st_3team.ui.component.AdminGroupComboboxComponent;
-import kr.or.dgit.it_3st_3team.ui.component.SoftwareComboboxComponent;
+import kr.or.dgit.it_3st_3team.ui.component.CmbAdminGroupComp;
+import kr.or.dgit.it_3st_3team.ui.component.CmbSoftwareGroupComp;
+import kr.or.dgit.it_3st_3team.ui.component.CmbUserComp;
 import kr.or.dgit.it_3st_3team.ui.component.StartAndEndDate;
-import kr.or.dgit.it_3st_3team.ui.component.StatusSearchBottom;
-import kr.or.dgit.it_3st_3team.ui.component.UserComboboxComponent;
+import kr.or.dgit.it_3st_3team.ui.component.TfBtnSearchPrintComp;
 
 public class AdminStatusSearch extends JPanel {
-	private UserComboboxComponent pUserGroup;
-	private SoftwareComboboxComponent pSoftwareGroup;
-	private AdminGroupComboboxComponent pAdminGroup;
+	private CmbUserComp pUserGroup;
+	private CmbSoftwareGroupComp pSoftwareGroup;
+	private CmbAdminGroupComp pAdminGroup;
 	
 	
 	public AdminStatusSearch() {
@@ -29,15 +28,15 @@ public class AdminStatusSearch extends JPanel {
 		setLayout(null);
 		
 		
-		pUserGroup = new UserComboboxComponent();
+		pUserGroup = new CmbUserComp();
 		pUserGroup.setBounds(12, 10, 125, 30);
 		add(pUserGroup);
 		
-		pSoftwareGroup = new SoftwareComboboxComponent();
+		pSoftwareGroup = new CmbSoftwareGroupComp();
 		pSoftwareGroup.setBounds(169, 10, 125, 30);
 		add(pSoftwareGroup);
 		
-		pAdminGroup = new AdminGroupComboboxComponent();
+		pAdminGroup = new CmbAdminGroupComp();
 		pAdminGroup.setBounds(324, 10, 125, 30);
 		add(pAdminGroup);
 		
@@ -45,7 +44,7 @@ public class AdminStatusSearch extends JPanel {
 		pCalendar.setBounds(769, 0, 425, 43);
 		add(pCalendar);
 		
-		StatusSearchBottom pStatusSerach = new StatusSearchBottom();
+		TfBtnSearchPrintComp pStatusSerach = new TfBtnSearchPrintComp();
 		pStatusSerach.setBounds(12, 60, 1176, 31);
 		add(pStatusSerach);
 		setUserData();

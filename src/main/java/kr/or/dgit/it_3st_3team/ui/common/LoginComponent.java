@@ -3,11 +3,11 @@ package kr.or.dgit.it_3st_3team.ui.common;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.Rectangle;
-import kr.or.dgit.it_3st_3team.ui.component.LabelTextFieldComponent;
+import kr.or.dgit.it_3st_3team.ui.component.LblTfComp;
 import java.awt.Color;
 
 import kr.or.dgit.it_3st_3team.TestFrameSW;
-import kr.or.dgit.it_3st_3team.ui.component.LabelPwdFieldComponent;
+import kr.or.dgit.it_3st_3team.ui.component.LblPwdTfComp;
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JCheckBox;
@@ -19,8 +19,8 @@ import java.awt.event.ActionEvent;
 
 public class LoginComponent extends JPanel implements ActionListener {
 	private JButton button;
-	private LabelTextFieldComponent pID;
-	private LabelPwdFieldComponent pPW;
+	private LblTfComp pID;
+	private LblPwdTfComp pPW;
 
 	/**
 	 * Create the panel.
@@ -39,13 +39,13 @@ public class LoginComponent extends JPanel implements ActionListener {
 		add(pLogin);
 		pLogin.setLayout(null);
 		
-		pID = new LabelTextFieldComponent("userId");
+		pID = new LblTfComp("userId");
 		pID.setFont(new Font("Gulim", Font.PLAIN, 12));
 		pID.setTfText("userID");
 		pID.setBounds(576, 409, 347, 51);
 		pLogin.add(pID);
 		
-		pPW = new LabelPwdFieldComponent("password");
+		pPW = new LblPwdTfComp("password");
 		pPW.setBounds(556, 481, 367, 51);
 		pLogin.add(pPW);
 		

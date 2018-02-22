@@ -5,9 +5,9 @@ import javax.swing.DefaultComboBoxModel;
 import kr.or.dgit.it_3st_3team.dto.Address;
 
 @SuppressWarnings("serial")
-public class LabelAddressCombobox extends AbstractLabelComboBox<Address>{
+public class LblCmbAddressComp extends AbstractLabelComboBox<Address>{
 
-	public LabelAddressCombobox(String label) {
+	public LblCmbAddressComp(String label) {
 		super(label);
 		// TODO Auto-generated constructor stub
 	}
