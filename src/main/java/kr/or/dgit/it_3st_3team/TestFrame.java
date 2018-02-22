@@ -3,7 +3,6 @@ package kr.or.dgit.it_3st_3team;
 
 
 import java.awt.BorderLayout;
-import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -25,14 +24,9 @@ public class TestFrame extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 
-		/*
-		Login panel = new Login();
-		contentPane.add(panel, BorderLayout.CENTER);*/
-		contentPane.setLayout(null);
 		
-		JPanel pMain = new JPanel();
-		pMain.setBounds(0, 0, 1484, 961);
-		contentPane.add(pMain);
+		JPanel panel = new JPanel();
+		contentPane.add(panel, BorderLayout.NORTH);
 
 	}
 }
