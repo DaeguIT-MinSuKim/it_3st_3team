@@ -6,7 +6,7 @@ import javax.swing.JComboBox;
 import java.awt.BorderLayout;
 
 @SuppressWarnings("serial")
-public abstract class AbstractCombobox<T> extends JPanel {
+public abstract class AbstractComboboxComp<T> extends JPanel {
 
 	protected JComboBox<T> comboBox;
 
@@ -14,7 +14,7 @@ public abstract class AbstractCombobox<T> extends JPanel {
 
 
 
-	public AbstractCombobox() {
+	public AbstractComboboxComp() {
 		initComponents();
 	}
 

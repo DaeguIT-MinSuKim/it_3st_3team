@@ -10,7 +10,7 @@ import java.awt.Color;
 import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
-public abstract class AbstractLabelAddress<T> extends JPanel {
+public abstract class AbstractLabelAddressComp<T> extends JPanel {
 	private JTextField tfAddress1;
 	private JTextField tfAddress2;
 	private JLabel lblAdd;
@@ -19,7 +19,7 @@ public abstract class AbstractLabelAddress<T> extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public AbstractLabelAddress(String label) {
+	public AbstractLabelAddressComp(String label) {
 		lblAdd = new JLabel(label);
 		initComponents();
 	}

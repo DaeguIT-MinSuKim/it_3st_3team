@@ -1,7 +1,7 @@
 package kr.or.dgit.it_3st_3team.ui.component;
 
 @SuppressWarnings("serial")
-public class LblAddressComp extends AbstractLabelAddress<String> {
+public class LblAddressComp extends AbstractLabelAddressComp<String> {
 
 	/**
 	 * Create the panel.
