@@ -6,7 +6,7 @@ import java.awt.Rectangle;
 import kr.or.dgit.it_3st_3team.ui.component.LblTfComp;
 import java.awt.Color;
 
-import kr.or.dgit.it_3st_3team.TestFrameSW;
+import kr.or.dgit.it_3st_3team.ui.AdminUI;
 import kr.or.dgit.it_3st_3team.ui.component.LblPwdTfComp;
 import javax.swing.JButton;
 import java.awt.Font;
@@ -17,7 +17,7 @@ import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class LoginComponent extends JPanel implements ActionListener {
+public class LoginContent extends JPanel implements ActionListener {
 	private JButton button;
 	private LblTfComp pID;
 	private LblPwdTfComp pPW;
@@ -25,7 +25,7 @@ public class LoginComponent extends JPanel implements ActionListener {
 	/**
 	 * Create the panel.
 	 */
-	public LoginComponent() {
+	public LoginContent() {
 
 		initComponents();
 	}
@@ -98,13 +98,11 @@ public class LoginComponent extends JPanel implements ActionListener {
 		String id = pID.getTfText();
 		
 		String password = pPW.getTfText();
-		if(id.equals("UserId") || password.equals("")) {
-			JOptionPane.showMessageDialog(null, "아이디,비밀번호를 입력해주세요");
-		}else {
-			TestFrameSW Adminsw = new TestFrameSW();
-			add(Adminsw);
-			setVisible(true);
-		}
+		
+			AdminUI Adminsw = new AdminUI();
+			
+			Adminsw.setVisible(true);
+		
 		
 	}
 }
