@@ -1,0 +1,43 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+
+sourceCompatibility = 1.8
+
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
+
+javadoc {
+	options.encoding = 'UTF-8'
+}
+
+repositories {
+	jcenter()
+}
+
+dependencies {
+	// https://mvnrepository.com/
+	compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.45'
+	compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.10.0'
+	compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.10.0'
+	compile group: 'org.mybatis', name: 'mybatis', version: '3.4.5'
+	// https://mvnrepository.com/artifact/org.jdatepicker/jdatepicker
+	compile group: 'org.jdatepicker', name: 'jdatepicker', version: '1.3.4'
+	
+	//compile fileTree(include : [ '*.jar' ], dir:'libfolder')
+	testImplementation 'junit:junit:4.12'
+}
+
+jar {
+//  archiveName'StudentManagement.jar' archiveName속성을지정하면baseName속성이나appendix속성은무시.
+    version = 1.0
+//  application으로 개발 할 경우(apply plugin: 'application') main()메서드가 있는 클래스를 반드시 지정
+    mainClassName= 'kr.or.dgit.it_3st_3team.TestMain'
+    baseName= 'TestMain'
+    appendix = 'bin'
+    manifest{
+        attributes 'Title': baseName, 'Version': version, 'Main-Class': mainClassName
+    }
+    dependsOn configurations.runtime// 실행 가능한jar 파일설정
+}
