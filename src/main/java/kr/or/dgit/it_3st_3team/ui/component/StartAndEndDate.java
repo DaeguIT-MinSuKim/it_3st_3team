@@ -15,6 +15,7 @@ import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
+@SuppressWarnings("serial")
 public class StartAndEndDate extends JPanel {
 
 	public StartAndEndDate() {
