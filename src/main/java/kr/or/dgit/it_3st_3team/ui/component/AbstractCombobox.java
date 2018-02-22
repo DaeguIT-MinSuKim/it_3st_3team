@@ -1,6 +1,7 @@
 package kr.or.dgit.it_3st_3team.ui.component;
 
 import javax.swing.JPanel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import java.awt.BorderLayout;
 
@@ -20,5 +21,9 @@ public abstract class AbstractCombobox<T> extends JPanel {
 		add(comboBox, BorderLayout.CENTER);
 	}
 
-	abstract public void loadData(T[] data);
+	public void loadData(T[] data) {
+		System.out.println(data);
+		DefaultComboBoxModel<T> dcbm = new DefaultComboBoxModel<>(data);
+		comboBox.setModel(dcbm);	
+	}
 }

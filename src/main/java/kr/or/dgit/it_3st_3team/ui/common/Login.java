@@ -114,7 +114,7 @@ public class Login extends JPanel implements ActionListener {
 		pLogin.add(tfLgnUserPwd);
 		
 		JPanel p2 = new JPanel();
-		p2.setBounds(334, 323, 255, 33);
+		p2.setBounds(334, 323, 247, 35);
 		pLogin.add(p2);
 		p2.setBackground(Color.WHITE);
 		p2.setLayout(null);
