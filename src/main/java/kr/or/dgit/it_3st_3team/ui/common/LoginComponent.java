@@ -5,14 +5,22 @@ import java.awt.BorderLayout;
 import java.awt.Rectangle;
 import kr.or.dgit.it_3st_3team.ui.component.LabelTextFieldComponent;
 import java.awt.Color;
+
+import kr.or.dgit.it_3st_3team.TestFrameSW;
 import kr.or.dgit.it_3st_3team.ui.component.LabelPwdFieldComponent;
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class LoginComponent extends JPanel {
+public class LoginComponent extends JPanel implements ActionListener {
+	private JButton button;
+	private LabelTextFieldComponent pID;
+	private LabelPwdFieldComponent pPW;
 
 	/**
 	 * Create the panel.
@@ -31,13 +39,13 @@ public class LoginComponent extends JPanel {
 		add(pLogin);
 		pLogin.setLayout(null);
 		
-		LabelTextFieldComponent pID = new LabelTextFieldComponent("userId");
+		pID = new LabelTextFieldComponent("userId");
 		pID.setFont(new Font("Gulim", Font.PLAIN, 12));
 		pID.setTfText("userID");
 		pID.setBounds(576, 409, 347, 51);
 		pLogin.add(pID);
 		
-		LabelPwdFieldComponent pPW = new LabelPwdFieldComponent("password");
+		pPW = new LabelPwdFieldComponent("password");
 		pPW.setBounds(556, 481, 367, 51);
 		pLogin.add(pPW);
 		
@@ -47,7 +55,8 @@ public class LoginComponent extends JPanel {
 		pCheck.setBounds(616, 558, 255, 33);
 		pLogin.add(pCheck);
 		
-		JButton button = new JButton("로그인");
+		button = new JButton("로그인");
+		button.addActionListener(this);
 		button.setForeground(Color.BLACK);
 		button.setFont(new Font("나눔바른고딕", Font.PLAIN, 12));
 		button.setBackground(Color.WHITE);
@@ -79,5 +88,23 @@ public class LoginComponent extends JPanel {
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(333, 131, 781, 121);
 		pLogin.add(lblNewLabel);
+	}
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == button) {
+			actionPerformedButton(e);
+		}
+	}
+	protected void actionPerformedButton(ActionEvent e) {
+		String id = pID.getTfText();
+		
+		String password = pPW.getTfText();
+		if(id.equals("UserId") || password.equals("")) {
+			JOptionPane.showMessageDialog(null, "아이디,비밀번호를 입력해주세요");
+		}else {
+			TestFrameSW Adminsw = new TestFrameSW();
+			add(Adminsw);
+			setVisible(true);
+		}
+		
 	}
 }

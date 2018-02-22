@@ -31,7 +31,7 @@ public class AdminSoftware extends JPanel {
 		add(pRegister);
 		
 		AdminSoftwareSearch pSearch = new AdminSoftwareSearch();
-		pSearch.setBounds(0, 193, 1190, 39);
+		pSearch.setBounds(0, 193, 1190, 43);
 		add(pSearch);
 		
 		AdminSoftwareTable pTable = new AdminSoftwareTable();
