@@ -10,6 +10,7 @@ public class Admin {
 	
 	public Admin() {}
 
+	
 	public Admin(int adminNo, String adminId, String adminName, String adminPwd, PhoneNumber phone,
 			AdminGroup adminGroup) {
 		this.adminNo = adminNo;

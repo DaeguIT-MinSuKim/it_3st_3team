@@ -16,6 +16,12 @@ public class AdminGroup {
 		this.agAuth = agAuth;
 	}
 
+	
+	public AdminGroup(String agName) {
+		super();
+		this.agName = agName;
+	}
+
 	public int getAgNo() {
 		return agNo;
 	}
@@ -42,7 +48,7 @@ public class AdminGroup {
 
 	@Override
 	public String toString() {
-		return String.format("AdminGroup [agNo=%s, agName=%s, agAuth=%s]", agNo, agName, agAuth);
+		return String.format("%s", agName);
 	}
 
 }
