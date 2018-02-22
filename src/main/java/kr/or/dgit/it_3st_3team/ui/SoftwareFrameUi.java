@@ -8,8 +8,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import kr.or.dgit.it_3st_3team.panel.StatusManagement;
 import kr.or.dgit.it_3st_3team.panel.SupplyingCompany;
+import kr.or.dgit.it_3st_3team.ui.admin.report.AdminSalesStatusSearch;
+import kr.or.dgit.it_3st_3team.ui.admin.report.AdminStatusSearch;
+import kr.or.dgit.it_3st_3team.ui.admin.report.UserStatusSearch;
 
 
 
@@ -35,7 +37,7 @@ public class SoftwareFrameUi extends JFrame {
 	}
 	private void initComponents() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 900, 500);
+		setBounds(100, 100, 1250, 500);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -49,9 +51,11 @@ public class SoftwareFrameUi extends JFrame {
 		p1.add(lblNewLabel);
 		
 		
-		
+	
 	//	SupplyingCompany panel = new SupplyingCompany();
-		StatusManagement panel = new StatusManagement();
+	//	AdminStatusSearch panel = new AdminStatusSearch();
+		AdminSalesStatusSearch panel = new AdminSalesStatusSearch();
+	//	UserStatusSearch panel = new UserStatusSearch();
 	//	StatusSalesTeam panel = new StatusSalesTeam();
 		contentPane.add(panel, BorderLayout.CENTER);
 	}
