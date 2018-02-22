@@ -1,7 +1,6 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
 
-
 sourceCompatibility = 1.8
 
 tasks.withType(JavaCompile) {
@@ -40,4 +39,5 @@ jar {
         attributes 'Title': baseName, 'Version': version, 'Main-Class': mainClassName
     }
     dependsOn configurations.runtime// 실행 가능한jar 파일설정
+
 }

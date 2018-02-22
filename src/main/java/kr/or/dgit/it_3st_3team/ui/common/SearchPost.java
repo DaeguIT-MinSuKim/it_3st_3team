@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -14,12 +15,10 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import kr.or.dgit.it_3st_3team.ui.component.LabelAddressCombobox;
-import kr.or.dgit.it_3st_3team.ui.component.LabelTextFieldComponent;
-
 public class SearchPost extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField tfDoro;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTable table;
@@ -51,30 +50,57 @@ public class SearchPost extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 398, 500);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setToolTipText("주소 검색");
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		JLabel lblSido = new JLabel("시/도");
+		lblSido.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblSido.setBounds(38, 53, 57, 15);
+		contentPane.add(lblSido);
+		
+		JComboBox cmbSido = new JComboBox();
+		cmbSido.setBounds(129, 50, 146, 21);
+		contentPane.add(cmbSido);
+		
+		JLabel lblSigungu = new JLabel("시/군/구");
+		lblSigungu.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblSigungu.setBounds(38, 89, 57, 15);
+		contentPane.add(lblSigungu);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(129, 86, 146, 21);
+		contentPane.add(comboBox);
+		
+		JLabel lblDoro = new JLabel("도로명");
+		lblDoro.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblDoro.setBounds(59, 126, 36, 15);
+		contentPane.add(lblDoro);
+		
+		tfDoro = new JTextField();
+		tfDoro.setBounds(129, 123, 196, 21);
+		contentPane.add(tfDoro);
+		tfDoro.setColumns(10);
+		
 		JLabel label = new JLabel("건물번호");
 		label.setHorizontalAlignment(SwingConstants.RIGHT);
-		label.setBounds(47, 170, 48, 15);
+		label.setBounds(47, 159, 48, 15);
 		contentPane.add(label);
 		
 		textField = new JTextField();
 		textField.setColumns(10);
-		textField.setBounds(113, 160, 91, 30);
+		textField.setBounds(129, 156, 91, 21);
 		contentPane.add(textField);
 		
 		JLabel lbl = new JLabel("-");
 		lbl.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl.setBounds(205, 167, 27, 15);
+		lbl.setBounds(220, 158, 27, 15);
 		contentPane.add(lbl);
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		textField_1.setBounds(234, 160, 91, 30);
+		textField_1.setBounds(250, 156, 91, 21);
 		contentPane.add(textField_1);
 		
 		JButton btnSearch = new JButton("검색");
@@ -121,17 +147,5 @@ public class SearchPost extends JFrame {
 		table.getColumnModel().getColumn(1).setMinWidth(280);
 		table.getColumnModel().getColumn(1).setMaxWidth(280);
 		scrollPane.setViewportView(table);
-		
-		LabelAddressCombobox panel = new LabelAddressCombobox("시/도");
-		panel.setBounds(67, 38, 187, 30);
-		contentPane.add(panel);
-		
-		LabelAddressCombobox panel_1 = new LabelAddressCombobox("시/군/구");
-		panel_1.setBounds(47, 78, 278, 30);
-		contentPane.add(panel_1);
-		
-		LabelTextFieldComponent panel_2 = new LabelTextFieldComponent("도로명");
-		panel_2.setBounds(57, 119, 268, 30);
-		contentPane.add(panel_2);
 	}
 }

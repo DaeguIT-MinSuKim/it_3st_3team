@@ -1,13 +1,14 @@
 package kr.or.dgit.it_3st_3team.ui.admin.order;
 
-import javax.swing.JPanel;
-import java.awt.Rectangle;
 import java.awt.Color;
+
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.JButton;
+import javax.swing.SwingConstants;
+
 import kr.or.dgit.it_3st_3team.ui.component.UserLabelComboxComponent;
 
 public class AdminOrderRegister extends JPanel {
@@ -100,5 +101,4 @@ public class AdminOrderRegister extends JPanel {
 		panel.setBounds(537, 29, 265, 44);
 		pCorrection.add(panel);
 	}
-
 }

@@ -1,12 +1,13 @@
 package kr.or.dgit.it_3st_3team.ui.admin;
 
-import javax.swing.JPanel;
-import javax.swing.JComboBox;
-import javax.swing.JTextField;
-import javax.swing.JButton;
 import java.awt.Color;
-import kr.or.dgit.it_3st_3team.ui.component.SearchUserCmbComponent;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
 import kr.or.dgit.it_3st_3team.ui.component.SearchSoftwareCombobox;
+import kr.or.dgit.it_3st_3team.ui.component.SearchUserCmbComponent;
 
 public class AdminSoftwareSearch extends JPanel {
 	private JTextField tfSearch;
@@ -45,4 +46,5 @@ public class AdminSoftwareSearch extends JPanel {
 		panel.setBounds(24, 8, 175, 23);
 		pSWSearch.add(panel);
 	}
+
 }

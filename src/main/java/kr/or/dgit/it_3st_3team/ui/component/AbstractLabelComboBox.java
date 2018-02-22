@@ -41,4 +41,5 @@ public abstract class AbstractLabelComboBox<T> extends JPanel {
 		dcbm = new DefaultComboBoxModel<>(data);
 		cmbBox.setModel(dcbm);
 	}
+
 }
