@@ -7,6 +7,10 @@ public class AdminGroupContent extends JPanel {
 
 	public AdminGroupContent() {
 
+		initComponents();
+	}
+	private void initComponents() {
+		setLayout(null);
 	}
 
 }

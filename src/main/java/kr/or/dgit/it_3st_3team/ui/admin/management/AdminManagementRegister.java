@@ -9,6 +9,8 @@ import kr.or.dgit.it_3st_3team.ui.component.ImageComponent;
 import kr.or.dgit.it_3st_3team.ui.component.LabelInputBtnComponent;
 import kr.or.dgit.it_3st_3team.ui.component.LabelTextFieldComponent;
 import kr.or.dgit.it_3st_3team.ui.component.LabelPwdFieldComponent;
+import kr.or.dgit.it_3st_3team.dto.AdminGroup;
+import kr.or.dgit.it_3st_3team.type.AdminGroupAuth;
 import kr.or.dgit.it_3st_3team.ui.component.AdminGroupComboComponent;
 
 @SuppressWarnings("serial")
@@ -52,7 +54,9 @@ public class AdminManagementRegister extends JPanel {
 		pAdminPhone.setBounds(320, 89, 210, 30);
 		pInput.add(pAdminPhone);
 		
+		AdminGroup[] agDatas = {new AdminGroup(1, "관리자", AdminGroupAuth.ADMINISTRATOR), new AdminGroup(2, "영업", AdminGroupAuth.SALESMAN)};
 		AdminGroupComboComponent pAdminGroup = new AdminGroupComboComponent("직책");
+		pAdminGroup.loadData(agDatas);
 		pAdminGroup.setBounds(48, 138, 198, 30);
 		pInput.add(pAdminGroup);
 		
@@ -68,4 +72,6 @@ public class AdminManagementRegister extends JPanel {
 		btnOK.setBounds(266, 138, 80, 30);
 		pInput.add(btnOK);
 	}
+	
+	
 }

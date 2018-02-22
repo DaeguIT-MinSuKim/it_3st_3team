@@ -42,7 +42,7 @@ public class AdminGroup {
 
 	@Override
 	public String toString() {
-		return String.format("AdminGroup [agNo=%s, agName=%s, agAuth=%s]", agNo, agName, agAuth);
+		return String.format("%s", agName);
 	}
 
 }
