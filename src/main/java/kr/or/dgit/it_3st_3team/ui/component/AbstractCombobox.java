@@ -9,7 +9,10 @@ import java.awt.BorderLayout;
 public abstract class AbstractCombobox<T> extends JPanel {
 
 	protected JComboBox<T> comboBox;
+
 	protected DefaultComboBoxModel<T> dcbm;
+
+
 
 	public AbstractCombobox() {
 		initComponents();
@@ -23,7 +26,9 @@ public abstract class AbstractCombobox<T> extends JPanel {
 	}
 
 	public void loadData(T[] data) {
-		dcbm = new DefaultComboBoxModel<>(data);
-		comboBox.setModel(dcbm);
+		System.out.println(data);
+		DefaultComboBoxModel<T> dcbm = new DefaultComboBoxModel<>(data);
+		comboBox.setModel(dcbm);	
+
 	}
 }

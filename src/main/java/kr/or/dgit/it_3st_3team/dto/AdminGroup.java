@@ -16,6 +16,7 @@ public class AdminGroup {
 		this.agAuth = agAuth;
 	}
 
+
 	public int getAgNo() {
 		return agNo;
 	}
@@ -43,6 +44,7 @@ public class AdminGroup {
 	@Override
 	public String toString() {
 		return String.format("AdminGroup [agNo=%s, agName=%s, agAuth=%s]", agNo, agName, agAuth);
-	}
 
+
+}
 }

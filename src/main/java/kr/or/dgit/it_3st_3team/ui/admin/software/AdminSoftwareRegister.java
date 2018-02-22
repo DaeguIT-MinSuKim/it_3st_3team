@@ -1,5 +1,6 @@
 package kr.or.dgit.it_3st_3team.ui.admin.software;
 
+
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,8 +16,8 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import kr.or.dgit.it_3st_3team.ui.component.SoftwareSortCombobox;
-import kr.or.dgit.it_3st_3team.ui.component.UserLabelComboxComponent;
+import kr.or.dgit.it_3st_3team.ui.component.StringLabelAddressComp;
+import kr.or.dgit.it_3st_3team.ui.component.StringLabelComboxComp;
 
 public class AdminSoftwareRegister extends JPanel implements ActionListener {
 	private JTextField tfSWName;
@@ -96,16 +97,19 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 		btnSubmitCF.setBounds(779, 27, 97, 23);
 		pRegister.add(btnSubmitCF);
 		
-		UserLabelComboxComponent panel = new UserLabelComboxComponent("공급회사");
+		StringLabelComboxComp panel = new StringLabelComboxComp("공급회사");
 		panel.setBorder(null);
 		panel.setBounds(238, 27, 243, 30);
 		pRegister.add(panel);
 		
-		SoftwareSortCombobox panel_1 = new SoftwareSortCombobox("분류");
+		StringLabelComboxComp panel_1 = new StringLabelComboxComp("분류 회사");
 		panel_1.setBounds(528, 26, 243, 30);
 		pRegister.add(panel_1);
 		
-		
+		StringLabelAddressComp panel_2 = new StringLabelAddressComp("주소");
+		panel_2.setBounds(528, 75, 369, 59);
+		pRegister.add(panel_2);
+
 	}
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnSWImgUp) {

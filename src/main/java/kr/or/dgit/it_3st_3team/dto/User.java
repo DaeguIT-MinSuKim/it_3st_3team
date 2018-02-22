@@ -1,9 +1,5 @@
 package kr.or.dgit.it_3st_3team.dto;
 
-
-
-
-
 import kr.or.dgit.it_3st_3team.type.UserGroup;
 
 public class User {
@@ -18,6 +14,12 @@ public class User {
 	private Admin admin;
 	
 	public User() {}
+	
+
+	public User(String userName) {
+		this.userName = userName;
+	}
+
 
 	public User(int userNo, String userId, String userPwd, String userName, String zipCode, String address,
 			PhoneNumber phone, UserGroup userGroup, Admin admin) {
@@ -106,10 +108,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return String.format(
-				"User [userNo=%s, userId=%s, userPwd=%s, userName=%s, zipCode=%s, address=%s, phone=%s, userGroup=%s, admin=%s]",
-				userNo, userId, userPwd, userName, zipCode, address, phone, userGroup, admin);
+		return String.format("%s", userName);
 	}
-	
 
 }
