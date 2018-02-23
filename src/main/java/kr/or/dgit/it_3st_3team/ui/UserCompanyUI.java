@@ -1,18 +1,17 @@
 package kr.or.dgit.it_3st_3team.ui;
 
-import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.GridLayout;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import kr.or.dgit.it_3st_3team.ui.admin.software.AdminSoftware;
-import java.awt.Color;
-import java.awt.GridLayout;
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import java.awt.Font;
 
+@SuppressWarnings("serial")
 public class UserCompanyUI extends JFrame {
 
 	private JPanel contentPane;
@@ -40,6 +39,7 @@ public class UserCompanyUI extends JFrame {
 		initComponents();
 	}
 	private void initComponents() {
+		setTitle("소프트웨어 - 공급회사");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1500, 900);
 		contentPane = new JPanel();
