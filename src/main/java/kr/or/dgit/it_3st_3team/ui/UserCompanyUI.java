@@ -140,7 +140,7 @@ public class UserCompanyUI extends JFrame implements ActionListener {
 		if (e.getSource() == btnRegister) {
 			actionPerformedBtnRegister(e);
 		}
-	}
+	} 
 	protected void actionPerformedBtnRegister(ActionEvent e) {
 		pContent.removeAll();
 		AdminSoftware panel = new AdminSoftware();
