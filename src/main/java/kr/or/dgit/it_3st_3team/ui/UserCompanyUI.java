@@ -13,11 +13,26 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import kr.or.dgit.it_3st_3team.ui.admin.customer.AdminCustomerContent;
+import kr.or.dgit.it_3st_3team.ui.admin.software.AdminSoftware;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.FlowLayout;
+import javax.swing.BoxLayout;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.Rectangle;
+
 
 @SuppressWarnings("serial")
-public class UserCompanyUI extends JFrame {
+public class UserCompanyUI extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
+	private JButton btnRegister;
+	private JPanel pContent;
+	private JButton btnSupplyStatus;
 
 	/**
 	 * Launch the application.
@@ -68,40 +83,78 @@ public class UserCompanyUI extends JFrame {
 		pImg.add(lblName);
 		
 		JPanel pMenu = new JPanel();
+		pMenu.setBounds(new Rectangle(0, 0, 425, 288));
 		pMenu.setBackground(new Color(51, 153, 204));
 		pMenu.setBounds(0, 230, 300, 631);
 		contentPane.add(pMenu);
-		pMenu.setLayout(new GridLayout(10, 1, 0, 0));
+		pMenu.setLayout(null);
 		
 		JLabel lblEmty_2_3 = new JLabel("");
+		lblEmty_2_3.setBounds(0, 0, 300, 105);
 		pMenu.add(lblEmty_2_3);
 		
-		JButton btnRegister = new JButton("소프트웨어 등록");
+		btnRegister = new JButton("소프트웨어 등록");
+		btnRegister.setBounds(0, 105, 298, 105);
+		btnRegister.addActionListener(this);
 		btnRegister.setForeground(Color.DARK_GRAY);
 		btnRegister.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
 		btnRegister.setBackground(new Color(51, 153, 204));
 		pMenu.add(btnRegister);
 		
-		JButton btnSupplyStatus = new JButton("소프트웨어 공급현황");
+		btnSupplyStatus = new JButton("소프트웨어 공급현황");
+		btnSupplyStatus.setBounds(0, 210, 298, 105);
+		btnSupplyStatus.addActionListener(this);
 		btnSupplyStatus.setForeground(Color.DARK_GRAY);
 		btnSupplyStatus.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
 		btnSupplyStatus.setBackground(new Color(51, 153, 204));
 		pMenu.add(btnSupplyStatus);
 		
 		JButton btnSupplyStatusGraph = new JButton("소프트웨어 공급현황(그래프)");
+		btnSupplyStatusGraph.setBounds(0, 315, 298, 105);
 		btnSupplyStatusGraph.setForeground(Color.DARK_GRAY);
 		btnSupplyStatusGraph.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
 		btnSupplyStatusGraph.setBackground(new Color(51, 153, 204));
 		pMenu.add(btnSupplyStatusGraph);
 		
 		JButton btnUserModify = new JButton("회원정보 수정");
+		btnUserModify.setBounds(0, 420, 298, 105);
 		btnUserModify.setForeground(Color.DARK_GRAY);
 		btnUserModify.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
 		btnUserModify.setBackground(new Color(51, 153, 204));
 		pMenu.add(btnUserModify);
 		
-		JPanel pContent = new JPanel();
+		JLabel label = new JLabel("");
+		label.setBounds(0, 525, 300, 105);
+		pMenu.add(label);
+		
+		pContent = new JPanel();
 		pContent.setBounds(298, 0, 1186, 861);
 		contentPane.add(pContent);
+		pContent.setLayout(null);
+		
+	}
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnSupplyStatus) {
+			actionPerformedBtnSupplyStatus(e);
+		}
+		if (e.getSource() == btnRegister) {
+			actionPerformedBtnRegister(e);
+		}
+	}
+	protected void actionPerformedBtnRegister(ActionEvent e) {
+		pContent.removeAll();
+		AdminSoftware panel = new AdminSoftware();
+		panel.setBounds(0, 0, 1186, 861);
+		pContent.add(panel);
+		pContent.revalidate();
+		pContent.repaint();
+	}
+	protected void actionPerformedBtnSupplyStatus(ActionEvent e) {
+		pContent.removeAll();
+		AdminCustomerContent panel = new AdminCustomerContent();
+		panel.setBounds(0, 0, 1186, 861);
+		pContent.add(panel);
+		pContent.revalidate();
+		pContent.repaint();
 	}
 }

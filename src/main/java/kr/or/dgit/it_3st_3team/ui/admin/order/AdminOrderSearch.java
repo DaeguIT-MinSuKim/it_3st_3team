@@ -29,7 +29,7 @@ public class AdminOrderSearch extends JPanel {
 		
 		JPanel pOrderSearch = new JPanel();
 		pOrderSearch.setBackground(Color.WHITE);
-		pOrderSearch.setBounds(0, 0, 1190, 94);
+		pOrderSearch.setBounds(0, 0, 1200, 94);
 		add(pOrderSearch);
 		pOrderSearch.setLayout(null);
 		

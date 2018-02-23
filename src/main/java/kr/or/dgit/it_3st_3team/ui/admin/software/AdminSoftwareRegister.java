@@ -27,7 +27,7 @@ public class AdminSoftwareRegister extends JPanel {
 		
 		JPanel pRegister = new JPanel();
 		pRegister.setBackground(Color.WHITE);
-		pRegister.setBounds(0, 0, 1200, 183);
+		pRegister.setBounds(0, 0, 1200, 197);
 		add(pRegister);
 		pRegister.setLayout(null);
 		
@@ -54,7 +54,7 @@ public class AdminSoftwareRegister extends JPanel {
 
 		
 		ImageComp pRegisterImg = new ImageComp();
-		pRegisterImg.setBounds(0, 0, 196, 183);
+		pRegisterImg.setBounds(0, 0, 205, 197);
 		pRegister.add(pRegisterImg);
 		
 		LblTfComp pSWName = new LblTfComp("품목 명");

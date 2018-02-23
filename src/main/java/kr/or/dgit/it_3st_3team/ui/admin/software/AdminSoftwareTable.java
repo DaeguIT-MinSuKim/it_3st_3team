@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 import java.awt.Color;
 import javax.swing.JScrollPane;
+import kr.or.dgit.it_3st_3team.ui.component.PagingComp;
 
 public class AdminSoftwareTable extends JPanel {
 	private JTable SWTable;
@@ -24,13 +25,13 @@ public class AdminSoftwareTable extends JPanel {
 		
 		JPanel pSWTable = new JPanel();
 		pSWTable.setBackground(Color.WHITE);
-		pSWTable.setBounds(0, 0, 1191, 603);
+		pSWTable.setBounds(0, 0, 1200, 605);
 		add(pSWTable);
 		pSWTable.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBackground(Color.WHITE);
-		scrollPane.setBounds(12, 10, 1155, 583);
+		scrollPane.setBounds(12, 10, 1165, 573);
 		pSWTable.add(scrollPane);
 		
 		SWTable = new JTable();
@@ -46,5 +47,10 @@ public class AdminSoftwareTable extends JPanel {
 			}
 		));
 		scrollPane.setViewportView(SWTable);
+		
+		PagingComp pPaging = new PagingComp();
+		pPaging.setBackground(new Color(255, 255, 255));
+		pPaging.setBounds(0, 603, 1200, 42);
+		add(pPaging);
 	}
 }

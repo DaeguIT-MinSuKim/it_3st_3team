@@ -12,6 +12,7 @@ import javax.swing.SwingConstants;
 import kr.or.dgit.it_3st_3team.ui.component.LblCmbUserComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblTfComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblCmbSoftwareComp;
+import kr.or.dgit.it_3st_3team.ui.component.StringLblCmbComponent;
 
 public class AdminOrderRegister extends JPanel {
 
@@ -59,8 +60,8 @@ public class AdminOrderRegister extends JPanel {
 		pUserName.setBounds(46, 112, 202, 30);
 		pCorrection.add(pUserName);
 		
-		JPanel pPayment = new JPanel();
-		pPayment.setBounds(319, 112, 202, 30);
+		StringLblCmbComponent pPayment = new StringLblCmbComponent("결제수단");
+		pPayment.setBounds(323, 112, 198, 30);
 		pCorrection.add(pPayment);
 	}
 }

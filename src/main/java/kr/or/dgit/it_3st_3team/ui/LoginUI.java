@@ -1,11 +1,11 @@
 package kr.or.dgit.it_3st_3team.ui;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import kr.or.dgit.it_3st_3team.ui.common.LoginContent;
 
 public class LoginUI extends JFrame {
