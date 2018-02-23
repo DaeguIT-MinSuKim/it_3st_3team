@@ -9,7 +9,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import kr.or.dgit.it_3st_3team.ui.component.StringLabelAddressComp;
-import kr.or.dgit.it_3st_3team.ui.component.StringLabelComboxComp;
+import kr.or.dgit.it_3st_3team.ui.component.StringLblCmbComponent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -97,12 +97,12 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 		btnSubmitCF.setBounds(779, 27, 97, 23);
 		pRegister.add(btnSubmitCF);
 		
-		StringLabelComboxComp panel = new StringLabelComboxComp("공급회사");
+		StringLblCmbComponent panel = new StringLblCmbComponent("공급회사");
 		panel.setBorder(null);
 		panel.setBounds(238, 27, 243, 30);
 		pRegister.add(panel);
 		
-		StringLabelComboxComp panel_1 = new StringLabelComboxComp("분류 회사");
+		StringLblCmbComponent panel_1 = new StringLblCmbComponent("분류 회사");
 		panel_1.setBounds(528, 26, 243, 30);
 		pRegister.add(panel_1);
 		

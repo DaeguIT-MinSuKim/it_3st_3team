@@ -3,9 +3,9 @@ package kr.or.dgit.it_3st_3team.ui.component;
 import javax.swing.DefaultComboBoxModel;
 
 @SuppressWarnings("serial")
-public class StringLabelComboxComp extends AbstractLabelComboBox<String> {
+public class StringLblCmbComponent extends AbstractLabelComboBox<String> {
 
-	public StringLabelComboxComp(String title) {
+	public StringLblCmbComponent(String title) {
 		super(title);
 	}
 
