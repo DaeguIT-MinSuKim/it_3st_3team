@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import kr.or.dgit.it_3st_3team.ui.admin.customer.AdminCustomerContent;
+import kr.or.dgit.it_3st_3team.ui.admin.management.AdminManagementContent;
 import kr.or.dgit.it_3st_3team.ui.admin.order.AdminOrder;
 import kr.or.dgit.it_3st_3team.ui.admin.report.AdminStatusSearchContent;
 import kr.or.dgit.it_3st_3team.ui.admin.software.AdminSoftware;
@@ -27,6 +28,8 @@ public class AdminUI extends JFrame implements ActionListener {
 	private JPanel pMain;
 	private JButton btnOrderManagement;
 	private JButton btnSupplySaleStatus;
+	private JButton btnCustomerManagement;
+	private JButton btnEmpManagement;
 
 
 	
@@ -98,13 +101,15 @@ public class AdminUI extends JFrame implements ActionListener {
 		btnSupplySaleStatusGraph.setBackground(new Color(51, 153, 204));
 		pAdminMenu.add(btnSupplySaleStatusGraph);
 		
-		JButton btnCustomerManagement = new JButton("고객 관리");
+		btnCustomerManagement = new JButton("고객 관리");
+		btnCustomerManagement.addActionListener(this);
 		btnCustomerManagement.setForeground(Color.DARK_GRAY);
 		btnCustomerManagement.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
 		btnCustomerManagement.setBackground(new Color(51, 153, 204));
 		pAdminMenu.add(btnCustomerManagement);
 		
-		JButton btnEmpManagement = new JButton("직원 관리");
+		btnEmpManagement = new JButton("직원 관리");
+		btnEmpManagement.addActionListener(this);
 		btnEmpManagement.setForeground(Color.DARK_GRAY);
 		btnEmpManagement.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
 		btnEmpManagement.setBackground(new Color(51, 153, 204));
@@ -115,6 +120,12 @@ public class AdminUI extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnEmpManagement) {
+			actionPerformedBtnEmpManagement(e);
+		}
+		if (e.getSource() == btnCustomerManagement) {
+			actionPerformedBtnCustomerManagement(e);
+		}
 		if (e.getSource() == btnSupplySaleStatus) {
 			actionPerformedBtnSupplySaleStatus(e);
 		}
@@ -158,5 +169,23 @@ public class AdminUI extends JFrame implements ActionListener {
 		pContent.add(pMain);
 		pContent.revalidate();
 		pContent.repaint();
+	}
+	protected void actionPerformedBtnCustomerManagement(ActionEvent e) {
+		pContent.removeAll();
+		AdminCustomerContent pMain = new AdminCustomerContent();
+		pMain.setBounds(0, 0, 1186, 861);
+		pContent.add(pMain);
+		pContent.revalidate();
+		pContent.repaint();
+		
+	}
+	protected void actionPerformedBtnEmpManagement(ActionEvent e) {
+		pContent.removeAll();
+		AdminManagementContent pMain = new AdminManagementContent();
+		pMain.setBounds(0, 0, 1186, 861);
+		pContent.add(pMain);
+		pContent.revalidate();
+		pContent.repaint();
+		
 	}
 }

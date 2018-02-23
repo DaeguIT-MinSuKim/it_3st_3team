@@ -5,6 +5,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import java.awt.Color;
 
 @SuppressWarnings("serial")
 public class AdminCustomerSearch extends JPanel {
@@ -15,22 +16,23 @@ public class AdminCustomerSearch extends JPanel {
 		initComponents();
 	}
 	private void initComponents() {
+		setBackground(new Color(255, 255, 255));
 		setLayout(null);
 		
 		String[] arrSearch = {"아이디", "상호명", "전화번호"};
 		DefaultComboBoxModel<String> dcbm = new DefaultComboBoxModel<>(arrSearch);
 		JComboBox<String> comboBox = new JComboBox<>();
 		comboBox.setModel(dcbm);
-		comboBox.setBounds(12, 10, 118, 30);
+		comboBox.setBounds(208, 10, 118, 30);
 		add(comboBox);
 		
 		textField = new JTextField();
 		textField.setColumns(10);
-		textField.setBounds(142, 11, 510, 30);
+		textField.setBounds(338, 11, 510, 30);
 		add(textField);
 		
 		JButton button = new JButton("검색");
-		button.setBounds(667, 10, 97, 30);
+		button.setBounds(863, 10, 97, 30);
 		add(button);
 	}
 

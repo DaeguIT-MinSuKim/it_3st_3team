@@ -13,11 +13,11 @@ public class AdminCustomerContent extends JPanel {
 		setLayout(null);
 
 		AdminCustomerRegister pInputArea = new AdminCustomerRegister();
-		pInputArea.setBounds(12, 10, 776, 250);
+		pInputArea.setBounds(0, 0, 1165, 250);
 		add(pInputArea);
 
 		AdminCustomerSearch pSearchArea = new AdminCustomerSearch();
-		pSearchArea.setBounds(12, 270, 776, 50);
+		pSearchArea.setBounds(0, 249, 1165, 50);
 		add(pSearchArea);
 
 		AdminCustmerList pTableArea = new AdminCustmerList();
