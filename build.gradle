@@ -43,8 +43,8 @@ jar {
     dependsOn configurations.runtime// 실행 가능한jar 파일설정
 
 
-    mainClassName= 'kr.or.dgit.it_3st_3team.ui.SoftwareFrameUi'
-    baseName= 'SoftwareFrameUi'
+    mainClassName= 'kr.or.dgit.it_3st_3team.TestMain'
+    baseName= 'TestMain'
     appendix = 'bin'
     manifest{
         attributes 'Title': baseName, 'Version': version, 'Main-Class': mainClassName

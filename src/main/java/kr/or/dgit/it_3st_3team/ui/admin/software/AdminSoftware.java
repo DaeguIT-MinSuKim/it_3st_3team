@@ -27,21 +27,21 @@ public class AdminSoftware extends JPanel {
 		setLayout(null);
 		
 		AdminSoftwareRegister pRegister = new AdminSoftwareRegister();
-		pRegister.setBounds(0, 0, 1190, 183);
+		pRegister.setBounds(0, 0, 1190, 198);
 		add(pRegister);
 		
 		AdminSoftwareSearch pSearch = new AdminSoftwareSearch();
-		pSearch.setBounds(0, 193, 1190, 43);
+		pSearch.setBounds(0, 194, 1190, 52);
 		add(pSearch);
 		
 		AdminSoftwareTable pTable = new AdminSoftwareTable();
 		pTable.setBackground(Color.WHITE);
-		pTable.setBounds(0, 242, 1190, 562);
+		pTable.setBounds(0, 242, 1190, 572);
 		add(pTable);
 		
 		PagingComp pPageing = new PagingComp();
 		pPageing.setBackground(Color.WHITE);
-		pPageing.setBounds(0, 814, 1190, 39);
+		pPageing.setBounds(0, 814, 1190, 52);
 		add(pPageing);
 	}
 }

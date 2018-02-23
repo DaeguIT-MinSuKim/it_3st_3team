@@ -7,6 +7,8 @@ import kr.or.dgit.it_3st_3team.ui.component.LblTfComp;
 import java.awt.Color;
 
 import kr.or.dgit.it_3st_3team.ui.AdminUI;
+import kr.or.dgit.it_3st_3team.ui.FindIdPwUI;
+import kr.or.dgit.it_3st_3team.ui.JoinUI;
 import kr.or.dgit.it_3st_3team.ui.component.LblPwdTfComp;
 import javax.swing.JButton;
 import java.awt.Font;
@@ -18,9 +20,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class LoginContent extends JPanel implements ActionListener {
-	private JButton button;
+	private JButton btnSignIn;
 	private LblTfComp pID;
 	private LblPwdTfComp pPW;
+	private JButton btnJoinIn;
+	private JButton btnSearchIDPW;
 
 	/**
 	 * Create the panel.
@@ -55,19 +59,19 @@ public class LoginContent extends JPanel implements ActionListener {
 		pCheck.setBounds(636, 557, 255, 33);
 		pLogin.add(pCheck);
 		
-		button = new JButton("로그인");
-		button.addActionListener(this);
-		button.setForeground(Color.BLACK);
-		button.setFont(new Font("나눔바른고딕", Font.PLAIN, 12));
-		button.setBackground(Color.WHITE);
-		button.setBounds(28, 5, 78, 23);
-		pCheck.add(button);
+		btnSignIn = new JButton("로그인");
+		btnSignIn.addActionListener(this);
+		btnSignIn.setForeground(Color.BLACK);
+		btnSignIn.setFont(new Font("나눔바른고딕", Font.PLAIN, 12));
+		btnSignIn.setBackground(Color.WHITE);
+		btnSignIn.setBounds(28, 5, 78, 23);
+		pCheck.add(btnSignIn);
 		
-		JCheckBox checkBox = new JCheckBox("관리자 로그인");
-		checkBox.setFont(new Font("나눔바른고딕", Font.PLAIN, 12));
-		checkBox.setBackground(Color.WHITE);
-		checkBox.setBounds(127, 5, 95, 23);
-		pCheck.add(checkBox);
+		JCheckBox chkManager = new JCheckBox("관리자 로그인");
+		chkManager.setFont(new Font("나눔바른고딕", Font.PLAIN, 12));
+		chkManager.setBackground(Color.WHITE);
+		chkManager.setBounds(127, 5, 95, 23);
+		pCheck.add(chkManager);
 		
 		JPanel pRegister = new JPanel();
 		pRegister.setBackground(Color.WHITE);
@@ -75,22 +79,32 @@ public class LoginContent extends JPanel implements ActionListener {
 		pLogin.add(pRegister);
 		pRegister.setLayout(null);
 		
-		JButton btnNewButton = new JButton("회원 가입");
-		btnNewButton.setBounds(34, 10, 114, 23);
-		pRegister.add(btnNewButton);
+		btnJoinIn = new JButton("회원 가입");
+		btnJoinIn.addActionListener(this);
+		btnJoinIn.setBackground(Color.WHITE);
+		btnJoinIn.setBounds(34, 10, 114, 23);
+		pRegister.add(btnJoinIn);
 		
-		JButton btnNewButton_1 = new JButton("아이디/비밀번호 찾기");
-		btnNewButton_1.setBounds(173, 10, 159, 23);
-		pRegister.add(btnNewButton_1);
+		btnSearchIDPW = new JButton("아이디/비밀번호 찾기");
+		btnSearchIDPW.addActionListener(this);
+		btnSearchIDPW.setBackground(Color.WHITE);
+		btnSearchIDPW.setBounds(173, 10, 159, 23);
+		pRegister.add(btnSearchIDPW);
 		
-		JLabel lblNewLabel = new JLabel("DGIT SW sales program");
-		lblNewLabel.setFont(new Font("다음_Regular", Font.PLAIN, 43));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(333, 131, 781, 121);
-		pLogin.add(lblNewLabel);
+		JLabel lblSubject = new JLabel("DGIT SW sales program");
+		lblSubject.setFont(new Font("다음_Regular", Font.PLAIN, 43));
+		lblSubject.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSubject.setBounds(333, 131, 781, 121);
+		pLogin.add(lblSubject);
 	}
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == button) {
+		if (e.getSource() == btnSearchIDPW) {
+			actionPerformedBtnSearchIDPW(e);
+		}
+		if (e.getSource() == btnJoinIn) {
+			actionPerformedBtnJoinIn(e);
+		}
+		if (e.getSource() == btnSignIn) {
 			actionPerformedButton(e);
 		}
 	}
@@ -99,10 +113,20 @@ public class LoginContent extends JPanel implements ActionListener {
 		
 		String password = pPW.getTfText();
 		
+		
+		
 			AdminUI Adminsw = new AdminUI();
 			
 			Adminsw.setVisible(true);
 		
 		
+	}
+	protected void actionPerformedBtnJoinIn(ActionEvent e) {
+		JoinUI joinUI = new JoinUI();
+		joinUI.setVisible(true);
+	}
+	protected void actionPerformedBtnSearchIDPW(ActionEvent e) {
+		FindIdPwUI findIdPwUI = new FindIdPwUI();
+		findIdPwUI.setVisible(true);
 	}
 }

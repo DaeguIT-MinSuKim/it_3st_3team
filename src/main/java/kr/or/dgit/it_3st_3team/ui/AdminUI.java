@@ -11,11 +11,25 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import kr.or.dgit.it_3st_3team.ui.admin.customer.AdminCustomerContent;
+import kr.or.dgit.it_3st_3team.ui.admin.management.AdminManagementContent;
+import kr.or.dgit.it_3st_3team.ui.admin.order.AdminOrder;
+import kr.or.dgit.it_3st_3team.ui.admin.report.AdminStatusSearchContent;
 import kr.or.dgit.it_3st_3team.ui.admin.software.AdminSoftware;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class AdminUI extends JFrame {
+public class AdminUI extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
+	private JButton btnSupplyRegister;
+	private JButton btnSWRegister;
+	private JPanel pContent;
+	private JPanel pMain;
+	private JButton btnOrderManagement;
+	private JButton btnSupplySaleStatus;
+	private JButton btnCustomerManagement;
+	private JButton btnEmpManagement;
 
 
 	
@@ -32,9 +46,14 @@ public class AdminUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		AdminSoftware pContent = new AdminSoftware();
-		pContent.setBounds(303, 0, 1181, 861);
+		pContent = new JPanel();
+		pContent.setBounds(300, 0, 1184, 861);
 		contentPane.add(pContent);
+		pContent.setLayout(null);
+		
+		pMain = new JPanel();
+		pMain.setBounds(0, 0, 1184, 861);
+		pContent.add(pMain);
 		
 		JPanel pAdminMenu = new JPanel();
 		pAdminMenu.setBackground(new Color(51, 153, 204));
@@ -42,56 +61,131 @@ public class AdminUI extends JFrame {
 		contentPane.add(pAdminMenu);
 		pAdminMenu.setLayout(new GridLayout(10, 1, 0, 0));
 		
-		JLabel label = new JLabel("");
-		pAdminMenu.add(label);
+		JLabel lblEmpty = new JLabel("");
+		pAdminMenu.add(lblEmpty);
 		
-		JLabel label_1 = new JLabel("");
-		pAdminMenu.add(label_1);
+		JLabel lblEmpty_2 = new JLabel("");
+		pAdminMenu.add(lblEmpty_2);
 		
-		JButton button = new JButton("공급회사 등록");
-		button.setForeground(Color.DARK_GRAY);
-		button.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
-		button.setBackground(new Color(51, 153, 204));
-		pAdminMenu.add(button);
+		btnSupplyRegister = new JButton("공급회사 등록");
+		btnSupplyRegister.addActionListener(this);
+		btnSupplyRegister.setForeground(Color.DARK_GRAY);
+		btnSupplyRegister.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
+		btnSupplyRegister.setBackground(new Color(51, 153, 204));
+		pAdminMenu.add(btnSupplyRegister);
 		
-		JButton button_1 = new JButton("소프트웨어 등록");
-		button_1.setForeground(Color.DARK_GRAY);
-		button_1.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
-		button_1.setBackground(new Color(51, 153, 204));
-		pAdminMenu.add(button_1);
+		btnSWRegister = new JButton("소프트웨어 등록");
+		btnSWRegister.addActionListener(this);
+		btnSWRegister.setForeground(Color.DARK_GRAY);
+		btnSWRegister.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
+		btnSWRegister.setBackground(new Color(51, 153, 204));
+		pAdminMenu.add(btnSWRegister);
 		
-		JButton button_2 = new JButton("소프트웨어 주문 관리");
-		button_2.setForeground(Color.DARK_GRAY);
-		button_2.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
-		button_2.setBackground(new Color(51, 153, 204));
-		pAdminMenu.add(button_2);
+		btnOrderManagement = new JButton("소프트웨어 주문 관리");
+		btnOrderManagement.addActionListener(this);
+		btnOrderManagement.setForeground(Color.DARK_GRAY);
+		btnOrderManagement.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
+		btnOrderManagement.setBackground(new Color(51, 153, 204));
+		pAdminMenu.add(btnOrderManagement);
 		
-		JButton button_3 = new JButton("공급 · 판매 현황");
-		button_3.setForeground(Color.DARK_GRAY);
-		button_3.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
-		button_3.setBackground(new Color(51, 153, 204));
-		pAdminMenu.add(button_3);
+		btnSupplySaleStatus = new JButton("공급 · 판매 현황");
+		btnSupplySaleStatus.addActionListener(this);
+		btnSupplySaleStatus.setForeground(Color.DARK_GRAY);
+		btnSupplySaleStatus.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
+		btnSupplySaleStatus.setBackground(new Color(51, 153, 204));
+		pAdminMenu.add(btnSupplySaleStatus);
 		
-		JButton button_4 = new JButton("공급 · 판매 현황(그래프)");
-		button_4.setForeground(Color.DARK_GRAY);
-		button_4.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
-		button_4.setBackground(new Color(51, 153, 204));
-		pAdminMenu.add(button_4);
+		JButton btnSupplySaleStatusGraph = new JButton("공급 · 판매 현황(그래프)");
+		btnSupplySaleStatusGraph.setForeground(Color.DARK_GRAY);
+		btnSupplySaleStatusGraph.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
+		btnSupplySaleStatusGraph.setBackground(new Color(51, 153, 204));
+		pAdminMenu.add(btnSupplySaleStatusGraph);
 		
-		JButton button_5 = new JButton("고객 관리");
-		button_5.setForeground(Color.DARK_GRAY);
-		button_5.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
-		button_5.setBackground(new Color(51, 153, 204));
-		pAdminMenu.add(button_5);
+		btnCustomerManagement = new JButton("고객 관리");
+		btnCustomerManagement.addActionListener(this);
+		btnCustomerManagement.setForeground(Color.DARK_GRAY);
+		btnCustomerManagement.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
+		btnCustomerManagement.setBackground(new Color(51, 153, 204));
+		pAdminMenu.add(btnCustomerManagement);
 		
-		JButton button_6 = new JButton("직원 관리");
-		button_6.setForeground(Color.DARK_GRAY);
-		button_6.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
-		button_6.setBackground(new Color(51, 153, 204));
-		pAdminMenu.add(button_6);
+		btnEmpManagement = new JButton("직원 관리");
+		btnEmpManagement.addActionListener(this);
+		btnEmpManagement.setForeground(Color.DARK_GRAY);
+		btnEmpManagement.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
+		btnEmpManagement.setBackground(new Color(51, 153, 204));
+		pAdminMenu.add(btnEmpManagement);
 		
-		JLabel label_2 = new JLabel("");
-		pAdminMenu.add(label_2);
+		JLabel lblEmpty_1 = new JLabel("");
+		pAdminMenu.add(lblEmpty_1);
 	}
 
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnEmpManagement) {
+			actionPerformedBtnEmpManagement(e);
+		}
+		if (e.getSource() == btnCustomerManagement) {
+			actionPerformedBtnCustomerManagement(e);
+		}
+		if (e.getSource() == btnSupplySaleStatus) {
+			actionPerformedBtnSupplySaleStatus(e);
+		}
+		if (e.getSource() == btnOrderManagement) {
+			actionPerformedBtnOrderManagement(e);
+		}
+		if (e.getSource() == btnSWRegister) {
+			actionPerformedButton_1(e);
+		}
+		if (e.getSource() == btnSupplyRegister) {
+			actionPerformedButton(e);
+		}
+	}
+	protected void actionPerformedButton(ActionEvent e) {
+		pContent.removeAll();
+		
+		
+	}
+	protected void actionPerformedButton_1(ActionEvent e) {
+		pContent.removeAll();
+		AdminSoftware pMain = new AdminSoftware();
+		pMain.setBounds(0, 0, 1186, 861);
+		pContent.add(pMain);
+		pContent.revalidate();
+		pContent.repaint();
+		
+	}
+	protected void actionPerformedBtnOrderManagement(ActionEvent e) {
+		pContent.removeAll();
+		AdminOrder pMain = new AdminOrder();
+		pMain.setBounds(0, 0, 1186, 861);
+		pContent.add(pMain);
+		pContent.revalidate();
+		pContent.repaint();
+		
+	}
+	protected void actionPerformedBtnSupplySaleStatus(ActionEvent e) {
+		pContent.removeAll();
+		AdminStatusSearchContent pMain = new AdminStatusSearchContent();
+		pMain.setBounds(0, 0, 1186, 861);
+		pContent.add(pMain);
+		pContent.revalidate();
+		pContent.repaint();
+	}
+	protected void actionPerformedBtnCustomerManagement(ActionEvent e) {
+		pContent.removeAll();
+		AdminCustomerContent pMain = new AdminCustomerContent();
+		pMain.setBounds(0, 0, 1186, 861);
+		pContent.add(pMain);
+		pContent.revalidate();
+		pContent.repaint();
+		
+	}
+	protected void actionPerformedBtnEmpManagement(ActionEvent e) {
+		pContent.removeAll();
+		AdminManagementContent pMain = new AdminManagementContent();
+		pMain.setBounds(0, 0, 1186, 861);
+		pContent.add(pMain);
+		pContent.revalidate();
+		pContent.repaint();
+		
+	}
 }

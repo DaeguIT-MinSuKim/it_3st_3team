@@ -13,6 +13,7 @@ import kr.or.dgit.it_3st_3team.ui.component.CmbUserComp;
 import kr.or.dgit.it_3st_3team.ui.component.StartAndEndDate;
 
 import kr.or.dgit.it_3st_3team.ui.component.TfBtnSearchPrintComp;
+import java.awt.Color;
 
 public class AdminStatusSearch extends JPanel {
 	private CmbSoftwareGroupComp pSoftwareGroup;
@@ -25,6 +26,7 @@ public class AdminStatusSearch extends JPanel {
 	}
 
 	private void initComponents() {
+		setBackground(new Color(255, 255, 255));
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(null);
 
@@ -39,8 +41,17 @@ public class AdminStatusSearch extends JPanel {
 		add(pAdminGroup);
 
 		StartAndEndDate pCalendar = new StartAndEndDate();
-		pCalendar.setBounds(750, 0, 432, 43);
+
+		pCalendar.setBounds(712, -3, 441, 43);
+
 		add(pCalendar);
+
+
+		TfBtnSearchPrintComp pStatusSerach = new TfBtnSearchPrintComp();
+		pStatusSerach.setBackground(new Color(255, 255, 255));
+		pStatusSerach.setBounds(12, 60, 1141, 31);
+		add(pStatusSerach);
+
 
 		setSoftwareGroupData();
 		setAdminGroupData();
