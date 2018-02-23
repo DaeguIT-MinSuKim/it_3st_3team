@@ -3,17 +3,16 @@ package kr.or.dgit.it_3st_3team.ui.admin.order;
 import javax.swing.JPanel;
 import java.awt.Color;
 
+@SuppressWarnings("serial")
 public class AdminOrder extends JPanel {
 
-	/**
-	 * Create the panel.
-	 */
 	public AdminOrder() {
 
 		initComponents();
 	}
 	private void initComponents() {
 		setLayout(null);
+		setBounds(0, 0, 1200, 850);
 		
 		AdminOrderRegister pCorrection = new AdminOrderRegister();
 		pCorrection.setBackground(Color.WHITE);

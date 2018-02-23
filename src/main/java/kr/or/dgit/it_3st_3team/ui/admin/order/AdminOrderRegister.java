@@ -3,22 +3,18 @@ package kr.or.dgit.it_3st_3team.ui.admin.order;
 import java.awt.Color;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 
+import kr.or.dgit.it_3st_3team.ui.component.CalenderTfComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblCmbUserComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblTfComp;
-import kr.or.dgit.it_3st_3team.ui.component.LblCmbSoftwareComp;
 import kr.or.dgit.it_3st_3team.ui.component.StringLblCmbComponent;
 
+
+@SuppressWarnings("serial")
 public class AdminOrderRegister extends JPanel {
 
-	/**
-	 * Create the panel.
-	 */
 	public AdminOrderRegister() {
 
 		initComponents();
@@ -40,28 +36,26 @@ public class AdminOrderRegister extends JPanel {
 		btnOrderCancel.setBounds(1081, 134, 97, 23);
 		pCorrection.add(btnOrderCancel);
 		
-		LblTfComp pOrderNum = new LblTfComp("주문 번호");
-		pOrderNum.setBounds(46, 10, 202, 30);
-		pCorrection.add(pOrderNum);
-		
-		LblTfComp pOrderDate = new LblTfComp("주문 일자");
-		pOrderDate.setBounds(46, 62, 202, 30);
-		pCorrection.add(pOrderDate);
-		
-		LblCmbSoftwareComp pSwName = new LblCmbSoftwareComp("품목명");
-		pSwName.setBounds(319, 10, 202, 30);
-		pCorrection.add(pSwName);
-		
 		LblTfComp pOrderCount = new LblTfComp("품목 수량");
 		pOrderCount.setBounds(319, 62, 202, 30);
 		pCorrection.add(pOrderCount);
 		
+
 		LblCmbUserComp pUserName = new LblCmbUserComp("고객명");
 		pUserName.setBounds(46, 112, 202, 30);
 		pCorrection.add(pUserName);
 		
 		StringLblCmbComponent pPayment = new StringLblCmbComponent("결제수단");
 		pPayment.setBounds(323, 112, 198, 30);
+
 		pCorrection.add(pPayment);
+		
+		CalenderTfComp panel = new CalenderTfComp((String) null);
+		panel.setBounds(879, 10, 220, 42);
+		pCorrection.add(panel);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setBounds(817, 21, 60, 22);
+		pCorrection.add(lblNewLabel);
 	}
 }
