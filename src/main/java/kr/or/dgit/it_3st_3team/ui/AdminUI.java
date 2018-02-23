@@ -104,5 +104,6 @@ public class AdminUI extends JFrame implements ActionListener {
 		}
 	}
 	protected void actionPerformedButton(ActionEvent e) {
+		
 	}
 }
