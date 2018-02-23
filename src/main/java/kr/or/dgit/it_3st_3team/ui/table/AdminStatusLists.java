@@ -9,7 +9,7 @@ import kr.or.dgit.it_3st_3team.dto.User;
 import kr.or.dgit.it_3st_3team.ui.component.AbtractTableComponent;
 
 @SuppressWarnings("serial")
-public class AdminStatusLists<T> extends AbtractTableComponent<T> {
+public class AdminStatusLists extends AbtractTableComponent<SaleOrder> {
 
 	public AdminStatusLists() {
 
@@ -18,21 +18,25 @@ public class AdminStatusLists<T> extends AbtractTableComponent<T> {
 	@Override
 	public void setTableAlignWidth() {
 		setTableRowHeight(30);
-		setTableCellAlign(SwingConstants.CENTER, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11);
-		setTableCellWidth(100, 300, 200, 300, 300, 200, 200, 200, 150, 200, 300, 300);
-
+		setTableCellAlign(SwingConstants.CENTER, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+		setTableCellWidth(100, 200, 200, 200, 200, 200, 200, 200, 150, 200);
+		
 	}
 
 	@Override
 	public Object[] getColumnNames() {
-		return new String[] { "번호", "상호명", "분류", "관리자", "품목명",
-				"주문수량","공급가격","판매가격","결제수단","매출금","공급회사명","판매이윤","날짜","수정/삭제"};
+		return new String[] { "번호", "아이디", "상호명", "전화번호", "주소" };
 	}
 
 	@Override
-	public Object[][] getRows(List<T> list) {
-		
-		return null;
+	public Object[][] getRows(List<SaleOrder> list) {
+		Object[][] rows = {
+				{ "1", "c_id1", "재밌는게임방", "02-2233-1123", "서울시 도봉구 어쩌구 저쩌구"},
+				{ "2", "c_id2", "재없는게임방", "03-2233-1123", "서울시 도봉구 어쩌구 저쩌구"},
+				{ "3", "c_id3", "재밌는게임방", "04-2233-1123", "서울시 도봉구 어쩌구 저쩌구"}
+		};
+		return rows;
 	}
 
+	
 }

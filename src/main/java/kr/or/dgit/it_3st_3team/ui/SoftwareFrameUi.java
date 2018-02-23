@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 import kr.or.dgit.it_3st_3team.panel.SupplyingCompany;
 import kr.or.dgit.it_3st_3team.ui.admin.report.AdminSalesStatusSearch;
 import kr.or.dgit.it_3st_3team.ui.admin.report.AdminStatusSearch;
+import kr.or.dgit.it_3st_3team.ui.admin.report.AdminStatusSearchContent;
 import kr.or.dgit.it_3st_3team.ui.admin.report.UserStatusSearch;
 import kr.or.dgit.it_3st_3team.ui.table.AdminStatusLists;
 
@@ -38,11 +39,11 @@ public class SoftwareFrameUi extends JFrame {
 	}
 	private void initComponents() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1250, 500);
+		setBounds(100, 100, 1268, 507);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		JPanel p1 = new JPanel();
 		contentPane.add(p1, BorderLayout.NORTH);
@@ -59,9 +60,9 @@ public class SoftwareFrameUi extends JFrame {
 	//	UserStatusSearch panel = new UserStatusSearch();
 	//	StatusSalesTeam panel = new StatusSalesTeam();
 	
-		
-		AdminStatusLists panel = new AdminStatusLists();
-		contentPane.add(panel, BorderLayout.SOUTH);
+		AdminStatusSearchContent panel = new AdminStatusSearchContent();
+	//	AdminStatusLists panel = new AdminStatusLists();
+		contentPane.add(panel);
 	}
 
 }
