@@ -31,12 +31,12 @@ public class AdminStatusSearch extends JPanel {
 		setLayout(null);
 
 		pSoftwareGroup = new CmbSoftwareGroupComp();
-		pSoftwareGroup.setBounds(0, 10, 125, 30);
+		pSoftwareGroup.setBounds(11, 10, 125, 30);
 
 		add(pSoftwareGroup);
 
 		pAdminGroup = new CmbAdminGroupComp();
-		pAdminGroup.setBounds(137, 10, 125, 30);
+		pAdminGroup.setBounds(148, 10, 125, 30);
 
 		add(pAdminGroup);
 
@@ -47,18 +47,13 @@ public class AdminStatusSearch extends JPanel {
 		add(pCalendar);
 
 
-		TfBtnSearchPrintComp pStatusSerach = new TfBtnSearchPrintComp();
-		pStatusSerach.setBackground(new Color(255, 255, 255));
-		pStatusSerach.setBounds(12, 60, 1141, 31);
-		add(pStatusSerach);
-
-
 		setSoftwareGroupData();
 		setAdminGroupData();
 
 		
 		pStatusSearch = new StatusSearchComboboxBottom();
-		pStatusSearch.setBounds(0, 56, 1178, 44);
+		pStatusSearch.setBackground(new Color(255, 255, 255));
+		pStatusSearch.setBounds(12, 56, 1141, 44);
 		add(pStatusSearch);
 	}
 

@@ -122,5 +122,6 @@ public class UserCustomerUI extends JFrame implements ActionListener {
 		}
 	}
 	protected void actionPerformedButton(ActionEvent e) {
+		
 	}
 }

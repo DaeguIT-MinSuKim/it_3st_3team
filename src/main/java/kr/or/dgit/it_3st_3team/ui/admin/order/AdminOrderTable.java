@@ -25,12 +25,12 @@ public class AdminOrderTable extends JPanel {
 		
 		JPanel pOrderTable = new JPanel();
 		pOrderTable.setBackground(Color.WHITE);
-		pOrderTable.setBounds(0, 0, 1200, 535);
+		pOrderTable.setBounds(0, 0, 1200, 600);
 		add(pOrderTable);
 		pOrderTable.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(12, 10, 1165, 515);
+		scrollPane.setBounds(12, 10, 1165, 533);
 		pOrderTable.add(scrollPane);
 		
 		TblOrder = new JTable();
@@ -46,9 +46,9 @@ public class AdminOrderTable extends JPanel {
 		scrollPane.setViewportView(TblOrder);
 		
 		PagingComp pPaging = new PagingComp();
+		pPaging.setBounds(12, 553, 1200, 40);
+		pOrderTable.add(pPaging);
 		pPaging.setBackground(new Color(255, 255, 255));
-		pPaging.setBounds(0, 534, 1200, 45);
-		add(pPaging);
 	}
 
 }

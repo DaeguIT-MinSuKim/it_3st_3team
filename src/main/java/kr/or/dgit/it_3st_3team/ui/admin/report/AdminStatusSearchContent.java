@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 
 import kr.or.dgit.it_3st_3team.ui.table.SupplyingCompanyLists;
 import java.awt.Color;
+import kr.or.dgit.it_3st_3team.ui.component.PagingComp;
 
 public class AdminStatusSearchContent extends JPanel {
 
@@ -19,7 +20,7 @@ public class AdminStatusSearchContent extends JPanel {
 		setLayout(null);
 		
 		AdminStatusSearch panel = new AdminStatusSearch();
-		panel.setBounds(0, 10, 1165, 106);
+		panel.setBounds(0, 10, 1175, 106);
 		add(panel);
 		panel.setLayout(null);
 		
@@ -27,7 +28,12 @@ public class AdminStatusSearchContent extends JPanel {
 		
 		
 		SupplyingCompanyLists panel_2 = new SupplyingCompanyLists();
-		panel_2.setBounds(0, 116, 1165, 535);
+		panel_2.setBounds(10, 120, 1165, 612);
 		add(panel_2);
+		
+		PagingComp panel_1 = new PagingComp();
+		panel_1.setBackground(new Color(255, 255, 255));
+		panel_1.setBounds(12, 734, 1163, 64);
+		add(panel_1);
 	}
 }
