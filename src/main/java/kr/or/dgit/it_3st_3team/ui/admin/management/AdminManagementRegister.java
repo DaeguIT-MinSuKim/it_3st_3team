@@ -5,13 +5,15 @@ import javax.swing.JPanel;
 
 import java.awt.Color;
 
-import kr.or.dgit.it_3st_3team.ui.component.ImageComponent;
-import kr.or.dgit.it_3st_3team.ui.component.LabelInputBtnComponent;
-import kr.or.dgit.it_3st_3team.ui.component.LabelTextFieldComponent;
-import kr.or.dgit.it_3st_3team.ui.component.LabelPwdFieldComponent;
+
 import kr.or.dgit.it_3st_3team.dto.AdminGroup;
 import kr.or.dgit.it_3st_3team.type.AdminGroupAuth;
-import kr.or.dgit.it_3st_3team.ui.component.AdminGroupLblCmbComponent;
+
+import kr.or.dgit.it_3st_3team.ui.component.ImageComp;
+import kr.or.dgit.it_3st_3team.ui.component.LblTfBtnComp;
+import kr.or.dgit.it_3st_3team.ui.component.LblTfComp;
+import kr.or.dgit.it_3st_3team.ui.component.LblPwdTfComp;
+import kr.or.dgit.it_3st_3team.ui.component.LblCmbAdminGroupComp;
 
 @SuppressWarnings("serial")
 public class AdminManagementRegister extends JPanel {
@@ -24,7 +26,7 @@ public class AdminManagementRegister extends JPanel {
 		setBackground(Color.WHITE);
 		setLayout(null);
 
-		ImageComponent pImg = new ImageComponent();
+		ImageComp pImg = new ImageComp();
 		pImg.setBounds(12, 10, 188, 230);
 		add(pImg);
 
@@ -34,29 +36,32 @@ public class AdminManagementRegister extends JPanel {
 		pInput.setBounds(212, 10, 552, 230);
 		add(pInput);
 
-		LabelInputBtnComponent pAdminId = new LabelInputBtnComponent("아이디", "중복확인");
+		LblTfBtnComp pAdminId = new LblTfBtnComp("아이디", "중복확인");
 		pAdminId.setBounds(36, 10, 312, 30);
 		pInput.add(pAdminId);
 		
-		LabelPwdFieldComponent pAdminPwd = new LabelPwdFieldComponent("비밀번호");
+		LblPwdTfComp pAdminPwd = new LblPwdTfComp("비밀번호");
 		pAdminPwd.setBounds(24, 50, 222, 30);
 		pInput.add(pAdminPwd);
 		
-		LabelPwdFieldComponent pAdminPwdChk = new LabelPwdFieldComponent("비밀번호 확인");
+		LblPwdTfComp pAdminPwdChk = new LblPwdTfComp("비밀번호 확인");
 		pAdminPwdChk.setBounds(292, 50, 240, 30);
 		pInput.add(pAdminPwdChk);
 		
-		LabelTextFieldComponent pAdminName = new LabelTextFieldComponent("이름");
+		LblTfComp pAdminName = new LblTfComp("이름");
 		pAdminName.setBounds(48, 88, 198, 30);
 		pInput.add(pAdminName);
 		
-		LabelTextFieldComponent pAdminPhone = new LabelTextFieldComponent("전화번호");
+		LblTfComp pAdminPhone = new LblTfComp("전화번호");
 		pAdminPhone.setBounds(320, 89, 210, 30);
 		pInput.add(pAdminPhone);
-		
+
 		AdminGroup[] agDatas = {new AdminGroup(1, "관리자", AdminGroupAuth.ADMINISTRATOR), new AdminGroup(2, "영업", AdminGroupAuth.SALESMAN)};
-		AdminGroupLblCmbComponent pAdminGroup = new AdminGroupLblCmbComponent("직책");
+
+
+		LblCmbAdminGroupComp pAdminGroup = new LblCmbAdminGroupComp("직책");
 		pAdminGroup.loadData(agDatas);
+
 		pAdminGroup.setBounds(48, 138, 198, 30);
 		pInput.add(pAdminGroup);
 		

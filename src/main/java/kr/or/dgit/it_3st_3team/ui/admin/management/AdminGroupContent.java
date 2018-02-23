@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import kr.or.dgit.it_3st_3team.ui.component.LabelTextFieldComponent;
+import kr.or.dgit.it_3st_3team.ui.component.LblTfComp;
 import kr.or.dgit.it_3st_3team.ui.component.StringLblCmbComponent;
 
 @SuppressWarnings("serial")
@@ -33,7 +33,7 @@ public class AdminGroupContent extends JFrame {
 		pLayout.setLayout(null);
 		contentPane.add(pLayout, BorderLayout.CENTER);
 		
-		LabelTextFieldComponent pAdmGroupTitle = new LabelTextFieldComponent("직책");
+		LblTfComp pAdmGroupTitle = new LblTfComp("직책");
 		pAdmGroupTitle.setBounds(41, 38, 172, 30);
 		pLayout.add(pAdmGroupTitle);
 		

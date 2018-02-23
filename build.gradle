@@ -33,6 +33,16 @@ jar {
 //  archiveName'StudentManagement.jar' archiveName속성을지정하면baseName속성이나appendix속성은무시.
     version = 1.0
 //  application으로 개발 할 경우(apply plugin: 'application') main()메서드가 있는 클래스를 반드시 지정
+
+    mainClassName= 'kr.or.dgit.it_3st_3team.TestMain'
+    baseName= 'TestMain'
+    appendix = 'bin'
+    manifest{
+        attributes 'Title': baseName, 'Version': version, 'Main-Class': mainClassName
+    }
+    dependsOn configurations.runtime// 실행 가능한jar 파일설정
+
+
     mainClassName= 'kr.or.dgit.it_3st_3team.ui.SoftwareFrameUi'
     baseName= 'SoftwareFrameUi'
     appendix = 'bin'
@@ -40,4 +50,5 @@ jar {
         attributes 'Title': baseName, 'Version': version, 'Main-Class': mainClassName
     }
     dependsOn configurations.runtime// 실행 가능한jar 파일설정
+
 }

@@ -1,9 +1,11 @@
 package kr.or.dgit.it_3st_3team.ui.user;
 
-import javax.swing.JPanel;
 import java.awt.Color;
+
 import javax.swing.JButton;
-import kr.or.dgit.it_3st_3team.ui.component.LabelPwdFieldComponent;
+import javax.swing.JPanel;
+
+import kr.or.dgit.it_3st_3team.ui.component.LblPwdTfComp;
 
 @SuppressWarnings("serial")
 public class UserModifyContent extends JPanel {
@@ -35,15 +37,15 @@ public class UserModifyContent extends JPanel {
 		add(panel_1);
 		panel_1.setLayout(null);
 
-		LabelPwdFieldComponent labelPwdFieldComponent = new LabelPwdFieldComponent("현재 비밀번호");
+		LblPwdTfComp labelPwdFieldComponent = new LblPwdTfComp("현재 비밀번호");
 		labelPwdFieldComponent.setBounds(86, 37, 280, 38);
 		panel_1.add(labelPwdFieldComponent);
 
-		LabelPwdFieldComponent labelPwdFieldComponent_1 = new LabelPwdFieldComponent("바꿀 비밀번호 확인");
+		LblPwdTfComp labelPwdFieldComponent_1 = new LblPwdTfComp("바꿀 비밀번호 확인");
 		labelPwdFieldComponent_1.setBounds(58, 133, 308, 38);
 		panel_1.add(labelPwdFieldComponent_1);
 
-		LabelPwdFieldComponent labelPwdFieldComponent_2 = new LabelPwdFieldComponent("바꿀 비밀번호");
+		LblPwdTfComp labelPwdFieldComponent_2 = new LblPwdTfComp("바꿀 비밀번호");
 		labelPwdFieldComponent_2.setBounds(86, 85, 280, 38);
 		panel_1.add(labelPwdFieldComponent_2);
 

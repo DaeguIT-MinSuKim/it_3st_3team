@@ -30,7 +30,10 @@ public class SoftwareGroup {
 
 	@Override
 	public String toString() {
-		return String.format("SoftwareGroup [sgNo=%s, sgName=%s]", sgNo, sgName);
+
+
+		return String.format("(%s)%s", sgNo, sgName);
+
 	}
 
 }

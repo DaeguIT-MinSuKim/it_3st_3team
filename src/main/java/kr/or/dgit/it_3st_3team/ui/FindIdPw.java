@@ -1,4 +1,4 @@
-package kr.or.dgit.it_3st_3team.ui.common;
+package kr.or.dgit.it_3st_3team.ui;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;

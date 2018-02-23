@@ -1,13 +1,13 @@
 package kr.or.dgit.it_3st_3team.ui.admin.software;
 
-import javax.swing.JPanel;
-import javax.swing.JComboBox;
-import javax.swing.JTextField;
-import javax.swing.JButton;
 import java.awt.Color;
 
+import javax.swing.JPanel;
+
+import kr.or.dgit.it_3st_3team.ui.component.CmbStringComp;
+import kr.or.dgit.it_3st_3team.ui.component.TfBtnSearchComp;
+
 public class AdminSoftwareSearch extends JPanel {
-	private JTextField tfSearch;
 
 	/**
 	 * Create the panel.
@@ -22,26 +22,17 @@ public class AdminSoftwareSearch extends JPanel {
 		
 		JPanel pSWSearch = new JPanel();
 		pSWSearch.setBackground(Color.WHITE);
-		pSWSearch.setBounds(0, 0, 877, 42);
+		pSWSearch.setBounds(0, 0, 1170, 42);
 		add(pSWSearch);
 		pSWSearch.setLayout(null);
 		
-		JComboBox cmbSearch1 = new JComboBox();
-		cmbSearch1.setBounds(12, 6, 116, 26);
-		pSWSearch.add(cmbSearch1);
+		CmbStringComp pSWNamePCName = new CmbStringComp();
+		pSWNamePCName.setBounds(148, 9, 137, 25);
+		pSWSearch.add(pSWNamePCName);
 		
-		JComboBox cmbSearch2 = new JComboBox();
-		cmbSearch2.setBounds(145, 6, 124, 26);
-		pSWSearch.add(cmbSearch2);
-		
-		tfSearch = new JTextField();
-		tfSearch.setBounds(281, 9, 502, 21);
-		pSWSearch.add(tfSearch);
-		tfSearch.setColumns(10);
-		
-		JButton btnSearch = new JButton("검색");
-		btnSearch.setBounds(795, 8, 57, 23);
-		pSWSearch.add(btnSearch);
+		TfBtnSearchComp pSearch = new TfBtnSearchComp();
+		pSearch.setBounds(375, 9, 628, 25);
+		pSWSearch.add(pSearch);
 	}
 
 }

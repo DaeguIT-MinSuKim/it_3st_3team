@@ -16,6 +16,7 @@ public class AdminGroup {
 		this.agAuth = agAuth;
 	}
 
+
 	public int getAgNo() {
 		return agNo;
 	}

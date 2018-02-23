@@ -6,9 +6,9 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 
 @SuppressWarnings("serial")
-public class PagingComponent extends JPanel {
+public class PagingComp extends JPanel {
 
-	public PagingComponent() {
+	public PagingComp() {
 
 		initComponents();
 	}

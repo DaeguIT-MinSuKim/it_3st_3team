@@ -22,8 +22,6 @@ import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
 import kr.or.dgit.it_3st_3team.ui.table.StatusManagementLists;
-import kr.or.dgit.it_3st_3team.dto.User;
-import kr.or.dgit.it_3st_3team.ui.component.UserComboboxComponent;
 
 public class StatusManagement extends JPanel implements ActionListener {
 	private JTextField tfSearch;
@@ -32,7 +30,6 @@ public class StatusManagement extends JPanel implements ActionListener {
 	private String [] option2 = {"분류","게임","사무","그래픽"};
 	private String [] option3 = {"관리자","영업1팀","영업2팀","영업3팀","영업4팀","영업5팀"};
 	private JButton btnSearch;
-	private UserComboboxComponent panel;
 	
 	
 	public StatusManagement() {
@@ -48,15 +45,13 @@ public class StatusManagement extends JPanel implements ActionListener {
 		add(p1);
 		p1.setLayout(null);
 		
+		JComboBox cmbOption1 = new JComboBox(option1);
+		cmbOption1.setBounds(0, 18, 137, 21);
+		p1.add(cmbOption1);
 		
-		panel = new UserComboboxComponent();
-		panel.setBounds(0, 10, 125, 30);
-		setUserData();
-		p1.add(panel);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(137, 10, 125, 30);
-		p1.add(panel_1);
+		JComboBox cmbOption2 = new JComboBox(option2);
+		cmbOption2.setBounds(151, 18, 125, 21);
+		p1.add(cmbOption2);
 		
 		JComboBox cmbOption3 = new JComboBox(option3);
 		cmbOption3.setBounds(288, 18, 137, 21);
@@ -149,12 +144,6 @@ public class StatusManagement extends JPanel implements ActionListener {
 		pPaging.add(btn5);
 
 	}
-	
-	public void setUserData() {
-		User[] users = {new User("재밌는게임방"), new User("재미업는게임방")};
-		panel.loadData(users);
-	}
-	
 	public void actionPerformed(ActionEvent arg0) {
 		if (arg0.getSource() == btnSearch) {
 			actionPerformedBtnSearch(arg0);

@@ -6,11 +6,15 @@ import javax.swing.JComboBox;
 import java.awt.BorderLayout;
 
 @SuppressWarnings("serial")
-public abstract class AbstractCombobox<T> extends JPanel {
+public abstract class AbstractComboboxComp<T> extends JPanel {
 
 	protected JComboBox<T> comboBox;
 
-	public AbstractCombobox() {
+	protected DefaultComboBoxModel<T> dcbm;
+
+
+
+	public AbstractComboboxComp() {
 		initComponents();
 	}
 
@@ -25,5 +29,6 @@ public abstract class AbstractCombobox<T> extends JPanel {
 		System.out.println(data);
 		DefaultComboBoxModel<T> dcbm = new DefaultComboBoxModel<>(data);
 		comboBox.setModel(dcbm);	
+
 	}
 }

@@ -1,18 +1,19 @@
 package kr.or.dgit.it_3st_3team.ui.admin.order;
 
-import javax.swing.JPanel;
-import java.awt.Rectangle;
 import java.awt.Color;
+
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.JButton;
+import javax.swing.SwingConstants;
+
+import kr.or.dgit.it_3st_3team.ui.component.LblCmbUserComp;
+import kr.or.dgit.it_3st_3team.ui.component.LblTfComp;
+import kr.or.dgit.it_3st_3team.ui.component.LblCmbSoftwareComp;
 
 public class AdminOrderRegister extends JPanel {
-	private JTextField tfOrderDate;
-	private JTextField tfOrderCount;
-	private JTextField tfOrderNum_1;
 
 	/**
 	 * Create the panel.
@@ -26,74 +27,40 @@ public class AdminOrderRegister extends JPanel {
 		
 		JPanel pCorrection = new JPanel();
 		pCorrection.setBackground(Color.WHITE);
-		pCorrection.setBounds(0, 0, 877, 167);
+		pCorrection.setBounds(0, 0, 1190, 167);
 		add(pCorrection);
 		pCorrection.setLayout(null);
 		
-		JComboBox lblOrderNum = new JComboBox();
-		lblOrderNum.setBounds(93, 88, 149, 29);
-		pCorrection.add(lblOrderNum);
-		
-		JLabel lblSWName = new JLabel("품목명");
-		lblSWName.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblSWName.setBounds(12, 95, 57, 15);
-		pCorrection.add(lblSWName);
-		
-		JLabel lblBSName = new JLabel("고객명");
-		lblBSName.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblBSName.setBounds(235, 17, 57, 15);
-		pCorrection.add(lblBSName);
-		
-		JComboBox tfBSName = new JComboBox();
-		tfBSName.setBounds(318, 10, 149, 29);
-		pCorrection.add(tfBSName);
-		
-		JLabel lblOrderDate = new JLabel("주문일자");
-		lblOrderDate.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblOrderDate.setBounds(12, 58, 57, 15);
-		pCorrection.add(lblOrderDate);
-		
-		tfOrderDate = new JTextField();
-		tfOrderDate.setColumns(10);
-		tfOrderDate.setBounds(94, 49, 134, 29);
-		pCorrection.add(tfOrderDate);
-		
-		JLabel lblPayment = new JLabel("결제수단");
-		lblPayment.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblPayment.setBounds(260, 134, 57, 15);
-		pCorrection.add(lblPayment);
-		
-		JLabel lblOrderCount = new JLabel("주문수량");
-		lblOrderCount.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblOrderCount.setBounds(12, 134, 57, 15);
-		pCorrection.add(lblOrderCount);
-		
-		tfOrderCount = new JTextField();
-		tfOrderCount.setColumns(10);
-		tfOrderCount.setBounds(94, 127, 120, 29);
-		pCorrection.add(tfOrderCount);
-		
-		JLabel tfOrderNum = new JLabel("주문번호");
-		tfOrderNum.setHorizontalAlignment(SwingConstants.RIGHT);
-		tfOrderNum.setBounds(12, 19, 57, 15);
-		pCorrection.add(tfOrderNum);
-		
-		tfOrderNum_1 = new JTextField();
-		tfOrderNum_1.setColumns(10);
-		tfOrderNum_1.setBounds(94, 10, 97, 29);
-		pCorrection.add(tfOrderNum_1);
-		
-		JComboBox cmbPayment = new JComboBox();
-		cmbPayment.setBounds(340, 127, 149, 29);
-		pCorrection.add(cmbPayment);
-		
 		JButton btnCorrection = new JButton("수정");
-		btnCorrection.setBounds(665, 134, 97, 23);
+		btnCorrection.setBounds(978, 134, 97, 23);
 		pCorrection.add(btnCorrection);
 		
 		JButton btnOrderCancel = new JButton("취소");
-		btnOrderCancel.setBounds(768, 134, 97, 23);
+		btnOrderCancel.setBounds(1081, 134, 97, 23);
 		pCorrection.add(btnOrderCancel);
+		
+		LblTfComp pOrderNum = new LblTfComp("주문 번호");
+		pOrderNum.setBounds(46, 10, 202, 30);
+		pCorrection.add(pOrderNum);
+		
+		LblTfComp pOrderDate = new LblTfComp("주문 일자");
+		pOrderDate.setBounds(46, 62, 202, 30);
+		pCorrection.add(pOrderDate);
+		
+		LblCmbSoftwareComp pSwName = new LblCmbSoftwareComp("품목명");
+		pSwName.setBounds(319, 10, 202, 30);
+		pCorrection.add(pSwName);
+		
+		LblTfComp pOrderCount = new LblTfComp("품목 수량");
+		pOrderCount.setBounds(319, 62, 202, 30);
+		pCorrection.add(pOrderCount);
+		
+		LblCmbUserComp pUserName = new LblCmbUserComp("고객명");
+		pUserName.setBounds(46, 112, 202, 30);
+		pCorrection.add(pUserName);
+		
+		JPanel pPayment = new JPanel();
+		pPayment.setBounds(319, 112, 202, 30);
+		pCorrection.add(pPayment);
 	}
-
 }
