@@ -1,8 +1,17 @@
 package kr.or.dgit.it_3st_3team.ui.component;
 
-public class CmbStringComp extends AbstractCombobox<String> {
+import javax.swing.DefaultComboBoxModel;
+
+public class CmbStringComp extends AbstractComboboxComp<String> {
 
 	public CmbStringComp() {
+
+	}
+
+	@Override
+	public void loadData(String[] data) {
+		DefaultComboBoxModel<String> dcbm = new DefaultComboBoxModel<>(data);
+		comboBox.setModel(dcbm);
 
 	}
 

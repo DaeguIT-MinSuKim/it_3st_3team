@@ -8,12 +8,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import kr.or.dgit.it_3st_3team.panel.SupplyingCompany;
 import kr.or.dgit.it_3st_3team.ui.admin.report.AdminSalesStatusSearch;
-import kr.or.dgit.it_3st_3team.ui.admin.report.AdminStatusSearch;
 import kr.or.dgit.it_3st_3team.ui.admin.report.AdminStatusSearchContent;
-import kr.or.dgit.it_3st_3team.ui.admin.report.UserStatusSearch;
-import kr.or.dgit.it_3st_3team.ui.table.AdminStatusLists;
+
+
 
 
 
@@ -58,6 +56,7 @@ public class SoftwareFrameUi extends JFrame {
 	//	AdminStatusSearch panel = new AdminStatusSearch();
 	//	AdminSalesStatusSearch panel = new AdminSalesStatusSearch();
 	//	UserStatusSearch panel = new UserStatusSearch();
+
 	//	StatusSalesTeam panel = new StatusSalesTeam();
 	
 		AdminStatusSearchContent panel = new AdminStatusSearchContent();

@@ -16,11 +16,6 @@ public class AdminGroup {
 		this.agAuth = agAuth;
 	}
 
-	
-	public AdminGroup(String agName) {
-		super();
-		this.agName = agName;
-	}
 
 	public int getAgNo() {
 		return agNo;

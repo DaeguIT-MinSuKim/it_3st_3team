@@ -2,14 +2,14 @@ package kr.or.dgit.it_3st_3team.ui.admin.report;
 
 import javax.swing.JPanel;
 import kr.or.dgit.it_3st_3team.ui.component.StartAndEndDate;
-import kr.or.dgit.it_3st_3team.ui.component.StatusSearchBottom;
-import kr.or.dgit.it_3st_3team.ui.component.SoftwareComboboxComponent;
+import kr.or.dgit.it_3st_3team.ui.component.TfBtnSearchPrintComp;
+import kr.or.dgit.it_3st_3team.ui.component.CmbSoftwareGroupComp;
 import kr.or.dgit.it_3st_3team.dto.SoftwareGroup;
 
 public class UserStatusSearch extends JPanel {
 
 	
-	private SoftwareComboboxComponent pSoftwareGroup;
+	private CmbSoftwareGroupComp pSoftwareGroup;
 	public UserStatusSearch() {
 
 		initComponents();
@@ -17,7 +17,7 @@ public class UserStatusSearch extends JPanel {
 	private void initComponents() {
 		setLayout(null);
 		
-		pSoftwareGroup = new SoftwareComboboxComponent();
+		pSoftwareGroup = new CmbSoftwareGroupComp();
 		pSoftwareGroup.setBounds(12, 10, 125, 30);
 		
 		add(pSoftwareGroup);
@@ -26,7 +26,7 @@ public class UserStatusSearch extends JPanel {
 		pCalendar.setBounds(769, 0, 425, 43);
 		add(pCalendar);
 		
-		StatusSearchBottom pStatusSearch = new StatusSearchBottom();
+		TfBtnSearchPrintComp pStatusSearch = new TfBtnSearchPrintComp();
 		pStatusSearch.setBounds(12, 60, 1176, 31);
 		add(pStatusSearch);
 		setSoftwareGroupData();

@@ -1,0 +1,90 @@
+set FOREIGN_key_checks = 0; /* 포린키 무시 */
+
+CREATE TABLE `address` (
+  `addr_no` int(11) NOT NULL COMMENT '주소번호',
+  `addr_zipcode` varchar(6) DEFAULT NULL COMMENT '우편번호',
+  `addr_sido` varchar(20) DEFAULT NULL COMMENT '시도',
+  `addr_sigungu` varchar(20) DEFAULT NULL COMMENT '시군구',
+  `addr_doro` varchar(20) DEFAULT NULL COMMENT '도로명',
+  `addr_detail` varchar(255) DEFAULT NULL COMMENT '상세주소',
+  PRIMARY KEY (`addr_no`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='주소정보';
+
+CREATE TABLE `user` (
+  `u_no` int(11) NOT NULL COMMENT '사용자번호',
+  `u_id` varchar(20) NOT NULL COMMENT '아이디',
+  `u_pwd` varchar(64) NOT NULL COMMENT '비밀번호',
+  `u_name` varchar(20) NOT NULL COMMENT '회사명',
+  `u_email` varchar(40) DEFAULT NULL COMMENT '이메일',
+  `u_phone` varchar(14) DEFAULT NULL COMMENT '전화번호',
+  `u_group` char(1) DEFAULT NULL COMMENT '사용자구분',
+  `adm_no` int(11) DEFAULT NULL COMMENT '관리자',
+  `addr_no` int(11) DEFAULT NULL COMMENT '주소번호',
+  PRIMARY KEY (`u_no`),
+  KEY `FK_admin_TO_user` (`adm_no`),
+  KEY `FK_address_TO_user` (`addr_no`),
+  CONSTRAINT `FK_address_TO_user` FOREIGN KEY (`addr_no`) REFERENCES `address` (`addr_no`),
+  CONSTRAINT `FK_admin_TO_user` FOREIGN KEY (`adm_no`) REFERENCES `admin` (`adm_no`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='사용자';
+
+CREATE TABLE `admin` (
+  `adm_no` int(11) NOT NULL COMMENT '관리자번호',
+  `adm_name` varchar(20) NOT NULL COMMENT '관리자명',
+  `adm_id` varchar(20) NOT NULL COMMENT '아이디',
+  `adm_pwd` varchar(64) NOT NULL COMMENT '비밀번호',
+  `adm_phone` varchar(14) DEFAULT NULL COMMENT '전화번호',
+  `ag_no` int(11) DEFAULT NULL COMMENT '관리자그룹',
+  PRIMARY KEY (`adm_no`),
+  KEY `FK_admin_group_TO_admin` (`ag_no`),
+  CONSTRAINT `FK_admin_group_TO_admin` FOREIGN KEY (`ag_no`) REFERENCES `admin_group` (`ag_no`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='관리자';
+
+CREATE TABLE `admin_group` (
+  `ag_no` int(11) NOT NULL COMMENT '관리자그룹번호',
+  `ag_name` varchar(20) DEFAULT NULL COMMENT '관리자그룹명',
+  `ag_auth` char(1) DEFAULT NULL COMMENT '관리자그룹권한',
+  PRIMARY KEY (`ag_no`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='관리자 분류';
+
+CREATE TABLE `software` (
+  `sw_no` int(11) NOT NULL COMMENT '품목번호',
+  `sg_no` int(11) DEFAULT NULL COMMENT '품목분류',
+  `sw_name` varchar(20) DEFAULT NULL COMMENT '품목명',
+  `sw_supply_price` int(11) DEFAULT NULL COMMENT '공급가격',
+  `sw_sell_price` int(11) DEFAULT NULL COMMENT '판매가격',
+  `u_no` int(11) DEFAULT NULL COMMENT '공급회사',
+  PRIMARY KEY (`sw_no`),
+  KEY `FK_software_group_TO_software` (`sg_no`),
+  KEY `FK_user_TO_software` (`u_no`),
+  CONSTRAINT `FK_software_group_TO_software` FOREIGN KEY (`sg_no`) REFERENCES `software_group` (`sg_no`),
+  CONSTRAINT `FK_user_TO_software` FOREIGN KEY (`u_no`) REFERENCES `user` (`u_no`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='소프트웨어';
+
+CREATE TABLE `software_group` (
+  `sg_no` int(11) NOT NULL COMMENT '그룹번호',
+  `sg_name` varchar(20) DEFAULT NULL COMMENT '그룹명',
+  PRIMARY KEY (`sg_no`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='소프트웨어 분류';
+
+CREATE TABLE `sale_order` (
+  `ord_no` int(11) NOT NULL COMMENT '주문번호',
+  `u_no` int(11) NOT NULL COMMENT '사용자번호',
+  `sw_no` int(11) NOT NULL COMMENT '품목번호',
+  `ord_quantity` int(11) NOT NULL COMMENT '주문수량',
+  `ord_supply_price` int(11) DEFAULT NULL COMMENT '공급금액',
+  `ord_sell_price` int(11) DEFAULT NULL COMMENT '판매금액',
+  `ord_tax` int(11) DEFAULT NULL COMMENT '부가세액',
+  `ord_sell_profit` int(11) DEFAULT NULL COMMENT '판매이윤',
+  `ord_payment` char(1) DEFAULT NULL COMMENT '입금여부',
+  `ord_datetime` datetime DEFAULT NULL COMMENT '주문일자',
+  `adm_no` int(11) DEFAULT NULL COMMENT '관리자번호',
+  PRIMARY KEY (`ord_no`),
+  KEY `FK_software_TO_sale_order` (`sw_no`),
+  KEY `FK_user_TO_sale_order` (`u_no`),
+  KEY `FK_admin_TO_sale_order` (`adm_no`),
+  CONSTRAINT `FK_admin_TO_sale_order` FOREIGN KEY (`adm_no`) REFERENCES `admin` (`adm_no`),
+  CONSTRAINT `FK_software_TO_sale_order` FOREIGN KEY (`sw_no`) REFERENCES `software` (`sw_no`),
+  CONSTRAINT `FK_user_TO_sale_order` FOREIGN KEY (`u_no`) REFERENCES `user` (`u_no`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='판매현황';
+
+set FOREIGN_key_checks = 1; /* 포린키 설정 */

@@ -13,11 +13,11 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
 @SuppressWarnings("serial")
-public abstract class AbtractTableComponent<T> extends JPanel {
+public abstract class AbtractTableComp<T> extends JPanel {
 	protected JTable table;
 	private JScrollPane scrollPane;
 
-	public AbtractTableComponent() {
+	public AbtractTableComp() {
 		initComponents();
 	}
 

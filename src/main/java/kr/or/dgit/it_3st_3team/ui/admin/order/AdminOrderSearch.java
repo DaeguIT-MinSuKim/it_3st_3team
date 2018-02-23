@@ -7,9 +7,15 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import kr.or.dgit.it_3st_3team.ui.component.CmbSoftwareComp;
+import kr.or.dgit.it_3st_3team.ui.component.CmbSoftwareGroupComp;
+import kr.or.dgit.it_3st_3team.ui.component.CmbAdminGroupComp;
+import kr.or.dgit.it_3st_3team.ui.component.StartAndEndDate;
+import kr.or.dgit.it_3st_3team.ui.component.CmbStringComp;
+import kr.or.dgit.it_3st_3team.ui.component.TfBtnSearchPrintComp;
+import kr.or.dgit.it_3st_3team.ui.component.TfBtnSearchComp;
 
 public class AdminOrderSearch extends JPanel {
-	private JTextField tfSearch;
 
 	/**
 	 * Create the panel.
@@ -23,43 +29,30 @@ public class AdminOrderSearch extends JPanel {
 		
 		JPanel pOrderSearch = new JPanel();
 		pOrderSearch.setBackground(Color.WHITE);
-		pOrderSearch.setBounds(0, 0, 877, 39);
+		pOrderSearch.setBounds(0, 0, 1190, 94);
 		add(pOrderSearch);
 		pOrderSearch.setLayout(null);
 		
-		JComboBox cmbSeach1 = new JComboBox();
-		cmbSeach1.setBounds(12, 7, 92, 26);
-		pOrderSearch.add(cmbSeach1);
+		CmbSoftwareGroupComp pSearchSoftwareSort = new CmbSoftwareGroupComp();
+		pSearchSoftwareSort.setBounds(168, 34, 120, 30);
+		pOrderSearch.add(pSearchSoftwareSort);
 		
-		JComboBox cmbSeach2 = new JComboBox();
-		cmbSeach2.setBounds(108, 7, 124, 26);
-		pOrderSearch.add(cmbSeach2);
+		CmbAdminGroupComp pAdminGroup = new CmbAdminGroupComp();
+		pAdminGroup.setBounds(325, 34, 120, 30);
+		pOrderSearch.add(pAdminGroup);
 		
-		JComboBox cmbSeach3 = new JComboBox();
-		cmbSeach3.setBounds(236, 7, 124, 26);
-		pOrderSearch.add(cmbSeach3);
+		StartAndEndDate pDate = new StartAndEndDate();
+		pDate.setBackground(Color.WHITE);
+		pDate.setBounds(488, 10, 690, 43);
+		pOrderSearch.add(pDate);
 		
-		JComboBox cmbSeach4 = new JComboBox();
-		cmbSeach4.setBounds(364, 7, 92, 26);
-		pOrderSearch.add(cmbSeach4);
+		CmbStringComp pSortUserNameSWName = new CmbStringComp();
+		pSortUserNameSWName.setBounds(493, 54, 120, 30);
+		pOrderSearch.add(pSortUserNameSWName);
 		
-		JComboBox cmbSeach5 = new JComboBox();
-		cmbSeach5.setBounds(484, 7, 92, 26);
-		pOrderSearch.add(cmbSeach5);
-		
-		tfSearch = new JTextField();
-		tfSearch.setColumns(10);
-		tfSearch.setBounds(588, 9, 208, 21);
-		pOrderSearch.add(tfSearch);
-		
-		JButton btnSearch = new JButton("검색");
-		btnSearch.setBounds(808, 8, 57, 23);
-		pOrderSearch.add(btnSearch);
-		
-		JLabel lbldash = new JLabel("-");
-		lbldash.setHorizontalAlignment(SwingConstants.CENTER);
-		lbldash.setBounds(442, 13, 57, 15);
-		pOrderSearch.add(lbldash);
+		TfBtnSearchComp pSearch = new TfBtnSearchComp();
+		pSearch.setBounds(638, 54, 540, 30);
+		pOrderSearch.add(pSearch);
 	}
 
 }

@@ -24,27 +24,17 @@ public class AdminSoftwareTable extends JPanel {
 		
 		JPanel pSWTable = new JPanel();
 		pSWTable.setBackground(Color.WHITE);
-		pSWTable.setBounds(0, 0, 877, 268);
+		pSWTable.setBounds(0, 0, 1191, 603);
 		add(pSWTable);
 		pSWTable.setLayout(null);
 		
-		JLabel btnPrev = new JLabel("");
-		btnPrev.setHorizontalAlignment(SwingConstants.CENTER);
-		btnPrev.setBounds(400, 246, 17, 17);
-		pSWTable.add(btnPrev);
-		btnPrev.setIcon(new ImageIcon("C:\\Users\\SCARLETT\\Desktop\\ppt이용 이미지\\pg IMg\\back.png"));
-		
-		JLabel btnNext = new JLabel("");
-		btnNext.setBounds(467, 246, 17, 17);
-		pSWTable.add(btnNext);
-		btnNext.setIcon(new ImageIcon("C:\\Users\\SCARLETT\\Desktop\\ppt이용 이미지\\pg IMg\\next.png"));
-		btnNext.setHorizontalAlignment(SwingConstants.CENTER);
-		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(12, 10, 853, 232);
+		scrollPane.setBackground(Color.WHITE);
+		scrollPane.setBounds(12, 10, 1155, 583);
 		pSWTable.add(scrollPane);
 		
 		SWTable = new JTable();
+		SWTable.setBackground(Color.WHITE);
 		SWTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null, null, null, null},

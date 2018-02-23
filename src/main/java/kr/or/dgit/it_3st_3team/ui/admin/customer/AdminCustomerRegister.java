@@ -8,7 +8,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.Color;
 
-import kr.or.dgit.it_3st_3team.ui.component.ImageComponent;
+import kr.or.dgit.it_3st_3team.ui.component.ImageComp;
 
 @SuppressWarnings("serial")
 public class AdminCustomerRegister extends JPanel {
@@ -29,7 +29,7 @@ public class AdminCustomerRegister extends JPanel {
 		setBackground(Color.WHITE);
 		setLayout(null);
 				
-		ImageComponent pImgArea = new ImageComponent();
+		ImageComp pImgArea = new ImageComp();
 		pImgArea.setBounds(0, 10, 200, 230);
 		add(pImgArea);
 

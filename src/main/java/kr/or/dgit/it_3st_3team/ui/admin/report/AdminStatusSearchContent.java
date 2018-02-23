@@ -1,9 +1,8 @@
 package kr.or.dgit.it_3st_3team.ui.admin.report;
 
 import javax.swing.JPanel;
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import kr.or.dgit.it_3st_3team.ui.table.AdminStatusLists;
+
+import kr.or.dgit.it_3st_3team.ui.table.SupplyingCompanyLists;
 
 public class AdminStatusSearchContent extends JPanel {
 
@@ -24,13 +23,9 @@ public class AdminStatusSearchContent extends JPanel {
 		
 		
 		
-		AdminStatusLists panel_1 = new AdminStatusLists();
-		panel_1.setBounds(0, 114, 1200, 401);
-		add(panel_1);
 		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(0, 525, 1200, 53);
+		SupplyingCompanyLists panel_2 = new SupplyingCompanyLists();
+		panel_2.setBounds(0, 116, 1200, 398);
 		add(panel_2);
 	}
-
 }

@@ -126,9 +126,9 @@ gradle-app.setting
 
 # log
 /logs
-
 <<<<<<< HEAD
-# End of https://www.gitignore.io/api/git,java,gradle,eclipse,windows
+/zipcode_DB
 =======
-# End of https://www.gitignore.io/api/java,gradle,eclipse,windows,git
->>>>>>> refs/remotes/origin/master
+
+/zipcode_DB
+>>>>>>> refs/remotes/origin/sj

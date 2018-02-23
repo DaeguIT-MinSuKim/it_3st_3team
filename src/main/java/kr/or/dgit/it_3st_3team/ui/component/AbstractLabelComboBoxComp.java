@@ -11,12 +11,12 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 @SuppressWarnings("serial")
-public abstract class AbstractLabelComboBox<T> extends JPanel {
+public abstract class AbstractLabelComboBoxComp<T> extends JPanel {
 	protected DefaultComboBoxModel<T> dcbm;
 	protected JComboBox<T> cmbBox;
 	private JLabel lblName;
 	
-	public AbstractLabelComboBox(String label) {
+	public AbstractLabelComboBoxComp(String label) {
 		lblName = new JLabel(label);
 		initComponents();
 	}
@@ -41,4 +41,5 @@ public abstract class AbstractLabelComboBox<T> extends JPanel {
 		dcbm = new DefaultComboBoxModel<>(data);
 		cmbBox.setModel(dcbm);
 	}
+
 }

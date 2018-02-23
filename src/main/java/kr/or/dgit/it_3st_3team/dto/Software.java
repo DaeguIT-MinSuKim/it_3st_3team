@@ -1,6 +1,7 @@
 package kr.or.dgit.it_3st_3team.dto;
 
 public class Software {
+
 	private int swNo;
 	private String swName;
 	private int swSupplyPrice;
