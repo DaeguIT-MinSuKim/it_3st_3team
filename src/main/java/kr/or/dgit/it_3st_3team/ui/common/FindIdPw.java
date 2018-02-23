@@ -1,4 +1,4 @@
-package kr.or.dgit.it_3st_3team.ui;
+package kr.or.dgit.it_3st_3team.ui.common;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -15,6 +15,7 @@ import javax.swing.border.TitledBorder;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import javax.swing.border.EmptyBorder;
+import java.awt.Color;
 
 public class FindIdPw extends JPanel implements ItemListener {
 	private JTextField tfFindIdName;
@@ -42,10 +43,12 @@ public class FindIdPw extends JPanel implements ItemListener {
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel p1 = new JPanel();
+		p1.setBackground(Color.WHITE);
 		add(p1, BorderLayout.NORTH);
 		p1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		p2 = new JPanel();
+		p2.setBackground(Color.WHITE);
 		add(p2, BorderLayout.CENTER);
 		p2.setLayout(null);
 		
@@ -115,11 +118,13 @@ public class FindIdPw extends JPanel implements ItemListener {
 		ButtonGroup g = new ButtonGroup();
 		
 		rdFindId = new JRadioButton("아이디 찾기");
+		rdFindId.setBackground(Color.WHITE);
 		rdFindId.addItemListener(this);
 		//rdFindId.setSelected(true);
 		p1.add(rdFindId);
 		
 		rdFindPw = new JRadioButton("비밀번호 찾기");
+		rdFindPw.setBackground(Color.WHITE);
 		rdFindPw.addItemListener(this);
 		p1.add(rdFindPw);
 		g.add(rdFindPw);
@@ -129,6 +134,7 @@ public class FindIdPw extends JPanel implements ItemListener {
 		
 		
 		JPanel p4 = new JPanel();
+		p4.setBackground(Color.WHITE);
 		add(p4, BorderLayout.SOUTH);
 		
 		btnLogIn = new JButton("아이디찾기");

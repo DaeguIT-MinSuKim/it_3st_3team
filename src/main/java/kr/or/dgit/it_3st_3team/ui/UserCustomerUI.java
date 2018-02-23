@@ -5,11 +5,14 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+
 
 @SuppressWarnings("serial")
 public class UserCustomerUI extends JFrame {
@@ -48,17 +51,39 @@ public class UserCustomerUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
+		
+		JPanel pContent = new JPanel();
+		pContent.setBounds(298, 0, 1186, 861);
+		contentPane.add(pContent);
+		
+		JPanel pImg = new JPanel();
+		pImg.setLayout(null);
+		pImg.setBackground(new Color(51, 153, 204));
+		pImg.setBounds(0, 0, 300, 231);
+		contentPane.add(pImg);
+		
+		JLabel lblImg = new JLabel("");
+		lblImg.setIcon(new ImageIcon("C:\\Users\\SCARLETT\\Desktop\\ppt이용 이미지\\pg IMg\\add-user-interface-outlined-symbol.png"));
+		lblImg.setBounds(85, 38, 128, 128);
+		pImg.add(lblImg);
+		
+		JLabel lblName = new JLabel("재밌는 게임방님 환영합니다.");
+		lblName.setHorizontalAlignment(SwingConstants.CENTER);
+		lblName.setFont(new Font("나눔바른고딕", Font.PLAIN, 15));
+		lblName.setBounds(30, 188, 228, 33);
+		pImg.add(lblName);
+		
+
 		JPanel pMenu = new JPanel();
 		pMenu.setBackground(new Color(51, 153, 204));
-		pMenu.setBounds(0, 0, 300, 861);
+		pMenu.setBounds(0, 230, 300, 631);
 		contentPane.add(pMenu);
 		pMenu.setLayout(new GridLayout(10, 1, 0, 0));
 
-		JLabel lblEmty = new JLabel("");
-		pMenu.add(lblEmty);
-
-		JLabel lblEmty_1 = new JLabel("");
-		pMenu.add(lblEmty_1);
+		
+		JLabel lblEmpty = new JLabel("");
+		pMenu.add(lblEmpty);
+		
 
 		JButton btnOrder = new JButton("소프트웨어 주문");
 		btnOrder.setForeground(Color.DARK_GRAY);
@@ -78,26 +103,12 @@ public class UserCustomerUI extends JFrame {
 		btnOrderStatusGraph.setBackground(new Color(51, 153, 204));
 		pMenu.add(btnOrderStatusGraph);
 
-		JButton btnInfoRewrite = new JButton("회원정보 수정");
-		btnInfoRewrite.setForeground(Color.DARK_GRAY);
-		btnInfoRewrite.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
-		btnInfoRewrite.setBackground(new Color(51, 153, 204));
-		pMenu.add(btnInfoRewrite);
+		
+		JButton btnUserModify = new JButton("회원정보 수정");
+		btnUserModify.setForeground(Color.DARK_GRAY);
+		btnUserModify.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
+		btnUserModify.setBackground(new Color(51, 153, 204));
+		pMenu.add(btnUserModify);
 
-		JLabel lblEmty_2 = new JLabel("");
-		pMenu.add(lblEmty_2);
-
-		JLabel lblEmty_2_1 = new JLabel("");
-		pMenu.add(lblEmty_2_1);
-
-		JLabel lblEmty_2_2 = new JLabel("");
-		pMenu.add(lblEmty_2_2);
-
-		JLabel lblEmty_2_3 = new JLabel("");
-		pMenu.add(lblEmty_2_3);
-
-		JPanel pContent = new JPanel();
-		pContent.setBounds(298, 0, 1186, 861);
-		contentPane.add(pContent);
 	}
 }
