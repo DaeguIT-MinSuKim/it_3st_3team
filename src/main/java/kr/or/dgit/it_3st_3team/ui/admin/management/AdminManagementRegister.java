@@ -14,9 +14,12 @@ import kr.or.dgit.it_3st_3team.ui.component.LblTfBtnComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblTfComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblPwdTfComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblCmbAdminGroupComp;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
-public class AdminManagementRegister extends JPanel {
+public class AdminManagementRegister extends JPanel implements ActionListener {
+	private JButton btnAdminGroup;
 
 	public AdminManagementRegister() {
 		initComponents();
@@ -33,27 +36,27 @@ public class AdminManagementRegister extends JPanel {
 		JPanel pInput = new JPanel();
 		pInput.setBackground(Color.WHITE);
 		pInput.setLayout(null);
-		pInput.setBounds(212, 10, 552, 230);
+		pInput.setBounds(212, 10, 900, 230);
 		add(pInput);
 
 		LblTfBtnComp pAdminId = new LblTfBtnComp("아이디", "중복확인");
-		pAdminId.setBounds(36, 10, 312, 30);
+		pAdminId.setBounds(72, 16, 312, 30);
 		pInput.add(pAdminId);
 		
 		LblPwdTfComp pAdminPwd = new LblPwdTfComp("비밀번호");
-		pAdminPwd.setBounds(24, 50, 222, 30);
+		pAdminPwd.setBounds(58, 67, 222, 30);
 		pInput.add(pAdminPwd);
 		
 		LblPwdTfComp pAdminPwdChk = new LblPwdTfComp("비밀번호 확인");
-		pAdminPwdChk.setBounds(292, 50, 240, 30);
+		pAdminPwdChk.setBounds(383, 67, 240, 30);
 		pInput.add(pAdminPwdChk);
 		
 		LblTfComp pAdminName = new LblTfComp("이름");
-		pAdminName.setBounds(48, 88, 198, 30);
+		pAdminName.setBounds(82, 118, 198, 30);
 		pInput.add(pAdminName);
 		
 		LblTfComp pAdminPhone = new LblTfComp("전화번호");
-		pAdminPhone.setBounds(320, 89, 210, 30);
+		pAdminPhone.setBounds(413, 118, 210, 30);
 		pInput.add(pAdminPhone);
 
 		AdminGroup[] agDatas = {new AdminGroup(1, "관리자", AdminGroupAuth.ADMINISTRATOR), new AdminGroup(2, "영업", AdminGroupAuth.SALESMAN)};
@@ -62,21 +65,29 @@ public class AdminManagementRegister extends JPanel {
 		LblCmbAdminGroupComp pAdminGroup = new LblCmbAdminGroupComp("직책");
 		pAdminGroup.loadData(agDatas);
 
-		pAdminGroup.setBounds(48, 138, 198, 30);
+		pAdminGroup.setBounds(82, 167, 198, 30);
 		pInput.add(pAdminGroup);
 		
-		JButton btnAdminGroup = new JButton("등록");
-		btnAdminGroup.setBounds(320, 192, 97, 30);
+		btnAdminGroup = new JButton("등록");
+		btnAdminGroup.addActionListener(this);
+		btnAdminGroup.setBounds(658, 190, 97, 30);
 		pInput.add(btnAdminGroup);
 		
 		JButton btnCancel = new JButton("취소");
-		btnCancel.setBounds(429, 192, 97, 30);
+		btnCancel.setBounds(767, 190, 97, 30);
 		pInput.add(btnCancel);
 		
 		JButton btnOK = new JButton("직책등록");
-		btnOK.setBounds(266, 138, 80, 30);
+		btnOK.setBounds(292, 167, 80, 30);
 		pInput.add(btnOK);
 	}
 	
 	
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnAdminGroup) {
+			actionPerformedBtnAdminGroup(e);
+		}
+	}
+	protected void actionPerformedBtnAdminGroup(ActionEvent e) {
+	}
 }

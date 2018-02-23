@@ -21,17 +21,17 @@ public class AdminManagementSearch extends JPanel {
 		String[] items = {"이름", "직책"};
 		DefaultComboBoxModel<String> dcbm = new DefaultComboBoxModel<>(items);
 		JComboBox<String> comboBox = new JComboBox<>(dcbm);
-		comboBox.setBounds(12, 10, 125, 30);
+		comboBox.setBounds(231, 9, 125, 30);
 		add(comboBox);
 		
 		textField = new JTextField();
 		textField.setHorizontalAlignment(SwingConstants.LEFT);
 		textField.setColumns(10);
-		textField.setBounds(149, 11, 500, 30);
+		textField.setBounds(392, 10, 500, 30);
 		add(textField);
 		
 		JButton button = new JButton("검색");
-		button.setBounds(667, 10, 97, 30);
+		button.setBounds(932, 9, 97, 30);
 		add(button);
 	}
 

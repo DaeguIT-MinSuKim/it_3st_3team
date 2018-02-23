@@ -12,7 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import kr.or.dgit.it_3st_3team.ui.table.SupplyingCompanyLists;
+import kr.or.dgit.it_3st_3team.ui.table.CompanyStatusLists;
 
 public class SupplyingCompany extends JPanel {
 	private JTextField tfSearchPC;
@@ -160,7 +160,7 @@ public class SupplyingCompany extends JPanel {
 		add(p3);
 		p3.setLayout(new BorderLayout(0, 0));
 		
-		SupplyingCompanyLists pTable = new SupplyingCompanyLists();
+		CompanyStatusLists pTable = new CompanyStatusLists();
 		p3.add(pTable, BorderLayout.CENTER);
 		
 		JPanel pPaging = new JPanel();

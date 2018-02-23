@@ -17,12 +17,20 @@ public class AdminCustomerContent extends JPanel {
 		setBounds(0, 0, 1200, 850);
 
 		AdminCustomerRegister pInputArea = new AdminCustomerRegister();
+
+		pInputArea.setBounds(0, 0, 1165, 250);
+
 		pInputArea.setBackground(new Color(255, 255, 255));
 		pInputArea.setBounds(10, 10, 1178, 250);
+
 		add(pInputArea);
 
 		AdminCustomerSearch pSearchArea = new AdminCustomerSearch();
+
+		pSearchArea.setBounds(0, 249, 1165, 50);
+
 		pSearchArea.setBounds(12, 270, 1176, 50);
+
 		add(pSearchArea);
 
 		PagingComp panel = new PagingComp();

@@ -29,16 +29,28 @@ public class AdminCustomerRegister extends JPanel {
 
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(new Color(255, 255, 255));
+
+		panel_2.setBounds(212, 10, 953, 230);
+
 		panel_2.setBounds(235, 10, 931, 230);
+
 		panel_2.setLayout(null);
 		add(panel_2);
 
 		JButton button_2 = new JButton("등록");
+
+		button_2.setBounds(735, 190, 97, 30);
+
 		button_2.setBounds(654, 190, 97, 30);
+
 		panel_2.add(button_2);
 
 		JButton button_3 = new JButton("취소");
+
+		button_3.setBounds(844, 190, 97, 30);
+
 		button_3.setBounds(783, 190, 97, 30);
+
 		panel_2.add(button_3);
 		
 		LblTfBtnComp panel = new LblTfBtnComp("아이디", "중복확인");
