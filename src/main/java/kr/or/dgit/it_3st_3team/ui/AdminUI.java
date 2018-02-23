@@ -12,10 +12,13 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import kr.or.dgit.it_3st_3team.ui.admin.software.AdminSoftware;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class AdminUI extends JFrame {
+public class AdminUI extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
+	private JButton button;
 
 
 	
@@ -48,7 +51,8 @@ public class AdminUI extends JFrame {
 		JLabel label_1 = new JLabel("");
 		pAdminMenu.add(label_1);
 		
-		JButton button = new JButton("공급회사 등록");
+		button = new JButton("공급회사 등록");
+		button.addActionListener(this);
 		button.setForeground(Color.DARK_GRAY);
 		button.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
 		button.setBackground(new Color(51, 153, 204));
@@ -94,4 +98,12 @@ public class AdminUI extends JFrame {
 		pAdminMenu.add(label_2);
 	}
 
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == button) {
+			actionPerformedButton(e);
+		}
+	}
+	protected void actionPerformedButton(ActionEvent e) {
+		
+	}
 }

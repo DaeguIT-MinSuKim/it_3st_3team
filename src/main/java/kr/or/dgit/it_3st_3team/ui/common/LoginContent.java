@@ -76,10 +76,12 @@ public class LoginContent extends JPanel implements ActionListener {
 		pRegister.setLayout(null);
 		
 		JButton btnNewButton = new JButton("회원 가입");
+		btnNewButton.setBackground(Color.WHITE);
 		btnNewButton.setBounds(34, 10, 114, 23);
 		pRegister.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("아이디/비밀번호 찾기");
+		btnNewButton_1.setBackground(Color.WHITE);
 		btnNewButton_1.setBounds(173, 10, 159, 23);
 		pRegister.add(btnNewButton_1);
 		
