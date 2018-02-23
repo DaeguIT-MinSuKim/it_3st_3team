@@ -13,6 +13,7 @@ import javax.swing.table.TableColumnModel;
 import java.awt.Rectangle;
 import java.awt.Color;
 
+@SuppressWarnings("serial")
 public class SupplyingCompanyLists extends JPanel {
 	protected JTable table;
 	

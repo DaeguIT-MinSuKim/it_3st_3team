@@ -5,16 +5,17 @@ import javax.swing.border.EmptyBorder;
 
 import kr.or.dgit.it_3st_3team.dto.AdminGroup;
 import kr.or.dgit.it_3st_3team.dto.SoftwareGroup;
-import kr.or.dgit.it_3st_3team.dto.User;
+
 import kr.or.dgit.it_3st_3team.type.AdminGroupAuth;
 import kr.or.dgit.it_3st_3team.ui.component.CmbAdminGroupComp;
 import kr.or.dgit.it_3st_3team.ui.component.CmbSoftwareGroupComp;
-import kr.or.dgit.it_3st_3team.ui.component.CmbUserComp;
+
 import kr.or.dgit.it_3st_3team.ui.component.StartAndEndDate;
 
-import kr.or.dgit.it_3st_3team.ui.component.TfBtnSearchPrintComp;
+
 import java.awt.Color;
 
+@SuppressWarnings("serial")
 public class AdminStatusSearch extends JPanel {
 	private CmbSoftwareGroupComp pSoftwareGroup;
 	private CmbAdminGroupComp pAdminGroup;

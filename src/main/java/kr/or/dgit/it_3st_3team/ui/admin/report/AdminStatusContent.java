@@ -3,14 +3,11 @@ package kr.or.dgit.it_3st_3team.ui.admin.report;
 import javax.swing.JPanel;
 
 import kr.or.dgit.it_3st_3team.ui.table.AdminStatusLists;
-import javax.swing.border.EmptyBorder;
 import kr.or.dgit.it_3st_3team.ui.component.PagingComp;
 
+@SuppressWarnings("serial")
 public class AdminStatusContent extends JPanel {
 
-	/**
-	 * Create the panel.
-	 */
 	public AdminStatusContent() {
 
 		initComponents();
@@ -21,9 +18,6 @@ public class AdminStatusContent extends JPanel {
 		AdminStatusSearch panel = new AdminStatusSearch();
 		panel.setBounds(12, 10, 1178, 96);
 		add(panel);
-		
-		
-		
 		
 		AdminStatusLists panel_2 = new AdminStatusLists();
 		panel_2.setBounds(12, 116, 1176, 418);
