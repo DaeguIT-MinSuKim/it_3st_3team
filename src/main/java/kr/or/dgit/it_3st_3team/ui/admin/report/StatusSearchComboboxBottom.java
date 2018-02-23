@@ -10,11 +10,15 @@ import javax.swing.border.EmptyBorder;
 import kr.or.dgit.it_3st_3team.ui.component.CmbStringComp;
 
 import javax.swing.BoxLayout;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class StatusSearchComboboxBottom extends JPanel {
+public class StatusSearchComboboxBottom extends JPanel implements ActionListener {
 	private JTextField tfSearchItem;
 	private CmbStringComp pUserSwNameCombo;
 	private CmbStringComp panel_1;
+	private JButton btnReceipt;
+	private JButton btnStatusReport;
 
 	
 	public StatusSearchComboboxBottom() {
@@ -43,18 +47,32 @@ public class StatusSearchComboboxBottom extends JPanel {
 		btnStatusSearch.setBounds(746, 0, 70, 30);
 		add(btnStatusSearch);
 		
-		JButton btnReceipt = new JButton("거래명세서");
-		btnReceipt.setBounds(970, 0, 110, 30);
+		btnReceipt = new JButton("거래명세서");
+		btnReceipt.addActionListener(this);
+		btnReceipt.setBounds(934, 0, 110, 30);
 		add(btnReceipt);
 		
-		JButton btnStatusReport = new JButton("보고서");
-		btnStatusReport.setBounds(1092, 0, 80, 30);
+		btnStatusReport = new JButton("보고서");
+		btnStatusReport.addActionListener(this);
+		btnStatusReport.setBounds(1056, 0, 80, 30);
 		add(btnStatusReport);
 	}
 
 	public void setStringData() {
 		String[] strings = {"상품명", "상호명"};
 		panel_1.loadData(strings);
+	}
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnStatusReport) {
+			actionPerformedBtnStatusReport(e);
+		}
+		if (e.getSource() == btnReceipt) {
+			actionPerformedBtnReceipt(e);
+		}
+	}
+	protected void actionPerformedBtnReceipt(ActionEvent e) {
+	}
+	protected void actionPerformedBtnStatusReport(ActionEvent e) {
 	}
 }
 
