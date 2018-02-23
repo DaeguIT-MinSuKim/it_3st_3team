@@ -12,7 +12,7 @@ import kr.or.dgit.it_3st_3team.ui.admin.report.AdminSalesStatusContent;
 import kr.or.dgit.it_3st_3team.ui.admin.report.AdminSalesStatusSearch;
 import kr.or.dgit.it_3st_3team.ui.admin.report.AdminStatusContent;
 import kr.or.dgit.it_3st_3team.ui.admin.report.CompanyStatusContent;
-import kr.or.dgit.it_3st_3team.ui.admin.report.ReceiptContent;
+import kr.or.dgit.it_3st_3team.ui.admin.report.ReportContent;
 import kr.or.dgit.it_3st_3team.ui.admin.report.UserStatusContent;
 
 
@@ -65,7 +65,7 @@ public class SoftwareFrameUi extends JFrame {
 	//	StatusSalesTeam panel = new StatusSalesTeam();
 	//	AdminSalesStatusContent panel = new AdminSalesStatusContent();
 	//	AdminStatusContent panel = new AdminStatusContent();
-		ReceiptContent panel = new ReceiptContent();
+		ReportContent panel = new ReportContent();
 	//	UserStatusContent panel = new UserStatusContent();
 	//	CompanyStatusContent panel = new CompanyStatusContent();
 		contentPane.add(panel);
