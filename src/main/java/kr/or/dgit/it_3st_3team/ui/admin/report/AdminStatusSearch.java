@@ -11,66 +11,60 @@ import kr.or.dgit.it_3st_3team.ui.component.CmbAdminGroupComp;
 import kr.or.dgit.it_3st_3team.ui.component.CmbSoftwareGroupComp;
 import kr.or.dgit.it_3st_3team.ui.component.CmbUserComp;
 import kr.or.dgit.it_3st_3team.ui.component.StartAndEndDate;
+
 import kr.or.dgit.it_3st_3team.ui.component.TfBtnSearchPrintComp;
 
 public class AdminStatusSearch extends JPanel {
+
 	private CmbUserComp pUserGroup;
 	private CmbSoftwareGroupComp pSoftwareGroup;
 	private CmbAdminGroupComp pAdminGroup;
-	
-	
+
 	public AdminStatusSearch() {
 
 		initComponents();
 	}
+
 	private void initComponents() {
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(null);
-		
-		
+
 		pUserGroup = new CmbUserComp();
 		pUserGroup.setBounds(12, 10, 125, 30);
 		add(pUserGroup);
-		
+
 		pSoftwareGroup = new CmbSoftwareGroupComp();
 		pSoftwareGroup.setBounds(169, 10, 125, 30);
+
 		add(pSoftwareGroup);
-		
+
 		pAdminGroup = new CmbAdminGroupComp();
 		pAdminGroup.setBounds(324, 10, 125, 30);
+
 		add(pAdminGroup);
-		
+
 		StartAndEndDate pCalendar = new StartAndEndDate();
-		pCalendar.setBounds(769, 0, 425, 43);
+		pCalendar.setBounds(769, 0, 428, 43);
 		add(pCalendar);
-		
+
 		TfBtnSearchPrintComp pStatusSerach = new TfBtnSearchPrintComp();
 		pStatusSerach.setBounds(12, 60, 1176, 31);
 		add(pStatusSerach);
-		setUserData();
+
 		setSoftwareGroupData();
 		setAdminGroupData();
-		
 
 	}
-	
-	public void setUserData() {
-		User[] users = {new User("재밌는게임방"), new User("대전광역시교육청")};
-		pUserGroup.loadData(users);
-	}
-	
+
 	public void setSoftwareGroupData() {
-		SoftwareGroup[] software = {new SoftwareGroup(1,"게임"), new SoftwareGroup(2,"사무")};
+		SoftwareGroup[] software = { new SoftwareGroup(1, "게임"), new SoftwareGroup(2, "사무") };
 		pSoftwareGroup.loadData(software);
 	}
-	
-	
+
 	public void setAdminGroupData() {
-		AdminGroup[] admin = {new AdminGroup(1, "영업1팀", AdminGroupAuth.SALESMAN), new AdminGroup(1, "영업2팀", AdminGroupAuth.SALESMAN)};
+		AdminGroup[] admin = { new AdminGroup(1, "영업1팀", AdminGroupAuth.SALESMAN),
+				new AdminGroup(1, "영업2팀", AdminGroupAuth.SALESMAN) };
 		pAdminGroup.loadData(admin);
 	}
-	
-}
-	
- 
 
+}

@@ -4,7 +4,6 @@ import javax.swing.DefaultComboBoxModel;
 
 public class CmbStringComp extends AbstractComboboxComp<String> {
 
-	
 	public CmbStringComp() {
 
 	}
@@ -13,7 +12,7 @@ public class CmbStringComp extends AbstractComboboxComp<String> {
 	public void loadData(String[] data) {
 		DefaultComboBoxModel<String> dcbm = new DefaultComboBoxModel<>(data);
 		comboBox.setModel(dcbm);
-		
+
 	}
 
 }

@@ -7,9 +7,10 @@ import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 
 import kr.or.dgit.it_3st_3team.ui.component.ImageComp;
-import kr.or.dgit.it_3st_3team.ui.component.LblTfComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblCmbStringComp;
+import kr.or.dgit.it_3st_3team.ui.component.LblTfComp;
 
+@SuppressWarnings("serial")
 public class AdminSoftwareRegister extends JPanel {
 	private JFileChooser chooser;
 
@@ -46,10 +47,11 @@ public class AdminSoftwareRegister extends JPanel {
 		pCompany.setBorder(null);
 		pCompany.setBounds(238, 27, 243, 30);
 		pRegister.add(pCompany);
-		
+
 		LblCmbStringComp pSWsort = new LblCmbStringComp("분류 회사");
 		pSWsort.setBounds(528, 26, 243, 30);
 		pRegister.add(pSWsort);
+
 		
 		ImageComp pRegisterImg = new ImageComp();
 		pRegisterImg.setBounds(0, 0, 196, 183);

@@ -39,30 +39,23 @@ public class SupplyingCompanyLists extends JPanel {
 	}
 
 	private Object[][] getRows() {
-		//Object[][] rows = null;
-		/*
-		 * try { List<Management> list = ManagementDao.getInstance().selectItemByAll();
-		 * rows = new Object[list.size()][]; for(int i=0; i<list.size(); i++) { rows[i]
-		 * = list.get(i).toArray(); } } catch (SQLException e) { e.printStackTrace(); }
-		 */
-		 
 		return new Object[][] {
-			{"번호", "회사명", "주소", "전화번호", "담당자", "수정", "삭제"},
-			{"번호", "회사명", "주소", "전화번호", "담당자", "수정", "삭제"},
-			{"번호", "회사명", "주소", "전화번호", "담당자", "수정", "삭제"}
+			{"번호", "상호명", "분류", "관리자", "품목명", "주문수량", "공급가격","판매가격","결제수단","매출금","날짜","공급회사명","판매이윤","수정/삭제" },
+			{"번호", "상호명", "분류", "관리자", "품목명", "주문수량", "공급가격","판매가격","결제수단","매출금","날짜","공급회사명","판매이윤","수정/삭제" },
+			{"번호", "상호명", "분류", "관리자", "품목명", "주문수량", "공급가격","판매가격","결제수단","매출금","날짜","공급회사명","판매이윤","수정/삭제" }
 		};
 	}
 
 	public String[] getColumNames() {
 
-		return new String[] { "번호", "회사명", "주소", "전화번호", "담당자", "수정", "삭제" };
+		return new String[] { "번호", "상호명", "분류", "관리자", "품목명", "주문수량", "공급가격","판매가격","결제수단","매출금","날짜","공급회사명","판매이윤","수정/삭제" };
 	}
 
 	private void setAlignWidth() {
 		// 셀의 너비와 정렬
-		tableCellAlign(SwingConstants.CENTER, 0, 1, 2, 3, 4, 5, 6);
+		tableCellAlign(SwingConstants.CENTER, 0, 1, 2, 3, 4, 5, 6,7,8,9,10,11,12,13);
 
-		tableCellWidth(200, 300, 500, 400, 300, 100, 100);
+		tableCellWidth(200, 300, 500, 400, 300, 300, 300, 300, 300, 300, 300, 300, 300,300);
 
 	}
 
