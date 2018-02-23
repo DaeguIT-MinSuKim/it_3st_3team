@@ -14,6 +14,7 @@ import javax.swing.border.EmptyBorder;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
+import java.awt.Color;
 
 @SuppressWarnings("serial")
 public class StartAndEndDate extends JPanel {
@@ -24,10 +25,12 @@ public class StartAndEndDate extends JPanel {
 	}
 
 	private void initComponents() {
+		setBackground(new Color(255, 255, 255));
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 
 		JPanel pStartdate = new JPanel();
+		pStartdate.setBackground(new Color(255, 255, 255));
 		add(pStartdate);
 
 		UtilDateModel model = new UtilDateModel();
@@ -44,6 +47,7 @@ public class StartAndEndDate extends JPanel {
 		pStartdate.add(datePicker);
 
 		JPanel pEnddate = new JPanel();
+		pEnddate.setBackground(new Color(255, 255, 255));
 		add(pEnddate);
 
 		UtilDateModel model2 = new UtilDateModel();

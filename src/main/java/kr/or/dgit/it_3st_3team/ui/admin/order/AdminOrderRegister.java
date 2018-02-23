@@ -3,17 +3,14 @@ package kr.or.dgit.it_3st_3team.ui.admin.order;
 import java.awt.Color;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import kr.or.dgit.it_3st_3team.ui.component.LblCmbSoftwareComp;
+import kr.or.dgit.it_3st_3team.ui.component.CalenderTfComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblCmbUserComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblTfComp;
-import kr.or.dgit.it_3st_3team.ui.component.LblCmbStringComp;
-import kr.or.dgit.it_3st_3team.ui.component.CalenderTfComp;
-import kr.or.dgit.it_3st_3team.ui.component.StartAndEndDate;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import java.awt.GridLayout;
+import kr.or.dgit.it_3st_3team.ui.component.StringLblCmbComponent;
+
 
 @SuppressWarnings("serial")
 public class AdminOrderRegister extends JPanel {
@@ -43,8 +40,14 @@ public class AdminOrderRegister extends JPanel {
 		pOrderCount.setBounds(319, 62, 202, 30);
 		pCorrection.add(pOrderCount);
 		
-		LblCmbStringComp pPayment = new LblCmbStringComp("결제수단");
-		pPayment.setBounds(319, 112, 202, 30);
+
+		LblCmbUserComp pUserName = new LblCmbUserComp("고객명");
+		pUserName.setBounds(46, 112, 202, 30);
+		pCorrection.add(pUserName);
+		
+		StringLblCmbComponent pPayment = new StringLblCmbComponent("결제수단");
+		pPayment.setBounds(323, 112, 198, 30);
+
 		pCorrection.add(pPayment);
 		
 		CalenderTfComp panel = new CalenderTfComp((String) null);

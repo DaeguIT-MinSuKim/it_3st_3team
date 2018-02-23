@@ -10,6 +10,8 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
+import java.awt.Rectangle;
+import java.awt.Color;
 
 public class SupplyingCompanyLists extends JPanel {
 	protected JTable table;
@@ -20,12 +22,16 @@ public class SupplyingCompanyLists extends JPanel {
 	}
 
 	private void initComponents() {
+		setBackground(new Color(255, 255, 255));
+		setBounds(new Rectangle(0, 0, 1200, 535));
 		setLayout(new BorderLayout(0, 0));
 
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(new Rectangle(0, 0, 1165, 515));
 		add(scrollPane, BorderLayout.CENTER);
 
 		table = new JTable();
+		table.setBackground(new Color(255, 255, 255));
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		loadDatas();
 		scrollPane.setViewportView(table);

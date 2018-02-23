@@ -11,6 +11,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import kr.or.dgit.it_3st_3team.ui.admin.customer.AdminCustomerContent;
+import kr.or.dgit.it_3st_3team.ui.admin.order.AdminOrder;
+import kr.or.dgit.it_3st_3team.ui.admin.report.AdminStatusSearchContent;
 import kr.or.dgit.it_3st_3team.ui.admin.software.AdminSoftware;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -20,6 +23,10 @@ public class AdminUI extends JFrame implements ActionListener {
 	private JPanel contentPane;
 	private JButton btnSupplyRegister;
 	private JButton btnSWRegister;
+	private JPanel pContent;
+	private JPanel pMain;
+	private JButton btnOrderManagement;
+	private JButton btnSupplySaleStatus;
 
 
 	
@@ -36,9 +43,14 @@ public class AdminUI extends JFrame implements ActionListener {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		AdminSoftware pContent = new AdminSoftware();
-		pContent.setBounds(303, 0, 1181, 861);
+		pContent = new JPanel();
+		pContent.setBounds(300, 0, 1184, 861);
 		contentPane.add(pContent);
+		pContent.setLayout(null);
+		
+		pMain = new JPanel();
+		pMain.setBounds(0, 0, 1184, 861);
+		pContent.add(pMain);
 		
 		JPanel pAdminMenu = new JPanel();
 		pAdminMenu.setBackground(new Color(51, 153, 204));
@@ -66,13 +78,15 @@ public class AdminUI extends JFrame implements ActionListener {
 		btnSWRegister.setBackground(new Color(51, 153, 204));
 		pAdminMenu.add(btnSWRegister);
 		
-		JButton btnOrderManagement = new JButton("소프트웨어 주문 관리");
+		btnOrderManagement = new JButton("소프트웨어 주문 관리");
+		btnOrderManagement.addActionListener(this);
 		btnOrderManagement.setForeground(Color.DARK_GRAY);
 		btnOrderManagement.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
 		btnOrderManagement.setBackground(new Color(51, 153, 204));
 		pAdminMenu.add(btnOrderManagement);
 		
-		JButton btnSupplySaleStatus = new JButton("공급 · 판매 현황");
+		btnSupplySaleStatus = new JButton("공급 · 판매 현황");
+		btnSupplySaleStatus.addActionListener(this);
 		btnSupplySaleStatus.setForeground(Color.DARK_GRAY);
 		btnSupplySaleStatus.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
 		btnSupplySaleStatus.setBackground(new Color(51, 153, 204));
@@ -101,6 +115,12 @@ public class AdminUI extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnSupplySaleStatus) {
+			actionPerformedBtnSupplySaleStatus(e);
+		}
+		if (e.getSource() == btnOrderManagement) {
+			actionPerformedBtnOrderManagement(e);
+		}
 		if (e.getSource() == btnSWRegister) {
 			actionPerformedButton_1(e);
 		}
@@ -109,11 +129,34 @@ public class AdminUI extends JFrame implements ActionListener {
 		}
 	}
 	protected void actionPerformedButton(ActionEvent e) {
+		pContent.removeAll();
+		
 		
 	}
 	protected void actionPerformedButton_1(ActionEvent e) {
-		AdminSoftware pContent = new AdminSoftware();
-		pContent.setBounds(303, 0, 1181, 861);
-		contentPane.add(pContent);
+		pContent.removeAll();
+		AdminSoftware pMain = new AdminSoftware();
+		pMain.setBounds(0, 0, 1186, 861);
+		pContent.add(pMain);
+		pContent.revalidate();
+		pContent.repaint();
+		
+	}
+	protected void actionPerformedBtnOrderManagement(ActionEvent e) {
+		pContent.removeAll();
+		AdminOrder pMain = new AdminOrder();
+		pMain.setBounds(0, 0, 1186, 861);
+		pContent.add(pMain);
+		pContent.revalidate();
+		pContent.repaint();
+		
+	}
+	protected void actionPerformedBtnSupplySaleStatus(ActionEvent e) {
+		pContent.removeAll();
+		AdminStatusSearchContent pMain = new AdminStatusSearchContent();
+		pMain.setBounds(0, 0, 1186, 861);
+		pContent.add(pMain);
+		pContent.revalidate();
+		pContent.repaint();
 	}
 }

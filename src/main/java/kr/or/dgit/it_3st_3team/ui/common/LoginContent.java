@@ -113,6 +113,8 @@ public class LoginContent extends JPanel implements ActionListener {
 		
 		String password = pPW.getTfText();
 		
+		
+		
 			AdminUI Adminsw = new AdminUI();
 			
 			Adminsw.setVisible(true);

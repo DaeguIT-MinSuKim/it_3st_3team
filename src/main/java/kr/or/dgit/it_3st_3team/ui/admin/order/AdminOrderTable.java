@@ -8,6 +8,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.ImageIcon;
+import kr.or.dgit.it_3st_3team.ui.component.PagingComp;
 
 public class AdminOrderTable extends JPanel {
 	private JTable TblOrder;
@@ -24,24 +25,12 @@ public class AdminOrderTable extends JPanel {
 		
 		JPanel pOrderTable = new JPanel();
 		pOrderTable.setBackground(Color.WHITE);
-		pOrderTable.setBounds(0, 0, 877, 271);
+		pOrderTable.setBounds(0, 0, 1200, 535);
 		add(pOrderTable);
 		pOrderTable.setLayout(null);
 		
-		JLabel btnPrev = new JLabel("");
-		btnPrev.setIcon(new ImageIcon("C:\\Users\\SCARLETT\\Desktop\\ppt이용 이미지\\pg IMg\\back.png"));
-		btnPrev.setHorizontalAlignment(SwingConstants.CENTER);
-		btnPrev.setBounds(400, 244, 17, 17);
-		pOrderTable.add(btnPrev);
-		
-		JLabel btnNext = new JLabel("");
-		btnNext.setIcon(new ImageIcon("C:\\Users\\SCARLETT\\Desktop\\ppt이용 이미지\\pg IMg\\next.png"));
-		btnNext.setHorizontalAlignment(SwingConstants.CENTER);
-		btnNext.setBounds(467, 244, 17, 17);
-		pOrderTable.add(btnNext);
-		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(12, 10, 853, 231);
+		scrollPane.setBounds(12, 10, 1165, 515);
 		pOrderTable.add(scrollPane);
 		
 		TblOrder = new JTable();
@@ -55,6 +44,11 @@ public class AdminOrderTable extends JPanel {
 			}
 		));
 		scrollPane.setViewportView(TblOrder);
+		
+		PagingComp pPaging = new PagingComp();
+		pPaging.setBackground(new Color(255, 255, 255));
+		pPaging.setBounds(0, 534, 1200, 45);
+		add(pPaging);
 	}
 
 }

@@ -16,16 +16,16 @@ public class AdminOrder extends JPanel {
 		
 		AdminOrderRegister pCorrection = new AdminOrderRegister();
 		pCorrection.setBackground(Color.WHITE);
-		pCorrection.setBounds(12, 10, 877, 166);
+		pCorrection.setBounds(0, 0, 1200, 176);
 		add(pCorrection);
 		pCorrection.setLayout(null);
 		
 		AdminOrderSearch pOrderSearch = new AdminOrderSearch();
-		pOrderSearch.setBounds(12, 179, 877, 41);
+		pOrderSearch.setBounds(0, 174, 1200, 94);
 		add(pOrderSearch);
 		
 		AdminOrderTable pOrderTable = new AdminOrderTable();
-		pOrderTable.setBounds(12, 225, 877, 265);
+		pOrderTable.setBounds(0, 268, 1200, 582);
 		add(pOrderTable);
 	}
 
