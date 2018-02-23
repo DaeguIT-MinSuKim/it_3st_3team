@@ -18,16 +18,16 @@ public class CompanyStatusSearch extends JPanel {
 		setLayout(null);
 		
 		pSoftwareGroup = new CmbSoftwareGroupComp();
-		pSoftwareGroup.setBounds(12, 10, 125, 30);
+		pSoftwareGroup.setBounds(0, 10, 125, 30);
 		
 		add(pSoftwareGroup);
 		
 		StartAndEndDate pCalendar = new StartAndEndDate();
-		pCalendar.setBounds(769, 0, 425, 43);
+		pCalendar.setBounds(758, 0, 425, 43);
 		add(pCalendar);
 		
 		TfBtnSearchPrintComp pStatusSearch = new TfBtnSearchPrintComp();
-		pStatusSearch.setBounds(12, 60, 1176, 31);
+		pStatusSearch.setBounds(0, 60, 1176, 31);
 		add(pStatusSearch);
 		setSoftwareGroupData();
 	}

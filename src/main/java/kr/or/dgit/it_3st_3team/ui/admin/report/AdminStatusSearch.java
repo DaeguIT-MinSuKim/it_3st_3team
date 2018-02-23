@@ -15,10 +15,9 @@ import kr.or.dgit.it_3st_3team.ui.component.StartAndEndDate;
 import kr.or.dgit.it_3st_3team.ui.component.TfBtnSearchPrintComp;
 
 public class AdminStatusSearch extends JPanel {
-
-	private CmbUserComp pUserGroup;
 	private CmbSoftwareGroupComp pSoftwareGroup;
 	private CmbAdminGroupComp pAdminGroup;
+	private StatusSearchComboboxBottom pStatusSearch;
 
 	public AdminStatusSearch() {
 
@@ -29,31 +28,27 @@ public class AdminStatusSearch extends JPanel {
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(null);
 
-		pUserGroup = new CmbUserComp();
-		pUserGroup.setBounds(12, 10, 125, 30);
-		add(pUserGroup);
-
 		pSoftwareGroup = new CmbSoftwareGroupComp();
-		pSoftwareGroup.setBounds(169, 10, 125, 30);
+		pSoftwareGroup.setBounds(0, 10, 125, 30);
 
 		add(pSoftwareGroup);
 
 		pAdminGroup = new CmbAdminGroupComp();
-		pAdminGroup.setBounds(324, 10, 125, 30);
+		pAdminGroup.setBounds(137, 10, 125, 30);
 
 		add(pAdminGroup);
 
 		StartAndEndDate pCalendar = new StartAndEndDate();
-		pCalendar.setBounds(769, 0, 428, 43);
+		pCalendar.setBounds(750, 0, 432, 43);
 		add(pCalendar);
-
-		TfBtnSearchPrintComp pStatusSerach = new TfBtnSearchPrintComp();
-		pStatusSerach.setBounds(12, 60, 1176, 31);
-		add(pStatusSerach);
 
 		setSoftwareGroupData();
 		setAdminGroupData();
 
+		
+		pStatusSearch = new StatusSearchComboboxBottom();
+		pStatusSearch.setBounds(0, 56, 1178, 44);
+		add(pStatusSearch);
 	}
 
 	public void setSoftwareGroupData() {

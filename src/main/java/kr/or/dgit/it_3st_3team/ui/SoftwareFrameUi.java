@@ -8,8 +8,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import kr.or.dgit.it_3st_3team.ui.admin.report.AdminSalesStatusContent;
 import kr.or.dgit.it_3st_3team.ui.admin.report.AdminSalesStatusSearch;
-import kr.or.dgit.it_3st_3team.ui.admin.report.AdminStatusSearchContent;
+import kr.or.dgit.it_3st_3team.ui.admin.report.AdminStatusContent;
+import kr.or.dgit.it_3st_3team.ui.admin.report.CompanyStatusContent;
+import kr.or.dgit.it_3st_3team.ui.admin.report.ReceiptContent;
+import kr.or.dgit.it_3st_3team.ui.admin.report.UserStatusContent;
 
 
 
@@ -36,6 +40,7 @@ public class SoftwareFrameUi extends JFrame {
 		initComponents();
 	}
 	private void initComponents() {
+		setTitle("거래명세서");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1268, 507);
 		contentPane = new JPanel();
@@ -43,12 +48,12 @@ public class SoftwareFrameUi extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		JPanel p1 = new JPanel();
-		contentPane.add(p1, BorderLayout.NORTH);
+		//JPanel p1 = new JPanel();
+		//contentPane.add(p1, BorderLayout.NORTH);
 		
 	//	JLabel lblNewLabel = new JLabel("공급회사등록");
-		JLabel lblNewLabel = new JLabel("현황관리");
-		p1.add(lblNewLabel);
+	//	JLabel lblNewLabel = new JLabel("현황관리");
+	//	p1.add(lblNewLabel);
 		
 		
 	
@@ -58,9 +63,11 @@ public class SoftwareFrameUi extends JFrame {
 	//	UserStatusSearch panel = new UserStatusSearch();
 
 	//	StatusSalesTeam panel = new StatusSalesTeam();
-	
-		AdminStatusSearchContent panel = new AdminStatusSearchContent();
-	//	AdminStatusLists panel = new AdminStatusLists();
+	//	AdminSalesStatusContent panel = new AdminSalesStatusContent();
+	//	AdminStatusContent panel = new AdminStatusContent();
+		ReceiptContent panel = new ReceiptContent();
+	//	UserStatusContent panel = new UserStatusContent();
+	//	CompanyStatusContent panel = new CompanyStatusContent();
 		contentPane.add(panel);
 	}
 

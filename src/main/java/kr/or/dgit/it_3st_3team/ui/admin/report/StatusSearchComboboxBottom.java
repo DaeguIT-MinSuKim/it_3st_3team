@@ -1,4 +1,4 @@
-package kr.or.dgit.it_3st_3team.ui.component;
+package kr.or.dgit.it_3st_3team.ui.admin.report;
 
 import java.awt.GridLayout;
 
@@ -6,6 +6,9 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import kr.or.dgit.it_3st_3team.ui.component.CmbStringComp;
+
 import javax.swing.BoxLayout;
 
 public class StatusSearchComboboxBottom extends JPanel {
@@ -41,11 +44,11 @@ public class StatusSearchComboboxBottom extends JPanel {
 		add(btnStatusSearch);
 		
 		JButton btnReceipt = new JButton("거래명세서");
-		btnReceipt.setBounds(977, 0, 110, 30);
+		btnReceipt.setBounds(970, 0, 110, 30);
 		add(btnReceipt);
 		
 		JButton btnStatusReport = new JButton("보고서");
-		btnStatusReport.setBounds(1098, 0, 80, 30);
+		btnStatusReport.setBounds(1092, 0, 80, 30);
 		add(btnStatusReport);
 	}
 
