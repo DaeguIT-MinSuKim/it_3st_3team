@@ -7,7 +7,7 @@ public class UserJoinUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					JoinContent frame = new JoinContent();
+					JoinUI frame = new JoinUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

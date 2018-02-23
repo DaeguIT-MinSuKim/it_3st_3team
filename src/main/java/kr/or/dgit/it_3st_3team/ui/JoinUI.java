@@ -15,7 +15,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JPasswordField;
 
 @SuppressWarnings("serial")
-public class JoinContent extends JFrame {
+public class JoinUI extends JFrame {
 	private JPanel contentPane;
 	private JTextField tfUserId;
 	private JPasswordField pfUserPwd;
@@ -29,7 +29,7 @@ public class JoinContent extends JFrame {
 	private JButton btnUserJoinOK;
 	private JButton btnUserJoinCancel;
 
-	public JoinContent() {
+	public JoinUI() {
 		initComponents();
 	}
 
