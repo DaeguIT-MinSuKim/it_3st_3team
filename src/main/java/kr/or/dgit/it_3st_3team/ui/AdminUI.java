@@ -3,6 +3,8 @@ package kr.or.dgit.it_3st_3team.ui;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -13,10 +15,8 @@ import javax.swing.border.EmptyBorder;
 import kr.or.dgit.it_3st_3team.ui.admin.customer.AdminCustomerContent;
 import kr.or.dgit.it_3st_3team.ui.admin.management.AdminManagementContent;
 import kr.or.dgit.it_3st_3team.ui.admin.order.AdminOrder;
-import kr.or.dgit.it_3st_3team.ui.admin.report.AdminStatusSearchContent;
+import kr.or.dgit.it_3st_3team.ui.admin.report.AdminStatusContent;
 import kr.or.dgit.it_3st_3team.ui.admin.software.AdminSoftwareContent;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class AdminUI extends JFrame implements ActionListener {
@@ -156,7 +156,7 @@ public class AdminUI extends JFrame implements ActionListener {
 	}
 
 	protected void actionPerformedBtnSupplySaleStatus(ActionEvent e) {
-		AdminStatusSearchContent pMain = new AdminStatusSearchContent();
+		AdminStatusContent pMain = new AdminStatusContent();
 		pMain.setBounds(0, 0, 1186, 861);
 		changeMainPanel(pMain);
 	}

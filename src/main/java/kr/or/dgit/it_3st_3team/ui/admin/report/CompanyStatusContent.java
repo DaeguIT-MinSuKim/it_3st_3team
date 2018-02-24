@@ -17,19 +17,19 @@ public class CompanyStatusContent extends JPanel {
 		setBackground(new Color(255, 255, 255));
 		setLayout(null);
 
-		CompanyStatusSearch panel = new CompanyStatusSearch();
-		panel.setBackground(new Color(255, 255, 255));
-		panel.setBounds(0, 0, 1188, 107);
-		add(panel);
+		CompanyStatusSearch pSearch = new CompanyStatusSearch();
+		pSearch.setBackground(new Color(255, 255, 255));
+		pSearch.setBounds(0, 0, 1188, 107);
+		add(pSearch);
 
-		CompanyStatusLists panel_1 = new CompanyStatusLists();
-		panel_1.setBackground(new Color(255, 255, 255));
-		panel_1.setBounds(10, 118, 1165, 428);
-		add(panel_1);
+		CompanyStatusLists pListTable = new CompanyStatusLists();
+		pListTable.setBackground(new Color(255, 255, 255));
+		pListTable.setBounds(10, 118, 1165, 428);
+		add(pListTable);
 
-		PagingComp panel_2 = new PagingComp();
-		panel_2.setBounds(0, 559, 1188, 40);
-		add(panel_2);
+		PagingComp pPaging = new PagingComp();
+		pPaging.setBounds(0, 559, 1188, 40);
+		add(pPaging);
 	}
 
 }

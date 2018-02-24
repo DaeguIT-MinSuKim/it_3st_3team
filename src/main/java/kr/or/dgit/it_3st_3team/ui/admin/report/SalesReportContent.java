@@ -15,14 +15,14 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import kr.or.dgit.it_3st_3team.ui.component.CmbStringComp;
 
-public class ReportContent extends JPanel {
+public class SalesReportContent extends JPanel {
 	private JTextField tfSearch;
 	private CmbStringComp pCmb;
 
 	/**
 	 * Create the panel.
 	 */
-	public ReportContent() {
+	public SalesReportContent() {
 
 		initComponents();
 	}
