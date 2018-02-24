@@ -1,24 +1,17 @@
 package kr.or.dgit.it_3st_3team.ui.component;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import kr.or.dgit.it_3st_3team.ui.admin.report.SalesReportContent;
-
-
-public class TfBtnComboSearchComp extends JPanel implements ActionListener {
+public class TfBtnComboReportSearchComp extends JPanel {
 	private JTextField tfSearchItem;
 	private CmbStringComp pUserSwNameCombo;
 	private CmbStringComp p1;
-	private JButton btnStatusReport;
 
 	
-	public TfBtnComboSearchComp() {
+	public TfBtnComboReportSearchComp() {
 
 		initComponents();
 	}
@@ -36,32 +29,19 @@ public class TfBtnComboSearchComp extends JPanel implements ActionListener {
 		
 		
 		tfSearchItem = new JTextField();
-		tfSearchItem.setBounds(137, 0, 593, 30);
+		tfSearchItem.setBounds(137, 0, 540, 30);
 		add(tfSearchItem);
 		tfSearchItem.setColumns(10);
 		
 		JButton btnStatusSearch = new JButton("검색");
-		btnStatusSearch.setBounds(746, 0, 70, 30);
+		btnStatusSearch.setBounds(689, 0, 70, 30);
 		add(btnStatusSearch);
-		
-		btnStatusReport = new JButton("판매보고서");
-		btnStatusReport.addActionListener(this);
-		btnStatusReport.setBounds(1026, 0, 110, 30);
-		add(btnStatusReport);
 	}
 
 	public void setStringData() {
 		String[] strings = {"상품명", "상호명"};
 		p1.loadData(strings);
 	}
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == btnStatusReport) {
-			actionPerformedBtnStatusReport(e);
-		}
-	}
-	protected void actionPerformedBtnStatusReport(ActionEvent e) {
-		SalesReportContent js = new SalesReportContent();
-		js.setVisible(true);
-	}
+	
 }
 

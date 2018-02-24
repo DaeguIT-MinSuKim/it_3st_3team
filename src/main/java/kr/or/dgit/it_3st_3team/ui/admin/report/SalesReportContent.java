@@ -11,7 +11,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import kr.or.dgit.it_3st_3team.ui.component.StartAndEndDate;
-import kr.or.dgit.it_3st_3team.ui.component.TfBtnComboSearchComp2;
+import kr.or.dgit.it_3st_3team.ui.component.TfBtnComboReportSearchComp;
 
 public class SalesReportContent extends JFrame {
 
@@ -68,7 +68,7 @@ public class SalesReportContent extends JFrame {
 		panel_1.setBounds(321, 46, 458, 43);
 		contentPane.add(panel_1);
 		
-		TfBtnComboSearchComp2 panel_2 = new TfBtnComboSearchComp2();
+		TfBtnComboReportSearchComp panel_2 = new TfBtnComboReportSearchComp();
 		panel_2.setBounds(5, 91, 774, 30);
 		contentPane.add(panel_2);
 	}
