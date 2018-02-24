@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.GridLayout;
 import java.awt.Font;
+import kr.or.dgit.it_3st_3team.ui.table.SalesReportDetailsLists;
 
 public class SalesReportDetailsUI extends JFrame {
 
@@ -74,7 +75,7 @@ public class SalesReportDetailsUI extends JFrame {
 		JLabel lblNewLabel_5 = new JLabel("오버워치");
 		pSearchedLists.add(lblNewLabel_5);
 		
-		JPanel pLists = new JPanel();
+		SalesReportDetailsLists pLists = new SalesReportDetailsLists();
 		contentPane.add(pLists, BorderLayout.CENTER);
 	}
 
