@@ -1,4 +1,4 @@
-package kr.or.dgit.it_3st_3team.ui.admin.report;
+package kr.or.dgit.it_3st_3team.ui.admin.chart;
 
 import javax.swing.JPanel;
 import kr.or.dgit.it_3st_3team.ui.table.CompanyStatusLists;
