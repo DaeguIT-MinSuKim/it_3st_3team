@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import kr.or.dgit.it_3st_3team.ui.admin.report.SalesReportContent;
+import kr.or.dgit.it_3st_3team.ui.SalesReportUI;
 
 
 public class TfBtnComboSearchComp extends JPanel implements ActionListener {
@@ -60,7 +60,7 @@ public class TfBtnComboSearchComp extends JPanel implements ActionListener {
 		}
 	}
 	protected void actionPerformedBtnStatusReport(ActionEvent e) {
-		SalesReportContent js = new SalesReportContent();
+		SalesReportUI js = new SalesReportUI();
 		js.setVisible(true);
 	}
 }

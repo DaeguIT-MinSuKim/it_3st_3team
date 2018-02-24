@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import kr.or.dgit.it_3st_3team.ui.admin.report.UserStatusContent;
+import kr.or.dgit.it_3st_3team.ui.admin.report.AdminStatusContent;
 
 public class SoftwareFrameUi extends JFrame {
 
@@ -54,9 +54,9 @@ public class SoftwareFrameUi extends JFrame {
 
 	//	StatusSalesTeam panel = new StatusSalesTeam();
 	//	AdminSalesStatusContent panel = new AdminSalesStatusContent();
-	//	AdminStatusContent panel = new AdminStatusContent();
+		AdminStatusContent panel = new AdminStatusContent();
 	//	SalesReportContent frame = new SalesReportContent();
-		UserStatusContent panel = new UserStatusContent();
+	//	UserStatusContent panel = new UserStatusContent();
 	//	CompanyStatusContent panel = new CompanyStatusContent();
 		contentPane.add(panel);
 	}
