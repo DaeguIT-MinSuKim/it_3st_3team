@@ -4,21 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import kr.or.dgit.it_3st_3team.ui.admin.report.AdminSalesStatusContent;
-import kr.or.dgit.it_3st_3team.ui.admin.report.AdminSalesStatusSearch;
-import kr.or.dgit.it_3st_3team.ui.admin.report.AdminStatusContent;
-import kr.or.dgit.it_3st_3team.ui.admin.report.AdminStatusSearch;
-import kr.or.dgit.it_3st_3team.ui.admin.report.CompanyStatusContent;
-import kr.or.dgit.it_3st_3team.ui.admin.report.SalesReportContent;
 import kr.or.dgit.it_3st_3team.ui.admin.report.UserStatusContent;
-
-
-
-
 
 public class SoftwareFrameUi extends JFrame {
 
@@ -59,15 +48,15 @@ public class SoftwareFrameUi extends JFrame {
 		
 	
 	//	SupplyingCompany panel = new SupplyingCompany();
-		AdminStatusSearch panel = new AdminStatusSearch();
+	//	AdminStatusSearch panel = new AdminStatusSearch();
 	//	AdminSalesStatusSearch panel = new AdminSalesStatusSearch();
 	//	UserStatusSearch panel = new UserStatusSearch();
 
 	//	StatusSalesTeam panel = new StatusSalesTeam();
 	//	AdminSalesStatusContent panel = new AdminSalesStatusContent();
 	//	AdminStatusContent panel = new AdminStatusContent();
-	//	SalesReportContent panel = new SalesReportContent();
-	//	UserStatusContent panel = new UserStatusContent();
+	//	SalesReportContent frame = new SalesReportContent();
+		UserStatusContent panel = new UserStatusContent();
 	//	CompanyStatusContent panel = new CompanyStatusContent();
 		contentPane.add(panel);
 	}
