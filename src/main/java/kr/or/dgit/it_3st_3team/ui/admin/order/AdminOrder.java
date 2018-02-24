@@ -1,6 +1,9 @@
 package kr.or.dgit.it_3st_3team.ui.admin.order;
 
 import javax.swing.JPanel;
+
+import kr.or.dgit.it_3st_3team.ui.table.AdminOrderTable;
+
 import java.awt.Color;
 
 @SuppressWarnings("serial")
