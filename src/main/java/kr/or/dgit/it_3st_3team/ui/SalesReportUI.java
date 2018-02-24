@@ -1,4 +1,4 @@
-package kr.or.dgit.it_3st_3team.ui.admin.report;
+package kr.or.dgit.it_3st_3team.ui;
 
 import java.awt.EventQueue;
 import java.awt.GridLayout;
@@ -13,7 +13,7 @@ import javax.swing.border.EmptyBorder;
 import kr.or.dgit.it_3st_3team.ui.component.StartAndEndDate;
 import kr.or.dgit.it_3st_3team.ui.component.TfBtnComboReportSearchComp;
 
-public class SalesReportContent extends JFrame {
+public class SalesReportUI extends JFrame {
 
 	private JPanel contentPane;
 
@@ -21,7 +21,7 @@ public class SalesReportContent extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					SalesReportContent frame = new SalesReportContent();
+					SalesReportUI frame = new SalesReportUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -31,7 +31,7 @@ public class SalesReportContent extends JFrame {
 	}
 
 	
-	public SalesReportContent() {
+	public SalesReportUI() {
 		initComponents();
 	}
 	private void initComponents() {
