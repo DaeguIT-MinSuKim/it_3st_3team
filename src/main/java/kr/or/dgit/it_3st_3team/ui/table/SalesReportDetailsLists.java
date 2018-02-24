@@ -40,9 +40,9 @@ public class SalesReportDetailsLists extends JPanel {
 	}
 
 	private Object[][] getRows() {
-		return new Object[][] { { "2018-02-23", "재밌는피시방", "한컴오피스", "3", "120,000원", "150,000원", "12,000원", "100,000원" },
-				{ "2018-02-23", "아산시스템", "인디자인", "2", "120,000원", "150,000원", "12,000원", "100,000원" },
-				{ "2018-02-23", "충청남도교육청", "바람의제국", "5", "120,000원", "150,000원", "12,000원", "100,000원" } };
+		return new Object[][] { { "2018-02-23", "재밌는피시방", "한컴오피스", "3", "120,000원", "150,000원", "12,000원"},
+				{ "2018-02-23", "아산시스템", "인디자인", "2", "120,000원", "150,000원", "12,000원"},
+				{ "2018-02-23", "충청남도교육청", "바람의제국", "5", "120,000원", "150,000원", "12,000원" } };
 	}
 
 	public String[] getColumNames() {
@@ -51,8 +51,8 @@ public class SalesReportDetailsLists extends JPanel {
 	}
 
 	private void setAlignWidth() {
-		tableCellAlign(SwingConstants.CENTER, 0, 1, 2, 3, 4, 5, 6, 7);
-		tableCellWidth(500, 500, 400, 500, 200, 500, 500, 500);
+		tableCellAlign(SwingConstants.CENTER, 0, 1, 2, 3, 4, 5, 6);
+		tableCellWidth(500, 500, 400, 500, 200, 500, 500);
 
 	}
 
