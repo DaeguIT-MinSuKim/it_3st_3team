@@ -1,83 +1,75 @@
 package kr.or.dgit.it_3st_3team.ui.admin.report;
 
-import javax.swing.JPanel;
+import java.awt.EventQueue;
 import java.awt.GridLayout;
+
+import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import java.awt.Font;
-import kr.or.dgit.it_3st_3team.ui.table.ReceiptLists;
-import javax.swing.border.EmptyBorder;
-import kr.or.dgit.it_3st_3team.ui.component.StartAndEndDate;
+import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import java.awt.BorderLayout;
-import javax.swing.BoxLayout;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import kr.or.dgit.it_3st_3team.ui.component.CmbStringComp;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
-public class SalesReportContent extends JPanel {
-	private JTextField tfSearch;
-	private CmbStringComp pCmb;
+import kr.or.dgit.it_3st_3team.ui.component.StartAndEndDate;
+import kr.or.dgit.it_3st_3team.ui.component.TfBtnComboSearchComp2;
 
-	/**
-	 * Create the panel.
-	 */
+public class SalesReportContent extends JFrame {
+
+	private JPanel contentPane;
+
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					SalesReportContent frame = new SalesReportContent();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	
 	public SalesReportContent() {
-
 		initComponents();
 	}
 	private void initComponents() {
-		setLayout(null);
+		setTitle("판매보고서");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 800, 200);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
-		JPanel pTitle = new JPanel();
-		pTitle.setBounds(0, 0, 900, 42);
-		add(pTitle);
-		pTitle.setLayout(new GridLayout(0, 1, 0, 0));
+		JPanel panel = new JPanel();
+		panel.setBounds(5, 5, 774, 40);
+		contentPane.add(panel);
+		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("판매보고서");
-		lblNewLabel.setFont(new Font("굴림", Font.PLAIN, 20));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		pTitle.add(lblNewLabel);
+		lblNewLabel.setBounds(345, 10, 84, 15);
+		panel.add(lblNewLabel);
 		
-		JPanel pRadio = new JPanel();
-		pRadio.setBounds(0, 52, 248, 30);
-		add(pRadio);
-		pRadio.setLayout(null);
+		JPanel panel_3 = new JPanel();
+		panel_3.setBounds(5, 49, 281, 40);
+		contentPane.add(panel_3);
+		panel_3.setLayout(new GridLayout(0, 2, 0, 0));
 		
-		JRadioButton rdReport = new JRadioButton("보고서");
-		rdReport.setBounds(15, 3, 98, 23);
-		pRadio.add(rdReport);
+		JRadioButton rdbtnNewRadioButton = new JRadioButton("보고서");
+		panel_3.add(rdbtnNewRadioButton);
 		
-		JRadioButton rdReceipt = new JRadioButton("거래명세서");
-		rdReceipt.setBounds(131, 3, 119, 23);
-		pRadio.add(rdReceipt);
+		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("거래명세서");
+		panel_3.add(rdbtnNewRadioButton_1);
 		
-		StartAndEndDate pCalendar = new StartAndEndDate();
-		pCalendar.setBounds(435, 45, 469, 42);
-		add(pCalendar);
+		StartAndEndDate panel_1 = new StartAndEndDate();
+		panel_1.setBounds(321, 46, 458, 43);
+		contentPane.add(panel_1);
 		
-		JPanel pSearch = new JPanel();
-		pSearch.setBounds(0, 92, 888, 30);
-		add(pSearch);
-		pSearch.setLayout(null);
-		
-		pCmb = new CmbStringComp();
-		pCmb.setBounds(17, 0, 125, 30);
-		pSearch.add(pCmb);
-		setStringData();
-		
-		
-		tfSearch = new JTextField();
-		tfSearch.setBounds(154, 0, 592, 30);
-		pSearch.add(tfSearch);
-		tfSearch.setColumns(10);
-		
-		JButton btnSearch = new JButton("검색");
-		btnSearch.setBounds(815, 0, 70, 30);
-		pSearch.add(btnSearch);
-	}
-	public void setStringData() {
-		String[] strings = {"상품명", "상호명"};
-		pCmb.loadData(strings);
+		TfBtnComboSearchComp2 panel_2 = new TfBtnComboSearchComp2();
+		panel_2.setBounds(5, 91, 774, 30);
+		contentPane.add(panel_2);
 	}
 }
