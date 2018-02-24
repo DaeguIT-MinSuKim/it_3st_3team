@@ -43,7 +43,7 @@ public class AdminSalesStatusSearch extends JPanel {
 		setUserData();
 		setSoftwareGroupData();
 		
-		StatusSearchComboboxBottom pStatusSearch = new StatusSearchComboboxBottom();
+		StatusSearchComboboxBottom2 pStatusSearch = new StatusSearchComboboxBottom2();
 		pStatusSearch.setBounds(0, 56, 1178, 44);
 		add(pStatusSearch);
 	}

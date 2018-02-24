@@ -19,7 +19,7 @@ import java.awt.Color;
 public class AdminStatusSearch extends JPanel {
 	private CmbSoftwareGroupComp pSoftwareGroup;
 	private CmbAdminGroupComp pAdminGroup;
-	private StatusSearchComboboxBottom pStatusSearch;
+	private StatusSearchComboboxBottom2 pStatusSearch;
 
 	public AdminStatusSearch() {
 
@@ -43,7 +43,7 @@ public class AdminStatusSearch extends JPanel {
 
 		StartAndEndDate pCalendar = new StartAndEndDate();
 
-		pCalendar.setBounds(712, -3, 441, 43);
+		pCalendar.setBounds(712, -3, 450, 43);
 
 		add(pCalendar);
 
@@ -52,7 +52,7 @@ public class AdminStatusSearch extends JPanel {
 		setAdminGroupData();
 
 		
-		pStatusSearch = new StatusSearchComboboxBottom();
+		pStatusSearch = new StatusSearchComboboxBottom2();
 		pStatusSearch.setBackground(new Color(255, 255, 255));
 		pStatusSearch.setBounds(12, 56, 1141, 44);
 		add(pStatusSearch);
