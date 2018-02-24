@@ -29,9 +29,10 @@ public class TfBtnSearchComp extends JPanel {
 		add(tfSearchItem);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 255, 255));
 		panel.setBorder(new EmptyBorder(0, 20, 0, 0));
-		add(panel);
 		panel.setLayout(new GridLayout(1, 0, 0, 0));
+		add(panel);
 		
 		panel.add(btnSearch);
 	}
