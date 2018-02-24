@@ -5,9 +5,9 @@ import java.awt.Color;
 import kr.or.dgit.it_3st_3team.ui.component.PagingComp;
 
 @SuppressWarnings("serial")
-public class AdminSoftware extends JPanel {
+public class AdminSoftwareContent extends JPanel {
 
-	public AdminSoftware() {
+	public AdminSoftwareContent() {
 
 		initComponents();
 	}
