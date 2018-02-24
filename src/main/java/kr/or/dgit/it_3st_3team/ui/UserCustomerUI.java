@@ -15,7 +15,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import kr.or.dgit.it_3st_3team.ui.admin.customer.AdminCustomerContent;
-import kr.or.dgit.it_3st_3team.ui.admin.software.AdminSoftware;
+import kr.or.dgit.it_3st_3team.ui.admin.software.AdminSoftwareContent;
 
 @SuppressWarnings("serial")
 public class UserCustomerUI extends JFrame implements ActionListener {

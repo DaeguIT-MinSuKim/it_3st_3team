@@ -14,7 +14,7 @@ import kr.or.dgit.it_3st_3team.ui.admin.customer.AdminCustomerContent;
 import kr.or.dgit.it_3st_3team.ui.admin.management.AdminManagementContent;
 import kr.or.dgit.it_3st_3team.ui.admin.order.AdminOrder;
 import kr.or.dgit.it_3st_3team.ui.admin.report.AdminStatusSearchContent;
-import kr.or.dgit.it_3st_3team.ui.admin.software.AdminSoftware;
+import kr.or.dgit.it_3st_3team.ui.admin.software.AdminSoftwareContent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -144,7 +144,7 @@ public class AdminUI extends JFrame implements ActionListener {
 	}
 
 	protected void actionPerformedBtnSWRegister(ActionEvent e) {
-		AdminSoftware pMain = new AdminSoftware();
+		AdminSoftwareContent pMain = new AdminSoftwareContent();
 		pMain.setBounds(0, 0, 1186, 861);
 		changeMainPanel(pMain);
 	}

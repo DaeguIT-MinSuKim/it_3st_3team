@@ -15,7 +15,7 @@ import javax.swing.border.EmptyBorder;
 
 import kr.or.dgit.it_3st_3team.ui.admin.customer.AdminCustomerContent;
 import kr.or.dgit.it_3st_3team.ui.admin.report.CompanyStatusContent;
-import kr.or.dgit.it_3st_3team.ui.admin.software.AdminSoftware;
+import kr.or.dgit.it_3st_3team.ui.admin.software.AdminSoftwareContent;
 import kr.or.dgit.it_3st_3team.ui.user.UserModifyContent;
 
 import java.awt.event.ActionListener;
@@ -155,7 +155,7 @@ public class UserCompanyUI extends JFrame implements ActionListener {
 	} 
 	protected void actionPerformedBtnRegister(ActionEvent e) {
 		pContent.removeAll();
-		AdminSoftware panel = new AdminSoftware();
+		AdminSoftwareContent panel = new AdminSoftwareContent();
 		panel.setBounds(0, 0, 1186, 861);
 		pContent.add(panel);
 		pContent.revalidate();
