@@ -15,16 +15,16 @@ public class AdminStatusContent extends JPanel {
 	private void initComponents() {
 		setLayout(null);
 		
-		AdminStatusSearch p1 = new AdminStatusSearch();
-		p1.setBounds(12, 10, 1178, 96);
-		add(p1);
+		AdminStatusSearch pSearch = new AdminStatusSearch();
+		pSearch.setBounds(12, 10, 1178, 96);
+		add(pSearch);
 		
-		AdminStatusLists p2 = new AdminStatusLists();
-		p2.setBounds(12, 116, 1176, 418);
-		add(p2);
+		AdminStatusLists pListTable = new AdminStatusLists();
+		pListTable.setBounds(12, 116, 1176, 418);
+		add(pListTable);
 		
-		PagingComp p3 = new PagingComp();
-		p3.setBounds(12, 544, 1176, 40);
-		add(p3);
+		PagingComp pPaging = new PagingComp();
+		pPaging.setBounds(12, 544, 1176, 40);
+		add(pPaging);
 	}
 }
