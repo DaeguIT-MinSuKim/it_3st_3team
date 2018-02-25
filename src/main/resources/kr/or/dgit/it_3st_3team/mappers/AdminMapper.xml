@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.dgit.it_3st_3team.dao.AdminDao">
+	<resultMap type="Admin" id="AdminBasedResult">
+		<id property="adminNo" column="adm_no" />
+		<result property="adminId" column="adm_id" />
+		<result property="adminName" column="adm_id" />
+		<result property="adminPwd" column="adm_id" />
+		<result property="phone" column="adm_phone" />
+	</resultMap>
+	
+	<sql id="selectSql">
+		select adm_no, adm_name, adm_id, adm_pwd, adm_phone, ag_no from admin
+	</sql>
+	
+	<sql id="whereSql">
+		<where>
+			<if test="adminNo != null">
+				adm_no = #{adminNo}
+			</if>
+		</where>
+	</sql>
+	
+	<select id="selectAdminByNo" parameterType="Admin" resultMap="AdminBasedResult">
+		<include refid="selectSql" />
+		<include refid="whereSql" />
+	</select>
+</mapper>
