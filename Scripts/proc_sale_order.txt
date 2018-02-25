@@ -1,3 +1,4 @@
+
 DROP PROCEDURE IF EXISTS software_project.proc_insert_sale_order ;
 
 DELIMITER $$
@@ -5,29 +6,30 @@ $$
 CREATE PROCEDURE software_project.proc_insert_sale_order(
 	in ORD_NO int,
 	in ORD_QUANTITY int,
-	in ORD_DSPOSIT char,
+	in ORD_PAYMENT char,
 	in SW_NO int,
-	in C_NO int
+	in U_NO int
 )
 BEGIN
 	DECLARE sw_supply_price int;
 	DECLARE sw_sell_price int;
+	DECLARE admin_no int;
 	
-	select sw_supply_price, sw_sell_price into sw_supply_price, sw_sell_price
-	from software s where s.sw_no = SW_NO;
+	select s.sw_supply_price, s.sw_sell_price, u.adm_no into sw_supply_price, sw_sell_price, admin_no 
+	from software s join user u on s.pc_no = u.u_no 
+	where s.sw_no = SW_NO;
 
 	set @ord_supply_price = sw_supply_price * ORD_QUANTITY;
 	set @ord_sell_price = sw_sell_price * ORD_QUANTITY;
 	set @ord_sell_profit = @ord_sell_price - @ord_supply_price;
 	set @ord_tax = (@ord_sell_price * 10) / 100;
 	
-	insert into sale_order(ord_no, ord_quantity, ord_supply_price, ord_sell_price,
-						ord_tax, ord_sell_profit, ord_diposit, ord_datetime, sw_no, c_no)
-	values (ORD_NO, ORD_QUANTITY, @ord_supply_price, @ord_sell_price, @ord_tax, @ord_sell_profit,
-			ORD_DSPOSIT, now(), SW_NO, C_NO);
+	insert into sale_order(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price,
+						ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+	values (ORD_NO, U_NO, SW_NO, ORD_QUANTITY, @ord_supply_price, @ord_sell_price, @ord_tax, @ord_sell_profit,
+			ORD_PAYMENT, now(), admin_no);
 END $$
 DELIMITER ;
-
 
 
 
@@ -38,32 +40,29 @@ $$
 CREATE PROCEDURE software_project.proc_update_sale_order(
 	in ORD_NO int,
 	in ORD_QUANTITY int,
-	in ORD_DSPOSIT char,
-	in SW_NO int,
-	in C_NO int
+	in ORD_PAYMENT char
 )
 BEGIN
 	DECLARE sw_supply_price int;
-	DECLARE sw_sell_price int; 
-	
-	select sw_supply_price, sw_sell_price into sw_supply_price, sw_sell_price
-	from software s where s.sw_no = SW_NO;
+	DECLARE sw_sell_price int;
+
+	select s.sw_supply_price, s.sw_sell_price  into sw_supply_price, sw_sell_price
+	from software s join sale_order so on s.sw_no = so.sw_no 
+	where so.ord_no = ORD_NO;
 
 	set @ord_supply_price = sw_supply_price * ORD_QUANTITY;
 	set @ord_sell_price = sw_sell_price * ORD_QUANTITY;
 	set @ord_sell_profit = @ord_sell_price - @ord_supply_price;
 	set @ord_tax = (@ord_sell_price * 10) / 100;
-	
-	update sale_order set 
+
+	update sale_order set
 	ord_quantity = ORD_QUANTITY,
 	ord_supply_price = @ord_supply_price,
 	ord_sell_price = @ord_sell_price,
 	ord_tax = @ord_tax,
-	ord_sell_profit = @ord_sell_profit,
-	ord_diposit = ORD_DSPOSIT, 
-	ord_datetime = now(), 
-	sw_no = SW_NO,
-	c_no = C_NO
+	ord_sell_profit= @ord_sell_profit,
+	ord_payment = ORD_PAYMENT,
+	ord_datetime = now()
 	where ord_no = ORD_NO;
 END $$
 DELIMITER ;
