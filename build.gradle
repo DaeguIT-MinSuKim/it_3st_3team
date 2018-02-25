@@ -34,8 +34,8 @@ jar {
     version = 1.0
 //  application으로 개발 할 경우(apply plugin: 'application') main()메서드가 있는 클래스를 반드시 지정
 
-    mainClassName= 'kr.or.dgit.it_3st_3team.TestMain'
-    baseName= 'TestMain'
+    mainClassName= 'kr.or.dgit.it_3st_3team.JoinUI'
+    baseName= 'JoinUI'
     appendix = 'bin'
     manifest{
         attributes 'Title': baseName, 'Version': version, 'Main-Class': mainClassName
