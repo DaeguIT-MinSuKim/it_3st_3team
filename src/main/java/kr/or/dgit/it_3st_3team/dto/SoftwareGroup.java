@@ -3,6 +3,17 @@ package kr.or.dgit.it_3st_3team.dto;
 public class SoftwareGroup {
 	private int sgNo;
 	private String sgName;
+	
+	
+	
+	public SoftwareGroup(int sgNo) {
+		super();
+		this.sgNo = sgNo;
+	}
+
+	public SoftwareGroup(String sgName) {
+		this.sgName = sgName;
+	}
 
 	public SoftwareGroup() {
 	}

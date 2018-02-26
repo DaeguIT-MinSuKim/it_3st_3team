@@ -9,15 +9,24 @@
 		<result property="phone" column="adm_phone" />
 	</resultMap>
 	
-	<resultMap type="Admin" id="AdminWithAdmin_groupResult" extends="AdminBasedResult">
-		<result property="admin_group.ag_no" column="ag_no"/>
-		<result property="admin_group.ag_name" column="ag_name"/>
-		<result property="admin_group.ag_auth" column="ag_auth"/>
+	<resultMap type="AdminGroup" id="AdminWithAdmin_groupResult" extends="AdminBasedResult">
+		<result property="adminGroup.agNo" column="ag_no"/>
+		<result property="adminGroup.agName" column="ag_name"/>
+		<result property="adminGroup.agAuth" column="ag_auth"/>
 	</resultMap>
 	
+	<!-- Admin 기본 정보 -->
 	<sql id="selectSql">
 		select adm_no, adm_name, adm_id, adm_pwd, adm_phone, ag_no from admin
 	</sql>
+	
+	<!-- Admin with Admin_group 정보 -->
+	<sql id="selectWtihAdminGroupSql">
+		select adm_no, adm_name, adm_id, adm_pwd, adm_phone, ag_no from admin ad join admin_group ag
+		on ag.ag_no=ad.adm_no;
+	</sql>
+	
+	
 	
 	<sql id="loginWhereSql">
 		<where>
@@ -25,7 +34,7 @@
 				adm_id = #{adminId}
 			</if>
 			<if test="adminPwd != null">
-				AND adm_pwd = #{adminPwd}
+				AND adm_pwd = password(#{adminPwd}) 
 			</if>
 		</where>
 	</sql>
@@ -38,7 +47,7 @@
 		</where>
 	</sql>
 	
-	<select id="selectLoginByNo" parameterType="Admin" resultMap="AdminBasedResult">
+	<select id="selectLogin" parameterType="Admin" resultMap="AdminBasedResult">
 		<include refid="selectSql"/>
 		<include refid="loginWhereSql"/>
 	</select>
