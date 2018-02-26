@@ -37,20 +37,11 @@ public class TfBtnSearchPrintComp extends JPanel {
 		JButton btnStatusSearch = new JButton("검색");
 		pStatusSearch.add(btnStatusSearch);
 		
-		JPanel pReceipt = new JPanel();
-		pReceipt.setBackground(new Color(255, 255, 255));
-		pReceipt.setBorder(new EmptyBorder(0, 0, 0, 20));
-		add(pReceipt);
-		pReceipt.setLayout(new GridLayout(0, 1, 0, 0));
-		
-		JButton btnReceipt = new JButton("거래명세서");
-		pReceipt.add(btnReceipt);
-		
 		JPanel pStatusReport = new JPanel();
 		add(pStatusReport);
 		pStatusReport.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		JButton btnStatusReport = new JButton("보고서");
+		JButton btnStatusReport = new JButton("판매보고서");
 		pStatusReport.add(btnStatusReport);
 	}
 

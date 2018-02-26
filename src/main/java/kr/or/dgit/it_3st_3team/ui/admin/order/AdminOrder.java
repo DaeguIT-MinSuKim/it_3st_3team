@@ -1,6 +1,9 @@
 package kr.or.dgit.it_3st_3team.ui.admin.order;
 
 import javax.swing.JPanel;
+
+import kr.or.dgit.it_3st_3team.ui.table.AdminOrderTable;
+
 import java.awt.Color;
 
 @SuppressWarnings("serial")
@@ -17,18 +20,18 @@ public class AdminOrder extends JPanel {
 		
 		AdminOrderRegister pCorrection = new AdminOrderRegister();
 		pCorrection.setBackground(new Color(255, 255, 255));
-		pCorrection.setBounds(0, 0, 1200, 200);
+		pCorrection.setBounds(0, 0, 1200, 176);
 		add(pCorrection);
 		pCorrection.setLayout(null);
 		
 		AdminOrderSearch pOrderSearch = new AdminOrderSearch();
 		pOrderSearch.setBackground(new Color(255, 255, 255));
-		pOrderSearch.setBounds(0, 200, 1200, 54);
+		pOrderSearch.setBounds(0, 176, 1200, 50);
 		add(pOrderSearch);
 		
 		AdminOrderTable pOrderTable = new AdminOrderTable();
 		pOrderTable.setBackground(new Color(255, 255, 255));
-		pOrderTable.setBounds(0, 250, 1200, 600);
+		pOrderTable.setBounds(0, 226, 1200, 600);
 		add(pOrderTable);
 	}
 

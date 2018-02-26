@@ -15,13 +15,19 @@ import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import kr.or.dgit.it_3st_3team.ui.admin.customer.AdminCustomerContent;
-import kr.or.dgit.it_3st_3team.ui.admin.software.AdminSoftware;
+import kr.or.dgit.it_3st_3team.ui.admin.software.AdminSoftwareContent;
+import kr.or.dgit.it_3st_3team.ui.user.CustomerOrderContent;
+import kr.or.dgit.it_3st_3team.ui.user.UserModifyContent;
 
 @SuppressWarnings("serial")
 public class UserCustomerUI extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private JButton btnSWRegister;
+	private JPanel pContent;
+	private JPanel pMain;
+	private JButton btnModify;
+	private JButton btnSupplyStatusGraph;
 
 	/**
 	 * Launch the application.
@@ -97,30 +103,57 @@ public class UserCustomerUI extends JFrame implements ActionListener {
 		btnSupplyStatus.setBackground(new Color(51, 153, 204));
 		pMenu.add(btnSupplyStatus);
 		
-		JButton btnSupplyStatusGraph = new JButton("소프트웨어 주문현황(그래프)");
+		btnSupplyStatusGraph = new JButton("소프트웨어 주문현황(그래프)");
 		btnSupplyStatusGraph.setBounds(0, 315, 298, 105);
 		btnSupplyStatusGraph.setForeground(Color.DARK_GRAY);
 		btnSupplyStatusGraph.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
 		btnSupplyStatusGraph.setBackground(new Color(51, 153, 204));
 		pMenu.add(btnSupplyStatusGraph);
 		
-		JButton btnModify = new JButton("회원정보 수정");
+		btnModify = new JButton("회원정보 수정");
 		btnModify.setBounds(0, 420, 298, 105);
+		btnModify.addActionListener(this);
 		btnModify.setForeground(Color.DARK_GRAY);
 		btnModify.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
 		btnModify.setBackground(new Color(51, 153, 204));
 		pMenu.add(btnModify);
 		
-		JPanel pContent = new JPanel();
+		pContent = new JPanel();
 		pContent.setBounds(298, 0, 1186, 861);
 		contentPane.add(pContent);
+		pContent.setLayout(null);
+		
+		pMain = new JPanel();
+		pMain.setBounds(0, 0, 1186, 861);
+		pContent.add(pMain);
 	}
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnSWRegister) {
-			actionPerformedButton(e);
+			actionPerformedbtnSWRegister(e);
+		}
+		if(e.getSource()== btnModify) {
+			actionPerformedbtnModify(e);
 		}
 	}
-	protected void actionPerformedButton(ActionEvent e) {
+	
+	protected void actionPerformedbtnSWRegister(ActionEvent e) {
+		CustomerOrderContent pMain = new CustomerOrderContent();
+		pMain.setBounds(0, 0, 1186, 861);
+		changeMainPanel(pMain);
+	}
+	
+	protected void actionPerformedbtnModify(ActionEvent e) {
+		UserModifyContent pMain = new UserModifyContent();
+		pMain.setBounds(0, 0, 1186, 861);
+		
+		changeMainPanel(pMain);
+	}
+	
+	private void changeMainPanel(JPanel pMain) {
+		pContent.removeAll();
+		pContent.add(pMain);
+		pContent.revalidate();
+		pContent.repaint();
 	}
 }

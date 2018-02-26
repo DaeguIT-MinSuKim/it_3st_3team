@@ -23,7 +23,7 @@ public class AdminOrderSearch extends JPanel {
 
 		JPanel pOrderSearch = new JPanel();
 		pOrderSearch.setBackground(Color.WHITE);
-		pOrderSearch.setBounds(0, 0, 1200, 50);
+		pOrderSearch.setBounds(0, 0, 1180, 50);
 		add(pOrderSearch);
 		pOrderSearch.setLayout(null);
 
@@ -37,7 +37,7 @@ public class AdminOrderSearch extends JPanel {
 
 		StartAndEndDate pDate = new StartAndEndDate();
 		pDate.setBackground(Color.WHITE);
-		pDate.setBounds(408, 0, 434, 43);
+		pDate.setBounds(402, 0, 434, 43);
 		pOrderSearch.add(pDate);
 
 		CmbStringComp pSortUserNameSWName = new CmbStringComp();
@@ -45,7 +45,8 @@ public class AdminOrderSearch extends JPanel {
 		pOrderSearch.add(pSortUserNameSWName);
 
 		TfBtnSearchComp pSearch = new TfBtnSearchComp("검색");
-		pSearch.setBounds(848, 10, 340, 30);
+		pSearch.setBackground(new Color(255, 255, 255));
+		pSearch.setBounds(836, 10, 332, 30);
 		pOrderSearch.add(pSearch);
 	}
 

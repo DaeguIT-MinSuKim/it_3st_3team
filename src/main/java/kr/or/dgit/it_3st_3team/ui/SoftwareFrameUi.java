@@ -4,20 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import kr.or.dgit.it_3st_3team.ui.admin.report.AdminSalesStatusContent;
-import kr.or.dgit.it_3st_3team.ui.admin.report.AdminSalesStatusSearch;
 import kr.or.dgit.it_3st_3team.ui.admin.report.AdminStatusContent;
-import kr.or.dgit.it_3st_3team.ui.admin.report.CompanyStatusContent;
-import kr.or.dgit.it_3st_3team.ui.admin.report.ReceiptContent;
-import kr.or.dgit.it_3st_3team.ui.admin.report.UserStatusContent;
-
-
-
-
 
 public class SoftwareFrameUi extends JFrame {
 
@@ -64,8 +54,8 @@ public class SoftwareFrameUi extends JFrame {
 
 	//	StatusSalesTeam panel = new StatusSalesTeam();
 	//	AdminSalesStatusContent panel = new AdminSalesStatusContent();
-	//	AdminStatusContent panel = new AdminStatusContent();
-		ReceiptContent panel = new ReceiptContent();
+		AdminStatusContent panel = new AdminStatusContent();
+	//	SalesReportContent frame = new SalesReportContent();
 	//	UserStatusContent panel = new UserStatusContent();
 	//	CompanyStatusContent panel = new CompanyStatusContent();
 		contentPane.add(panel);

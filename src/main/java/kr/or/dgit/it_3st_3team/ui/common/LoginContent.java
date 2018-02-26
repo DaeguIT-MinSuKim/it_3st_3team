@@ -9,6 +9,8 @@ import java.awt.Color;
 import kr.or.dgit.it_3st_3team.ui.AdminUI;
 import kr.or.dgit.it_3st_3team.ui.FindIdPwUI;
 import kr.or.dgit.it_3st_3team.ui.JoinUI;
+import kr.or.dgit.it_3st_3team.ui.UserCompanyUI;
+import kr.or.dgit.it_3st_3team.ui.UserCustomerUI;
 import kr.or.dgit.it_3st_3team.ui.component.LblPwdTfComp;
 import javax.swing.JButton;
 import java.awt.Font;
@@ -25,6 +27,8 @@ public class LoginContent extends JPanel implements ActionListener {
 	private LblPwdTfComp pPW;
 	private JButton btnJoinIn;
 	private JButton btnSearchIDPW;
+	private JButton btnCompany;
+	private JButton btnCustomer;
 
 	/**
 	 * Create the panel.
@@ -96,8 +100,30 @@ public class LoginContent extends JPanel implements ActionListener {
 		lblSubject.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSubject.setBounds(333, 131, 781, 121);
 		pLogin.add(lblSubject);
+		
+		btnCompany = new JButton("공급회사 로그인");
+		btnCompany.addActionListener(this);
+		btnCompany.setForeground(Color.BLACK);
+		btnCompany.setFont(new Font("나눔바른고딕", Font.PLAIN, 12));
+		btnCompany.setBackground(Color.WHITE);
+		btnCompany.setBounds(424, 557, 196, 23);
+		pLogin.add(btnCompany);
+		
+		btnCustomer = new JButton("고객 로그인");
+		btnCustomer.addActionListener(this);
+		btnCustomer.setForeground(Color.BLACK);
+		btnCustomer.setFont(new Font("나눔바른고딕", Font.PLAIN, 12));
+		btnCustomer.setBackground(Color.WHITE);
+		btnCustomer.setBounds(348, 514, 196, 23);
+		pLogin.add(btnCustomer);
 	}
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnCustomer) {
+			actionPerformedBtnCustomer(e);
+		}
+		if (e.getSource() == btnCompany) {
+			actionPerformedBtnCompany(e);
+		}
 		if (e.getSource() == btnSearchIDPW) {
 			actionPerformedBtnSearchIDPW(e);
 		}
@@ -128,5 +154,14 @@ public class LoginContent extends JPanel implements ActionListener {
 	protected void actionPerformedBtnSearchIDPW(ActionEvent e) {
 		FindIdPwUI findIdPwUI = new FindIdPwUI();
 		findIdPwUI.setVisible(true);
+	}
+	protected void actionPerformedBtnCompany(ActionEvent e) {
+		
+		UserCompanyUI userCompanyUI = new UserCompanyUI();
+		userCompanyUI.setVisible(true);
+	}
+	protected void actionPerformedBtnCustomer(ActionEvent e) {
+		UserCustomerUI userCustomerUI = new UserCustomerUI();
+				userCustomerUI.setVisible(true);
 	}
 }

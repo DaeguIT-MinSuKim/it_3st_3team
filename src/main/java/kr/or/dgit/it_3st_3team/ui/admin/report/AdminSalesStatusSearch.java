@@ -10,7 +10,7 @@ import kr.or.dgit.it_3st_3team.ui.component.CmbSoftwareGroupComp;
 import kr.or.dgit.it_3st_3team.ui.component.CmbUserComp;
 
 import kr.or.dgit.it_3st_3team.ui.component.StartAndEndDate;
-
+import kr.or.dgit.it_3st_3team.ui.component.TfBtnComboSearchComp;
 import kr.or.dgit.it_3st_3team.ui.component.TfBtnSearchPrintComp;
 import java.awt.Color;
 
@@ -43,7 +43,7 @@ public class AdminSalesStatusSearch extends JPanel {
 		setUserData();
 		setSoftwareGroupData();
 		
-		StatusSearchComboboxBottom pStatusSearch = new StatusSearchComboboxBottom();
+		TfBtnComboSearchComp pStatusSearch = new TfBtnComboSearchComp();
 		pStatusSearch.setBounds(0, 56, 1178, 44);
 		add(pStatusSearch);
 	}

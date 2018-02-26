@@ -11,14 +11,13 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
-public class ReceiptLists extends JPanel {
+public class SalesTransactionLists extends JPanel {
 	protected JTable table;
-	
-	
-	public ReceiptLists() {
+
+	public SalesTransactionLists() {
 
 		initComponents();
-		
+
 	}
 
 	private void initComponents() {
@@ -42,24 +41,19 @@ public class ReceiptLists extends JPanel {
 
 	private Object[][] getRows() {
 		return new Object[][] {
-			{"알럽소프트", "2018-02-23", "재밌는피시방", "오버워치", "3", "120,000원","150,000원","12,000원","100,000원"},
-			{"알럽소프트", "2018-02-23", "재밌는피시방", "오버워치", "3", "120,000원","150,000원","12,000원","100,000원"},
-			{"알럽소프트", "2018-02-23", "재밌는피시방", "오버워치", "3", "120,000원","150,000원","12,000원","100,000원"}
-		};
+				{"2018-02-23", "재밌는피시방", "한컴오피스", "3", "120,000원", "150,000원", "12,000원", "100,000원" },
+				{"2018-02-23", "아산시스템", "인디자인", "2", "120,000원", "150,000원", "12,000원", "100,000원" },
+				{"2018-02-23", "충청남도교육청", "바람의제국", "5", "120,000원", "150,000원", "12,000원", "100,000원" } };
 	}
 
 	public String[] getColumNames() {
+		return new String[] { "주문일자", "고객상호", "품명", "수량", "단가", "금액", "세금", "총납품금액" };
 
-		/*return new String[] { "공급회사명", "주문일자", "고객상호", "품목명", "수량", "공급가격","판매가격","세금","총납품금액"};*/
-		return new String[] {null, null, null, null, null,null,null,null,null};
-		
 	}
 
 	private void setAlignWidth() {
-		// 셀의 너비와 정렬
-		tableCellAlign(SwingConstants.CENTER, 0, 1, 2, 3, 4, 5, 6,7,8);
-
-		tableCellWidth(400, 500, 400, 500, 200, 500, 500, 500, 500);
+		tableCellAlign(SwingConstants.CENTER, 0, 1, 2, 3, 4, 5, 6, 7);
+		tableCellWidth(500, 500, 400, 500, 200, 500, 500, 500);
 
 	}
 
@@ -81,7 +75,7 @@ public class ReceiptLists extends JPanel {
 		}
 	}
 
-	// 테이블 내용을 수정하지 못하게 하는 클래스
+	
 	class NonEditableModel extends DefaultTableModel {
 		public NonEditableModel(Object[][] data, Object[] columnNames) {
 			super(data, columnNames);

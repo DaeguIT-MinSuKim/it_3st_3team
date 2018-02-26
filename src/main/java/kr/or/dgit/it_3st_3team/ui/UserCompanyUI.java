@@ -14,7 +14,9 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import kr.or.dgit.it_3st_3team.ui.admin.customer.AdminCustomerContent;
-import kr.or.dgit.it_3st_3team.ui.admin.software.AdminSoftware;
+import kr.or.dgit.it_3st_3team.ui.admin.report.CompanyStatusContent;
+import kr.or.dgit.it_3st_3team.ui.admin.software.AdminSoftwareContent;
+import kr.or.dgit.it_3st_3team.ui.user.UserModifyContent;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -33,6 +35,8 @@ public class UserCompanyUI extends JFrame implements ActionListener {
 	private JButton btnRegister;
 	private JPanel pContent;
 	private JButton btnSupplyStatus;
+	private JButton btnSupplyStatusGraph;
+	private JButton btnUserModify;
 
 	/**
 	 * Launch the application.
@@ -109,14 +113,16 @@ public class UserCompanyUI extends JFrame implements ActionListener {
 		btnSupplyStatus.setBackground(new Color(51, 153, 204));
 		pMenu.add(btnSupplyStatus);
 		
-		JButton btnSupplyStatusGraph = new JButton("소프트웨어 공급현황(그래프)");
+		btnSupplyStatusGraph = new JButton("소프트웨어 공급현황(그래프)");
+		btnSupplyStatusGraph.addActionListener(this);
 		btnSupplyStatusGraph.setBounds(0, 315, 298, 105);
 		btnSupplyStatusGraph.setForeground(Color.DARK_GRAY);
 		btnSupplyStatusGraph.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
 		btnSupplyStatusGraph.setBackground(new Color(51, 153, 204));
 		pMenu.add(btnSupplyStatusGraph);
 		
-		JButton btnUserModify = new JButton("회원정보 수정");
+		btnUserModify = new JButton("회원정보 수정");
+		btnUserModify.addActionListener(this);
 		btnUserModify.setBounds(0, 420, 298, 105);
 		btnUserModify.setForeground(Color.DARK_GRAY);
 		btnUserModify.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
@@ -134,6 +140,12 @@ public class UserCompanyUI extends JFrame implements ActionListener {
 		
 	}
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnUserModify) {
+			actionPerformedBtnUserModify(e);
+		}
+		if (e.getSource() == btnSupplyStatusGraph) {
+			actionPerformedBtnSupplyStatusGraph(e);
+		}
 		if (e.getSource() == btnSupplyStatus) {
 			actionPerformedBtnSupplyStatus(e);
 		}
@@ -143,7 +155,7 @@ public class UserCompanyUI extends JFrame implements ActionListener {
 	} 
 	protected void actionPerformedBtnRegister(ActionEvent e) {
 		pContent.removeAll();
-		AdminSoftware panel = new AdminSoftware();
+		AdminSoftwareContent panel = new AdminSoftwareContent();
 		panel.setBounds(0, 0, 1186, 861);
 		pContent.add(panel);
 		pContent.revalidate();
@@ -151,7 +163,19 @@ public class UserCompanyUI extends JFrame implements ActionListener {
 	}
 	protected void actionPerformedBtnSupplyStatus(ActionEvent e) {
 		pContent.removeAll();
-		AdminCustomerContent panel = new AdminCustomerContent();
+		CompanyStatusContent panel = new CompanyStatusContent();
+		panel.setBounds(0, 0, 1186, 861);
+		pContent.add(panel);
+		pContent.revalidate();
+		pContent.repaint();
+	}
+	protected void actionPerformedBtnSupplyStatusGraph(ActionEvent e) {
+	}
+	
+	
+	protected void actionPerformedBtnUserModify(ActionEvent e) {
+		pContent.removeAll();
+		UserModifyContent panel = new UserModifyContent();
 		panel.setBounds(0, 0, 1186, 861);
 		pContent.add(panel);
 		pContent.revalidate();

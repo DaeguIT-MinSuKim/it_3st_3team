@@ -6,30 +6,38 @@ public class User {
 	private int userNo;
 	private String userId;
 	private String userPwd;
-	private String userName;
-	private String zipCode;
-	private String address;
+	private String name;
+	private String email;
 	private PhoneNumber phone;
+	private String zipcode;
+	private String addr1;
+	private String addr2;
 	private UserGroup userGroup;
 	private Admin admin;
-	
-	public User() {}
-	
 
-	public User(String userName) {
-		this.userName = userName;
+	public User() {
 	}
 
+	public User(int userNo) {
+		super();
+		this.userNo = userNo;
+	}
 
-	public User(int userNo, String userId, String userPwd, String userName, String zipCode, String address,
-			PhoneNumber phone, UserGroup userGroup, Admin admin) {
+	public User(String userName) {
+		this.name = userName;
+	}
+
+	public User(int userNo, String userId, String userPwd, String name, String email, PhoneNumber phone, String zipcode,
+			String addr1, String addr2, UserGroup userGroup, Admin admin) {
 		this.userNo = userNo;
 		this.userId = userId;
 		this.userPwd = userPwd;
-		this.userName = userName;
-		this.zipCode = zipCode;
-		this.address = address;
+		this.name = name;
+		this.email = email;
 		this.phone = phone;
+		this.zipcode = zipcode;
+		this.addr1 = addr1;
+		this.addr2 = addr2;
 		this.userGroup = userGroup;
 		this.admin = admin;
 	}
@@ -58,28 +66,20 @@ public class User {
 		this.userPwd = userPwd;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getName() {
+		return name;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getZipCode() {
-		return zipCode;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setZipCode(String zipCode) {
-		this.zipCode = zipCode;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public PhoneNumber getPhone() {
@@ -88,6 +88,30 @@ public class User {
 
 	public void setPhone(PhoneNumber phone) {
 		this.phone = phone;
+	}
+
+	public String getZipcode() {
+		return zipcode;
+	}
+
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
+	}
+
+	public String getAddr1() {
+		return addr1;
+	}
+
+	public void setAddr1(String addr1) {
+		this.addr1 = addr1;
+	}
+
+	public String getAddr2() {
+		return addr2;
+	}
+
+	public void setAddr2(String addr2) {
+		this.addr2 = addr2;
 	}
 
 	public UserGroup getUserGroup() {
@@ -108,7 +132,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return String.format("%s", userName);
+		return String.format("%s", name);
 	}
 
 }

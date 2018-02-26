@@ -126,9 +126,4 @@ gradle-app.setting
 
 # log
 /logs
-<<<<<<< HEAD
 /zipcode_DB
-=======
-
-/zipcode_DB
->>>>>>> refs/remotes/origin/sj

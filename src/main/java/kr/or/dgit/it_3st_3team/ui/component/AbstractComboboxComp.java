@@ -26,7 +26,6 @@ public abstract class AbstractComboboxComp<T> extends JPanel {
 	}
 
 	public void loadData(T[] data) {
-		System.out.println(data);
 		DefaultComboBoxModel<T> dcbm = new DefaultComboBoxModel<>(data);
 		comboBox.setModel(dcbm);	
 

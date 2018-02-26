@@ -10,28 +10,23 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
-import java.awt.Rectangle;
-import java.awt.Color;
 
-public class SupplyingCompanyLists extends JPanel {
+public class SalesReportDetailsLists extends JPanel {
 	protected JTable table;
-	
-	public SupplyingCompanyLists() {
+
+	public SalesReportDetailsLists() {
 
 		initComponents();
+
 	}
 
 	private void initComponents() {
-		setBackground(new Color(255, 255, 255));
-		setBounds(new Rectangle(0, 0, 1200, 535));
 		setLayout(new BorderLayout(0, 0));
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(new Rectangle(0, 0, 1165, 515));
 		add(scrollPane, BorderLayout.CENTER);
 
 		table = new JTable();
-		table.setBackground(new Color(255, 255, 255));
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		loadDatas();
 		scrollPane.setViewportView(table);
@@ -45,23 +40,19 @@ public class SupplyingCompanyLists extends JPanel {
 	}
 
 	private Object[][] getRows() {
-		return new Object[][] {
-			{"번호", "상호명", "분류", "관리자", "품목명", "주문수량", "공급가격","판매가격","결제수단","매출금","날짜","공급회사명","판매이윤","수정/삭제" },
-			{"번호", "상호명", "분류", "관리자", "품목명", "주문수량", "공급가격","판매가격","결제수단","매출금","날짜","공급회사명","판매이윤","수정/삭제" },
-			{"번호", "상호명", "분류", "관리자", "품목명", "주문수량", "공급가격","판매가격","결제수단","매출금","날짜","공급회사명","판매이윤","수정/삭제" }
-		};
+		return new Object[][] { { "2018-02-23", "재밌는피시방", "한컴오피스", "3", "120,000원", "150,000원", "12,000원"},
+				{ "2018-02-23", "아산시스템", "인디자인", "2", "120,000원", "150,000원", "12,000원"},
+				{ "2018-02-23", "충청남도교육청", "바람의제국", "5", "120,000원", "150,000원", "12,000원" } };
 	}
 
 	public String[] getColumNames() {
+		return new String[] { "기간", "분류", "품목명", "수량", "판매금액", "판매이윤", "매출금" };
 
-		return new String[] { "번호", "상호명", "분류", "관리자", "품목명", "주문수량", "공급가격","판매가격","결제수단","매출금","날짜","공급회사명","판매이윤","수정/삭제" };
 	}
 
 	private void setAlignWidth() {
-		// 셀의 너비와 정렬
-		tableCellAlign(SwingConstants.CENTER, 0, 1, 2, 3, 4, 5, 6,7,8,9,10,11,12,13);
-
-		tableCellWidth(200, 300, 500, 400, 300, 300, 300, 300, 300, 300, 300, 300, 300,300);
+		tableCellAlign(SwingConstants.CENTER, 0, 1, 2, 3, 4, 5, 6);
+		tableCellWidth(500, 500, 400, 500, 200, 500, 500);
 
 	}
 
@@ -83,7 +74,6 @@ public class SupplyingCompanyLists extends JPanel {
 		}
 	}
 
-	// 테이블 내용을 수정하지 못하게 하는 클래스
 	class NonEditableModel extends DefaultTableModel {
 		public NonEditableModel(Object[][] data, Object[] columnNames) {
 			super(data, columnNames);
@@ -94,5 +84,4 @@ public class SupplyingCompanyLists extends JPanel {
 			return false;
 		}
 	}
-
 }
