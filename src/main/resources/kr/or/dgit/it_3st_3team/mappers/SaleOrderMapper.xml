@@ -14,9 +14,21 @@
 	
 	<resultMap type="SaleOrder" id="SaleOrderWithAllResult" extends="SaleOrderResult">
 		<result property="user.userNo" column="u_no" />
+		<result property="user.userId" column="u_id" />
+		<result property="user.name" column="u_name" />
+		<result property="software.swNo" column="sw_no" />
+		<result property="software.swName" column="sw_name" />
+		<result property="admin.adminNo" column="adm_no" />
+		<result property="admin.adminId" column="adm_id" />
+		<result property="admin.adminName" column="adm_name" />
+	</resultMap>
+	
+	
+	<!-- resultMap type="SaleOrder" id="SaleOrderWithAllResult" extends="SaleOrderResult">
+		<result property="user.userNo" column="u_no" />
 		<result property="software.swNo" column="sw_no" />
 		<result property="admin.adminNo" column="adm_no" />
-	</resultMap>
+	</resultMap -->
 	
 	<sql id="saleOrderSql">
 	select ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no
@@ -35,13 +47,12 @@
 	<sql id="whereSql">
 		<where>
 			<if test="ordNo != null">
-			ord_no = #{ordNo}
-				
+				ord_no = #{ordNo}
 			</if>
 		</where>
 	</sql>
-	<select id="selectSaleOrderByNo" parameterType="SaleOrder" resultMap="SaleOrderResult">
-		<include refid="saleOrderSql"/>
+	<select id="selectSaleOrderByNo" parameterType="SaleOrder" resultMap="SaleOrderWithAllResult">
+		<include refid="saleOrderAllSql"/>
 		<include refid="whereSql"/>
 	</select>
 	

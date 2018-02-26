@@ -33,11 +33,11 @@ public class SaleOrderServiceTest {
 
 	@Test
 	public void test2FindSaleOrderWithAllByNo() {
-		SaleOrder saleorder = new SaleOrder();
+		/*SaleOrder saleorder = new SaleOrder();
 		saleorder.setOrdNo(1);
 		SaleOrder findSaleOrder = service.findSaleOrderWithAllByNo(saleorder);
 		assertNotNull(findSaleOrder);
-		System.out.println(findSaleOrder);
+		System.out.println(findSaleOrder);*/
 	}
 
 }
