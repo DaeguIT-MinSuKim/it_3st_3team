@@ -42,7 +42,7 @@ public abstract class AbtractTableComp<T> extends JPanel {
 		table.getTableHeader().setPreferredSize(new Dimension(scrollPane.getWidth(), height));
 		table.setRowHeight(height);
 	}
-
+	
 	protected void setTableCellWidth(int... width) {
 		TableColumnModel tcModel = table.getColumnModel();
 		for (int i = 0; i < width.length; i++) {

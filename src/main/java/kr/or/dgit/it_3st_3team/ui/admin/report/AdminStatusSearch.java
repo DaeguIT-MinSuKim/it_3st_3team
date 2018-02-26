@@ -1,41 +1,53 @@
 package kr.or.dgit.it_3st_3team.ui.admin.report;
 
+import java.awt.Color;
+
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import kr.or.dgit.it_3st_3team.dto.Admin;
 import kr.or.dgit.it_3st_3team.dto.AdminGroup;
 import kr.or.dgit.it_3st_3team.dto.SoftwareGroup;
-
+import kr.or.dgit.it_3st_3team.dto.User;
 import kr.or.dgit.it_3st_3team.type.AdminGroupAuth;
 import kr.or.dgit.it_3st_3team.ui.component.CmbAdminGroupComp;
 import kr.or.dgit.it_3st_3team.ui.component.CmbSoftwareGroupComp;
-
 import kr.or.dgit.it_3st_3team.ui.component.StartAndEndDate;
 import kr.or.dgit.it_3st_3team.ui.component.TfBtnComboSearchComp;
-
-import java.awt.Color;
 
 @SuppressWarnings("serial")
 public class AdminStatusSearch extends JPanel {
 	private CmbSoftwareGroupComp pSoftwareGroup;
 	private CmbAdminGroupComp pAdminGroup;
 	private TfBtnComboSearchComp pStatusSearch;
+	private Admin admin;
+	private User user;
+	
+	public void setAdmin(Admin admin) {
+		this.admin = admin;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	public AdminStatusSearch() {
 
 		initComponents();
 	}
-
+	
 	private void initComponents() {
 		setBackground(new Color(255, 255, 255));
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(null);
 
-		pSoftwareGroup = new CmbSoftwareGroupComp();
-		pSoftwareGroup.setBounds(11, 10, 125, 30);
-
-		add(pSoftwareGroup);
-
+		if (admin!=null) {
+			pSoftwareGroup = new CmbSoftwareGroupComp();
+			pSoftwareGroup.setBounds(11, 10, 125, 30);
+			
+			add(pSoftwareGroup);
+		}
+		
 		pAdminGroup = new CmbAdminGroupComp();
 		pAdminGroup.setBounds(148, 10, 125, 30);
 

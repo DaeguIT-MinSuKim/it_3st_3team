@@ -6,11 +6,17 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import kr.or.dgit.it_3st_3team.ui.SalesReportUI;
+
 import javax.swing.BoxLayout;
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class TfBtnSearchPrintComp extends JPanel {
+public class TfBtnSearchPrintComp extends JPanel implements ActionListener {
 	private JTextField tfSearchItem;
+	private JButton btnStatusReport;
 
 	
 	public TfBtnSearchPrintComp() {
@@ -41,9 +47,19 @@ public class TfBtnSearchPrintComp extends JPanel {
 		add(pStatusReport);
 		pStatusReport.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		JButton btnStatusReport = new JButton("판매보고서");
+		btnStatusReport = new JButton("판매보고서");
+		btnStatusReport.addActionListener(this);
 		pStatusReport.add(btnStatusReport);
 	}
 
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnStatusReport) {
+			actionPerformedBtnStatusReport(e);
+		}
+	}
+	protected void actionPerformedBtnStatusReport(ActionEvent e) {
+		SalesReportUI salesR = new SalesReportUI();
+		salesR.setVisible(true);
+	}
 }
 
