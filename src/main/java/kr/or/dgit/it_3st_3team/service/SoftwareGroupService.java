@@ -47,10 +47,11 @@ public class SoftwareGroupService {
 	
 	public int deleteSoftwareGroup(SoftwareGroup sgNo) {
 		log.debug("deleteSoftwareGroup()");
+		int res=-1;
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
-			return sqlSession.delete(namespace + "deleteSoftwareGroup", sgNo);
-			
+			res= sqlSession.delete(namespace + "deleteSoftwareGroup", sgNo);
+			sqlSession.commit();
 		}
-		
+		return res;
 	}
 }

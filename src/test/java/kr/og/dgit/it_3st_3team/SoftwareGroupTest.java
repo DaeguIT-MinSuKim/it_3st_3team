@@ -56,10 +56,10 @@ public class SoftwareGroupTest {
 	
 	@Test
 	public void testDdeleteSoftwareGroup() {
-		int sg = service.deleteSoftwareGroup(new SoftwareGroup(4));
+		int res = service.deleteSoftwareGroup(new SoftwareGroup(7));
 		
-		assertEquals(1, sg);
-		System.out.println(sg);
+		assertEquals(1, res);
+		System.out.println(res);
 	}
 
 }
