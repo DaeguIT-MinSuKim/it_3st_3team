@@ -1,8 +1,14 @@
 package kr.or.dgit.it_3st_3team.ui.common;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
+import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -11,27 +17,26 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.border.TitledBorder;
-import java.awt.event.ItemListener;
-import java.awt.event.ItemEvent;
 import javax.swing.border.EmptyBorder;
-import java.awt.Color;
 
-public class FindIdPw extends JPanel implements ItemListener {
-	private JTextField tfFindIdName;
+import kr.or.dgit.it_3st_3team.ui.component.LblTfComp;
+
+public class FindIdPw extends JPanel implements ItemListener, ActionListener {
 	private JTextField tfFindIdEmail;
 	private JTextField tfFindIdEmailDetail;
 	private JTextField tfFindPwId;
 	private JTextField tfFindPwEmail;
 	private JTextField tfFindPwPhone;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
 	private JRadioButton rdFindId;
 	private JRadioButton rdFindPw;
 	private JPanel p2;
 	private JPanel p3;
 	private JButton btnLogIn;
+	private LblTfComp p3_1;
+	private LblTfComp p3_2;
+	private JPanel p3_3;
+	private LblTfComp p2_1;
+	private JButton btnExit;
 
 	
 	public FindIdPw() {
@@ -52,70 +57,51 @@ public class FindIdPw extends JPanel implements ItemListener {
 		add(p2, BorderLayout.CENTER);
 		p2.setLayout(null);
 		
-		JLabel lblFindIdName = new JLabel("상호명");
-		lblFindIdName.setBounds(48, 38, 66, 15);
-		p2.add(lblFindIdName);
-		
-		tfFindIdName = new JTextField();
-		tfFindIdName.setBounds(126, 35, 116, 21);
-		p2.add(tfFindIdName);
-		tfFindIdName.setColumns(10);
+		p2_1 = new LblTfComp((String) "상호명");
+		p2_1.setBounds(75, 21, 310, 30);
+		p2.add(p2_1);
 		
 		JLabel lblFindIdEmail = new JLabel("이메일");
-		lblFindIdEmail.setBounds(48, 72, 66, 15);
+		lblFindIdEmail.setBounds(75, 64, 66, 30);
 		p2.add(lblFindIdEmail);
 		
 		tfFindIdEmail = new JTextField();
-		tfFindIdEmail.setBounds(126, 69, 116, 21);
+		tfFindIdEmail.setBounds(132, 65, 150, 30);
 		p2.add(tfFindIdEmail);
 		tfFindIdEmail.setColumns(10);
 		
 		tfFindIdEmailDetail = new JTextField();
-		tfFindIdEmailDetail.setBounds(254, 69, 116, 21);
+		tfFindIdEmailDetail.setBounds(305, 65, 150, 30);
 		tfFindIdEmailDetail.setColumns(10);
 		p2.add(tfFindIdEmailDetail);
 		
 		JLabel lbl = new JLabel("@");
-		lbl.setBounds(242, 72, 12, 15);
+		lbl.setBounds(284, 66, 20, 27);
 		lbl.setHorizontalAlignment(SwingConstants.CENTER);
 		p2.add(lbl);
 		
 		JComboBox cmbFindIdChooseEmail = new JComboBox();
-		cmbFindIdChooseEmail.setBounds(374, 69, 85, 21);
+		cmbFindIdChooseEmail.setBounds(467, 64, 100, 30);
 		p2.add(cmbFindIdChooseEmail);
 		
 		p3 = new JPanel();
 		//add(p3, BorderLayout.CENTER);
 		p3.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("아이디");
-		lblNewLabel.setBounds(75, 24, 57, 15);
-		p3.add(lblNewLabel);
+		p3_1 = new LblTfComp((String) "아이디");
+		p3_1.setBounds(75, 21, 310, 30);
+		p3.add(p3_1);
+		p3_1.setLayout(new BoxLayout(p3_1, BoxLayout.X_AXIS));
 		
-		textField = new JTextField();
-		textField.setBounds(152, 21, 136, 21);
-		p3.add(textField);
-		textField.setColumns(10);
+		p3_2 = new LblTfComp((String) "이메일");
+		p3_2.setBounds(75, 61, 310, 30);
+		p3.add(p3_2);
 		
-		JLabel label = new JLabel("이메일");
-		label.setBounds(75, 66, 57, 15);
-		p3.add(label);
+		p3_3 = new LblTfComp((String) "전화번호");
+		p3_3.setBounds(75, 101, 310, 30);
+		p3.add(p3_3);
 		
-		JLabel label_1 = new JLabel("전화번호");
-		label_1.setBounds(75, 104, 57, 15);
-		p3.add(label_1);
-		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(152, 63, 136, 21);
-		p3.add(textField_1);
-		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(152, 101, 136, 21);
-		p3.add(textField_2);
-		
-		ButtonGroup g = new ButtonGroup();
+		ButtonGroup btnG = new ButtonGroup();
 		
 		rdFindId = new JRadioButton("아이디 찾기");
 		rdFindId.setBackground(Color.WHITE);
@@ -127,8 +113,8 @@ public class FindIdPw extends JPanel implements ItemListener {
 		rdFindPw.setBackground(Color.WHITE);
 		rdFindPw.addItemListener(this);
 		p1.add(rdFindPw);
-		g.add(rdFindPw);
-		g.add(rdFindId);
+		btnG.add(rdFindPw);
+		btnG.add(rdFindId);
 		
 		
 		
@@ -140,7 +126,8 @@ public class FindIdPw extends JPanel implements ItemListener {
 		btnLogIn = new JButton("아이디찾기");
 		p4.add(btnLogIn);
 		
-		JButton btnExit = new JButton("나가기");
+		btnExit = new JButton("나가기");
+		btnExit.addActionListener(this);
 		p4.add(btnExit);
 		
 		rdFindId.setSelected(true);
@@ -172,5 +159,13 @@ public class FindIdPw extends JPanel implements ItemListener {
 			add(p2, BorderLayout.CENTER);
 			btnLogIn.setText("아이디찾기");
 		}
+	}
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnExit) {
+			actionPerformedBtnExit(e);
+		}
+	}
+	protected void actionPerformedBtnExit(ActionEvent e) {
+		
 	}
 }

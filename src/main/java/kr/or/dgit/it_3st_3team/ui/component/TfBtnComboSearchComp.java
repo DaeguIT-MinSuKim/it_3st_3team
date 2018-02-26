@@ -12,7 +12,6 @@ import kr.or.dgit.it_3st_3team.ui.SalesReportUI;
 
 
 public class TfBtnComboSearchComp extends JPanel implements ActionListener {
-	private JTextField tfSearchItem;
 	private CmbStringComp pUserSwNameCombo;
 	private CmbStringComp p1;
 	private JButton btnStatusReport;
@@ -32,17 +31,9 @@ public class TfBtnComboSearchComp extends JPanel implements ActionListener {
 		add(p1);
 		setStringData();
 		
-		
-		
-		
-		tfSearchItem = new JTextField();
-		tfSearchItem.setBounds(137, 0, 593, 30);
-		add(tfSearchItem);
-		tfSearchItem.setColumns(10);
-		
-		JButton btnStatusSearch = new JButton("검색");
-		btnStatusSearch.setBounds(746, 0, 70, 30);
-		add(btnStatusSearch);
+		TfBtnSearchComp panel = new TfBtnSearchComp((String) "검색");
+		panel.setBounds(144, 0, 637, 30);
+		add(panel);
 		
 		btnStatusReport = new JButton("판매보고서");
 		btnStatusReport.addActionListener(this);
@@ -60,8 +51,8 @@ public class TfBtnComboSearchComp extends JPanel implements ActionListener {
 		}
 	}
 	protected void actionPerformedBtnStatusReport(ActionEvent e) {
-		SalesReportUI js = new SalesReportUI();
-		js.setVisible(true);
+		SalesReportUI salesR = new SalesReportUI();
+		salesR.setVisible(true);
 	}
 }
 
