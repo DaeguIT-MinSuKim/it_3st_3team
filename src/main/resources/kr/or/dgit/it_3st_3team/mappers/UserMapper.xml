@@ -6,6 +6,7 @@
 		<result property="userId" column="u_id" />
 		<result property="userPwd" column="u_pwd" />
 		<result property="name" column="u_name" />
+		<result property="email" column="u_email" />
 		<result property="phone" column="u_phone" />
 		<result property="zipcode" column="u_zipcode" />
 		<result property="addr1" column="u_addr1" />
@@ -19,11 +20,23 @@
 		<result property="admin.adminName" column="adm_name" />
 	</resultMap>
 	
+	<!-- USER 기본 정보 -->
 	<sql id="selectSql">
 		select u_no, u_id, u_pwd, u_name, u_email, u_phone, u_zipcode, u_addr1, u_addr2, u_group, adm_no
 		from user
 	</sql>
 	
+	<!-- USER with ADMIN 정보까지 -->
+	<sql id="selectWithAdminSql">
+		select u_no, u_id, u_pwd, u_name, u_email, u_phone, u_zipcode, u_addr1, u_addr2, u_group, u.adm_no, a.adm_id, a.adm_name
+		from user u 
+		join admin a on u.adm_no = a.adm_no
+	</sql>
+	
+	<sql id="selectLastNo">
+		
+	</sql>
+		
 	<sql id="whereSql">
 		<where>
 			<if test="userNo != null">
@@ -32,8 +45,29 @@
 		</where>
 	</sql>
 	
+	<!-- User no 로 검색 -->
 	<select id="selectUserByNo" parameterType="User" resultMap="UserWithAdminResult">
-		<include refid="selectSql" />
+		<include refid="selectWithAdminSql" />
 		<include refid="whereSql" />
 	</select>
+	
+	<!-- 모든 User 검색 -->
+	<select id="selectUserAll" resultMap="UserWithAdminResult">
+		<include refid="selectWithAdminSql" />
+	</select>
+	
+	<!-- User group 별 검색 -->
+	<select id="selectUserAllByUserGroup" parameterType="UserGroup" resultMap="UserWithAdminResult">
+		<include refid="selectWithAdminSql" />
+		where u.u_group = #{userGroup}
+	</select>
+	
+	<sql id="insertSql">
+		insert into user(u_no, u_id, u_pwd, u_name, u_email, u_phone, u_zipcode, u_addr1, u_addr2, u_group, adm_no) values
+		(#{userNo}, #{userId},password(#{userPwd}), #{name}, #{email}, #{phone}, #{zipcode}, #{addr1}, #{addr2}, #{userGroup}, #{admin});
+	</sql>
+	
+	<insert id="insertUser" parameterType="User">
+		<include refid="insertSql" />
+	</insert>
 </mapper>

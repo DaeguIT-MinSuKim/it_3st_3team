@@ -3,10 +3,12 @@ package kr.or.dgit.it_3st_3team.dao;
 import java.util.List;
 
 import kr.or.dgit.it_3st_3team.dto.User;
+import kr.or.dgit.it_3st_3team.type.UserGroup;
 
 public interface UserDao {
 	User selectUserByNo(User UserNo);
 	List<User> selectUserAll();
+	List<User> selectUserAllByUserGroup(UserGroup userGroup);
 	
 	int insertUser(User user);
 	int updateUser(User user);
