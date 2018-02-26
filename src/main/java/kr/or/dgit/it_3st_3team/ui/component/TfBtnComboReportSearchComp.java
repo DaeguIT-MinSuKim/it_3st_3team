@@ -5,10 +5,17 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-public class TfBtnComboReportSearchComp extends JPanel {
+import kr.or.dgit.it_3st_3team.ui.SalesReportUI;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class TfBtnComboReportSearchComp extends JPanel implements ActionListener {
 	private JTextField tfSearchItem;
 	private CmbStringComp pUserSwNameCombo;
 	private CmbStringComp p1;
+	private JButton btnStatusSearch;
+	private SalesReportUI ss;
 
 	
 	public TfBtnComboReportSearchComp() {
@@ -33,7 +40,8 @@ public class TfBtnComboReportSearchComp extends JPanel {
 		add(tfSearchItem);
 		tfSearchItem.setColumns(10);
 		
-		JButton btnStatusSearch = new JButton("검색");
+		btnStatusSearch = new JButton("검색");
+		btnStatusSearch.addActionListener(this);
 		btnStatusSearch.setBounds(689, 0, 70, 30);
 		add(btnStatusSearch);
 	}
@@ -43,5 +51,14 @@ public class TfBtnComboReportSearchComp extends JPanel {
 		p1.loadData(strings);
 	}
 	
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnStatusSearch) {
+			actionPerformedBtnStatusSearch(e);
+		}
+	}
+	protected void actionPerformedBtnStatusSearch(ActionEvent e) {
+		ss = new SalesReportUI();
+		
+	}
 }
 

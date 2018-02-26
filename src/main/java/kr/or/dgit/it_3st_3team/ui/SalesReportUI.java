@@ -2,7 +2,10 @@ package kr.or.dgit.it_3st_3team.ui;
 
 import java.awt.EventQueue;
 import java.awt.GridLayout;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -16,6 +19,8 @@ import kr.or.dgit.it_3st_3team.ui.component.TfBtnComboReportSearchComp;
 public class SalesReportUI extends JFrame {
 
 	private JPanel contentPane;
+	protected JRadioButton rdReport;
+	protected JRadioButton rdTransaction;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -43,33 +48,41 @@ public class SalesReportUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(5, 5, 774, 40);
-		contentPane.add(panel);
-		panel.setLayout(null);
+		JPanel p1 = new JPanel();
+		p1.setBounds(5, 5, 774, 40);
+		contentPane.add(p1);
+		p1.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("판매보고서");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(345, 10, 84, 15);
-		panel.add(lblNewLabel);
+		p1.add(lblNewLabel);
 		
-		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(5, 49, 281, 40);
-		contentPane.add(panel_3);
-		panel_3.setLayout(new GridLayout(0, 2, 0, 0));
+		JPanel p2 = new JPanel();
+		p2.setBounds(5, 49, 281, 40);
+		contentPane.add(p2);
+		p2.setLayout(new GridLayout(0, 2, 0, 0));
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("보고서");
-		panel_3.add(rdbtnNewRadioButton);
+		ButtonGroup btnG = new ButtonGroup();
+		btnG.add(rdReport);
+		btnG.add(rdTransaction);
 		
-		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("거래명세서");
-		panel_3.add(rdbtnNewRadioButton_1);
+		rdReport = new JRadioButton("보고서");
+	
+		p2.add(rdReport);
 		
-		StartAndEndDate panel_1 = new StartAndEndDate();
-		panel_1.setBounds(321, 46, 458, 43);
-		contentPane.add(panel_1);
+		rdTransaction = new JRadioButton("거래명세서");
+		p2.add(rdTransaction);
 		
-		TfBtnComboReportSearchComp panel_2 = new TfBtnComboReportSearchComp();
-		panel_2.setBounds(5, 91, 774, 30);
-		contentPane.add(panel_2);
+		StartAndEndDate p3 = new StartAndEndDate();
+		p3.setBounds(321, 46, 458, 43);
+		contentPane.add(p3);
+		
+		TfBtnComboReportSearchComp p4 = new TfBtnComboReportSearchComp();
+		p4.setBounds(5, 91, 774, 30);
+		contentPane.add(p4);
+		
+		
 	}
+	
 }
