@@ -6,13 +6,17 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 
+import kr.or.dgit.it_3st_3team.ui.SoftwareGroupUI;
 import kr.or.dgit.it_3st_3team.ui.component.ImageComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblCmbStringComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblTfComp;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
-public class AdminSoftwareRegister extends JPanel {
+public class AdminSoftwareRegister extends JPanel implements ActionListener {
 	private JFileChooser chooser;
+	private JButton btnSubmitCF;
 
 	/**
 	 * Create the panel.
@@ -39,7 +43,8 @@ public class AdminSoftwareRegister extends JPanel {
 		btnCancelSW.setBounds(1068, 154, 97, 23);
 		pRegister.add(btnCancelSW);
 		
-		JButton btnSubmitCF = new JButton("분류등록");
+		btnSubmitCF = new JButton("분류등록");
+		btnSubmitCF.addActionListener(this);
 		btnSubmitCF.setBounds(779, 29, 97, 23);
 		pRegister.add(btnSubmitCF);
 		
@@ -48,8 +53,8 @@ public class AdminSoftwareRegister extends JPanel {
 		pCompany.setBounds(238, 27, 243, 30);
 		pRegister.add(pCompany);
 
-		LblCmbStringComp pSWsort = new LblCmbStringComp("분류 회사");
-		pSWsort.setBounds(528, 26, 243, 30);
+		LblCmbStringComp pSWsort = new LblCmbStringComp("분류");
+		pSWsort.setBounds(556, 27, 183, 30);
 		pRegister.add(pSWsort);
 
 		
@@ -71,4 +76,13 @@ public class AdminSoftwareRegister extends JPanel {
 	}
 
 	
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnSubmitCF) {
+			actionPerformedBtnSubmitCF(e);
+		}
+	}
+	protected void actionPerformedBtnSubmitCF(ActionEvent e) {
+		SoftwareGroupUI softwareGroupUI = new SoftwareGroupUI();
+		softwareGroupUI.setVisible(true);
+	}
 }

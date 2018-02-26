@@ -9,6 +9,12 @@
 		<result property="phone" column="adm_phone" />
 	</resultMap>
 	
+	<resultMap type="Admin" id="AdminWithAdmin_groupResult" extends="AdminBasedResult">
+		<result property="admin_group.ag_no" column="ag_no"/>
+		<result property="admin_group.ag_name" column="ag_name"/>
+		<result property="admin_group.ag_auth" column="ag_auth"/>
+	</resultMap>
+	
 	<sql id="selectSql">
 		select adm_no, adm_name, adm_id, adm_pwd, adm_phone, ag_no from admin
 	</sql>
@@ -20,6 +26,7 @@
 			</if>
 		</where>
 	</sql>
+	
 	
 	<select id="selectAdminByNo" parameterType="Admin" resultMap="AdminBasedResult">
 		<include refid="selectSql" />
