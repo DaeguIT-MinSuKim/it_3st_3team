@@ -3,8 +3,6 @@
 <mapper namespace="kr.or.dgit.it_3st_3team.dao.SaleOrderDao">
 	<resultMap type="SaleOrder" id="SaleOrderResult">
 		<id property="ordNo" column="ord_no"/>
-		<result property="user" column="u_no"/>
-		<result property="software" column="sw_no"/>
 		<result property="ordQuantity" column="ord_quantity"/>
 		<result property="ordSupplyPrice" column="ord_supply_price"/>
 		<result property="ordSellPrice" column="ord_sell_price"/>
@@ -12,11 +10,44 @@
 		<result property="ordSellProfit" column="ord_sell_profit"/>
 		<result property="ordPayment" column="ord_payment"/>
 		<result property="ordDatetime" column="ord_datetime"/>
-		<result property="admin" column="adm_no"/>
 	</resultMap>
 	
+	<resultMap type="SaleOrder" id="SaleOrderWithAllResult" extends="SaleOrderResult">
+		<result property="user.userNo" column="u_no" />
+		<result property="software.swNo" column="sw_no" />
+		<result property="admin.adminNo" column="adm_no" />
+	</resultMap>
+	
+	<sql id="saleOrderSql">
+	select ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no
+	from sale_order
+	</sql>
+	
+	
+	<sql id="saleOrderAllSql">
+	select * from sale_order as so 
+	join software as sp on so.sw_no=sp.sw_no
+	join admin as ad on so.adm_no=ad.adm_no
+	join user as us on so.u_no=us.u_no
+	join software_group as sg on sp.sg_no=sg.sg_no
 
-
-
+	</sql>
+	<sql id="whereSql">
+		<where>
+			<if test="ordNo != null">
+			ord_no = #{ordNo}
+				
+			</if>
+		</where>
+	</sql>
+	<select id="selectSaleOrderByNo" parameterType="SaleOrder" resultMap="SaleOrderResult">
+		<include refid="saleOrderSql"/>
+		<include refid="whereSql"/>
+	</select>
+	
+	<select id="selectSaleOrderWithAllByNo" parameterType="SaleOrder" resultMap="SaleOrderWithAllResult">
+		<include refid="saleOrderAllSql"/>
+		<include refid="whereSql"/>
+	</select>
 
 </mapper>

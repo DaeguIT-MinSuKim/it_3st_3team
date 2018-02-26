@@ -20,6 +20,15 @@ public class SaleOrder {
 	public SaleOrder() {
 	}
 
+	
+	
+	public SaleOrder(int ordNo) {
+		super();
+		this.ordNo = ordNo;
+	}
+
+
+
 	public SaleOrder(int ordNo, User user, Software software, int ordQuantity, int ordSupplyPrice, int ordSellPrice,
 			int ordTax, int ordSellProfit, Payment ordPayment, Date ordDatetime, Admin admin) {
 		super();
