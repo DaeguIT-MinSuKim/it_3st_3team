@@ -14,7 +14,10 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import kr.or.dgit.it_3st_3team.ui.admin.chart.CompanyStatusContent;
 import kr.or.dgit.it_3st_3team.ui.admin.customer.AdminCustomerContent;
+import kr.or.dgit.it_3st_3team.ui.admin.report.UserStatusContent;
 import kr.or.dgit.it_3st_3team.ui.admin.software.AdminSoftwareContent;
 import kr.or.dgit.it_3st_3team.ui.user.CustomerOrderContent;
 import kr.or.dgit.it_3st_3team.ui.user.UserModifyContent;
@@ -28,6 +31,7 @@ public class UserCustomerUI extends JFrame implements ActionListener {
 	private JPanel pMain;
 	private JButton btnModify;
 	private JButton btnSupplyStatusGraph;
+	private JButton btnSupplyStatus;
 
 	/**
 	 * Launch the application.
@@ -96,7 +100,8 @@ public class UserCustomerUI extends JFrame implements ActionListener {
 		btnSWRegister.setBackground(new Color(51, 153, 204));
 		pMenu.add(btnSWRegister);
 		
-		JButton btnSupplyStatus = new JButton("소프트웨어 주문현황");
+		btnSupplyStatus = new JButton("소프트웨어 주문현황");
+		btnSupplyStatus.addActionListener(this);
 		btnSupplyStatus.setBounds(0, 210, 298, 105);
 		btnSupplyStatus.setForeground(Color.DARK_GRAY);
 		btnSupplyStatus.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
@@ -104,6 +109,7 @@ public class UserCustomerUI extends JFrame implements ActionListener {
 		pMenu.add(btnSupplyStatus);
 		
 		btnSupplyStatusGraph = new JButton("소프트웨어 주문현황(그래프)");
+		btnSupplyStatusGraph.addActionListener(this);
 		btnSupplyStatusGraph.setBounds(0, 315, 298, 105);
 		btnSupplyStatusGraph.setForeground(Color.DARK_GRAY);
 		btnSupplyStatusGraph.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
@@ -129,6 +135,12 @@ public class UserCustomerUI extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnSupplyStatus) {
+			actionPerformedBtnSupplyStatus(e);
+		}
+		if (e.getSource() == btnSupplyStatusGraph) {
+			actionPerformedBtnSupplyStatusGraph(e);
+		}
 		if (e.getSource() == btnSWRegister) {
 			actionPerformedbtnSWRegister(e);
 		}
@@ -155,5 +167,14 @@ public class UserCustomerUI extends JFrame implements ActionListener {
 		pContent.add(pMain);
 		pContent.revalidate();
 		pContent.repaint();
+	}
+	protected void actionPerformedBtnSupplyStatusGraph(ActionEvent e) {
+		
+		
+	}
+	protected void actionPerformedBtnSupplyStatus(ActionEvent e) {
+		UserStatusContent pMain = new UserStatusContent();
+		pMain.setBounds(0, 0, 1186, 861);
+		changeMainPanel(pMain);
 	}
 }
