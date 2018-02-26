@@ -35,7 +35,7 @@ public class AdminStatusSearch extends JPanel {
 
 		initComponents();
 	}
-
+	
 	private void initComponents() {
 		setBackground(new Color(255, 255, 255));
 		setBorder(new EmptyBorder(5, 5, 5, 5));
