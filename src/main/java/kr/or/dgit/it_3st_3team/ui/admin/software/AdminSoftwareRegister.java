@@ -63,7 +63,7 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 		pRegister.add(pRegisterImg);
 		
 		LblTfComp pSWName = new LblTfComp("품목 명");
-		pSWName.setBounds(538, 66, 340, 30);
+		pSWName.setBounds(541, 73, 340, 30);
 		pRegister.add(pSWName);
 		
 		LblTfComp pSupplyPrice = new LblTfComp("공급 가격");
@@ -73,6 +73,10 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 		LblTfComp pSalePrice = new LblTfComp("판매 가격");
 		pSalePrice.setBounds(238, 73, 243, 30);
 		pRegister.add(pSalePrice);
+		
+		LblTfComp panel = new LblTfComp("수량");
+		panel.setBounds(556, 120, 126, 30);
+		pRegister.add(panel);
 	}
 
 	

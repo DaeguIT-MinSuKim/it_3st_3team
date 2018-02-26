@@ -7,19 +7,78 @@ public class Software {
 	private int swSupplyPrice;
 	private int swSellPrice;
 	private SoftwareGroup swGroup;
+	private int swQuantity;
 	private User userNo;
 
 	public Software() {
 	}
+	
+	
+	
 
-	public Software(int swNo, String swName, int swSupplyPrice, int swSellPrice, SoftwareGroup swGroup, User userNo) {
+
+
+
+
+
+	
+	
+	
+
+	public Software(String swName, int swSupplyPrice, int swSellPrice, SoftwareGroup swGroup, int swQuantity,
+			User userNo) {
+		super();
+		this.swName = swName;
+		this.swSupplyPrice = swSupplyPrice;
+		this.swSellPrice = swSellPrice;
+		this.swGroup = swGroup;
+		this.swQuantity = swQuantity;
+		this.userNo = userNo;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public Software(int swNo, String swName, int swSupplyPrice, int swSellPrice, SoftwareGroup swGroup, int swQuantity,
+			User userNo) {
+		super();
 		this.swNo = swNo;
 		this.swName = swName;
 		this.swSupplyPrice = swSupplyPrice;
 		this.swSellPrice = swSellPrice;
 		this.swGroup = swGroup;
+		this.swQuantity = swQuantity;
 		this.userNo = userNo;
 	}
+
+
+
+
+
+	public int getSwQuantity() {
+		return swQuantity;
+	}
+
+
+
+
+
+	public void setSwQuantity(int swQuantity) {
+		this.swQuantity = swQuantity;
+	}
+
+
+
+
 
 	public int getSwNo() {
 		return swNo;
@@ -71,8 +130,9 @@ public class Software {
 
 	@Override
 	public String toString() {
-		return String.format("Software [swNo=%s, swName=%s, swSupplyPrice=%s, swSellPrice=%s, swGroup=%s, userNo=%s]",
-				swNo, swName, swSupplyPrice, swSellPrice, swGroup, userNo);
+		return String.format(
+				"Software [swNo=%s, swName=%s, swSupplyPrice=%s, swSellPrice=%s, swGroup=%s, swQuantity=%s, userNo=%s]",
+				swNo, swName, swSupplyPrice, swSellPrice, swGroup, swQuantity, userNo);
 	}
 
 }
