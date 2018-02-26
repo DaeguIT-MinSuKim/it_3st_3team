@@ -1,7 +1,7 @@
 
 
 insert into admin_group(ag_no, ag_name, ag_auth) values
-(1, '관리자', 0),
+(1, '관리자', 9),
 (2, '영업', 1);
 
 select * from admin_group;
@@ -14,18 +14,18 @@ insert into admin(adm_no, adm_id, adm_pwd, adm_name, adm_phone, ag_no) values
 select * from admin;
 
 insert into user(u_no, u_id, u_pwd, u_name, u_email, u_phone, u_zipcode, u_addr1, u_addr2, u_group, adm_no) values
-(1, 'uid1',password('uid1'),'알럽소프트', 'uid1@test.com','02-930-4551', '14632', '경기도 부천시 부천로39번길', '46-2', 'COMPANY', 2),
-(2, 'cid1', password('cid1'), '재밌는게임방', 'cid1@emailcom', '02-112-1122', '03784', '서울특별시 서대문구 연희로2길', '47', 'CUSTOMER', 1),
-(3, 'cid2', password('cid2'), '좋은게임방', 'cid2@emailcom', '02-222-2233', '08788', '서울특별시 관악구 관악로16길', '35', 'CUSTOMER', 1),
-(4, 'uid2',password('uid2'),'인디넷', 'uid2@test.com','032-579-4671', '14672', '경기도 의정부시 신흥로329번길', '29-10', 'COMPANY', 2),
-(5, 'uid3',password('uid3'),'참빛소프트', 'uid3@test.com','02-362-1634', '10927', '경기도 파주시 동산8길', '11-1', 'COMPANY', 3),
-(6, 'cid3', password('cid3'), '친구게임방', 'cid3@emailcom', '041-643-8854', '35020', '대전광역시 중구 보문산로369번길', '144', 'CUSTOMER', 1),
-(7, 'uid4',password('uid4'),'소프트마켓', 'uid4@test.com','010-8452-2623', '05061', '서울특별시 광진구 자양로11길', '80', 'COMPANY', 3),
-(8, 'cid4', password('cid4'), '충청남도교육청', 'cid4@emailcom','042-734-7347', '31119', '충청남도 천안시 동남구 터미널2로', '8', 'CUSTOMER', 1),
-(9, 'cid5', password('cid5'), '대전광역시교육청', 'cid5@emailcom', '042-345-8343', '32255', '충청남도 홍성군 홍북읍 선화로', '22', 'CUSTOMER', 1),
-(10, 'uid5',password('uid5'),'크라이스', 'uid5@test.com','010-7413-1521', '10279', '경기도 고양시 덕양구 동헌로', '305', 'COMPANY', 2),
-(11, 'cid6', password('cid6'), '아산시스템', 'cid6@emailcom', '041-436-7232', '31491', '충청남도 아산시 배방읍 북수로111번길', '9-11', 'CUSTOMER', 1),
-(12, 'uid6',password('uid6'),'프로그램캠프', 'uid6@test.com','010-2478-3623', '14408', '경기도 부천시 고리울리', '47', 'COMPANY', 2);
+(1, 'uid1',password('uid1'),'알럽소프트', 'uid1@test.com','02-930-4551', '14632', '경기도 부천시 부천로39번길', '46-2', 2, 2),
+(2, 'cid1', password('cid1'), '재밌는게임방', 'cid1@emailcom', '02-112-1122', '03784', '서울특별시 서대문구 연희로2길', '47', 1, 1),
+(3, 'cid2', password('cid2'), '좋은게임방', 'cid2@emailcom', '02-222-2233', '08788', '서울특별시 관악구 관악로16길', '35', 1, 1),
+(4, 'uid2',password('uid2'),'인디넷', 'uid2@test.com','032-579-4671', '14672', '경기도 의정부시 신흥로329번길', '29-10', 2, 2),
+(5, 'uid3',password('uid3'),'참빛소프트', 'uid3@test.com','02-362-1634', '10927', '경기도 파주시 동산8길', '11-1', 2, 3),
+(6, 'cid3', password('cid3'), '친구게임방', 'cid3@emailcom', '041-643-8854', '35020', '대전광역시 중구 보문산로369번길', '144', 1, 1),
+(7, 'uid4',password('uid4'),'소프트마켓', 'uid4@test.com','010-8452-2623', '05061', '서울특별시 광진구 자양로11길', '80', 2, 3),
+(8, 'cid4', password('cid4'), '충청남도교육청', 'cid4@emailcom','042-734-7347', '31119', '충청남도 천안시 동남구 터미널2로', '8', 1, 1),
+(9, 'cid5', password('cid5'), '대전광역시교육청', 'cid5@emailcom', '042-345-8343', '32255', '충청남도 홍성군 홍북읍 선화로', '22', 1, 1),
+(10, 'uid5',password('uid5'),'크라이스', 'uid5@test.com','010-7413-1521', '10279', '경기도 고양시 덕양구 동헌로', '305', 2, 2),
+(11, 'cid6', password('cid6'), '아산시스템', 'cid6@emailcom', '041-436-7232', '31491', '충청남도 아산시 배방읍 북수로111번길', '9-11', 1, 1),
+(12, 'uid6',password('uid6'),'프로그램캠프', 'uid6@test.com','010-2478-3623', '14408', '경기도 부천시 고리울리', '47', 2, 2);
 
 select * from user;
 

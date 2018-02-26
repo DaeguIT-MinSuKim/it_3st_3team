@@ -1,4 +1,5 @@
 
+
 DROP PROCEDURE IF EXISTS software_project.proc_insert_sale_order ;
 
 DELIMITER $$
@@ -66,3 +67,4 @@ BEGIN
 	where ord_no = ORD_NO;
 END $$
 DELIMITER ;
+

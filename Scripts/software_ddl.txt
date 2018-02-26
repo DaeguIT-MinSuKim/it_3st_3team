@@ -6,7 +6,7 @@ use software_project;
 CREATE TABLE `admin_group` (
   `ag_no` int(11) NOT NULL COMMENT '관리자그룹번호',
   `ag_name` varchar(20) DEFAULT NULL COMMENT '관리자그룹명',
-  `ag_auth` varchar(20) DEFAULT NULL COMMENT '관리자그룹권한',
+  `ag_auth` char(1) DEFAULT NULL COMMENT '관리자그룹권한',
   PRIMARY KEY (`ag_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='관리자 분류';
 
@@ -32,7 +32,7 @@ CREATE TABLE `user` (
   `u_zipcode` varchar(6) DEFAULT NULL COMMENT '우편번호',
   `u_addr1` varchar(100) DEFAULT NULL COMMENT '주소',
   `u_addr2` varchar(100) DEFAULT NULL COMMENT '상세주소',
-  `u_group` varchar(20) DEFAULT NULL COMMENT '사용자구분',
+  `u_group` char(1) DEFAULT NULL COMMENT '사용자구분',
   `adm_no` int(11) DEFAULT NULL COMMENT '관리자',
   PRIMARY KEY (`u_no`),
   KEY `FK_admin_TO_user` (`adm_no`),
@@ -70,7 +70,7 @@ CREATE TABLE `sale_order` (
   `ord_sell_price` int(11) DEFAULT NULL COMMENT '판매금액',
   `ord_tax` int(11) DEFAULT NULL COMMENT '부가세액',
   `ord_sell_profit` int(11) DEFAULT NULL COMMENT '판매이윤',
-  `ord_payment` varchar(20) DEFAULT NULL COMMENT '결제수단',
+  `ord_payment` char(1) DEFAULT NULL COMMENT '결제수단',
   `ord_datetime` datetime DEFAULT NULL COMMENT '주문일자',
   `adm_no` int(11) DEFAULT NULL COMMENT '관리자번호',
   PRIMARY KEY (`ord_no`),
