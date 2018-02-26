@@ -32,5 +32,6 @@
 	<mappers>
 		<mapper resource="kr/or/dgit/it_3st_3team/mappers/UserMapper.xml" />
 		<mapper resource="kr/or/dgit/it_3st_3team/mappers/AdminMapper.xml" />
+		<mapper resource="kr/or/dgit/it_3st_3team/mappers/SaleOrderMapper.xml" />
 	</mappers>
 </configuration>
