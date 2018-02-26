@@ -170,6 +170,12 @@ public class UserCompanyUI extends JFrame implements ActionListener {
 		pContent.repaint();
 	}
 	protected void actionPerformedBtnSupplyStatusGraph(ActionEvent e) {
+		pContent.removeAll();
+		CompanyStatusContent panel = new CompanyStatusContent();
+		panel.setBounds(0, 0, 1186, 861);
+		pContent.add(panel);
+		pContent.revalidate();
+		pContent.repaint();
 	}
 	
 	
