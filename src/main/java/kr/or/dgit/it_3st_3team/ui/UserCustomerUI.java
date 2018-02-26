@@ -14,6 +14,8 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import kr.or.dgit.it_3st_3team.ui.admin.chart.CompanyStatusContent;
 import kr.or.dgit.it_3st_3team.ui.admin.customer.AdminCustomerContent;
 import kr.or.dgit.it_3st_3team.ui.admin.software.AdminSoftwareContent;
 import kr.or.dgit.it_3st_3team.ui.user.CustomerOrderContent;
@@ -104,6 +106,7 @@ public class UserCustomerUI extends JFrame implements ActionListener {
 		pMenu.add(btnSupplyStatus);
 		
 		btnSupplyStatusGraph = new JButton("소프트웨어 주문현황(그래프)");
+		btnSupplyStatusGraph.addActionListener(this);
 		btnSupplyStatusGraph.setBounds(0, 315, 298, 105);
 		btnSupplyStatusGraph.setForeground(Color.DARK_GRAY);
 		btnSupplyStatusGraph.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
@@ -129,6 +132,9 @@ public class UserCustomerUI extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnSupplyStatusGraph) {
+			actionPerformedBtnSupplyStatusGraph(e);
+		}
 		if (e.getSource() == btnSWRegister) {
 			actionPerformedbtnSWRegister(e);
 		}
@@ -155,5 +161,9 @@ public class UserCustomerUI extends JFrame implements ActionListener {
 		pContent.add(pMain);
 		pContent.revalidate();
 		pContent.repaint();
+	}
+	protected void actionPerformedBtnSupplyStatusGraph(ActionEvent e) {
+		
+		
 	}
 }
