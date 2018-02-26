@@ -6,8 +6,8 @@ import kr.or.dgit.it_3st_3team.type.Payment;
 
 public class SaleOrder {
 	private int ordNo;
-	private User userNo;
-	private Software swNo;
+	private User user;
+	private Software software;
 	private int ordQuantity;
 	private int ordSupplyPrice;
 	private int ordSellPrice;
@@ -15,16 +15,17 @@ public class SaleOrder {
 	private int ordSellProfit;
 	private Payment ordPayment;
 	private Date ordDatetime;
-	private Admin adminNo;
+	private Admin admin;
 
 	public SaleOrder() {
 	}
 
-	public SaleOrder(int ordNo, User userNo, Software swNo, int ordQuantity, int ordSupplyPrice, int ordSellPrice,
-			int ordTax, int ordSellProfit, Payment ordPayment, Date ordDatetime, Admin adminNo) {
+	public SaleOrder(int ordNo, User user, Software software, int ordQuantity, int ordSupplyPrice, int ordSellPrice,
+			int ordTax, int ordSellProfit, Payment ordPayment, Date ordDatetime, Admin admin) {
+		super();
 		this.ordNo = ordNo;
-		this.userNo = userNo;
-		this.swNo = swNo;
+		this.user = user;
+		this.software = software;
 		this.ordQuantity = ordQuantity;
 		this.ordSupplyPrice = ordSupplyPrice;
 		this.ordSellPrice = ordSellPrice;
@@ -32,7 +33,7 @@ public class SaleOrder {
 		this.ordSellProfit = ordSellProfit;
 		this.ordPayment = ordPayment;
 		this.ordDatetime = ordDatetime;
-		this.adminNo = adminNo;
+		this.admin = admin;
 	}
 
 	public int getOrdNo() {
@@ -43,20 +44,20 @@ public class SaleOrder {
 		this.ordNo = ordNo;
 	}
 
-	public User getUserNo() {
-		return userNo;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserNo(User userNo) {
-		this.userNo = userNo;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
-	public Software getSwNo() {
-		return swNo;
+	public Software getSoftware() {
+		return software;
 	}
 
-	public void setSwNo(Software swNo) {
-		this.swNo = swNo;
+	public void setSoftware(Software software) {
+		this.software = software;
 	}
 
 	public int getOrdQuantity() {
@@ -115,20 +116,20 @@ public class SaleOrder {
 		this.ordDatetime = ordDatetime;
 	}
 
-	public Admin getAdminNo() {
-		return adminNo;
+	public Admin getAdmin() {
+		return admin;
 	}
 
-	public void setAdminNo(Admin adminNo) {
-		this.adminNo = adminNo;
+	public void setAdmin(Admin admin) {
+		this.admin = admin;
 	}
 
 	@Override
 	public String toString() {
 		return String.format(
-				"SaleOrder [ordNo=%s, userNo=%s, swNo=%s, ordQuantity=%s, ordSupplyPrice=%s, ordSellPrice=%s, ordTax=%s, ordSellProfit=%s, ordPayment=%s, ordDatetime=%s, adminNo=%s]",
-				ordNo, userNo, swNo, ordQuantity, ordSupplyPrice, ordSellPrice, ordTax, ordSellProfit, ordPayment,
-				ordDatetime, adminNo);
+				"SaleOrder [ordNo=%s, user=%s, software=%s, ordQuantity=%s, ordSupplyPrice=%s, ordSellPrice=%s, ordTax=%s, ordSellProfit=%s, ordPayment=%s, ordDatetime=%s, admin=%s]",
+				ordNo, user, software, ordQuantity, ordSupplyPrice, ordSellPrice, ordTax, ordSellProfit, ordPayment,
+				ordDatetime, admin);
 	}
 
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.dgit.it_3st_3team.dao.SaleOrderDao">
+	<resultMap type="SaleOrder" id="SaleOrderResult">
+		<id property="ordNo" column="ord_no"/>
+		<result property="user" column="u_no"/>
+		<result property="software" column="sw_no"/>
+		<result property="ordQuantity" column="ord_quantity"/>
+		<result property="ordSupplyPrice" column="ord_supply_price"/>
+		<result property="ordSellPrice" column="ord_sell_price"/>
+		<result property="ordTax" column="ord_tax"/>
+		<result property="ordSellProfit" column="ord_sell_profit"/>
+		<result property="ordPayment" column="ord_payment"/>
+		<result property="ordDatetime" column="ord_datetime"/>
+		<result property="admin" column="adm_no"/>
+	</resultMap>
+	
+
+
+
+
+</mapper>
