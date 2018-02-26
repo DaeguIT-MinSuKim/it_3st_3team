@@ -8,6 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import kr.or.dgit.it_3st_3team.ui.admin.order.AdminOrder;
+
 @SuppressWarnings("serial")
 public class TestFrame extends JFrame {
 
@@ -25,8 +27,8 @@ public class TestFrame extends JFrame {
 		setContentPane(contentPane);
 
 		
-		JPanel panel = new JPanel();
-		contentPane.add(panel, BorderLayout.NORTH);
+		AdminOrder panel = new AdminOrder();
+		contentPane.add(panel, BorderLayout.CENTER);
 
 	}
 }

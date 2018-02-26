@@ -12,7 +12,7 @@ public class TestMain {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					LoginUI frame = new LoginUI();
+					TestFrame frame = new TestFrame();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
