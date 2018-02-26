@@ -7,9 +7,13 @@ public class Admin {
 	private String adminPwd;
 	private PhoneNumber phone;
 	private AdminGroup adminGroup;
-	
-	public Admin() {}
 
+	public Admin() {
+	}
+
+	public Admin(int adminNo) {
+		this.adminNo = adminNo;
+	}
 
 	public Admin(int adminNo, String adminId, String adminName, String adminPwd, PhoneNumber phone,
 			AdminGroup adminGroup) {
