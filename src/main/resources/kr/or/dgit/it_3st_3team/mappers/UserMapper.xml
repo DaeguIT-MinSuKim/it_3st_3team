@@ -67,6 +67,7 @@
 		(#{userNo}, #{userId},password(#{userPwd}), #{name}, #{email}, #{phone}, #{zipcode}, #{addr1}, #{addr2}, #{userGroup}, #{admin.adminNo});
 	</sql>
 	
+	<!-- User 마지막 no + 1 후 insert -->
 	<insert id="insertUser" parameterType="User">
 		<selectKey resultType="integer" keyProperty="userNo" order="BEFORE">
 			select max(u_no)+1 from user;

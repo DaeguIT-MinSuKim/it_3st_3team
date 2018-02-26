@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="kr.or.dgit.it_3st_3team.dao.SoftwareGroupDao">
+	<resultMap type="SoftwareGroup" id="SoftBasedResult">
+		<id property="sgNo" column="sg_no"/>
+		<result property="sgName" column="sg_name"/>
+	</resultMap>
+	
+	<!-- SoftwareGroup 기본 정보 -->
+	<sql id="selectSql">
+		select sg_no, sg_name from software_group
+	</sql>
+	<sql id="whereSql">
+		<where>
+			<if test="sgNo != null">
+				sg_no= #{sgNo}
+			</if>
+		</where>
+	</sql>
+	
+	<select id="selectSoftwareGroupByNo" parameterType="SoftwareGroup" resultMap="SoftBasedResult">
+		<include refid="selectSql"/>
+		<include refid="whereSql"/>
+	</select>
+	
+	<select id="selectSoftwareGroupByAll" parameterType="SoftwareGroup" resultMap="SoftBasedResult">
+		<include refid="selectSql"/>
+	</select>
+	
+	<sql id="insertSql">
+		insert into software_group(sg_no,sg_name) values(#{sgNo},#{sgName})
+	</sql>
+	
+	<insert id="insertSoftwareGroup" parameterType="SoftwareGroup">
+		<selectKey resultType="integer" keyProperty="sgNo" order="BEFORE">
+			select max(sg_no)+1 from software_group;
+		</selectKey>
+		<include refid="insertSql" />
+	</insert>
+	
+	<sql id="deleteSql">
+		delete from software_group
+	</sql>
+	
+	<delete id="deleteSoftwareGroup" parameterType="SoftwareGroup">
+		<include refid="deleteSql"/>
+		<include refid="whereSql"/>
+	</delete>	
+</mapper>
