@@ -19,6 +19,17 @@
 		select adm_no, adm_name, adm_id, adm_pwd, adm_phone, ag_no from admin
 	</sql>
 	
+	<sql id="loginWhereSql">
+		<where>
+			<if test="adminId != null">
+				adm_id = #{adminId}
+			</if>
+			<if test="adminPwd != null">
+				AND adm_pwd = #{adminPwd}
+			</if>
+		</where>
+	</sql>
+	
 	<sql id="whereSql">
 		<where>
 			<if test="adminNo != null">
@@ -27,6 +38,10 @@
 		</where>
 	</sql>
 	
+	<select id="selectLoginByNo" parameterType="Admin" resultMap="AdminBasedResult">
+		<include refid="selectSql"/>
+		<include refid="loginWhereSql"/>
+	</select>
 	
 	<select id="selectAdminByNo" parameterType="Admin" resultMap="AdminBasedResult">
 		<include refid="selectSql" />
