@@ -34,7 +34,7 @@
 	</sql>
 	
 	<sql id="selectLastNo">
-		
+		select max(u_no) as last_id from user;
 	</sql>
 		
 	<sql id="whereSql">
@@ -64,10 +64,13 @@
 	
 	<sql id="insertSql">
 		insert into user(u_no, u_id, u_pwd, u_name, u_email, u_phone, u_zipcode, u_addr1, u_addr2, u_group, adm_no) values
-		(#{userNo}, #{userId},password(#{userPwd}), #{name}, #{email}, #{phone}, #{zipcode}, #{addr1}, #{addr2}, #{userGroup}, #{admin});
+		(#{userNo}, #{userId},password(#{userPwd}), #{name}, #{email}, #{phone}, #{zipcode}, #{addr1}, #{addr2}, #{userGroup}, #{admin.adminNo});
 	</sql>
 	
 	<insert id="insertUser" parameterType="User">
+		<selectKey resultType="integer" keyProperty="userNo" order="BEFORE">
+			select max(u_no)+1 from user;
+		</selectKey>
 		<include refid="insertSql" />
 	</insert>
 </mapper>
