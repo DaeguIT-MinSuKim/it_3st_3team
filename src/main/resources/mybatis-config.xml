@@ -8,12 +8,14 @@
 	</settings>
 
 	<typeAliases>
-		<package name="kr.or.dgit.it_3st_3team.dto"/>
+		<package name="kr.or.dgit.it_3st_3team.dto" />
+		<package name="kr.or.dgit.it_3st_3team.type" />
 	</typeAliases>
 	
 	<typeHandlers>
 		<package name="kr.or.dgit.it_3st_3team.typehandlers" />
 	</typeHandlers>
+	
 	
 	<environments default="development">
 		<environment id="development">
