@@ -1,19 +1,17 @@
 package kr.or.dgit.it_3st_3team.ui.admin.report;
 
+import java.awt.Color;
+
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import kr.or.dgit.it_3st_3team.dto.SoftwareGroup;
 import kr.or.dgit.it_3st_3team.dto.User;
-
 import kr.or.dgit.it_3st_3team.ui.component.CmbSoftwareGroupComp;
-import kr.or.dgit.it_3st_3team.ui.component.CmbUserComp;
-
 import kr.or.dgit.it_3st_3team.ui.component.StartAndEndDate;
 import kr.or.dgit.it_3st_3team.ui.component.TfBtnComboSearchComp;
-import kr.or.dgit.it_3st_3team.ui.component.TfBtnSearchPrintComp;
-import java.awt.Color;
 
+@SuppressWarnings("serial")
 public class AdminSalesStatusSearch extends JPanel {
 	private CmbSoftwareGroupComp pSoftwareGroup;
 

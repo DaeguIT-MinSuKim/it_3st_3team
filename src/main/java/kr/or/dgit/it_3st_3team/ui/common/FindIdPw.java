@@ -85,7 +85,7 @@ public class FindIdPw extends JPanel implements ItemListener, ActionListener {
 		p2.add(cmbFindIdChooseEmail);
 		
 		p3 = new JPanel();
-		//add(p3, BorderLayout.CENTER);
+		add(p3, BorderLayout.CENTER);
 		p3.setLayout(null);
 		
 		p3_1 = new LblTfComp((String) "아이디");
