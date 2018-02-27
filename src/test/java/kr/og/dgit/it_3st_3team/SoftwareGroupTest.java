@@ -44,7 +44,7 @@ public class SoftwareGroupTest {
 			System.out.println(sg);
 		}
 	}
-	/*
+	
 	@Test
 	public void testCinsertSoftwareGroup() {
 		SoftwareGroup sg = new SoftwareGroup(4, "디자인");
@@ -52,11 +52,11 @@ public class SoftwareGroupTest {
 		System.out.println(sg);
 		
 		assertEquals(1, res);
-	}*/
+	}
 	
 	@Test
 	public void testDdeleteSoftwareGroup() {
-		int res = service.deleteSoftwareGroup(new SoftwareGroup(7));
+		int res = service.deleteSoftwareGroup(new SoftwareGroup(4));
 		
 		assertEquals(1, res);
 		System.out.println(res);

@@ -14,20 +14,15 @@ public class Software {
 	}
 	
 	
-	
+
+	public Software(int swNo) {
+		this.swNo = swNo;
+	}
 
 
-
-
-
-
-	
-	
-	
 
 	public Software(String swName, int swSupplyPrice, int swSellPrice, SoftwareGroup swGroup, int swQuantity,
 			User userNo) {
-		super();
 		this.swName = swName;
 		this.swSupplyPrice = swSupplyPrice;
 		this.swSellPrice = swSellPrice;
@@ -35,18 +30,6 @@ public class Software {
 		this.swQuantity = swQuantity;
 		this.userNo = userNo;
 	}
-
-
-
-
-
-
-
-
-
-
-
-
 
 	public Software(int swNo, String swName, int swSupplyPrice, int swSellPrice, SoftwareGroup swGroup, int swQuantity,
 			User userNo) {
@@ -60,25 +43,13 @@ public class Software {
 		this.userNo = userNo;
 	}
 
-
-
-
-
 	public int getSwQuantity() {
 		return swQuantity;
 	}
 
-
-
-
-
 	public void setSwQuantity(int swQuantity) {
 		this.swQuantity = swQuantity;
 	}
-
-
-
-
 
 	public int getSwNo() {
 		return swNo;
