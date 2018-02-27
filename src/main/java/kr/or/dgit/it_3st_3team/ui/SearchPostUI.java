@@ -14,10 +14,11 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-import kr.or.dgit.it_3st_3team.ui.component.LblCmbAddressComp;
+
 import kr.or.dgit.it_3st_3team.ui.component.LblTfComp;
 
-public class SearchPost extends JFrame {
+@SuppressWarnings("serial")
+public class SearchPostUI extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField tfBNum1;
@@ -31,7 +32,7 @@ public class SearchPost extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					SearchPost frame = new SearchPost();
+					SearchPostUI frame = new SearchPostUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,7 +44,7 @@ public class SearchPost extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public SearchPost() {
+	public SearchPostUI() {
 		initComponents();
 	}
 	private void initComponents() {
@@ -122,17 +123,27 @@ public class SearchPost extends JFrame {
 		table.getColumnModel().getColumn(1).setMaxWidth(280);
 		scrollPane.setViewportView(table);
 		
-		LblCmbAddressComp pSido = new LblCmbAddressComp("시/도");
-		pSido.setBounds(57, 39, 203, 30);
-		contentPane.add(pSido);
-		
-		LblCmbAddressComp pSigungu = new LblCmbAddressComp("시/군/구");
-		pSigungu.setBounds(39, 79, 198, 30);
-		contentPane.add(pSigungu);
-		
 		LblTfComp pDoro = new LblTfComp("도로 명");
 		pDoro.setBounds(47, 119, 272, 30);
 		contentPane.add(pDoro);
+		
+		JLabel label = new JLabel("시/군/구");
+		label.setHorizontalAlignment(SwingConstants.RIGHT);
+		label.setBounds(39, 86, 48, 15);
+		contentPane.add(label);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(107, 77, 106, 30);
+		contentPane.add(comboBox);
+		
+		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setBounds(107, 31, 106, 30);
+		contentPane.add(comboBox_1);
+		
+		JLabel label_1 = new JLabel("시/도");
+		label_1.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_1.setBounds(39, 40, 48, 15);
+		contentPane.add(label_1);
 	}
 	
 	public void settTfBNum1(String text) {

@@ -1,22 +1,19 @@
 package kr.or.dgit.it_3st_3team.ui;
 
-import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.Color;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-import kr.or.dgit.it_3st_3team.ui.component.LblTfBtnComp;
 
+import kr.or.dgit.it_3st_3team.ui.component.AbstractLblTfBtnComp;
+import kr.or.dgit.it_3st_3team.ui.component.LblTfBtnSGRegisterComp;
+
+@SuppressWarnings("serial")
 public class SoftwareGroupUI extends JFrame {
 
 	private JPanel contentPane;
@@ -76,7 +73,7 @@ public class SoftwareGroupUI extends JFrame {
 		));
 		scrollPane.setViewportView(table);
 		
-		LblTfBtnComp panel_1 = new LblTfBtnComp("분류 명", "등록");
+		LblTfBtnSGRegisterComp panel_1 = new LblTfBtnSGRegisterComp("분류 명", "등록");
 		panel_1.setBounds(12, 10, 410, 30);
 		contentPane.add(panel_1);
 	}
