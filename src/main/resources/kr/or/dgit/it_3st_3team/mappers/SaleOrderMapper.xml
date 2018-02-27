@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.dgit.it_3st_3team.dao.SaleOrderDao">
+
 	<resultMap type="SaleOrder" id="SaleOrderResult">
 		<id property="ordNo" column="ord_no"/>
 		<result property="ordQuantity" column="ord_quantity"/>
@@ -91,8 +92,6 @@
 		<include refid="selectParameterSql"/>
 		<include refid="whereSwNameSql"/>
 	</select>
-	
-	
 	
 	
 

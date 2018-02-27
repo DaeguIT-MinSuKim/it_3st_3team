@@ -40,20 +40,8 @@ public class SaleOrderService {
 
 	// 주문관리
 
-	public List<SaleOrder> selectOrderManagementByAll() {
-		log.debug("selectOrderManagementByAll()");
-		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
-			return sqlSession.selectList(namespace + "selectOrderManagementByAll");
-		}
-	}
-	
-	public SaleOrder selectOrderManagementByNo(SaleOrder saleOrder) {
-		log.debug("selectOrderManagementByNo()");
-		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
-			return sqlSession.selectOne(namespace + "selectOrderManagementByNo",saleOrder);
-		}
-	}
-	
+
+/*	
 	public int updateOrderManagement(SaleOrder saleOrder) {
 		log.debug("updateOrderManagement()");
 		int res=-1;
@@ -62,7 +50,7 @@ public class SaleOrderService {
 			sqlSession.commit();
 		}
 		return res;
-	}
+	}*/
 	
 	public int deleteOrderManagement(SaleOrder ordNo) {
 		log.debug("deleteOrderManagement()");

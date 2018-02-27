@@ -27,7 +27,7 @@ public class SaleOrderServiceTest {
 		service = null;
 	}
 
-	@Test
+	/*@Test
 	public void test1FindSaleOrderByNo() {
 		SaleOrder saleorder = new SaleOrder();
 		saleorder.setOrdNo(1);
@@ -55,16 +55,8 @@ public class SaleOrderServiceTest {
 			System.out.println(s);
 		}
 	}
-
-	@Test
-	public void testAselectOrderManagementByAll() {
-		List<SaleOrder> listsm = service.selectOrderManagementByAll();
-		System.out.println(listsm);
-		assertNotNull(listsm);
-		for (SaleOrder sm : listsm) {
-			System.out.println(sm);
-		}
-	}
+*/
+	
 	
 	/*@Test 
 	public void testBselectOrderManagementByNo() {

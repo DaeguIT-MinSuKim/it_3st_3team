@@ -1,4 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.or.dgit.it_3st_3team.mappers.AddressMapper">
+<mapper namespace="kr.or.dgit.it_3st_3team.dao.AddressDao">
+	<resultMap type="Address" id="AddressBasedResult">
+		<id property="zipcode" column="zipcode"/>
+		<result property="sido" column="sido"/>
+		<result property="sigungu" column="sigungu"/>
+		<result property="doro" column="doro"/>
+		<result property="building1" column="building1"/>
+		<result property="building2" column="building2"/>
+	</resultMap>
+	
+	<!-- select -->
+	<sql id="selectSql">
+		select zipcode,sido,sigungu,doro,building1,building2 from Address
+	</sql>
+	
+	<sql id="selectSidoSql">
+		select sido from Address 
+	</sql>
+	
+	<sql id="selectSigunguSql">
+		select sigungu from Address
+	</sql>
+	
+	
+	
+	<sql id="whereSql">
+		<where>
+			<if test="zipcode != null">
+				zipcode=#{zipcode}
+			</if>
+			<if test="sido != null">
+				sido=#{sido}
+			</if>
+			<if test="sigungu != null">
+				sigungu=#{sigungu}
+			</if>
+			<if test="doro != null">
+				doro=#{doro}
+			</if>
+			<if test="building1 != null and building1>0">
+				building1=#{building1}
+			</if>
+			<if test="building2 != null and building2>0">
+				building2=#{building2}
+			</if>
+		</where>
+	</sql>
+	
+	
+	
+	<select id="selcectAddressBySido" parameterType="Address" resultMap="AddressBasedResult">
+		<include refid="selectSidoSql"/>
+		group by sido
+	</select>
+	
+	
+	<select id="selcectAddressBySigungu" parameterType="Address" resultMap="AddressBasedResult">
+		<include refid="selectSigunguSql"/>
+		<include refid="whereSql"/>
+		group by sigungu
+	</select>
+	
+	
+	
+	
 </mapper>
