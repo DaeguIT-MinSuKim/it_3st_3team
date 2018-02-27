@@ -32,10 +32,11 @@
 	<mappers>
 		<mapper resource="kr/or/dgit/it_3st_3team/mappers/UserMapper.xml" />
 		<mapper resource="kr/or/dgit/it_3st_3team/mappers/AdminMapper.xml" />
-<<<<<<< HEAD
+
 		<mapper resource="kr/or/dgit/it_3st_3team/mappers/SaleOrderMapper.xml" />
-=======
+
 		<mapper resource="kr/or/dgit/it_3st_3team/mappers/SoftwareGroupMapper.xml" />
->>>>>>> refs/remotes/origin/master
+		<mapper resource="kr/or/dgit/it_3st_3team/mappers/SoftwareMapper.xml" />
+
 	</mappers>
 </configuration>
