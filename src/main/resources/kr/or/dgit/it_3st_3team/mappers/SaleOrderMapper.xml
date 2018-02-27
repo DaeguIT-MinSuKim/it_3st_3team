@@ -91,39 +91,23 @@
 	<select id="selectSaleOrderByNo" parameterType="SaleOrder" resultMap="selectSaleOrderByMapWithAPI">
 		<include refid="selectParameterSql"/>
 	</select>
-<<<<<<< HEAD
+
 	
 	<select id="selectSaleOrderWithAllByNo" parameterType="Map" resultMap="selectSaleOrderByMapWithAPI">
 		<include refid="selectParameterSql"/>
 		<include refid="whereSwNameSql"/>
 	</select>
 	
-	<!-- 주문 관리
-	<sql id="selectOMSql">
-		select ord_no, ord_datetime, sg.sg_name,  sw.sw_no, ss.sw_name, ord_quantity, sw.u_no, us.u_name,
-		ord_payment,sw.adm_no, ad.adm_name, us.u_name
-		from sale_order sw join `user` us on sw.u_no = us.u_no join software ss on sw.sw_no=ss.sw_no join admin ad on sw.adm_no=ad.adm_no
-		join software_group sg on sg.sg_no=ss.sg_no
-=======
-	<!-- 주문 관리 -->
+	
 	
 	
 		<!-- 삭제 -->
 	<sql id="deleteSql">
 		delete from sale_order
->>>>>>> refs/remotes/origin/master
+
 	</sql>
 	
-	<!-- 전체 검색 -->
-	<select id="selectOrderManagementByAll" parameterType="SaleOrder" resultMap="selectSaleOrderByMapWithAPI">
-		<include refid="selectParameterSql"/>
-	</select>
 	
-	<!-- 부분 검색 -->
-	<select id="selectOrderManagementByNo" parameterType="SaleOrder" resultMap="selectSaleOrderByMapWithAPI">
-		<include refid="selectParameterSql"/>
-		<include refid="whereSwNameSql"/>
-	</select>
 	
 	<!-- 삭제 -->
 	<delete id="deleteOrderManagement" parameterType="SaleOrder">
@@ -131,15 +115,12 @@
 		<include refid="whereSql"/>
 	</delete>
 	
-<<<<<<< HEAD
-	주문관리 
-=======
 
 	<!-- 주문관리  -->
 	
 	
 	
->>>>>>> refs/remotes/origin/master
+
 	<select id="selectSaleOrderByNo" parameterType="SaleOrder" resultMap="SaleOrderWithAllResult">
 		<include refid="saleOrderAllSql"/>
 
@@ -149,7 +130,7 @@
 	<select id="selectSaleOrderByMapWithAPI" parameterType="map" resultMap="selectSaleOrderByMapWithAPI">
 		<include refid="selectParameterSql"/>
 		<include refid="whereSwNameSql"/>
-		order by so.ord_datetime desc
-	</select> -->
+		
+	</select>
 
 </mapper>

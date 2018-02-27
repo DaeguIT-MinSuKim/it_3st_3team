@@ -60,15 +60,7 @@ public class SaleOrderServiceTest {
 		}
 	}
 
-	@Test
-	public void testAselectOrderManagementByAll() {
-		List<SaleOrder> listsm = service.selectOrderManagementByAll();
-		System.out.println(listsm);
-		assertNotNull(listsm);
-		for (SaleOrder sm : listsm) {
-			System.out.println(sm);
-		}
-	}
+	
 	
 	/*@Test 
 	public void testBselectOrderManagementByNo() {

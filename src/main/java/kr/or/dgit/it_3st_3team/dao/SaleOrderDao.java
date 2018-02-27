@@ -11,9 +11,7 @@ public interface SaleOrderDao {
 	SaleOrder selectSaleOrderWithAllByNo(Map<String, String> map);
 
 	// 소프트웨어 주문 관리
-	List<SaleOrder> selectOrderManagementByAll(SaleOrder saleOrder);
-
-	SaleOrder selectOrderManagementByNo(SaleOrder saleOrder);
+	
 
 	int updateOrderManagement(SaleOrder saleOrder);
 
