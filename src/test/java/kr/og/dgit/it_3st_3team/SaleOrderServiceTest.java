@@ -1,6 +1,5 @@
 package kr.og.dgit.it_3st_3team;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.HashMap;
@@ -12,11 +11,8 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import kr.or.dgit.it_3st_3team.dto.Admin;
 import kr.or.dgit.it_3st_3team.dto.SaleOrder;
-import kr.or.dgit.it_3st_3team.dto.SoftwareGroup;
 import kr.or.dgit.it_3st_3team.service.SaleOrderService;
-import kr.or.dgit.it_3st_3team.type.Payment;
 
 public class SaleOrderServiceTest {
 	private static SaleOrderService service;
