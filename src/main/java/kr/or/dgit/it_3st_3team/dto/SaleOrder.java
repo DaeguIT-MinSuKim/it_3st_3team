@@ -18,22 +18,12 @@ public class SaleOrder {
 	private Admin admin;
 	private SoftwareGroup softwaregroup;
 
-
 	public SaleOrder() {
 	}
 
-	
-	
 	public SaleOrder(int ordNo) {
 		this.ordNo = ordNo;
 	}
-	
-	
-
-	
-
-
-
 
 	public SaleOrder(User user, Software software, Payment ordPayment, Date ordDatetime, Admin admin,
 			SoftwareGroup softwaregroup) {
@@ -46,8 +36,6 @@ public class SaleOrder {
 		this.softwaregroup = softwaregroup;
 	}
 
-
-
 	public SaleOrder(int ordNo, User user, Software software, Payment ordPayment, Date ordDatetime, Admin admin,
 			SoftwareGroup softwaregroup) {
 		super();
@@ -59,8 +47,6 @@ public class SaleOrder {
 		this.admin = admin;
 		this.softwaregroup = softwaregroup;
 	}
-
-
 
 	public SaleOrder(int ordNo, User user, Software software, int ordQuantity, int ordSupplyPrice, int ordSellPrice,
 			int ordTax, int ordSellProfit, Payment ordPayment, Date ordDatetime, Admin admin) {
@@ -165,20 +151,14 @@ public class SaleOrder {
 	public void setAdmin(Admin admin) {
 		this.admin = admin;
 	}
-	
-	
 
 	public SoftwareGroup getSoftwaregroup() {
 		return softwaregroup;
 	}
 
-
-
 	public void setSoftwaregroup(SoftwareGroup softwaregroup) {
 		this.softwaregroup = softwaregroup;
 	}
-
-
 
 	@Override
 	public String toString() {

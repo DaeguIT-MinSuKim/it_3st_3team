@@ -8,7 +8,6 @@ import org.apache.ibatis.logging.LogFactory;
 import org.apache.ibatis.session.SqlSession;
 
 import kr.or.dgit.it_3st_3team.dto.SaleOrder;
-import kr.or.dgit.it_3st_3team.dto.User;
 import kr.or.dgit.it_3st_3team.ui.util.MyBatisSqlSessionFactory;
 
 public class SaleOrderService {
@@ -31,8 +30,8 @@ public class SaleOrderService {
 		}
 	}
 
-	public List<SaleOrder> findSaleOrderByMapWithAPI(Map<String, String> map) {
-		log.debug("findSaleOrderByMapWithAPI()");
+	public List<SaleOrder> findSaleOrderWithAllByNo(Map<String, String> map) {
+		log.debug("findSaleOrderWithAllByNo()");
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
 			return sqlSession.selectList(namespace + "selectSaleOrderWithAllByNo", map);
 		}
@@ -40,23 +39,18 @@ public class SaleOrderService {
 
 	// 주문관리
 
+	/*
+	 * public int updateOrderManagement(SaleOrder saleOrder) {
+	 * log.debug("updateOrderManagement()"); int res=-1; try (SqlSession sqlSession
+	 * = MyBatisSqlSessionFactory.openSession();) { res= sqlSession.update(namespace
+	 * + "updateOrderManagement", saleOrder); sqlSession.commit(); } return res; }
+	 */
 
-/*	
-	public int updateOrderManagement(SaleOrder saleOrder) {
-		log.debug("updateOrderManagement()");
-		int res=-1;
-		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
-			res= sqlSession.update(namespace + "updateOrderManagement", saleOrder);
-			sqlSession.commit();
-		}
-		return res;
-	}*/
-	
 	public int deleteOrderManagement(SaleOrder ordNo) {
 		log.debug("deleteOrderManagement()");
-		int res=-1;
+		int res = -1;
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
-			res= sqlSession.delete(namespace + "deleteOrderManagement", ordNo);
+			res = sqlSession.delete(namespace + "deleteOrderManagement", ordNo);
 			sqlSession.commit();
 		}
 		return res;
