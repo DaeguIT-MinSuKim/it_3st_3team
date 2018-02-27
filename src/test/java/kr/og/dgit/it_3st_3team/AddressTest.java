@@ -28,8 +28,18 @@ public class AddressTest {
 
 	
 	@Test
-	public void testAselectAddressByAll() {
-		List<Address> listad = service.selectAddressByAll();
+	public void testAselcectAddressBySido() {
+		List<Address> listad = service.selcectAddressBySido();
+		System.out.println(listad);
+		assertNotNull(listad);
+		for(Address ad : listad) {
+			System.out.println(ad);
+		}
+	}
+	
+	@Test
+	public void testBselcectAddressBySigungu() {
+		List<Address> listad = service.selcectAddressBySigungu(new Address("대구광역시"));
 		System.out.println(listad);
 		assertNotNull(listad);
 		for(Address ad : listad) {

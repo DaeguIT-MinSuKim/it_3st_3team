@@ -24,12 +24,21 @@ public class AddressService {
 	
 	
 	
-	public List<Address> selectAddressByAll(){
-		log.debug("selectAddressByAll()");
+	public List<Address> selcectAddressBySido(){
+		log.debug("selcectAddressBySido()");
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
-			return sqlSession.selectList(namespace + "selectAddressByAll");
+			return sqlSession.selectList(namespace + "selcectAddressBySido");
 		}
 	}
+	
+	public List<Address> selcectAddressBySigungu(Address address) {
+		log.debug("selcectAddressBySigungu()");
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectList(namespace + "selcectAddressBySigungu", address);
+		}
+	}
+	
+	
 	
 	
 }

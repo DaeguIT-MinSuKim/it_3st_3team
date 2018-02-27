@@ -26,15 +26,26 @@
 	
 	
 	<sql id="whereSql">
-		
+		<where>
 			<if test="zipcode != null">
-				<where>
-					zipcode=#{zipcode}
-				</where>
+				zipcode=#{zipcode}
 			</if>
-			zipcode=#{zipcode},sido=#{sido},sigungu=#{sigungu},doro=#{doro},
-			building1=#{building1},building2=#{building2}
-		
+			<if test="sido != null">
+				sido=#{sido}
+			</if>
+			<if test="sigungu != null">
+				sigungu=#{sigungu}
+			</if>
+			<if test="doro != null">
+				doro=#{doro}
+			</if>
+			<if test="building1 != null and building1>0">
+				building1=#{building1}
+			</if>
+			<if test="building2 != null and building2>0">
+				building2=#{building2}
+			</if>
+		</where>
 	</sql>
 	
 	
@@ -50,6 +61,8 @@
 		<include refid="whereSql"/>
 		group by sigungu
 	</select>
+	
+	
 	
 	
 </mapper>

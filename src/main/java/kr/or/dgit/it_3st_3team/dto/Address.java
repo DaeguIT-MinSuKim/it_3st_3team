@@ -8,6 +8,13 @@ public class Address {
 	private int building1;
 	private int building2;
 	
+	
+	
+	public Address(String sido) {
+		super();
+		this.sido = sido;
+	}
+
 	public Address() {
 		
 	}
