@@ -16,7 +16,8 @@ public class SaleOrder {
 	private Payment ordPayment;
 	private Date ordDatetime;
 	private Admin admin;
-	
+	private SoftwareGroup softwaregroup;
+
 
 	public SaleOrder() {
 	}
@@ -24,8 +25,39 @@ public class SaleOrder {
 	
 	
 	public SaleOrder(int ordNo) {
+		this.ordNo = ordNo;
+	}
+	
+	
+
+	
+
+
+
+
+	public SaleOrder(User user, Software software, Payment ordPayment, Date ordDatetime, Admin admin,
+			SoftwareGroup softwaregroup) {
+		super();
+		this.user = user;
+		this.software = software;
+		this.ordPayment = ordPayment;
+		this.ordDatetime = ordDatetime;
+		this.admin = admin;
+		this.softwaregroup = softwaregroup;
+	}
+
+
+
+	public SaleOrder(int ordNo, User user, Software software, Payment ordPayment, Date ordDatetime, Admin admin,
+			SoftwareGroup softwaregroup) {
 		super();
 		this.ordNo = ordNo;
+		this.user = user;
+		this.software = software;
+		this.ordPayment = ordPayment;
+		this.ordDatetime = ordDatetime;
+		this.admin = admin;
+		this.softwaregroup = softwaregroup;
 	}
 
 
@@ -133,13 +165,27 @@ public class SaleOrder {
 	public void setAdmin(Admin admin) {
 		this.admin = admin;
 	}
+	
+	
+
+	public SoftwareGroup getSoftwaregroup() {
+		return softwaregroup;
+	}
+
+
+
+	public void setSoftwaregroup(SoftwareGroup softwaregroup) {
+		this.softwaregroup = softwaregroup;
+	}
+
+
 
 	@Override
 	public String toString() {
 		return String.format(
-				"SaleOrder [ordNo=%s, user=%s, software=%s, ordQuantity=%s, ordSupplyPrice=%s, ordSellPrice=%s, ordTax=%s, ordSellProfit=%s, ordPayment=%s, ordDatetime=%s, admin=%s]",
+				"SaleOrder [ordNo=%s, user=%s, software=%s, ordQuantity=%s, ordSupplyPrice=%s, ordSellPrice=%s, ordTax=%s, ordSellProfit=%s, ordPayment=%s, ordDatetime=%s, admin=%s, softwaregroup=%s]",
 				ordNo, user, software, ordQuantity, ordSupplyPrice, ordSellPrice, ordTax, ordSellProfit, ordPayment,
-				ordDatetime, admin);
+				ordDatetime, admin, softwaregroup);
 	}
 
 }
