@@ -16,11 +16,13 @@
 		<result property="user.userNo" column="u_no" />
 		<result property="user.userId" column="u_id" />
 		<result property="user.name" column="u_name" />
+		
 		<result property="software.swNo" column="sw_no" />
 		<result property="software.swName" column="sw_name" />
 		<result property="admin.adminNo" column="adm_no" />
 		<result property="admin.adminId" column="adm_id" />
 		<result property="admin.adminName" column="adm_name" />
+		<result property="software.swGroup.sgName" column="sg_name" />
 	</resultMap>
 	
 	
@@ -37,7 +39,10 @@
 	
 	
 	<sql id="selectParameterSql">
-	select * from sale_order as so 
+	select us.u_group,us.u_name, so.ord_no, ad.adm_name, sg.sg_name, sp.sw_name, so.ord_quantity,
+	so.ord_supply_price, so.ord_sell_price, so.ord_tax, so.ord_sell_profit,
+	so.ord_payment,so.ord_datetime, ad.adm_name 
+	from sale_order as so 
 	join software as sp on so.sw_no=sp.sw_no
 	join admin as ad on so.adm_no=ad.adm_no
 	join user as us on so.u_no=us.u_no
@@ -54,22 +59,40 @@
 	
 	<sql id="whereSwNameSql">
 		<where>
-			<if test="ordNo != null">
-				ord_no = #{ordNo}
+			<if test="sgName != null">
+				sg_name = #{sgName}
 			</if>
-			<if test="swName != null">
-				and sw_name = #{swName}
+			<if test="adminName != null">
+				and adm_name = #{adminName}
 			</if>
+			<if test="startDate != null">
+				and ord_datetime &gt;= #{startDate}
+			</if>
+			<if test="endDate != null">
+				and ord_datetime &lt;= #{endDate}
+			</if>
+				<choose>
+					<when test="searchBy=='company'">
+						 u_name = #{name} and u_group = 'COMPANY'
+					</when>
+					<when test="searchBy=='customer'">
+						 u_name = #{name} and u_group = 'CUSTOMER'
+					</when>
+					<when test="searchBy=='softwarename'">
+						 sw_name = #{swName}
+					</when>
+				</choose>
 		</where>
 	</sql>
-	<select id="selectSaleOrderByNo" parameterType="SaleOrder" resultMap="SaleOrderResult">
-		<include refid="saleOrderSql"/>
+	<select id="selectSaleOrderByNo" parameterType="SaleOrder" resultMap="selectSaleOrderByMapWithAPI">
+		<include refid="selectParameterSql"/>
 		<include refid="whereSql"/>
 	</select>
 	
-	<select id="selectSaleOrderByMapWithAPI" parameterType="map" resultMap="SaleOrderResult">
+	<select id="selectSaleOrderByMapWithAPI" parameterType="map" resultMap="selectSaleOrderByMapWithAPI">
 		<include refid="selectParameterSql"/>
 		<include refid="whereSwNameSql"/>
+		order by so.ord_datetime desc
 	</select>
 
 </mapper>

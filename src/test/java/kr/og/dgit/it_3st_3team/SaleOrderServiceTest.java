@@ -40,8 +40,13 @@ public class SaleOrderServiceTest {
 	@Test
 	public void test2FindSaleOrderByMapWithAPI() {
 		 Map<String, String> maps = new HashMap<>();
-	        maps.put("ordNo", "1");
-	        maps.put("swName", "바람의 제국");
+	        maps.put("sgName", "게임");
+	        maps.put("adminName", "영업1");
+	        maps.put("endDate", "2017-12-31");
+	      //  maps.put("searchBy", "softwarename");
+	      /*  maps.put("name", "알럽소프트");
+	        maps.put("name", "재밌는게임방");*/
+	      //  maps.put("swName", "바람의 제국");
 	        List<SaleOrder> saleOrders = service.findSaleOrderByMapWithAPI(maps);
 	        Assert.assertNotNull(saleOrders);
 	       for (SaleOrder s : saleOrders) {
