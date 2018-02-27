@@ -1,5 +1,8 @@
 package kr.or.dgit.it_3st_3team.service;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
 import org.apache.ibatis.session.SqlSession;
@@ -30,10 +33,10 @@ public class SaleOrderService {
 		}
 	}
 	
-	public SaleOrder findSaleOrderWithAllByNo(SaleOrder ordNo) {
-		log.debug("findSaleOrderWithAllByNo()");
+	public List<SaleOrder> findSaleOrderByMapWithAPI(Map<String, String> map) {
+		log.debug("findSaleOrderByMapWithAPI()");
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
-			return sqlSession.selectOne(namespace + "selectSaleOrderWithAllByNo", ordNo);
+			return sqlSession.selectList(namespace + "selectSaleOrderByMapWithAPI", map);
 		}
 	}
 }

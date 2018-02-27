@@ -16,6 +16,7 @@ public class SaleOrder {
 	private Payment ordPayment;
 	private Date ordDatetime;
 	private Admin admin;
+	
 
 	public SaleOrder() {
 	}

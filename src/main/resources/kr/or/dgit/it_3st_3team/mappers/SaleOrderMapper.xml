@@ -12,7 +12,7 @@
 		<result property="ordDatetime" column="ord_datetime"/>
 	</resultMap>
 	
-	<resultMap type="SaleOrder" id="SaleOrderWithAllResult" extends="SaleOrderResult">
+	<resultMap type="SaleOrder" id="selectSaleOrderByMapWithAPI" extends="SaleOrderResult">
 		<result property="user.userNo" column="u_no" />
 		<result property="user.userId" column="u_id" />
 		<result property="user.name" column="u_name" />
@@ -36,7 +36,7 @@
 	</sql>
 	
 	
-	<sql id="saleOrderAllSql">
+	<sql id="selectParameterSql">
 	select * from sale_order as so 
 	join software as sp on so.sw_no=sp.sw_no
 	join admin as ad on so.adm_no=ad.adm_no
@@ -51,14 +51,25 @@
 			</if>
 		</where>
 	</sql>
-	<select id="selectSaleOrderByNo" parameterType="SaleOrder" resultMap="SaleOrderWithAllResult">
-		<include refid="saleOrderAllSql"/>
+	
+	<sql id="whereSwNameSql">
+		<where>
+			<if test="ordNo != null">
+				ord_no = #{ordNo}
+			</if>
+			<if test="swName != null">
+				and sw_name = #{swName}
+			</if>
+		</where>
+	</sql>
+	<select id="selectSaleOrderByNo" parameterType="SaleOrder" resultMap="SaleOrderResult">
+		<include refid="saleOrderSql"/>
 		<include refid="whereSql"/>
 	</select>
 	
-	<select id="selectSaleOrderWithAllByNo" parameterType="SaleOrder" resultMap="SaleOrderWithAllResult">
-		<include refid="saleOrderAllSql"/>
-		<include refid="whereSql"/>
+	<select id="selectSaleOrderByMapWithAPI" parameterType="map" resultMap="SaleOrderResult">
+		<include refid="selectParameterSql"/>
+		<include refid="whereSwNameSql"/>
 	</select>
 
 </mapper>
