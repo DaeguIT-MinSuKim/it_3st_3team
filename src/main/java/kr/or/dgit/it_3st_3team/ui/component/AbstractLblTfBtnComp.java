@@ -11,18 +11,21 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
-public class LblTfBtnComp extends JPanel {
+public abstract class AbstractLblTfBtnComp extends JPanel implements ActionListener {
 	private JTextField tfInput;
 	private JLabel lbltitle;
 	private JButton btn;
 
-	public LblTfBtnComp(String title, String btnName) {
+	public AbstractLblTfBtnComp(String title, String btnName) {
 		lbltitle = new JLabel(title);
 		lbltitle.setHorizontalAlignment(SwingConstants.RIGHT);
 		btn = new JButton(btnName);
-		
+		btn.addActionListener(this);
+
 		initComponents();
 	}
 
@@ -47,8 +50,15 @@ public class LblTfBtnComp extends JPanel {
 		pBtnArea.setLayout(new GridLayout(0, 1, 0, 0));
 		pBtnArea.add(btn);
 		add(pBtnArea);
-		
+
 		btn.setBorder(UIManager.getBorder("Button.border"));
 	}
 
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btn) {
+			actionPerformedBtn(e);
+		}
+	}
+
+	protected abstract void actionPerformedBtn(ActionEvent e);
 }

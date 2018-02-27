@@ -30,18 +30,10 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 		
 		
 		JPanel pRegister = new JPanel();
-		pRegister.setBackground(Color.WHITE);
-		pRegister.setBounds(0, 0, 1200, 197);
+		pRegister.setBackground(new Color(240, 240, 240));
+		pRegister.setBounds(0, 0, 1200, 191);
 		add(pRegister);
 		pRegister.setLayout(null);
-		
-		JButton btnSubmitSW = new JButton("등록");
-		btnSubmitSW.setBounds(965, 154, 97, 23);
-		pRegister.add(btnSubmitSW);
-		
-		JButton btnCancelSW = new JButton("취소");
-		btnCancelSW.setBounds(1068, 154, 97, 23);
-		pRegister.add(btnCancelSW);
 		
 		btnSubmitCF = new JButton("분류등록");
 		btnSubmitCF.addActionListener(this);
@@ -59,7 +51,7 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 
 		
 		ImageComp pRegisterImg = new ImageComp();
-		pRegisterImg.setBounds(0, 0, 205, 197);
+		pRegisterImg.setBounds(0, 0, 205, 191);
 		pRegister.add(pRegisterImg);
 		
 		LblTfComp pSWName = new LblTfComp("품목 명");

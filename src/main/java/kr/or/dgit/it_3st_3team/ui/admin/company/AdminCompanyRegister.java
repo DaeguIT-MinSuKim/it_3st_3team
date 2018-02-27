@@ -8,7 +8,9 @@ import javax.swing.JPanel;
 import kr.or.dgit.it_3st_3team.ui.component.ImageComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblAddressComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblPwdTfComp;
-import kr.or.dgit.it_3st_3team.ui.component.LblTfBtnComp;
+import kr.or.dgit.it_3st_3team.ui.component.LblTfBtnIdChkComp;
+import kr.or.dgit.it_3st_3team.ui.component.LblTfBtnPostSearchComp;
+import kr.or.dgit.it_3st_3team.ui.component.AbstractLblTfBtnComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblTfComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblCmbAdminComp;
 
@@ -42,7 +44,7 @@ public class AdminCompanyRegister extends JPanel {
 		button_3.setBounds(783, 190, 97, 30);
 		panel_2.add(button_3);
 		
-		LblTfBtnComp panel = new LblTfBtnComp("아이디", "중복확인");
+		AbstractLblTfBtnComp panel = new LblTfBtnIdChkComp("아이디", "중복확인");
 		panel.setBounds(103, 10, 288, 30);
 		panel_2.add(panel);
 		
@@ -62,7 +64,7 @@ public class AdminCompanyRegister extends JPanel {
 		lblTfComp.setBounds(91, 170, 263, 30);
 		panel_2.add(lblTfComp);
 		
-		LblTfBtnComp lblTfBtnComp = new LblTfBtnComp("우편번호", "검색");
+		AbstractLblTfBtnComp lblTfBtnComp = new LblTfBtnPostSearchComp("우편번호", "검색");
 		lblTfBtnComp.setBounds(514, 50, 280, 30);
 		panel_2.add(lblTfBtnComp);
 		
