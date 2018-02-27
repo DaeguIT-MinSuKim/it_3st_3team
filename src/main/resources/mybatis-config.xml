@@ -36,7 +36,9 @@
 		<mapper resource="kr/or/dgit/it_3st_3team/mappers/SaleOrderMapper.xml" />
 
 		<mapper resource="kr/or/dgit/it_3st_3team/mappers/SoftwareGroupMapper.xml" />
+
 		<mapper resource="kr/or/dgit/it_3st_3team/mappers/SoftwareMapper.xml" />
+
 
 	</mappers>
 </configuration>

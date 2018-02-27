@@ -64,7 +64,7 @@
 	
 	<sql id="insertSql">
 		insert into user(u_no, u_id, u_pwd, u_name, u_email, u_phone, u_zipcode, u_addr1, u_addr2, u_group, adm_no) values
-		(#{userNo}, #{userId},password(#{userPwd}), #{name}, #{email}, #{phone}, #{zipcode}, #{addr1}, #{addr2}, #{userGroup}, #{admin.adminNo});
+		(#{userNo}, #{userId},password(#{userPwd}), #{name}, #{email}, #{phone}, #{zipcode}, #{addr1}, #{addr2}, #{userGroup.value}, #{admin.adminNo});
 	</sql>
 	
 	<!-- User 마지막 no + 1 후 insert -->
