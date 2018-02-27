@@ -7,7 +7,7 @@ $$
 CREATE PROCEDURE software_project.proc_insert_sale_order(
 	in ORD_NO int,
 	in ORD_QUANTITY int,
-	in ORD_PAYMENT enum,
+	in ORD_PAYMENT enum(20),
 	in SW_NO int,
 	in U_NO int
 )
@@ -41,7 +41,7 @@ $$
 CREATE PROCEDURE software_project.proc_update_sale_order(
 	in ORD_NO int,
 	in ORD_QUANTITY int,
-	in ORD_PAYMENT enum
+	in ORD_PAYMENT enum(20)
 )
 BEGIN
 	DECLARE sw_supply_price int;
