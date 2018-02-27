@@ -22,8 +22,8 @@ public class User {
 		this.userNo = userNo;
 	}
 
-	public User(String userName) {
-		this.name = userName;
+	public User(String userId) {
+		this.userId = userId;
 	}
 
 	public User(String userId, String userPwd) {

@@ -29,6 +29,20 @@ public class UserService {
 		}
 	}
 	
+	public User findUserById(User user) {
+		log.debug("findUserById()");
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectOne(namespace + "selectUserById", user);
+		}
+	}
+	
+	public boolean existUser(User user) {
+		if (findUserById(user) == null) {
+			return false;
+		}
+		return true;
+	}
+	
 	public User findUserByLogin(User user) {
 		log.debug("findUserByLogin()");
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {

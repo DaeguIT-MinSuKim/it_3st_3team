@@ -51,6 +51,16 @@ public class UserServiceTest {
 	}
 	
 	@Test
+	public void test12FindUserById() {
+		User user = new User("uid1");
+		User findUser = service.findUserById(user);
+		System.out.println(findUser);
+		
+		assertNotNull(findUser);
+		assertEquals(user.getUserId(), findUser.getUserId());
+	}
+	
+	@Test
 	public void test2ListUserAll() {
 		List<User> lists = service.listUserAll();
 		System.out.println(lists);

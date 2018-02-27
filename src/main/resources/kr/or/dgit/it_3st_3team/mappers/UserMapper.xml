@@ -36,19 +36,17 @@
 	<sql id="selectLastNo">
 		select max(u_no) as last_id from user;
 	</sql>
-		
-	<sql id="whereSql">
-		<where>
-			<if test="userNo != null">
-				u_no = #{userNo}
-			</if>
-		</where>
-	</sql>
 	
 	<!-- User no 로 검색 -->
 	<select id="selectUserByNo" parameterType="User" resultMap="UserWithAdminResult">
 		<include refid="selectWithAdminSql" />
-		<include refid="whereSql" />
+		where u_no = #{userNo}
+	</select>
+	
+	<!-- User Id 로 검색 -->
+	<select id="selectUserById" parameterType="User" resultMap="UserWithAdminResult">
+		<include refid="selectWithAdminSql" />
+		where u_id = #{userId}
 	</select>
 	
 	<!-- 모든 User 검색 -->

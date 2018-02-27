@@ -6,7 +6,12 @@ import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import kr.or.dgit.it_3st_3team.dto.User;
+import kr.or.dgit.it_3st_3team.service.UserService;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -14,6 +19,9 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.util.Arrays;
 import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
@@ -118,6 +126,20 @@ public class JoinUI extends JFrame implements ActionListener {
 		pfUserPwdChk = new JPasswordField();
 		pfUserPwdChk.setHorizontalAlignment(SwingConstants.LEFT);
 		pfUserPwdChk.setBounds(144, 156, 150, 30);
+		pfUserPwdChk.addFocusListener(new FocusAdapter() {
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				super.focusLost(e);
+				
+				if (!Arrays.equals(pfUserPwd.getPassword(), pfUserPwdChk.getPassword())) {
+					JOptionPane.showMessageDialog(null, "비밀번호가 다릅니다. 다시 입력해주세요.");
+					pfUserPwd.setText("");
+					pfUserPwd.requestFocus();
+				}
+			}
+			
+		});
 		pInput.add(pfUserPwdChk);
 
 		JLabel lblUserName = new JLabel("이름");
@@ -180,6 +202,15 @@ public class JoinUI extends JFrame implements ActionListener {
 	}
 
 	protected void actionPerformedBtnDuplId(ActionEvent e) {
+		String joinId = tfUserId.getText();
+		if (UserService.getInstance().existUser(new User(joinId))) {
+			JOptionPane.showMessageDialog(null, "존재하는 아이디입니다.");
+			tfUserId.setText("");
+			tfUserId.requestFocus();
+		} else {
+			JOptionPane.showMessageDialog(null, "사용가능한 아이디입니다.");
+			pfUserPwd.requestFocus();
+		}
 	}
 	protected void actionPerformedBtnUserJoinOK(ActionEvent e) {
 	}
