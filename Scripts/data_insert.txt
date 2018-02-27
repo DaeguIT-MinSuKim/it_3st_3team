@@ -1,7 +1,7 @@
 
 insert into admin_group(ag_no, ag_name, ag_auth) values
-(1, '관리자', 9),
-(2, '영업', 1);
+(1, '관리자', 1),
+(2, '영업', 2);
 
 select * from admin_group;
 
