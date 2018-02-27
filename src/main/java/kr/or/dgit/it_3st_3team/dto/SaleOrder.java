@@ -18,6 +18,7 @@ public class SaleOrder {
 	private Admin admin;
 	private SoftwareGroup softwaregroup;
 
+
 	public SaleOrder() {
 	}
 
