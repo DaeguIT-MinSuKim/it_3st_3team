@@ -34,7 +34,7 @@ public class SaleOrderService {
 	public List<SaleOrder> findSaleOrderByMapWithAPI(Map<String, String> map) {
 		log.debug("findSaleOrderByMapWithAPI()");
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
-			return sqlSession.selectList(namespace + "selectSaleOrderByMapWithAPI", map);
+			return sqlSession.selectList(namespace + "selectSaleOrderWithAllByNo", map);
 		}
 	}
 
