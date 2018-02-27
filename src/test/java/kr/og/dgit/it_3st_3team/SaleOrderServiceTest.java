@@ -43,11 +43,11 @@ public class SaleOrderServiceTest {
 	@Test
 	public void test2FindSaleOrderByMapWithAPI() {
 		Map<String, String> maps = new HashMap<>();
-		maps.put("sgName", "게임");
+		maps.put("sgName", "그래픽");
 		maps.put("adminName", "영업1");
 		maps.put("endDate", "2017-12-31");
 		//maps.put("searchBy", "softwarename");
-		maps.put("searchBy", "customer");
+		maps.put("searchBy", "company");
 		
 		maps.put("name", "알럽소프트"); 
 		//maps.put("name", "재밌는게임방");

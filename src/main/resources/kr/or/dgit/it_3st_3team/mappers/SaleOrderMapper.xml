@@ -2,4 +2,98 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.dgit.it_3st_3team.dao.SaleOrderDao">
 
+	<resultMap type="SaleOrder" id="SaleOrderResult">
+		<id property="ordNo" column="ord_no"/>
+		<result property="ordQuantity" column="ord_quantity"/>
+		<result property="ordSupplyPrice" column="ord_supply_price"/>
+		<result property="ordSellPrice" column="ord_sell_price"/>
+		<result property="ordTax" column="ord_tax"/>
+		<result property="ordSellProfit" column="ord_sell_profit"/>
+		<result property="ordPayment" column="ord_payment"/>
+		<result property="ordDatetime" column="ord_datetime"/>
+	</resultMap>
+	
+	<resultMap type="SaleOrder" id="selectSaleOrderByMapWithAPI" extends="SaleOrderResult">
+		<result property="user.userNo" column="u_no" />
+		<result property="user.userId" column="u_id" />
+		<result property="user.name" column="u_name" />
+		<result property="software.swNo" column="sw_no" />
+		<result property="software.swName" column="sw_name" />
+		<result property="admin.adminNo" column="adm_no" />
+		<result property="admin.adminId" column="adm_id" />
+		<result property="admin.adminName" column="adm_name" />
+		<result property="software.swGroup.sgName" column="sg_name" />
+	</resultMap>
+	
+	
+	<sql id="saleOrderSql">
+	select ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no
+	from sale_order
+	</sql>
+	
+	<!-- 현황관리 조건검색 -->
+	
+	<sql id="selectParameterSql">
+	select us.u_group as '고객타입', us.u_name as '고객명', cu.u_group as '공급타입', cu.u_name as '공급명',
+	so.ord_no, ad.adm_name, sg.sg_name, sp.sw_name, so.ord_quantity,
+	so.ord_supply_price, so.ord_sell_price, so.ord_tax, so.ord_sell_profit,
+	so.ord_payment,so.ord_datetime, ad.adm_name 
+	from sale_order as so 
+	join software as sp on so.sw_no=sp.sw_no
+	join software_group as sg on sp.sg_no=sg.sg_no
+	join admin as ad on so.adm_no=ad.adm_no
+	join user as us on so.u_no=us.u_no
+	join user as cu on sp.pc_no=cu.u_no
+	</sql>
+	
+	<sql id="whereSql">
+		<where>
+			<if test="ordNo != null">
+				ord_no = #{ordNo}
+			</if>
+		</where>
+	</sql>
+	
+
+	<sql id="whereSwNameSql">
+		<where>
+			<if test="sgName != null">
+				sg_name = #{sgName}
+			</if>
+			<if test="adminName != null">
+				and adm_name = #{adminName}
+			</if>
+			<if test="startDate != null">
+				and ord_datetime &gt;= #{startDate}
+			</if>
+			<if test="endDate != null">
+				and ord_datetime &lt;= #{endDate}
+			</if>
+				<choose>
+					<when test="searchBy=='customer'">
+						and us.u_name = #{name} and us.u_group = 'CUSTOMER'
+					</when>
+					<when test="searchBy=='company'">
+						and cu.u_name = #{name} and cu.u_group = 'COMPANY'
+					</when>
+					<when test="searchBy=='softwarename'">
+						and sw_name = #{swName}
+					</when>
+				</choose>
+		</where>
+	</sql>
+	
+	<select id="selectSaleOrderByNo" parameterType="SaleOrder" resultMap="selectSaleOrderByMapWithAPI">
+		<include refid="selectParameterSql"/>
+	</select>
+
+	
+	<select id="selectSaleOrderWithAllByNo" parameterType="Map" resultMap="selectSaleOrderByMapWithAPI">
+		<include refid="selectParameterSql"/>
+		<include refid="whereSwNameSql"/>
+	</select>
+	
+	
+
+
 </mapper>
