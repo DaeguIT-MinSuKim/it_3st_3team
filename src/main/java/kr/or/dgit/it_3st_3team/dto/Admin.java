@@ -8,6 +8,12 @@ public class Admin {
 	private PhoneNumber phone;
 	private AdminGroup adminGroup;
 
+	
+	
+	public Admin(String adminName) {
+		this.adminName = adminName;
+	}
+
 	public Admin() {
 	}
 

@@ -23,18 +23,10 @@ public class AdminOrderRegister extends JPanel {
 		setLayout(null);
 
 		JPanel pCorrection = new JPanel();
-		pCorrection.setBackground(new Color(255, 255, 255));
-		pCorrection.setBounds(0, 0, 1190, 166);
+		pCorrection.setBackground(new Color(240, 240, 240));
+		pCorrection.setBounds(0, 0, 961, 166);
 		add(pCorrection);
 		pCorrection.setLayout(null);
-
-		JButton btnCorrection = new JButton("수정");
-		btnCorrection.setBounds(973, 117, 80, 30);
-		pCorrection.add(btnCorrection);
-
-		JButton btnOrderCancel = new JButton("취소");
-		btnOrderCancel.setBounds(1065, 117, 80, 30);
-		pCorrection.add(btnOrderCancel);
 
 		LblTfComp pOrderCount = new LblTfComp("품목 수량");
 		pOrderCount.setBounds(333, 116, 170, 30);

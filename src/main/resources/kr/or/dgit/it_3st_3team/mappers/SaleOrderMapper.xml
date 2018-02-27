@@ -74,15 +74,31 @@
 	</sql>
 	
 	<sql id="whereOMSql">
+		<if test="sg.sg_name != null">
 		<where>
 			sg.sg_name=#{softwaregroup.sgName} and ad.adm_name=#{admin.adminName} and sw.ord_datetime between #{ord_datetime} and #{ord_datetime}
 		</where>
+		</if>
+		
+		<if test="us.u_name != null">
+			<where>
+				us.u_name=#{user.name} and ad.adm_name=#{admin.adminName} and sw.ord_datetime between #{ord_datetime} and #{ord_datetime}
+			</where>
+		</if>
 	</sql>
 	
+	
+	
+	<!-- 전체 검색 -->
 	<select id="selectOrderManagementByAll" parameterType="SaleOrder" resultMap="SaleOrderwithUserSgSoftwareAdminResult">
 		<include refid="selectOMSql"/>
 	</select>
 	
+	<!-- 부분 검색 -->
+	<select id="selectOrderManagementByNo" parameterType="SaleOrder" resultMap="SaleOrderwithUserSgSoftwareAdminResult">
+		<include refid="selectOMSql"/>
+		<include refid="whereOMSql"/>
+	</select>
 	
 	
 	<!-- 주문관리  -->

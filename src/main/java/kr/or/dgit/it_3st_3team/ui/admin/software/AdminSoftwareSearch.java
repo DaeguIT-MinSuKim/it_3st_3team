@@ -6,9 +6,11 @@ import javax.swing.JPanel;
 
 import kr.or.dgit.it_3st_3team.ui.component.CmbStringComp;
 import kr.or.dgit.it_3st_3team.ui.component.TfBtnSearchComp;
+import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
 public class AdminSoftwareSearch extends JPanel {
+	private JTextField textField;
 
 	public AdminSoftwareSearch() {
 
@@ -20,18 +22,18 @@ public class AdminSoftwareSearch extends JPanel {
 		setLayout(null);
 
 		JPanel pSWSearch = new JPanel();
-		pSWSearch.setBackground(Color.WHITE);
-		pSWSearch.setBounds(0, 0, 1170, 42);
+		pSWSearch.setBackground(new Color(244, 244, 244));
+		pSWSearch.setBounds(0, 0, 939, 42);
 		add(pSWSearch);
 		pSWSearch.setLayout(null);
 
 		CmbStringComp pSWNamePCName = new CmbStringComp();
 		pSWNamePCName.setBounds(148, 9, 137, 25);
 		pSWSearch.add(pSWNamePCName);
-
-		TfBtnSearchComp pSearch = new TfBtnSearchComp("검색");
-		pSearch.setBounds(375, 9, 628, 25);
-		pSWSearch.add(pSearch);
+		
+		textField = new JTextField();
+		textField.setBounds(312, 7, 615, 27);
+		pSWSearch.add(textField);
+		textField.setColumns(10);
 	}
-
 }
