@@ -1,5 +1,7 @@
 package kr.or.dgit.it_3st_3team.service;
 
+import java.util.List;
+
 import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
 import org.apache.ibatis.session.SqlSession;
@@ -34,6 +36,15 @@ public class SaleOrderService {
 		log.debug("findSaleOrderWithAllByNo()");
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
 			return sqlSession.selectOne(namespace + "selectSaleOrderWithAllByNo", ordNo);
+		}
+	}
+	
+	//주문관리
+	
+	public List<SaleOrder> selectOrderManagementByAll(){
+		log.debug("selectOrderManagementByAll()");
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectList(namespace + "selectOrderManagementByAll");
 		}
 	}
 }

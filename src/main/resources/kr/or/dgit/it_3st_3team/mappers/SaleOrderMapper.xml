@@ -23,6 +23,19 @@
 		<result property="admin.adminName" column="adm_name" />
 	</resultMap>
 	
+	<resultMap type="SaleOrder" id="SaleOrderwithUserSgSoftwareAdminResult" extends="SaleOrderResult">
+		<result property="user.userNo" column="u_no" />
+		<result property="user.userId" column="u_id" />
+		<result property="user.name" column="u_name" />
+		<result property="softwaregroup.sgNo" column="sg_no"/>
+		<result property="softwaregroup.sgName" column="sg_name"/>
+		<result property="software.swNo" column="sw_no" />
+		<result property="software.swName" column="sw_name" />
+		<result property="admin.adminNo" column="adm_no" />
+		<result property="admin.adminId" column="adm_id" />
+		<result property="admin.adminName" column="adm_name" />
+	
+	</resultMap>
 	
 	<!-- resultMap type="SaleOrder" id="SaleOrderWithAllResult" extends="SaleOrderResult">
 		<result property="user.userNo" column="u_no" />
@@ -51,6 +64,31 @@
 			</if>
 		</where>
 	</sql>
+	
+	<!-- 주문 관리 -->
+	<sql id="selectOMSql">
+		select ord_no, ord_datetime, sg.sg_name,  sw.sw_no, ss.sw_name, ord_quantity, sw.u_no, us.u_name,
+		ord_payment,sw.adm_no, ad.adm_name, us.u_name
+		from sale_order sw join `user` us on sw.u_no = us.u_no join software ss on sw.sw_no=ss.sw_no join admin ad on sw.adm_no=ad.adm_no
+		join software_group sg on sg.sg_no=ss.sg_no
+	</sql>
+	
+	<sql id="whereOMSql">
+		<where>
+			sg.sg_name=#{softwaregroup.sgName} and ad.adm_name=#{admin.adminName} and sw.ord_datetime between #{ord_datetime} and #{ord_datetime}
+		</where>
+	</sql>
+	
+	<select id="selectOrderManagementByAll" parameterType="SaleOrder" resultMap="SaleOrderwithUserSgSoftwareAdminResult">
+		<include refid="selectOMSql"/>
+	</select>
+	
+	
+	
+	<!-- 주문관리  -->
+	
+	
+	
 	<select id="selectSaleOrderByNo" parameterType="SaleOrder" resultMap="SaleOrderWithAllResult">
 		<include refid="saleOrderAllSql"/>
 		<include refid="whereSql"/>

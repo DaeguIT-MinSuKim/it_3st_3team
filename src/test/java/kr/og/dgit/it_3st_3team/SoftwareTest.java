@@ -70,5 +70,13 @@ public class SoftwareTest {
 		int res = service.updateSoftware(sw);
 		assertEquals(1, res);
 	}
+	
+	@Test
+	public void testFdeleteSoftware() {
+		int res = service.deleteSoftware(new Software(11));
+		assertEquals(1, res);
+	}
+	
+	
 
 }

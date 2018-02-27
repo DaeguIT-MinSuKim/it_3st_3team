@@ -2,6 +2,8 @@ package kr.og.dgit.it_3st_3team;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.util.List;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -38,6 +40,16 @@ public class SaleOrderServiceTest {
 		SaleOrder findSaleOrder = service.findSaleOrderWithAllByNo(saleorder);
 		assertNotNull(findSaleOrder);
 		System.out.println(findSaleOrder);*/
+	}
+	
+	@Test
+	public void testAselectOrderManagementByAll() {
+		List<SaleOrder> listsm = service.selectOrderManagementByAll();
+		System.out.println(listsm);
+		assertNotNull(listsm);
+		for(SaleOrder sm :  listsm) {
+			System.out.println(sm);
+		}
 	}
 
 }
