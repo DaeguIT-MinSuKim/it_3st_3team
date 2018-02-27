@@ -8,17 +8,20 @@ public class Admin {
 	private PhoneNumber phone;
 	private AdminGroup adminGroup;
 
-	
-	
-	public Admin(String adminName) {
-		this.adminName = adminName;
-	}
-
 	public Admin() {
 	}
 
 	public Admin(int adminNo) {
 		this.adminNo = adminNo;
+	}
+
+	public Admin(String adminName) {
+		this.adminName = adminName;
+	}
+
+	public Admin(String adminId, String adminPwd) {
+		this.adminId = adminId;
+		this.adminPwd = adminPwd;
 	}
 
 	public Admin(int adminNo, String adminId, String adminName, String adminPwd, PhoneNumber phone,

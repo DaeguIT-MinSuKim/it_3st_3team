@@ -22,10 +22,17 @@ public class UserService {
 	private UserService() {
 	}
 	
-	public User findUserByNo(User userNo) {
+	public User findUserByNo(User user) {
 		log.debug("findUserByNo()");
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
-			return sqlSession.selectOne(namespace + "selectUserByNo", userNo);
+			return sqlSession.selectOne(namespace + "selectUserByNo", user);
+		}
+	}
+	
+	public User findUserByLogin(User user) {
+		log.debug("findUserByLogin()");
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectOne(namespace + "selectUserByLogin", user);
 		}
 	}
 	

@@ -1,7 +1,7 @@
 package kr.or.dgit.it_3st_3team.ui;
 
 import java.awt.Color;
-import java.awt.EventQueue;
+
 import java.awt.Font;
 import java.awt.GridLayout;
 
@@ -15,16 +15,16 @@ import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-import kr.or.dgit.it_3st_3team.ui.admin.chart.CompanyStatusContent;
-import kr.or.dgit.it_3st_3team.ui.admin.customer.AdminCustomerContent;
+import kr.or.dgit.it_3st_3team.dto.User;
+
+
 import kr.or.dgit.it_3st_3team.ui.admin.report.UserStatusContent;
-import kr.or.dgit.it_3st_3team.ui.admin.software.AdminSoftwareContent;
+
 import kr.or.dgit.it_3st_3team.ui.user.CustomerOrderContent;
 import kr.or.dgit.it_3st_3team.ui.user.UserModifyContent;
 
 @SuppressWarnings("serial")
 public class UserCustomerUI extends JFrame implements ActionListener {
-
 	private JPanel contentPane;
 	private JButton btnSWRegister;
 	private JPanel pContent;
@@ -32,32 +32,15 @@ public class UserCustomerUI extends JFrame implements ActionListener {
 	private JButton btnModify;
 	private JButton btnSupplyStatusGraph;
 	private JButton btnSupplyStatus;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					UserCustomerUI frame = new UserCustomerUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public UserCustomerUI() {
+	private User user;
+	
+	public UserCustomerUI(User user) {
+		this.user = user;
 		initComponents();
 	}
 
 	private void initComponents() {
-		setTitle("소프트웨어 - 고객 ");
+		setTitle("고객 - 소프트웨어");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1500, 900);
 		contentPane = new JPanel();
@@ -77,7 +60,7 @@ public class UserCustomerUI extends JFrame implements ActionListener {
 		lblImg.setBounds(85, 38, 128, 128);
 		pImg.add(lblImg);
 		
-		JLabel lblName = new JLabel("재밌는 게임방님 환영합니다.");
+		JLabel lblName = new JLabel(String.format("%s님 환영합니다.", user.getName()));
 		lblName.setHorizontalAlignment(SwingConstants.CENTER);
 		lblName.setFont(new Font("나눔바른고딕", Font.PLAIN, 15));
 		lblName.setBounds(30, 188, 228, 33);

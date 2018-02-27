@@ -24,10 +24,9 @@ public class AdminServiceTest {
 
 	@Test
 	public void test1selectLogin() {
-		Admin admin = new Admin();
-		admin.setAdminId("admin1");
-		admin.setAdminPwd("admin1");
-		Admin loginAdmin = service.selectLogin(admin);
+		Admin admin = new Admin("admin1", "admin1");
+		
+		Admin loginAdmin = service.findAdminByLogin(admin);
 		System.out.println(loginAdmin);
 		
 		assertNotNull(loginAdmin);

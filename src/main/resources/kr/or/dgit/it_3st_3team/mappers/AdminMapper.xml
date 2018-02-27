@@ -4,8 +4,8 @@
 	<resultMap type="Admin" id="AdminBasedResult">
 		<id property="adminNo" column="adm_no" />
 		<result property="adminId" column="adm_id" />
-		<result property="adminName" column="adm_id" />
-		<result property="adminPwd" column="adm_id" />
+		<result property="adminName" column="adm_name" />
+		<result property="adminPwd" column="adm_pwd" />
 		<result property="phone" column="adm_phone" />
 	</resultMap>
 	
@@ -28,15 +28,8 @@
 	
 	
 	
-	<sql id="loginWhereSql">
-		<where>
-			<if test="adminId != null">
-				adm_id = #{adminId}
-			</if>
-			<if test="adminPwd != null">
-				AND adm_pwd = password(#{adminPwd}) 
-			</if>
-		</where>
+	<sql id="whereLoginSql">
+		where adm_id = #{adminId} AND adm_pwd = password(#{adminPwd})
 	</sql>
 	
 	<sql id="whereSql">
@@ -47,9 +40,9 @@
 		</where>
 	</sql>
 	
-	<select id="selectLogin" parameterType="Admin" resultMap="AdminBasedResult">
+	<select id="selectAdminByLogin" parameterType="Admin" resultMap="AdminBasedResult">
 		<include refid="selectSql"/>
-		<include refid="loginWhereSql"/>
+		<include refid="whereLoginSql"/>
 	</select>
 	
 	<select id="selectAdminByNo" parameterType="Admin" resultMap="AdminBasedResult">

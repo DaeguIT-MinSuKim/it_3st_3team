@@ -19,12 +19,16 @@ public class User {
 	}
 
 	public User(int userNo) {
-		super();
 		this.userNo = userNo;
 	}
 
 	public User(String userName) {
 		this.name = userName;
+	}
+
+	public User(String userId, String userPwd) {
+		this.userId = userId;
+		this.userPwd = userPwd;
 	}
 
 	public User(String userId, String userPwd, String name, String email, PhoneNumber phone, String zipcode,
@@ -40,7 +44,7 @@ public class User {
 		this.userGroup = userGroup;
 		this.admin = admin;
 	}
-	
+
 	public User(int userNo, String userId, String userPwd, String name, String email, PhoneNumber phone, String zipcode,
 			String addr1, String addr2, UserGroup userGroup, Admin admin) {
 		this.userNo = userNo;
