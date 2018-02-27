@@ -25,18 +25,12 @@
 	</resultMap>
 	
 	
-	
-	<!-- resultMap type="SaleOrder" id="SaleOrderWithAllResult" extends="SaleOrderResult">
-		<result property="user.userNo" column="u_no" />
-		<result property="software.swNo" column="sw_no" />
-		<result property="admin.adminNo" column="adm_no" />
-	</resultMap -->
-	
 	<sql id="saleOrderSql">
 	select ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no
 	from sale_order
 	</sql>
 	
+	<!-- 현황관리 조건검색 -->
 	
 	<sql id="selectParameterSql">
 	select us.u_group as '고객타입', us.u_name as '고객명', cu.u_group as '공급타입', cu.u_name as '공급명',
@@ -75,11 +69,11 @@
 				and ord_datetime &lt;= #{endDate}
 			</if>
 				<choose>
-					<when test="searchBy=='company'">
-						and us.u_name = #{name} and us.u_group = 'COMPANY'
-					</when>
 					<when test="searchBy=='customer'">
-						and cu.u_name = #{name} and cu.u_group = 'CUSTOMER'
+						and us.u_name = #{name} and us.u_group = 'CUSTOMER'
+					</when>
+					<when test="searchBy=='company'">
+						and cu.u_name = #{name} and cu.u_group = 'COMPANY'
 					</when>
 					<when test="searchBy=='softwarename'">
 						and sw_name = #{swName}
@@ -91,65 +85,16 @@
 	<select id="selectSaleOrderByNo" parameterType="SaleOrder" resultMap="selectSaleOrderByMapWithAPI">
 		<include refid="selectParameterSql"/>
 	</select>
-<<<<<<< HEAD
+
 	
 	<select id="selectSaleOrderWithAllByNo" parameterType="Map" resultMap="selectSaleOrderByMapWithAPI">
 		<include refid="selectParameterSql"/>
 		<include refid="whereSwNameSql"/>
 	</select>
 	
-	<!-- 주문 관리
-	<sql id="selectOMSql">
-		select ord_no, ord_datetime, sg.sg_name,  sw.sw_no, ss.sw_name, ord_quantity, sw.u_no, us.u_name,
-		ord_payment,sw.adm_no, ad.adm_name, us.u_name
-		from sale_order sw join `user` us on sw.u_no = us.u_no join software ss on sw.sw_no=ss.sw_no join admin ad on sw.adm_no=ad.adm_no
-		join software_group sg on sg.sg_no=ss.sg_no
-=======
-	<!-- 주문 관리 -->
 	
 	
-		<!-- 삭제 -->
-	<sql id="deleteSql">
-		delete from sale_order
->>>>>>> refs/remotes/origin/master
-	</sql>
 	
-	<!-- 전체 검색 -->
-	<select id="selectOrderManagementByAll" parameterType="SaleOrder" resultMap="selectSaleOrderByMapWithAPI">
-		<include refid="selectParameterSql"/>
-	</select>
-	
-	<!-- 부분 검색 -->
-	<select id="selectOrderManagementByNo" parameterType="SaleOrder" resultMap="selectSaleOrderByMapWithAPI">
-		<include refid="selectParameterSql"/>
-		<include refid="whereSwNameSql"/>
-	</select>
-	
-	<!-- 삭제 -->
-	<delete id="deleteOrderManagement" parameterType="SaleOrder">
-		<include refid="deleteSql"/>
-		<include refid="whereSql"/>
-	</delete>
-	
-<<<<<<< HEAD
-	주문관리 
-=======
 
-	<!-- 주문관리  -->
-	
-	
-	
->>>>>>> refs/remotes/origin/master
-	<select id="selectSaleOrderByNo" parameterType="SaleOrder" resultMap="SaleOrderWithAllResult">
-		<include refid="saleOrderAllSql"/>
-
-		<include refid="whereSql"/>
-	</select>
-	
-	<select id="selectSaleOrderByMapWithAPI" parameterType="map" resultMap="selectSaleOrderByMapWithAPI">
-		<include refid="selectParameterSql"/>
-		<include refid="whereSwNameSql"/>
-		order by so.ord_datetime desc
-	</select> -->
 
 </mapper>
