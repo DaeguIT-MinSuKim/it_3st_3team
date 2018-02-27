@@ -23,26 +23,33 @@
 		select sigungu from Address
 	</sql>
 	
+	
+	
 	<sql id="whereSql">
-		<where>
+		
+			<if test="zipcode != null">
+				<where>
+					zipcode=#{zipcode}
+				</where>
+			</if>
 			zipcode=#{zipcode},sido=#{sido},sigungu=#{sigungu},doro=#{doro},
 			building1=#{building1},building2=#{building2}
-		</where>
+		
 	</sql>
 	
-	<select id="selectAddressByAll">
-		<include refid="selectSql"/>
-	</select>
 	
-	<select id="selcectAddressBySido">
+	
+	<select id="selcectAddressBySido" parameterType="Address" resultMap="AddressBasedResult">
 		<include refid="selectSidoSql"/>
 		group by sido
 	</select>
 	
 	
-	<select id="selcectAddressBySigungu">
+	<select id="selcectAddressBySigungu" parameterType="Address" resultMap="AddressBasedResult">
 		<include refid="selectSigunguSql"/>
 		<include refid="whereSql"/>
 		group by sigungu
 	</select>
+	
+	
 </mapper>
