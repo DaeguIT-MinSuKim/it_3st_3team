@@ -10,14 +10,16 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import kr.or.dgit.it_3st_3team.service.SoftwareGroupService;
+import kr.or.dgit.it_3st_3team.service.SoftwareService;
 import kr.or.dgit.it_3st_3team.ui.component.AbstractLblTfBtnComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblTfBtnSGRegisterComp;
+import kr.or.dgit.it_3st_3team.ui.table.AdminSoftwareGroupTable;
 
 @SuppressWarnings("serial")
 public class SoftwareGroupUI extends JFrame {
 
 	private JPanel contentPane;
-	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -46,36 +48,23 @@ public class SoftwareGroupUI extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(255, 255, 255));
+		contentPane.setBackground(new Color(240, 240, 240));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.WHITE);
+		AdminSoftwareGroupTable panel = new AdminSoftwareGroupTable();
+		panel.setBackground(new Color(240, 240, 240));
+		panel.loadTableDatas(SoftwareGroupService.getInstance().selectSoftwareGroupByAll());
 		panel.setBounds(12, 50, 410, 201);
 		contentPane.add(panel);
-		panel.setLayout(null);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(0, 0, 410, 201);
-		panel.add(scrollPane);
-		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null},
-				{null, null},
-			},
-			new String[] {
-				"\uBD84\uB958 \uBC88\uD638", "\uBD84\uB958 \uBA85"
-			}
-		));
-		scrollPane.setViewportView(table);
 		
 		LblTfBtnSGRegisterComp panel_1 = new LblTfBtnSGRegisterComp("분류 명", "등록");
 		panel_1.setBounds(12, 10, 410, 30);
+		
 		contentPane.add(panel_1);
+		;
 	}
 
 }

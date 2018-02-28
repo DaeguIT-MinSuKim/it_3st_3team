@@ -106,4 +106,11 @@ public class Software {
 				swNo, swName, swSupplyPrice, swSellPrice, swGroup, swQuantity, userNo);
 	}
 
+
+
+	public Object[] toArray() {
+		
+		return new Object[] {swNo,swGroup.getSgName(),swName,swQuantity,swSupplyPrice,swSellPrice,userNo.getName()};
+	}
+
 }

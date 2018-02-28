@@ -41,13 +41,12 @@ public class SoftwareGroup {
 
 	@Override
 	public String toString() {
-		if(sgName.equals("분류")) {
-			return String.format("%s", sgName);
-		}else {
-			return String.format("(%s)%s", sgNo, sgName);
-		}
-		
-		
+		return String.format("%s", sgName);
+	}
+
+	public Object[] toArray() {
+		// TODO Auto-generated method stub
+		return new Object[] {String.format("(%s)%s",sgNo,sgName)};
 	}
 
 	

@@ -135,7 +135,7 @@ public class SearchPostUI extends JFrame implements ActionListener {
 		cmbSido.setSelectedIndex(0);
 
 		pInputAddr = new LblAddressComp("상세주소");
-		
+
 		pInputAddr.setBounds(12, 441, 358, 65);
 		contentPane.add(pInputAddr);
 	}
@@ -212,16 +212,16 @@ public class SearchPostUI extends JFrame implements ActionListener {
 		String sigungu = (String) cmbSiGungu.getSelectedItem();
 		String doro = pDoro.getTfText();
 		int building1 = 0;
-		if( ! tfBNum1.getText().trim().isEmpty()) {
+		if (!tfBNum1.getText().trim().isEmpty()) {
 			building1 = Integer.parseInt(tfBNum1.getText());
 		}
 		int building2 = 0;
-		if( ! tfNum2.getText().trim().isEmpty()) {
+		if (!tfNum2.getText().trim().isEmpty()) {
 			building2 = Integer.parseInt(tfNum2.getText());
 		}
-		
+
 		Address address = new Address(sido, sigungu, doro, building1, building2);
-		
+
 		if (!doro.equals("")) {
 			address.setDoro(doro);
 		}
@@ -231,26 +231,24 @@ public class SearchPostUI extends JFrame implements ActionListener {
 		pPostTable.loadTableDatas(list);
 
 	}
-	
-
 
 	protected void actionPerformedBtnZipCodeOK(ActionEvent e) {
 		Address address = new Address();
-		
+
 		String str1 = pInputAddr.getTfAddress1();
 		String str2 = pInputAddr.getTfAddress2();
-		
-		if ( ! str1.trim().isEmpty()) {
+
+		if (!str1.trim().isEmpty()) {
 			String[] addrs = pInputAddr.getTfAddress1().split(" ");
 			addrs[0] = addrs[0].replace("[", "");
 			addrs[0] = addrs[0].replace("]", "");
-			
+
 			address.setZipcode(addrs[0]);
 			address.setSido(addrs[1]);
 			address.setSigungu(addrs[2]);
 			address.setDoro(addrs[3]);
 		}
-		
+
 		parent.setTfText(address.getZipcode());// 우편번호;
 		parent.getpInputAddress().setTfAddress1(address.getFirstAddress());
 		parent.getpInputAddress().setTfAddress2(str2);
@@ -260,6 +258,7 @@ public class SearchPostUI extends JFrame implements ActionListener {
 	public void setPostSearch(LblTfBtnPostSearchComp postComp) {
 		this.parent = postComp;
 	}
+
 	protected void actionPerformedBtnSearchCancel(ActionEvent e) {
 		pDoro.setTfText("");
 		tfBNum1.setText("");

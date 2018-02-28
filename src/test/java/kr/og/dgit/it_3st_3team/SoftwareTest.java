@@ -6,7 +6,9 @@ import java.util.List;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import kr.or.dgit.it_3st_3team.dto.Software;
 import kr.or.dgit.it_3st_3team.dto.SoftwareGroup;
@@ -14,6 +16,7 @@ import kr.or.dgit.it_3st_3team.dto.User;
 import kr.or.dgit.it_3st_3team.service.SoftwareGroupService;
 import kr.or.dgit.it_3st_3team.service.SoftwareService;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class SoftwareTest {
 		private static SoftwareService service;
 
