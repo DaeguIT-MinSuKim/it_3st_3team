@@ -27,7 +27,7 @@ public class SaleOrderServiceTest {
 		service = null;
 	}
 
-	/*@Test
+	@Test
 	public void test1FindSaleOrderByNo() {
 		SaleOrder saleorder = new SaleOrder();
 		saleorder.setOrdNo(1);
@@ -55,7 +55,7 @@ public class SaleOrderServiceTest {
 			System.out.println(s);
 		}
 	}
-*/
+
 	
 	
 	/*@Test 
