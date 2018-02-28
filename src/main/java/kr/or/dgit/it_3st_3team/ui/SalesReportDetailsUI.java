@@ -60,20 +60,17 @@ public class SalesReportDetailsUI extends JFrame {
 		JPanel pSearchedLists = new JPanel();
 		pTitle.add(pSearchedLists);
 		
-		JLabel lblNewLabel_1 = new JLabel("보고서");
-		pSearchedLists.add(lblNewLabel_1);
+		JLabel lblSelected1 = new JLabel("2018-01-01");
+		pSearchedLists.add(lblSelected1);
 		
-		JLabel lblNewLabel_2 = new JLabel("2018-01-01");
-		pSearchedLists.add(lblNewLabel_2);
+		JLabel lblSelected2 = new JLabel("2018-02-24");
+		pSearchedLists.add(lblSelected2);
 		
-		JLabel lblNewLabel_3 = new JLabel("2018-02-24");
-		pSearchedLists.add(lblNewLabel_3);
+		JLabel lblSelected3 = new JLabel("게임");
+		pSearchedLists.add(lblSelected3);
 		
-		JLabel lblNewLabel_4 = new JLabel("게임");
-		pSearchedLists.add(lblNewLabel_4);
-		
-		JLabel lblNewLabel_5 = new JLabel("오버워치");
-		pSearchedLists.add(lblNewLabel_5);
+		JLabel lblSelected4 = new JLabel("오버워치");
+		pSearchedLists.add(lblSelected4);
 		
 		SalesReportDetailsLists pLists = new SalesReportDetailsLists();
 		contentPane.add(pLists, BorderLayout.CENTER);

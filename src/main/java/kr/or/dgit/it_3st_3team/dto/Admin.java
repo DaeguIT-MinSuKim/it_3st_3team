@@ -84,13 +84,6 @@ public class Admin {
 
 	@Override
 	public String toString() {
-		/*if(adminName.equals("관리자")) {
-			return String.format("%s", adminName);
-		}else {
-			return String.format("(%s)%s", adminNo, adminName);
-		}*/
-		
-		return String.format("Admin [adminNo=%s, adminId=%s, adminName=%s, adminPwd=%s, phone=%s, adminGroup=%s]",
-				adminNo, adminId, adminName, adminPwd, phone, adminGroup);
+		return String.format("%s", adminName);
 	}
 }

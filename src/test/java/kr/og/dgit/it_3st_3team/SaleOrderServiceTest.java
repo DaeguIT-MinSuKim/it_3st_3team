@@ -37,38 +37,24 @@ public class SaleOrderServiceTest {
 	}
 
 	@Test
-	public void test2FindSaleOrderByMapWithAPI() {
+	public void test2FindSaleOrderWithAllBySearch() {
 		Map<String, String> maps = new HashMap<>();
 
 
-		maps.put("sgName", "그래픽");
-
-		maps.put("adminName", "영업1");
-
-		maps.put("endDate", "2017-12-31");
-
+		maps.put("sgName", "");
+		maps.put("adminName", "");
+		maps.put("startDate", "");
+		maps.put("endDate", "");
 		//maps.put("searchBy", "softwarename");
-
 		maps.put("searchBy", "company");
-
-		
-
-		maps.put("name", "알럽소프트"); 
-
+		maps.put("name", ""); 
 		//maps.put("name", "재밌는게임방");
-
-		 
-
 		//maps.put("swName", "바람의 제국");
-
-		List<SaleOrder> saleOrders = service.findSaleOrderWithAllByNo(maps);
-
+		List<SaleOrder> saleOrders = service.findSaleOrderWithAllBySearch(maps);
 		Assert.assertNotNull(saleOrders);
-
 		for (SaleOrder s : saleOrders) {
-
 			System.out.println(s);
-	}
+		}
 
 	/*
 	 * @Test public void testBselectOrderManagementByNo() { SaleOrder so = new
@@ -86,5 +72,12 @@ public class SaleOrderServiceTest {
 	 * int res = service.updateOrderManagement(so); assertEquals(1, res); }
 	 */
 
+	}
+	
+	@Test
+	public void test3findSaleOrderByAll() {
+		List<SaleOrder> findSaleOrder = service.findSaleOrderByAll();
+		//assertNotNull(findSaleOrder);
+		System.out.println(findSaleOrder);
 	}
 }

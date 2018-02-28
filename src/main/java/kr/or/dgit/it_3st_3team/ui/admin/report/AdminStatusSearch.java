@@ -45,11 +45,11 @@ public class AdminStatusSearch extends JPanel {
 		pSoftwareGroup.setBounds(11, 10, 125, 30);
 
 		add(pSoftwareGroup);
-
-		pAdminGroup = new CmbAdminGroupComp();
-		pAdminGroup.setBounds(148, 10, 125, 30);
-
-		add(pAdminGroup);
+		
+				pAdminGroup = new CmbAdminGroupComp();
+				pAdminGroup.setBounds(148, 10, 125, 30);
+				
+						add(pAdminGroup);
 
 		StartAndEndDate pCalendar = new StartAndEndDate();
 

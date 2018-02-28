@@ -13,7 +13,7 @@
 		<result property="ordDatetime" column="ord_datetime"/>
 	</resultMap>
 	
-	<resultMap type="SaleOrder" id="selectSaleOrderByMapWithAPI" extends="SaleOrderResult">
+	<resultMap type="SaleOrder" id="selectSaleOrderWithAll" extends="SaleOrderResult">
 		<result property="user.userNo" column="u_no" />
 		<result property="user.userId" column="u_id" />
 		<result property="user.name" column="u_name" />
@@ -57,42 +57,45 @@
 
 	<sql id="whereSwNameSql">
 		<where>
-			<if test="sgName != null">
+			<if test="sgName != null and sgName != ''">
 				sg_name = #{sgName}
 			</if>
-			<if test="adminName != null">
+			<if test="adminName != null and adminName != ''" >
 				and adm_name = #{adminName}
 			</if>
-			<if test="startDate != null">
+			<if test="startDate != null and startDate != ''">
 				and ord_datetime &gt;= #{startDate}
 			</if>
-			<if test="endDate != null">
+			<if test="endDate != null and endDate != ''">
 				and ord_datetime &lt;= #{endDate}
 			</if>
 				<choose>
-					<when test="searchBy=='customer'">
+					<when test="searchBy=='customer' and name != ''">
 						and us.u_name = #{name} and us.u_group = 'CUSTOMER'
 					</when>
-					<when test="searchBy=='company'">
+					<when test="searchBy=='company' and name != ''">
 						and cu.u_name = #{name} and cu.u_group = 'COMPANY'
 					</when>
-					<when test="searchBy=='softwarename'">
-						and sw_name = #{swName}
+					<when test="searchBy=='softwarename' and name != ''">
+						and sw_name = #{name}
 					</when>
 				</choose>
 		</where>
 	</sql>
 	
-	<select id="selectSaleOrderByNo" parameterType="SaleOrder" resultMap="selectSaleOrderByMapWithAPI">
+	<select id="selectSaleOrderByNo" parameterType="SaleOrder" resultMap="selectSaleOrderWithAll">
 		<include refid="selectParameterSql"/>
 	</select>
 
 	
-	<select id="selectSaleOrderWithAllByNo" parameterType="Map" resultMap="selectSaleOrderByMapWithAPI">
+	<select id="selectSaleOrderWithAllBySearch" parameterType="Map" resultMap="selectSaleOrderWithAll">
 		<include refid="selectParameterSql"/>
 		<include refid="whereSwNameSql"/>
 	</select>
 	
+	<select id="selectSaleOrderByAll"  resultMap="selectSaleOrderWithAll">
+		<include refid="selectParameterSql"/>
+	</select>
 	
 
 
