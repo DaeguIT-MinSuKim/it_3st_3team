@@ -34,11 +34,7 @@ public class LoginContent extends JPanel implements ActionListener {
 	private LblPwdTfComp pPW;
 	private JButton btnJoinIn;
 	private JButton btnSearchIDPW;
-	private JButton btnCompany;
-	private JButton btnCustomer;
-
 	private JCheckBox chkManager;
-
 
 	public LoginContent() {
 		initComponents();
@@ -106,23 +102,6 @@ public class LoginContent extends JPanel implements ActionListener {
 		lblSubject.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSubject.setBounds(333, 131, 781, 121);
 		pLogin.add(lblSubject);
-
-
-		btnCompany = new JButton("공급회사 로그인");
-		btnCompany.addActionListener(this);
-		btnCompany.setForeground(Color.BLACK);
-		btnCompany.setFont(new Font("나눔바른고딕", Font.PLAIN, 12));
-		btnCompany.setBackground(Color.WHITE);
-		btnCompany.setBounds(424, 557, 196, 23);
-		pLogin.add(btnCompany);
-
-		btnCustomer = new JButton("고객 로그인");
-		btnCustomer.addActionListener(this);
-		btnCustomer.setForeground(Color.BLACK);
-		btnCustomer.setFont(new Font("나눔바른고딕", Font.PLAIN, 12));
-		btnCustomer.setBackground(Color.WHITE);
-		btnCustomer.setBounds(348, 514, 196, 23);
-		pLogin.add(btnCustomer);
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -138,6 +117,10 @@ public class LoginContent extends JPanel implements ActionListener {
 	}
 
 	protected void actionPerformedButton(ActionEvent e) {
+		if (isEmpty(pID.getTfText()) && isEmpty(pPW.getTfText())) {
+			JOptionPane.showMessageDialog(null, "아이디나 비밀번호를 비었습니다.");
+			return;
+		}
 		String id = pID.getTfText();
 		String password = pPW.getTfText();
 
@@ -162,9 +145,15 @@ public class LoginContent extends JPanel implements ActionListener {
 				}
 			}
 		}
-
 	}
-	
+
+	private boolean isEmpty(String value) {
+		if (value.trim().isEmpty()) {
+			return true;
+		}
+		return false;
+	}
+
 	private boolean isLogin(Object user) {
 		if (user == null) {
 			JOptionPane.showMessageDialog(null, "존재하지 않는 사용자입니다. 다시 확인해주십시오.");
