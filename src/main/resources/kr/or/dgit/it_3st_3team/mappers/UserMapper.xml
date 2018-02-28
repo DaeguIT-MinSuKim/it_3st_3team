@@ -36,42 +36,25 @@
 	<sql id="selectLastNo">
 		select max(u_no) as last_id from user;
 	</sql>
-<<<<<<< HEAD
-		
-	<sql id="whereSql">
-		<where>
-			<if test="userNo != null and userNo > 0">
-				u_no = #{userNo}
-			</if>
-			<if test="userId != null">
-				and u_id = #{userId}
-			</if>
-		</where>
+
+	<sql id="whereByNoSql">
+		where u_no = #{userNo}
 	</sql>
 	
-	<sql id="whereLoginSql">
-		<where>
-			<if test="userId != null">
-				u_id = #{userId}
-			</if>
-			<if test="userPwd != null">
-				and u_pwd = password(#{userPwd})
-			</if>
-		</where>
+	<sql id="whereByIdSql">
+		where u_id = #{userId}
 	</sql>
-=======
->>>>>>> refs/remotes/origin/master
 	
 	<!-- User no 로 검색 -->
 	<select id="selectUserByNo" parameterType="User" resultMap="UserWithAdminResult">
 		<include refid="selectWithAdminSql" />
-		where u_no = #{userNo}
+		<include refid="whereByNoSql" />
 	</select>
 	
 	<!-- User Id 로 검색 -->
 	<select id="selectUserById" parameterType="User" resultMap="UserWithAdminResult">
 		<include refid="selectWithAdminSql" />
-		where u_id = #{userId}
+		<include refid="whereByIdSql" />
 	</select>
 	
 	<!-- 모든 User 검색 -->
@@ -84,18 +67,13 @@
 		<include refid="selectWithAdminSql" />
 		where u.u_group = #{userGroup}
 	</select>
-	
-<<<<<<< HEAD
-	<!-- 로그인시 User 검색 -->
-	<select id="selectUserByLogin" resultMap="UserBasedResult">
-=======
+
 	<!-- Login 시 User 검색 -->
 	<sql id="whereLoginSql">
 		where u_id = #{userId} and u_pwd = password(#{userPwd})
 	</sql>
 	
 	<select id="selectUserByLogin" parameterType="User" resultMap="UserBasedResult">
->>>>>>> refs/remotes/origin/master
 		<include refid="selectSql" />
 		<include refid="whereLoginSql" />
 	</select>
@@ -149,12 +127,12 @@
 	<!-- 업데이트 User -->
 	<update id="updateUser" parameterType="User">
 		<include refid="updateSql" />
-		<include refid="whereSql" />
+		<include refid="whereByIdSql" />
 	</update>
 	
 	<!-- 삭제 User -->
-	<delete id="deleteUser">
+	<delete id="deleteUser" parameterType="User">
 		delete from user 
-		<include refid="whereSql" />
+		<include refid="whereByIdSql" />
 	</delete>
 </mapper>
