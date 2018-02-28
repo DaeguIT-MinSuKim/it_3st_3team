@@ -45,6 +45,20 @@ public class User {
 		this.admin = admin;
 	}
 
+	
+	public User(String userId, String name, String email, PhoneNumber phone, String zipcode, String addr1,
+			String addr2, UserGroup userGroup, Admin admin) {
+		this.userId = userId;
+		this.name = name;
+		this.email = email;
+		this.phone = phone;
+		this.zipcode = zipcode;
+		this.addr1 = addr1;
+		this.addr2 = addr2;
+		this.userGroup = userGroup;
+		this.admin = admin;
+	}
+
 	public User(int userNo, String userId, String userPwd, String name, String email, PhoneNumber phone, String zipcode,
 			String addr1, String addr2, UserGroup userGroup, Admin admin) {
 		this.userNo = userNo;
