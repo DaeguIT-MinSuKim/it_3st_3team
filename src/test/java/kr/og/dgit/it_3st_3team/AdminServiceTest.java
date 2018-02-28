@@ -1,6 +1,9 @@
 package kr.og.dgit.it_3st_3team;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
+import java.util.List;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -31,6 +34,16 @@ public class AdminServiceTest {
 		
 		assertNotNull(loginAdmin);
 		assertEquals(admin.getAdminId(), loginAdmin.getAdminId());
+	}
+
+	@Test
+	public void test2selectAdminAll() {
+		List<Admin> listad = service.selectAdminAll();
+		System.out.println(listad);
+		assertNotNull(listad);
+		for(Admin ad : listad) {
+			System.out.println(ad);
+		}
 	}
 
 }

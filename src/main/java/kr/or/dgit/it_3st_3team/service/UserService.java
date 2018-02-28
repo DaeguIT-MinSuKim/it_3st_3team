@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import kr.or.dgit.it_3st_3team.dto.User;
 import kr.or.dgit.it_3st_3team.type.UserGroup;
-import kr.or.dgit.it_3st_3team.ui.util.MyBatisSqlSessionFactory;
+import kr.or.dgit.it_3st_3team.util.MyBatisSqlSessionFactory;
 
 public class UserService {
 	private static final UserService instance = new UserService();
@@ -69,6 +69,26 @@ public class UserService {
 		int res = -1;
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
 			res = sqlSession.insert(namespace + "insertUser", user);
+			sqlSession.commit();
+		}
+		return res;
+	}
+	
+	public int modifyUser(User user) {
+		log.debug("modifyUser()");
+		int res = -1;
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			res = sqlSession.update(namespace + "updateUser", user);
+			sqlSession.commit();
+		}
+		return res;
+	}
+	
+	public int removeUser(User user) {
+		log.debug("modifyUser()");
+		int res = -1;
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			res = sqlSession.update(namespace + "deleteUser", user);
 			sqlSession.commit();
 		}
 		return res;

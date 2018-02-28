@@ -1,4 +1,4 @@
-package kr.or.dgit.it_3st_3team.ui.util;
+package kr.or.dgit.it_3st_3team.util;
 
 import java.io.IOException;
 import java.io.InputStream;

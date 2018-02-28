@@ -102,4 +102,32 @@ public class UserServiceTest {
 		
 		assertEquals(1, res);
 	}
+	
+	@Test
+	public void test5ModifyUser() {
+		User user = new User("uid7", "테스트유저111", "uid7111@test.com", 
+				new PhoneNumber("010-5566-2462"), "88563", "테스트시 되지는않구 오류만나로", "233-2", 
+				UserGroup.COMPANY, new Admin(2));
+		int res = service.modifyUser(user);
+		
+		assertEquals(1, res);
+	}
+	
+	@Test
+	public void test6RemoveUser() {
+		User user = new User("uid7");
+		int res = service.removeUser(user);
+		
+		assertEquals(1, res);
+	}
+	
+	@Test
+	public void test7FindUserByLogin() {
+		User user = new User("uid1", "uid1");
+		User findUser = service.findUserByLogin(user);
+		System.out.println(findUser);
+		
+		assertNotNull(findUser);
+		assertEquals(user.getUserId(), findUser.getUserId());
+	}
 }

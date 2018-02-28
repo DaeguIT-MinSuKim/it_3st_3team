@@ -9,6 +9,7 @@ public interface UserDao {
 	User selectUserByNo(User User);
 	User selectUserById(User User);
 	User selectUserByLogin(User User);
+
 	List<User> selectUserAll();
 	List<User> selectUserAllByUserGroup(UserGroup userGroup);
 	

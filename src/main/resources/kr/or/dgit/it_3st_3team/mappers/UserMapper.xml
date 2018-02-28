@@ -36,6 +36,31 @@
 	<sql id="selectLastNo">
 		select max(u_no) as last_id from user;
 	</sql>
+<<<<<<< HEAD
+		
+	<sql id="whereSql">
+		<where>
+			<if test="userNo != null and userNo > 0">
+				u_no = #{userNo}
+			</if>
+			<if test="userId != null">
+				and u_id = #{userId}
+			</if>
+		</where>
+	</sql>
+	
+	<sql id="whereLoginSql">
+		<where>
+			<if test="userId != null">
+				u_id = #{userId}
+			</if>
+			<if test="userPwd != null">
+				and u_pwd = password(#{userPwd})
+			</if>
+		</where>
+	</sql>
+=======
+>>>>>>> refs/remotes/origin/master
 	
 	<!-- User no 로 검색 -->
 	<select id="selectUserByNo" parameterType="User" resultMap="UserWithAdminResult">
@@ -60,12 +85,17 @@
 		where u.u_group = #{userGroup}
 	</select>
 	
+<<<<<<< HEAD
+	<!-- 로그인시 User 검색 -->
+	<select id="selectUserByLogin" resultMap="UserBasedResult">
+=======
 	<!-- Login 시 User 검색 -->
 	<sql id="whereLoginSql">
 		where u_id = #{userId} and u_pwd = password(#{userPwd})
 	</sql>
 	
 	<select id="selectUserByLogin" parameterType="User" resultMap="UserBasedResult">
+>>>>>>> refs/remotes/origin/master
 		<include refid="selectSql" />
 		<include refid="whereLoginSql" />
 	</select>
@@ -82,4 +112,49 @@
 		</selectKey>
 		<include refid="insertSql" />
 	</insert>
+	
+	<sql id="updateSql">
+		update user
+		<set>
+			<if test="userPwd != null">
+				u_pwd = #{userPwd},
+			</if>
+			<if test="name != null">
+				u_name = #{name},
+			</if>
+			<if test="email != null">
+				u_email = #{email},
+			</if>
+			<if test="phone != null">
+				u_phone = #{phone},
+			</if>
+			<if test="zipcode != null">
+				u_zipcode = #{zipcode},
+			</if>
+			<if test="addr1 != null">
+				u_addr1 = #{addr1},
+			</if>
+			<if test="addr2 != null">
+				u_addr2 = #{addr2},
+			</if>
+			<if test="userGroup != null">
+				u_group = #{userGroup.value},
+			</if>
+			<if test="admin != null">
+				adm_no = #{admin.adminNo},
+			</if>
+		</set>
+	</sql>
+	
+	<!-- 업데이트 User -->
+	<update id="updateUser" parameterType="User">
+		<include refid="updateSql" />
+		<include refid="whereSql" />
+	</update>
+	
+	<!-- 삭제 User -->
+	<delete id="deleteUser">
+		delete from user 
+		<include refid="whereSql" />
+	</delete>
 </mapper>
