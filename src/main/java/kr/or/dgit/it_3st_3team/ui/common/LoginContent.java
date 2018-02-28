@@ -10,11 +10,15 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import kr.or.dgit.it_3st_3team.dto.Admin;
 import kr.or.dgit.it_3st_3team.dto.User;
+import kr.or.dgit.it_3st_3team.service.AdminService;
 import kr.or.dgit.it_3st_3team.service.UserService;
+import kr.or.dgit.it_3st_3team.type.UserGroup;
 import kr.or.dgit.it_3st_3team.ui.AdminUI;
 import kr.or.dgit.it_3st_3team.ui.FindIdPwUI;
 import kr.or.dgit.it_3st_3team.ui.JoinUI;
@@ -32,10 +36,11 @@ public class LoginContent extends JPanel implements ActionListener {
 	private JButton btnSearchIDPW;
 	private JButton btnCompany;
 	private JButton btnCustomer;
-	private UserService userService;
-	
+
+	private JCheckBox chkManager;
+
+
 	public LoginContent() {
-		userService = UserService.getInstance();
 		initComponents();
 	}
 
@@ -49,9 +54,8 @@ public class LoginContent extends JPanel implements ActionListener {
 		add(pLogin);
 		pLogin.setLayout(null);
 
-		pID = new LblTfComp("userId");
+		pID = new LblTfComp("userID");
 		pID.setFont(new Font("Gulim", Font.PLAIN, 12));
-		pID.setTfText("userID");
 		pID.setBounds(576, 409, 347, 51);
 		pLogin.add(pID);
 
@@ -73,7 +77,7 @@ public class LoginContent extends JPanel implements ActionListener {
 		btnSignIn.setBounds(28, 5, 78, 23);
 		pCheck.add(btnSignIn);
 
-		JCheckBox chkManager = new JCheckBox("관리자 로그인");
+		chkManager = new JCheckBox("관리자 로그인");
 		chkManager.setFont(new Font("나눔바른고딕", Font.PLAIN, 12));
 		chkManager.setBackground(Color.WHITE);
 		chkManager.setBounds(127, 5, 95, 23);
@@ -103,6 +107,7 @@ public class LoginContent extends JPanel implements ActionListener {
 		lblSubject.setBounds(333, 131, 781, 121);
 		pLogin.add(lblSubject);
 
+
 		btnCompany = new JButton("공급회사 로그인");
 		btnCompany.addActionListener(this);
 		btnCompany.setForeground(Color.BLACK);
@@ -121,12 +126,6 @@ public class LoginContent extends JPanel implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == btnCustomer) {
-			actionPerformedBtnCustomer(e);
-		}
-		if (e.getSource() == btnCompany) {
-			actionPerformedBtnCompany(e);
-		}
 		if (e.getSource() == btnSearchIDPW) {
 			actionPerformedBtnSearchIDPW(e);
 		}
@@ -141,12 +140,37 @@ public class LoginContent extends JPanel implements ActionListener {
 	protected void actionPerformedButton(ActionEvent e) {
 		String id = pID.getTfText();
 		String password = pPW.getTfText();
-		
-		User user = userService.findUserByLogin(new User(id, password));
-		System.out.println(String.format("%s:%s", user.getUserId(), user.getName()));
-		
-		AdminUI Adminsw = new AdminUI();
-		Adminsw.setVisible(true);
+
+		if (chkManager.isSelected()) {
+			// 관리자
+			Admin loginUser = AdminService.getInstance().findAdminByLogin(new Admin(id, password));
+			if (isLogin(loginUser)) {
+				AdminUI Adminsw = new AdminUI(loginUser);
+				Adminsw.setVisible(true);
+			}
+		} else {
+			User loginUser = UserService.getInstance().findUserByLogin(new User(id, password));
+			if (isLogin(loginUser)) {
+				if (loginUser.getUserGroup().equals(UserGroup.CUSTOMER)) {
+					// 고객
+					UserCustomerUI userUI = new UserCustomerUI(loginUser);
+					userUI.setVisible(true);
+				} else {
+					// 공급회사
+					UserCompanyUI userUI = new UserCompanyUI(loginUser);
+					userUI.setVisible(true);
+				}
+			}
+		}
+
+	}
+	
+	private boolean isLogin(Object user) {
+		if (user == null) {
+			JOptionPane.showMessageDialog(null, "존재하지 않는 사용자입니다. 다시 확인해주십시오.");
+			return false;
+		}
+		return true;
 	}
 
 	protected void actionPerformedBtnJoinIn(ActionEvent e) {
@@ -157,16 +181,5 @@ public class LoginContent extends JPanel implements ActionListener {
 	protected void actionPerformedBtnSearchIDPW(ActionEvent e) {
 		FindIdPwUI findIdPwUI = new FindIdPwUI();
 		findIdPwUI.setVisible(true);
-	}
-
-	protected void actionPerformedBtnCompany(ActionEvent e) {
-
-		UserCompanyUI userCompanyUI = new UserCompanyUI();
-		userCompanyUI.setVisible(true);
-	}
-
-	protected void actionPerformedBtnCustomer(ActionEvent e) {
-		UserCustomerUI userCustomerUI = new UserCustomerUI();
-		userCustomerUI.setVisible(true);
 	}
 }

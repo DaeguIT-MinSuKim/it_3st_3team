@@ -15,6 +15,15 @@ public class Admin {
 		this.adminNo = adminNo;
 	}
 
+	public Admin(String adminName) {
+		this.adminName = adminName;
+	}
+
+	public Admin(String adminId, String adminPwd) {
+		this.adminId = adminId;
+		this.adminPwd = adminPwd;
+	}
+
 	public Admin(int adminNo, String adminId, String adminName, String adminPwd, PhoneNumber phone,
 			AdminGroup adminGroup) {
 		this.adminNo = adminNo;

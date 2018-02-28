@@ -4,11 +4,12 @@ import java.awt.Color;
 
 import javax.swing.JPanel;
 
+import kr.or.dgit.it_3st_3team.ui.component.AbstractLblTfBtnComp;
 import kr.or.dgit.it_3st_3team.ui.component.ImageComp;
+import kr.or.dgit.it_3st_3team.ui.component.LblAddressComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblPwdTfComp;
-import kr.or.dgit.it_3st_3team.ui.component.LblTfBtnComp;
+import kr.or.dgit.it_3st_3team.ui.component.LblTfBtnPostSearchComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblTfComp;
-import kr.or.dgit.it_3st_3team.ui.component.StringLabelAddressComp;
 
 @SuppressWarnings("serial")
 public class UserInfoContent extends JPanel {
@@ -18,8 +19,8 @@ public class UserInfoContent extends JPanel {
 	private LblPwdTfComp pUserPwdChk;
 	private LblTfComp pUserName;
 	private LblTfComp pUserPhone;
-	private LblTfBtnComp pZipcode;
-	private StringLabelAddressComp pAddress;
+	private AbstractLblTfBtnComp pZipcode;
+	private LblAddressComp pAddress;
 
 	public UserInfoContent() {
 		initComponents();
@@ -53,11 +54,11 @@ public class UserInfoContent extends JPanel {
 		pUserPhone.setBounds(231, 208, 252, 38);
 		add(pUserPhone);
 
-		pZipcode = new LblTfBtnComp("우편번호", "검색");
+		pZipcode = new LblTfBtnPostSearchComp("우편번호", "검색");
 		pZipcode.setBounds(231, 258, 237, 38);
 		add(pZipcode);
 
-		pAddress = new StringLabelAddressComp("주소");
+		pAddress = new LblAddressComp("주소");
 		pAddress.setBounds(254, 306, 333, 84);
 		add(pAddress);
 	}

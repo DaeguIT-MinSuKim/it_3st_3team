@@ -31,9 +31,10 @@ public class User {
 		this.userPwd = userPwd;
 	}
 
-	public User(String userId, String name, String email, PhoneNumber phone, String zipcode, String addr1, String addr2,
-			UserGroup userGroup, Admin admin) {
+	public User(String userId, String userPwd, String name, String email, PhoneNumber phone, String zipcode,
+			String addr1, String addr2, UserGroup userGroup, Admin admin) {
 		this.userId = userId;
+		this.userPwd = userPwd;
 		this.name = name;
 		this.email = email;
 		this.phone = phone;
@@ -44,10 +45,10 @@ public class User {
 		this.admin = admin;
 	}
 
-	public User(String userId, String userPwd, String name, String email, PhoneNumber phone, String zipcode,
-			String addr1, String addr2, UserGroup userGroup, Admin admin) {
+	
+	public User(String userId, String name, String email, PhoneNumber phone, String zipcode, String addr1,
+			String addr2, UserGroup userGroup, Admin admin) {
 		this.userId = userId;
-		this.userPwd = userPwd;
 		this.name = name;
 		this.email = email;
 		this.phone = phone;
@@ -163,7 +164,9 @@ public class User {
 
 	@Override
 	public String toString() {
-		return String.format("%s", name);
+		return String.format(
+				"User [userNo=%s, userId=%s, userPwd=%s, name=%s, email=%s, phone=%s, zipcode=%s, addr1=%s, addr2=%s, userGroup=%s, admin=%s]",
+				userNo, userId, userPwd, name, email, phone, zipcode, addr1, addr2, userGroup, admin);
 	}
 
 }

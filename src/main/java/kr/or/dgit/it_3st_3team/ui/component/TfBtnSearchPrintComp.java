@@ -24,7 +24,7 @@ public class TfBtnSearchPrintComp extends JPanel implements ActionListener {
 		initComponents();
 	}
 	private void initComponents() {
-		setBackground(new Color(255, 255, 255));
+		setBackground(new Color(240, 240, 240));
 		setBorder(new EmptyBorder(0, 0, 0, 0));
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		
@@ -35,7 +35,7 @@ public class TfBtnSearchPrintComp extends JPanel implements ActionListener {
 		tfSearchItem.setColumns(10);
 		
 		JPanel pStatusSearch = new JPanel();
-		pStatusSearch.setBackground(new Color(255, 255, 255));
+		pStatusSearch.setBackground(new Color(240, 240, 240));
 		pStatusSearch.setBorder(new EmptyBorder(0, 20, 0, 400));
 		add(pStatusSearch);
 		pStatusSearch.setLayout(new GridLayout(0, 1, 0, 0));

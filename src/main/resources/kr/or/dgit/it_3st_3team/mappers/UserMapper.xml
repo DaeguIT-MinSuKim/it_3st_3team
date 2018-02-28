@@ -36,6 +36,7 @@
 	<sql id="selectLastNo">
 		select max(u_no) as last_id from user;
 	</sql>
+<<<<<<< HEAD
 		
 	<sql id="whereSql">
 		<where>
@@ -58,11 +59,19 @@
 			</if>
 		</where>
 	</sql>
+=======
+>>>>>>> refs/remotes/origin/master
 	
 	<!-- User no 로 검색 -->
 	<select id="selectUserByNo" parameterType="User" resultMap="UserWithAdminResult">
 		<include refid="selectWithAdminSql" />
-		<include refid="whereSql" />
+		where u_no = #{userNo}
+	</select>
+	
+	<!-- User Id 로 검색 -->
+	<select id="selectUserById" parameterType="User" resultMap="UserWithAdminResult">
+		<include refid="selectWithAdminSql" />
+		where u_id = #{userId}
 	</select>
 	
 	<!-- 모든 User 검색 -->
@@ -76,8 +85,17 @@
 		where u.u_group = #{userGroup}
 	</select>
 	
+<<<<<<< HEAD
 	<!-- 로그인시 User 검색 -->
 	<select id="selectUserByLogin" resultMap="UserBasedResult">
+=======
+	<!-- Login 시 User 검색 -->
+	<sql id="whereLoginSql">
+		where u_id = #{userId} and u_pwd = password(#{userPwd})
+	</sql>
+	
+	<select id="selectUserByLogin" parameterType="User" resultMap="UserBasedResult">
+>>>>>>> refs/remotes/origin/master
 		<include refid="selectSql" />
 		<include refid="whereLoginSql" />
 	</select>

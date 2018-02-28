@@ -10,9 +10,10 @@ import kr.or.dgit.it_3st_3team.dto.AdminGroup;
 import kr.or.dgit.it_3st_3team.type.AdminGroupAuth;
 
 import kr.or.dgit.it_3st_3team.ui.component.ImageComp;
-import kr.or.dgit.it_3st_3team.ui.component.LblTfBtnComp;
+import kr.or.dgit.it_3st_3team.ui.component.AbstractLblTfBtnComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblTfComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblPwdTfComp;
+import kr.or.dgit.it_3st_3team.ui.component.LblTfBtnIdChkComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblCmbAdminGroupComp;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -39,7 +40,7 @@ public class AdminManagementRegister extends JPanel implements ActionListener {
 		pInput.setBounds(212, 10, 900, 230);
 		add(pInput);
 
-		LblTfBtnComp pAdminId = new LblTfBtnComp("아이디", "중복확인");
+		LblTfBtnIdChkComp pAdminId = new LblTfBtnIdChkComp("아이디", "중복확인");
 		pAdminId.setBounds(72, 16, 312, 30);
 		pInput.add(pAdminId);
 		

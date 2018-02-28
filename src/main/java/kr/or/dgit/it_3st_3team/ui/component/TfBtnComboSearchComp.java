@@ -42,7 +42,7 @@ public class TfBtnComboSearchComp extends JPanel implements ActionListener {
 	}
 
 	public void setStringData() {
-		String[] strings = {"상품명", "상호명"};
+		String[] strings = {"상품명", "고객명","공급회사명"};
 		p1.loadData(strings);
 	}
 	public void actionPerformed(ActionEvent e) {

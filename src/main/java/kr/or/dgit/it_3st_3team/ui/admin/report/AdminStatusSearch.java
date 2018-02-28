@@ -22,7 +22,7 @@ public class AdminStatusSearch extends JPanel {
 	private TfBtnComboSearchComp pStatusSearch;
 	private Admin admin;
 	private User user;
-	
+
 	public void setAdmin(Admin admin) {
 		this.admin = admin;
 	}
@@ -35,19 +35,17 @@ public class AdminStatusSearch extends JPanel {
 
 		initComponents();
 	}
-	
+
 	private void initComponents() {
 		setBackground(new Color(255, 255, 255));
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(null);
 
-		if (admin!=null) {
-			pSoftwareGroup = new CmbSoftwareGroupComp();
-			pSoftwareGroup.setBounds(11, 10, 125, 30);
-			
-			add(pSoftwareGroup);
-		}
-		
+		pSoftwareGroup = new CmbSoftwareGroupComp();
+		pSoftwareGroup.setBounds(11, 10, 125, 30);
+
+		add(pSoftwareGroup);
+
 		pAdminGroup = new CmbAdminGroupComp();
 		pAdminGroup.setBounds(148, 10, 125, 30);
 
@@ -59,11 +57,9 @@ public class AdminStatusSearch extends JPanel {
 
 		add(pCalendar);
 
-
 		setSoftwareGroupData();
 		setAdminGroupData();
 
-		
 		pStatusSearch = new TfBtnComboSearchComp();
 		pStatusSearch.setBackground(new Color(255, 255, 255));
 		pStatusSearch.setBounds(12, 56, 1141, 44);
