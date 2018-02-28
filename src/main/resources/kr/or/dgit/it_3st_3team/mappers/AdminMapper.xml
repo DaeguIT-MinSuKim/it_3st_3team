@@ -49,4 +49,8 @@
 		<include refid="selectSql" />
 		<include refid="whereSql" />
 	</select>
+	
+	<select id="selectAdminAll" parameterType="Admin" resultMap="AdminBasedResult">
+		<include refid="selectSql" />
+	</select>
 </mapper>
