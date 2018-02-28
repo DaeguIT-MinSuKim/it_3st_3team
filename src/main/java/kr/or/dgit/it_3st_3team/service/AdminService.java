@@ -5,7 +5,6 @@ import org.apache.ibatis.logging.LogFactory;
 import org.apache.ibatis.session.SqlSession;
 
 import kr.or.dgit.it_3st_3team.dto.Admin;
-import kr.or.dgit.it_3st_3team.dto.User;
 import kr.or.dgit.it_3st_3team.ui.util.MyBatisSqlSessionFactory;
 
 public class AdminService {
@@ -20,10 +19,10 @@ public class AdminService {
 	private AdminService() {
 	}
 	
-	public Admin selectLogin(Admin admin) {
-		log.debug("selectLogin()");
+	public Admin findAdminByLogin(Admin admin) {
+		log.debug("selectAdminByLogin()");
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
-			return sqlSession.selectOne(namespace + "selectLogin", admin);
+			return sqlSession.selectOne(namespace + "selectAdminByLogin", admin);
 		}
 	}
 }

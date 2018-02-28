@@ -8,6 +8,7 @@ import javax.swing.border.EmptyBorder;
 
 import kr.or.dgit.it_3st_3team.ui.common.LoginContent;
 
+@SuppressWarnings("serial")
 public class LoginUI extends JFrame {
 	private JPanel contentPane;
 
@@ -16,6 +17,7 @@ public class LoginUI extends JFrame {
 	}
 
 	private void initComponents() {
+		setTitle("로그인 - 소프트웨어");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1500, 900);
 		contentPane = new JPanel();

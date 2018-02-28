@@ -6,16 +6,26 @@ import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import kr.or.dgit.it_3st_3team.dto.User;
+import kr.or.dgit.it_3st_3team.service.UserService;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.JPasswordField;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.util.Arrays;
+import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
-public class JoinUI extends JFrame {
+public class JoinUI extends JFrame implements ActionListener {
 	private JPanel contentPane;
 	private JTextField tfUserId;
 	private JPasswordField pfUserPwd;
@@ -28,6 +38,7 @@ public class JoinUI extends JFrame {
 	private JButton btnDuplId;
 	private JButton btnUserJoinOK;
 	private JButton btnUserJoinCancel;
+	private JButton btnUerImgOK;
 
 	public JoinUI() {
 		initComponents();
@@ -35,7 +46,7 @@ public class JoinUI extends JFrame {
 
 	private void initComponents() {
 		setTitle("회 원 가 입");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 580, 450);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -77,7 +88,8 @@ public class JoinUI extends JFrame {
 		tfUserId.setColumns(10);
 
 		btnDuplId = new JButton("중복확인");
-		btnDuplId.setBounds(278, 63, 80, 30);
+		btnDuplId.addActionListener(this);
+		btnDuplId.setBounds(278, 63, 90, 30);
 		pInput.add(btnDuplId);
 
 		JPanel pImgArea = new JPanel();
@@ -86,13 +98,13 @@ public class JoinUI extends JFrame {
 		pImgArea.setLayout(null);
 
 		JLabel lblUserImg = new JLabel("");
-		lblUserImg.setIcon(
-				new ImageIcon(System.getProperty("user.dir")+"\\DataImg\\nobody.png"));
+		lblUserImg.setIcon(new ImageIcon(System.getProperty("user.dir") + "\\DataImg\\nobody.png"));
 		lblUserImg.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUserImg.setBounds(0, 0, 128, 128);
 		pImgArea.add(lblUserImg);
 
-		JButton btnUerImgOK = new JButton("사진 등록");
+		btnUerImgOK = new JButton("사진 등록");
+		btnUerImgOK.addActionListener(this);
 		btnUerImgOK.setBounds(0, 138, 128, 30);
 		pImgArea.add(btnUerImgOK);
 
@@ -114,6 +126,20 @@ public class JoinUI extends JFrame {
 		pfUserPwdChk = new JPasswordField();
 		pfUserPwdChk.setHorizontalAlignment(SwingConstants.LEFT);
 		pfUserPwdChk.setBounds(144, 156, 150, 30);
+		pfUserPwdChk.addFocusListener(new FocusAdapter() {
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				super.focusLost(e);
+				
+				if (!Arrays.equals(pfUserPwd.getPassword(), pfUserPwdChk.getPassword())) {
+					JOptionPane.showMessageDialog(null, "비밀번호가 다릅니다. 다시 입력해주세요.");
+					pfUserPwd.setText("");
+					pfUserPwd.requestFocus();
+				}
+			}
+			
+		});
 		pInput.add(pfUserPwdChk);
 
 		JLabel lblUserName = new JLabel("이름");
@@ -150,11 +176,46 @@ public class JoinUI extends JFrame {
 		pInput.add(tfUserPhone);
 
 		btnUserJoinOK = new JButton("가입");
+		btnUserJoinOK.addActionListener(this);
 		btnUserJoinOK.setBounds(166, 353, 100, 35);
 		pInput.add(btnUserJoinOK);
 
 		btnUserJoinCancel = new JButton("취소");
+		btnUserJoinCancel.addActionListener(this);
 		btnUserJoinCancel.setBounds(307, 353, 100, 35);
 		pInput.add(btnUserJoinCancel);
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnUerImgOK) {
+			actionPerformedBtnUerImgOK(e);
+		}
+		if (e.getSource() == btnUserJoinCancel) {
+			actionPerformedBtnUserJoinCancel(e);
+		}
+		if (e.getSource() == btnUserJoinOK) {
+			actionPerformedBtnUserJoinOK(e);
+		}
+		if (e.getSource() == btnDuplId) {
+			actionPerformedBtnDuplId(e);
+		}
+	}
+
+	protected void actionPerformedBtnDuplId(ActionEvent e) {
+		String joinId = tfUserId.getText();
+		if (UserService.getInstance().existUser(new User(joinId))) {
+			JOptionPane.showMessageDialog(null, "존재하는 아이디입니다.");
+			tfUserId.setText("");
+			tfUserId.requestFocus();
+		} else {
+			JOptionPane.showMessageDialog(null, "사용가능한 아이디입니다.");
+			pfUserPwd.requestFocus();
+		}
+	}
+	protected void actionPerformedBtnUserJoinOK(ActionEvent e) {
+	}
+	protected void actionPerformedBtnUserJoinCancel(ActionEvent e) {
+	}
+	protected void actionPerformedBtnUerImgOK(ActionEvent e) {
 	}
 }

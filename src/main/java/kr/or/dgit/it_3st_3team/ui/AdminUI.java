@@ -12,6 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import kr.or.dgit.it_3st_3team.dto.Admin;
+import kr.or.dgit.it_3st_3team.dto.User;
 import kr.or.dgit.it_3st_3team.ui.admin.company.AdminCompanyContent;
 import kr.or.dgit.it_3st_3team.ui.admin.customer.AdminCustomerContent;
 import kr.or.dgit.it_3st_3team.ui.admin.management.AdminManagementContent;
@@ -21,7 +23,6 @@ import kr.or.dgit.it_3st_3team.ui.admin.software.AdminSoftwareContent;
 
 @SuppressWarnings("serial")
 public class AdminUI extends JFrame implements ActionListener {
-
 	private JPanel contentPane;
 	private JButton btnSupplyRegister;
 	private JButton btnSWRegister;
@@ -31,8 +32,10 @@ public class AdminUI extends JFrame implements ActionListener {
 	private JButton btnSupplySaleStatus;
 	private JButton btnCustomerManagement;
 	private JButton btnEmpManagement;
-
-	public AdminUI() {
+	private Admin user;
+	
+	public AdminUI(Admin user) {
+		this.user = user;
 		initComponents();
 	}
 
@@ -143,8 +146,6 @@ public class AdminUI extends JFrame implements ActionListener {
 		AdminCompanyContent pMain = new AdminCompanyContent();
 		pMain.setBounds(0, 0, 1186, 861);
 		changeMainPanel(pMain);
-		
-
 	}
 
 	protected void actionPerformedBtnSWRegister(ActionEvent e) {
