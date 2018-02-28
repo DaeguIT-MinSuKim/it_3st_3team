@@ -18,7 +18,6 @@ import kr.or.dgit.it_3st_3team.ui.component.StartAndEndDate;
 public class TestSearch extends JPanel {
 	private JTextField tfSearch;
 	protected DefaultComboBoxModel<SoftwareGroup> dcbm;
-	
 	private JComboBox<SoftwareGroup> cmbSwgType;
 	private SoftwareGroupService swgService;
 	private AdminService adService;
