@@ -1,10 +1,13 @@
 package kr.or.dgit.it_3st_3team.service;
 
+import java.util.List;
+
 import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
 import org.apache.ibatis.session.SqlSession;
 
 import kr.or.dgit.it_3st_3team.dto.Admin;
+import kr.or.dgit.it_3st_3team.dto.SoftwareGroup;
 import kr.or.dgit.it_3st_3team.ui.util.MyBatisSqlSessionFactory;
 
 public class AdminService {
@@ -23,6 +26,13 @@ public class AdminService {
 		log.debug("selectAdminByLogin()");
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
 			return sqlSession.selectOne(namespace + "selectAdminByLogin", admin);
+		}
+	}
+	
+	public List<Admin> selectAdminAll(){
+		log.debug("selectAdminAll()");
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectList(namespace + "selectAdminAll");
 		}
 	}
 }
