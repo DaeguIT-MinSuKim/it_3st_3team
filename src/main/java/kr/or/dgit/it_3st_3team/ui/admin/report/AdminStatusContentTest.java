@@ -88,7 +88,7 @@ public class AdminStatusContentTest extends JPanel implements ActionListener {
 			swg.setSgName("");
 		}if(ad.getAdminName().equals("관리자")) {
 			ad.setAdminName("");
-		}else if(searchBy.equals("고객명")) {
+		}if(searchBy.equals("고객명")) {
 			searchBy = "customer";
 		}else if(searchBy.equals("공급회사명")) {
 			searchBy = "company";
