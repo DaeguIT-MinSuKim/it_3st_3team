@@ -64,7 +64,7 @@ public class SoftwareGroupUI extends JFrame {
 		panel_1.setBounds(12, 10, 410, 30);
 		
 		contentPane.add(panel_1);
-		;
+		
 	}
 
 }
