@@ -15,13 +15,16 @@
 		select zipcode,sido,sigungu,doro,building1,building2 from Address
 	</sql>
 	
-	<sql id="selectSidoSql">
+<!-- 	<sql id="selectSidoSql">
 		select sido from Address 
 	</sql>
 	
 	<sql id="selectSigunguSql">
 		select sigungu from Address
-	</sql>
+	</sql> -->
+	
+	
+
 	
 	
 	
@@ -31,19 +34,19 @@
 				zipcode=#{zipcode}
 			</if>
 			<if test="sido != null">
-				sido=#{sido}
+				AND sido=#{sido}
 			</if>
 			<if test="sigungu != null">
-				sigungu=#{sigungu}
+				AND sigungu=#{sigungu}
 			</if>
 			<if test="doro != null">
-				doro=#{doro}
+				AND doro=#{doro}
 			</if>
 			<if test="building1 != null and building1>0">
-				building1=#{building1}
+				AND building1=#{building1}
 			</if>
 			<if test="building2 != null and building2>0">
-				building2=#{building2}
+				AND building2=#{building2}
 			</if>
 		</where>
 	</sql>
@@ -51,15 +54,22 @@
 	
 	
 	<select id="selcectAddressBySido" parameterType="Address" resultMap="AddressBasedResult">
-		<include refid="selectSidoSql"/>
+		<include refid="selectSql"/>
+		<include refid="whereSql"/>
 		group by sido
 	</select>
 	
 	
 	<select id="selcectAddressBySigungu" parameterType="Address" resultMap="AddressBasedResult">
-		<include refid="selectSigunguSql"/>
+		<include refid="selectSql"/>
 		<include refid="whereSql"/>
 		group by sigungu
+	</select>
+	
+	<select id="selectAddressByDoro" parameterType="Address" resultMap="AddressBasedResult">
+		<include refid="selectSql"/>
+		<include refid="whereSql"/>
+		
 	</select>
 	
 	

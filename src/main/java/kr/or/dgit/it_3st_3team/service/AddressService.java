@@ -7,7 +7,6 @@ import org.apache.ibatis.logging.LogFactory;
 import org.apache.ibatis.session.SqlSession;
 
 import kr.or.dgit.it_3st_3team.dto.Address;
-import kr.or.dgit.it_3st_3team.dto.SoftwareGroup;
 import kr.or.dgit.it_3st_3team.ui.util.MyBatisSqlSessionFactory;
 
 public class AddressService {
@@ -35,6 +34,13 @@ public class AddressService {
 		log.debug("selcectAddressBySigungu()");
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
 			return sqlSession.selectList(namespace + "selcectAddressBySigungu", address);
+		}
+	}
+	
+	public List<Address> selectAddressByDoro(Address address) {
+		log.debug("selectAddressByDoro()");
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectList(namespace + "selectAddressByDoro", address);
 		}
 	}
 	

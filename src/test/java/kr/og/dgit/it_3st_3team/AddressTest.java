@@ -26,14 +26,13 @@ public class AddressTest {
 		service = null;
 	}
 
-	
 	@Test
 	public void testAselcectAddressBySido() {
 		List<Address> listad = service.selcectAddressBySido();
 		System.out.println(listad);
 		assertNotNull(listad);
 		for(Address ad : listad) {
-			System.out.println(ad);
+			System.out.println(ad.getSido());
 		}
 	}
 	
@@ -43,9 +42,25 @@ public class AddressTest {
 		System.out.println(listad);
 		assertNotNull(listad);
 		for(Address ad : listad) {
-			System.out.println(ad);
+			System.out.println(ad.getSigungu());
 		}
 	}
 	
+	@Test
+	public void testCselectAddressByDoro() {
+		Address ad = new Address();
+		ad.setSigungu("달서구");
+		ad.setDoro("진천로");
+		ad.setBuilding1(0);
+		ad.setBuilding2(0);
+		List<Address> listad = service.selectAddressByDoro(ad);
+		//Address res = service.selectAddressByDoro(ad);
+		assertNotNull(listad);
+		for(Address adr : listad) {
+			System.out.println(adr);
+		}
+		//assertEquals(ad.getBuilding1(), res.getBuilding1());
+
+	}
 
 }
