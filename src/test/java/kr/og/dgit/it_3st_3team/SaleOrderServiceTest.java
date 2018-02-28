@@ -40,6 +40,7 @@ public class SaleOrderServiceTest {
 	public void test2FindSaleOrderByMapWithAPI() {
 		Map<String, String> maps = new HashMap<>();
 
+
 		maps.put("sgName", "그래픽");
 
 		maps.put("adminName", "영업1");
