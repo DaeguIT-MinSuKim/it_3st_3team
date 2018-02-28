@@ -2,11 +2,13 @@ package kr.or.dgit.it_3st_3team.ui;
 
 import java.awt.BorderLayout;
 
+import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import kr.or.dgit.it_3st_3team.dto.PhoneNumber;
 import kr.or.dgit.it_3st_3team.dto.User;
 import kr.or.dgit.it_3st_3team.service.UserService;
 
@@ -16,12 +18,14 @@ import javax.swing.SwingConstants;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.ImageIcon;
 import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.util.Arrays;
+import java.util.Enumeration;
 import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
@@ -64,12 +68,13 @@ public class JoinUI extends JFrame implements ActionListener {
 
 		rdbtnCompany = new JRadioButton("공급회사");
 		rdbtnCompany.setHorizontalAlignment(SwingConstants.LEFT);
-		rdbtnCompany.setBounds(144, 22, 85, 25);
+		rdbtnCompany.setBounds(246, 22, 85, 25);
 		pInput.add(rdbtnCompany);
 
 		rdbtnUser = new JRadioButton("일반회원");
+		rdbtnUser.setSelected(true);
 		rdbtnUser.setHorizontalAlignment(SwingConstants.LEFT);
-		rdbtnUser.setBounds(246, 22, 85, 25);
+		rdbtnUser.setBounds(144, 22, 85, 25);
 		pInput.add(rdbtnUser);
 
 		ButtonGroup group = new ButtonGroup();
@@ -131,14 +136,14 @@ public class JoinUI extends JFrame implements ActionListener {
 			@Override
 			public void focusLost(FocusEvent e) {
 				super.focusLost(e);
-				
+
 				if (!Arrays.equals(pfUserPwd.getPassword(), pfUserPwdChk.getPassword())) {
 					JOptionPane.showMessageDialog(null, "비밀번호가 다릅니다. 다시 입력해주세요.");
 					pfUserPwd.setText("");
 					pfUserPwd.requestFocus();
 				}
 			}
-			
+
 		});
 		pInput.add(pfUserPwdChk);
 
@@ -201,7 +206,11 @@ public class JoinUI extends JFrame implements ActionListener {
 		}
 	}
 
+	// 아이디 중복체크 //
 	protected void actionPerformedBtnDuplId(ActionEvent e) {
+		if (isEmpty(tfUserId, "아이디가")) {
+			return;
+		}
 		String joinId = tfUserId.getText();
 		if (UserService.getInstance().existUser(new User(joinId))) {
 			JOptionPane.showMessageDialog(null, "존재하는 아이디입니다.");
@@ -212,10 +221,78 @@ public class JoinUI extends JFrame implements ActionListener {
 			pfUserPwd.requestFocus();
 		}
 	}
-	protected void actionPerformedBtnUserJoinOK(ActionEvent e) {
+
+	public boolean isEmpty(JComponent comp, String title) {
+		String msg = "";
+		if (comp instanceof JTextField) {
+			msg = ((JTextField) comp).getText().trim();
+		} else if (comp instanceof JPasswordField) {
+			msg = new String(((JPasswordField) comp).getPassword()).trim();
+		}
+		if (msg.isEmpty()) {
+			JOptionPane.showMessageDialog(null, String.format("%s 비었습니다.", title));
+			comp.requestFocus();
+			return true;
+		}
+		return false;
 	}
+
+	// 회원가입
+	protected void actionPerformedBtnUserJoinOK(ActionEvent e) {
+		if (isEmpty(tfUserId, "아이디가") ||
+				isEmpty(pfUserPwd, "비밀번호가") ||
+				isEmpty(pfUserPwdChk, "비밀번호 확인이") ||
+				isEmpty(tfUserName, "이름이") ||
+				isEmpty(tfUserEmail, "이메일이") ||
+				isEmpty(tfUserPhone, "전화번호가")) {
+			return;
+		}
+		
+		String id = tfUserId.getText().trim();
+		if ( ! checkPwd(pfUserPwd, pfUserPwdChk)) {
+			JOptionPane.showMessageDialog(null, "비밀번호가 다릅니다.");
+			pfUserPwd.requestFocus();
+			return;
+		}
+		String pwd = new String(pfUserPwd.getPassword()).trim();
+		String name = tfUserName.getText().trim();
+		String email = tfUserEmail.getText().trim();
+		String phone = tfUserPhone.getText().trim();
+		
+		User joinUser = new User();
+		joinUser.setUserId(id);
+		joinUser.setUserPwd(pwd);
+		joinUser.setName(name);
+		joinUser.setEmail(email);
+		joinUser.setPhone(new PhoneNumber(phone));
+		UserService.getInstance().addUser(joinUser);
+		JOptionPane.showMessageDialog(null, "회원가입이 완료되었습니다.");
+	}
+	
+	private String getSelectedButtonText(ButtonGroup buttonGroup) {
+		for (Enumeration<AbstractButton> buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
+			AbstractButton button = buttons.nextElement();
+
+			if (button.isSelected()) {
+				return button.getText();
+			}
+		}
+
+		return null;
+	}
+
+	private boolean checkPwd(JPasswordField pwd1, JPasswordField pwd2) {
+		if (Arrays.equals(pwd1.getPassword(), pwd2.getPassword())) {
+			return true;
+		}
+		return false;
+	}
+
+	// 취소
 	protected void actionPerformedBtnUserJoinCancel(ActionEvent e) {
 	}
+
+	// 이미지 업로드
 	protected void actionPerformedBtnUerImgOK(ActionEvent e) {
 	}
 }

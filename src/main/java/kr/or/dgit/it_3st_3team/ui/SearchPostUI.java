@@ -2,7 +2,14 @@ package kr.or.dgit.it_3st_3team.ui;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.util.Collections;
+import java.util.List;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -15,16 +22,23 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import kr.or.dgit.it_3st_3team.dto.Address;
+import kr.or.dgit.it_3st_3team.service.AddressService;
 import kr.or.dgit.it_3st_3team.ui.component.LblTfComp;
+import kr.or.dgit.it_3st_3team.ui.table.PostTable;
 
 @SuppressWarnings("serial")
-public class SearchPostUI extends JFrame {
+public class SearchPostUI extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private JTextField tfBNum1;
 	private JTextField tfNum2;
-	private JTable table;
-
+//	private PostTable table;
+	private JComboBox<String> cmbSiGungu;
+	private JComboBox<String> cmbSido;
+	private JButton btnSearch;
+	private LblTfComp pDoro;
+	private PostTable pPostTable;
 	/**
 	 * Launch the application.
 	 */
@@ -78,7 +92,8 @@ public class SearchPostUI extends JFrame {
 		tfNum2.setBounds(228, 159, 91, 30);
 		contentPane.add(tfNum2);
 		
-		JButton btnSearch = new JButton("검색");
+		btnSearch = new JButton("검색");
+		btnSearch.addActionListener(this);
 		btnSearch.setBounds(86, 200, 97, 23);
 		contentPane.add(btnSearch);
 		
@@ -94,58 +109,89 @@ public class SearchPostUI extends JFrame {
 		btnCancel.setBounds(195, 428, 97, 23);
 		contentPane.add(btnCancel);
 		
-		JPanel pPostTable = new JPanel();
-		pPostTable.setBackground(Color.WHITE);
+		pPostTable = new PostTable();
+//		pPostTable.setBackground(Color.WHITE);
 		pPostTable.setBounds(12, 233, 358, 185);
 		contentPane.add(pPostTable);
-		pPostTable.setLayout(null);
+		pPostTable.loadTableDatas(Collections.EMPTY_LIST);
 		
-		JScrollPane scrollPane = new JScrollPane();
+//		pPostTable.setLayout(null);
+		
+/*		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBackground(Color.WHITE);
 		scrollPane.setBounds(0, 0, 358, 185);
-		pPostTable.add(scrollPane);
+		pPostTable.add(scrollPane);*/
 		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null},
-				{null, null},
-			},
-			new String[] {
-				"\uC6B0\uD3B8\uBC88\uD638", "\uC8FC\uC18C"
-			}
-		));
-		table.getColumnModel().getColumn(0).setPreferredWidth(100);
-		table.getColumnModel().getColumn(0).setMinWidth(100);
-		table.getColumnModel().getColumn(0).setMaxWidth(100);
-		table.getColumnModel().getColumn(1).setPreferredWidth(280);
-		table.getColumnModel().getColumn(1).setMinWidth(280);
-		table.getColumnModel().getColumn(1).setMaxWidth(280);
-		scrollPane.setViewportView(table);
 		
-		LblTfComp pDoro = new LblTfComp("도로 명");
+		
+//		scrollPane.setViewportView(table);
+		
+		pDoro = new LblTfComp("도로 명");
 		pDoro.setBounds(47, 119, 272, 30);
 		contentPane.add(pDoro);
+	
+		cmbSido = new JComboBox<>();
+		
+		cmbSido.setBounds(107, 31, 106, 30);
+		
+		contentPane.add(cmbSido);
+		JLabel label_1 = new JLabel("시/도");
+		label_1.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_1.setBounds(39, 40, 48, 15);
+		contentPane.add(label_1);
+		
+		cmbSiGungu = new JComboBox<>();
+		cmbSiGungu.setBounds(107, 77, 106, 30);
+		contentPane.add(cmbSiGungu);
 		
 		JLabel label = new JLabel("시/군/구");
 		label.setHorizontalAlignment(SwingConstants.RIGHT);
 		label.setBounds(39, 86, 48, 15);
 		contentPane.add(label);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(107, 77, 106, 30);
-		contentPane.add(comboBox);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(107, 31, 106, 30);
-		contentPane.add(comboBox_1);
-		
-		JLabel label_1 = new JLabel("시/도");
-		label_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_1.setBounds(39, 40, 48, 15);
-		contentPane.add(label_1);
+		loadSidoCmbData();
+		cmbSido.addItemListener(sidoListener);
+		cmbSido.setSelectedIndex(0);
 	}
 	
+
+	ItemListener sidoListener = new ItemListener() {
+		@Override
+		public void itemStateChanged(ItemEvent e) {
+			if (e.getStateChange()==ItemEvent.SELECTED) {
+				loadSigunguCmbData((String)cmbSido.getSelectedItem());
+			}			
+		}
+	};
+
+
+	protected void loadSigunguCmbData(String selectedSido) {
+		List<Address> siGunguList = AddressService.getInstance().selcectAddressBySigungu(new Address(selectedSido));
+		String[] addressArr = new String[siGunguList.size()];
+		
+		for(int i=0; i<siGunguList.size(); i++) {
+			addressArr[i] = siGunguList.get(i).getSigungu();
+		}
+		
+		DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(addressArr);
+		cmbSiGungu.setModel(model);
+	}
+	
+	private void loadSidoCmbData() {
+		List<Address> sidoList = AddressService.getInstance().selcectAddressBySido();
+		String[] addressArr = new String[sidoList.size()];
+		
+		for(int i=0; i<sidoList.size(); i++) {
+			addressArr[i] = sidoList.get(i).getSido();
+		}
+		
+		DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(addressArr);
+		cmbSido.setModel(model);
+		cmbSido.setSelectedIndex(-1);
+	}
+
+
 	public void settTfBNum1(String text) {
 		tfBNum1.setText(text);
 	}
@@ -160,5 +206,26 @@ public class SearchPostUI extends JFrame {
 
 	public String getTfBNum2() {
 		return tfBNum1.getSelectedText();
+	}
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnSearch) {
+			actionPerformedBtnSearch(e);
+		}
+	}
+	protected void actionPerformedBtnSearch(ActionEvent e) {
+		String sido = (String) cmbSido.getSelectedItem();
+		String sigungu = (String) cmbSiGungu.getSelectedItem();
+		String doro = pDoro.getTfText();
+	
+		Address address = new Address();
+		address.setSido(sido);
+		address.setSigungu(sigungu);
+		if (!doro.equals("")) {
+			address.setDoro(doro);
+		}
+		
+		List<Address> list =  AddressService.getInstance().selectAddressByDoro(address);
+
+		pPostTable.loadTableDatas(list);
 	}
 }

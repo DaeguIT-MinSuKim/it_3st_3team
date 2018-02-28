@@ -37,17 +37,26 @@
 		select max(u_no) as last_id from user;
 	</sql>
 
+
+	<sql id="whereByNoSql">
+		where u_no = #{userNo}
+	</sql>
+	
+	<sql id="whereByIdSql">
+		where u_id = #{userId}
+	</sql>
+
 	
 	<!-- User no 로 검색 -->
 	<select id="selectUserByNo" parameterType="User" resultMap="UserWithAdminResult">
 		<include refid="selectWithAdminSql" />
-		where u_no = #{userNo}
+		<include refid="whereByNoSql" />
 	</select>
 	
 	<!-- User Id 로 검색 -->
 	<select id="selectUserById" parameterType="User" resultMap="UserWithAdminResult">
 		<include refid="selectWithAdminSql" />
-		where u_id = #{userId}
+		<include refid="whereByIdSql" />
 	</select>
 	
 	<!-- 모든 User 검색 -->
@@ -60,7 +69,7 @@
 		<include refid="selectWithAdminSql" />
 		where u.u_group = #{userGroup}
 	</select>
-	
+
 
 	<!-- Login 시 User 검색 -->
 	<sql id="whereLoginSql">
@@ -121,12 +130,12 @@
 	<!-- 업데이트 User -->
 	<update id="updateUser" parameterType="User">
 		<include refid="updateSql" />
-		<include refid="whereSql" />
+		<include refid="whereByIdSql" />
 	</update>
 	
 	<!-- 삭제 User -->
-	<delete id="deleteUser">
+	<delete id="deleteUser" parameterType="User">
 		delete from user 
-		<include refid="whereSql" />
+		<include refid="whereByIdSql" />
 	</delete>
 </mapper>
