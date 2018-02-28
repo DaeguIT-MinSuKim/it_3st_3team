@@ -53,6 +53,14 @@ public abstract class AbstractLblTfBtnComp extends JPanel implements ActionListe
 
 		btn.setBorder(UIManager.getBorder("Button.border"));
 	}
+	
+	public void setTfText(String str) {
+		tfInput.setText(str);
+	}
+	
+	public String getTfText() {
+		return tfInput.getText();
+	}
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btn) {

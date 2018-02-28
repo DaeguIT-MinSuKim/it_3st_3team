@@ -7,19 +7,13 @@ public class Address {
 	private String doro;
 	private int building1;
 	private int building2;
-	
-	
-	
-
-
-
 
 	public Address(String sido) {
 		this.sido = sido;
 	}
 
 	public Address() {
-		
+
 	}
 
 	public String getZipcode() {
@@ -71,7 +65,7 @@ public class Address {
 	}
 
 	public Address(String zipcode, String sido, String sigungu, String doro, int building1, int building2) {
-		
+
 		this.zipcode = zipcode;
 		this.sido = sido;
 		this.sigungu = sigungu;
@@ -79,10 +73,6 @@ public class Address {
 		this.building1 = building1;
 		this.building2 = building2;
 	}
-	
-	
-	
-	
 
 	public Address(String sido, String sigungu, String doro, int building1, int building2) {
 		super();
@@ -100,9 +90,12 @@ public class Address {
 	}
 
 	public Object[] toArray() {
-	
-		return new Object[] {String.format("[%s] %s %s %s (%s - %s)", zipcode,sido,sigungu,doro,building1,building2)};
+
+		return new Object[] {
+				String.format("[%s] %s %s %s (%s - %s)", zipcode, sido, sigungu, doro, building1, building2) };
 	}
-	
-	
+
+	public String getFirstAddress() {
+		return String.format("%s %s %s", sido, sigungu, doro);
+	}
 }

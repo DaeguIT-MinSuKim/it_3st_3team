@@ -13,6 +13,7 @@ import kr.or.dgit.it_3st_3team.ui.component.LblTfBtnPostSearchComp;
 import kr.or.dgit.it_3st_3team.ui.component.AbstractLblTfBtnComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblTfComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblCmbAdminComp;
+import kr.or.dgit.it_3st_3team.ui.component.LblTfBtnAddressInputComp;
 
 @SuppressWarnings("serial")
 public class AdminCompanyRegister extends JPanel {
@@ -64,17 +65,13 @@ public class AdminCompanyRegister extends JPanel {
 		lblTfComp.setBounds(91, 170, 263, 30);
 		panel_2.add(lblTfComp);
 		
-		AbstractLblTfBtnComp lblTfBtnComp = new LblTfBtnPostSearchComp("우편번호", "검색");
-		lblTfBtnComp.setBounds(514, 50, 280, 30);
-		panel_2.add(lblTfBtnComp);
-		
-		LblAddressComp panel_4 = new LblAddressComp("주소");
-		panel_4.setBounds(538, 90, 342, 70);
-		panel_2.add(panel_4);
-		
 		LblCmbAdminComp panel_5 = new LblCmbAdminComp("담당자");
 		panel_5.setBackground(new Color(255, 255, 255));
 		panel_5.setBounds(528, 10, 245, 30);
 		panel_2.add(panel_5);
+		
+		LblTfBtnAddressInputComp panel_4 = new LblTfBtnAddressInputComp();
+		panel_4.setBounds(512, 65, 377, 115);
+		panel_2.add(panel_4);
 	}
 }
