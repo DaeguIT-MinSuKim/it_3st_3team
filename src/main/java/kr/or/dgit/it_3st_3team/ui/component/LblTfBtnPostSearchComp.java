@@ -6,10 +6,8 @@ import kr.or.dgit.it_3st_3team.ui.SearchPostUI;
 
 @SuppressWarnings("serial")
 public class LblTfBtnPostSearchComp extends AbstractLblTfBtnComp {
-
-	/**
-	 * Create the panel.
-	 */
+	private LblAddressComp pInputAddress;
+	
 	public LblTfBtnPostSearchComp(String title, String btnName) {
 		super(title, btnName);
 	}
@@ -18,6 +16,15 @@ public class LblTfBtnPostSearchComp extends AbstractLblTfBtnComp {
 	protected void actionPerformedBtn(ActionEvent e) {
 		SearchPostUI frame = new SearchPostUI();
 		frame.setVisible(true);
+		frame.setPostSearch(this);
+	}
+
+	public void setPanelAddress(LblAddressComp pInputAddress) {
+		this.pInputAddress = pInputAddress;
+	}
+
+	public LblAddressComp getpInputAddress() {
+		return pInputAddress;
 	}
 
 }

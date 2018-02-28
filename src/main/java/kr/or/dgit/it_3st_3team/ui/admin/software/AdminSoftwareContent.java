@@ -2,6 +2,8 @@ package kr.or.dgit.it_3st_3team.ui.admin.software;
 
 import javax.swing.JPanel;
 import java.awt.Color;
+
+import kr.or.dgit.it_3st_3team.service.SoftwareService;
 import kr.or.dgit.it_3st_3team.ui.component.PagingComp;
 import kr.or.dgit.it_3st_3team.ui.table.AdminSoftwareTable;
 import java.awt.SystemColor;
@@ -29,12 +31,13 @@ public class AdminSoftwareContent extends JPanel {
 		add(pSearch);
 
 		AdminSoftwareTable pTable = new AdminSoftwareTable();
-		pTable.setBackground(new Color(244, 244, 244));
+		pTable.setBackground(new Color(240, 240, 240));
 		pTable.setBounds(0, 242, 1190, 572);
+		pTable.loadTableDatas(SoftwareService.getInstance().selectSoftwareByAll());
 		add(pTable);
 
 		PagingComp pPageing = new PagingComp();
-		pPageing.setBackground(new Color(244, 244, 244));
+		pPageing.setBackground(new Color(240, 240, 240));
 		pPageing.setBounds(0, 814, 1190, 52);
 		add(pPageing);
 		

@@ -1,18 +1,17 @@
 package kr.or.dgit.it_3st_3team.ui.table;
 
-import javax.swing.JPanel;
 import java.awt.Color;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
+
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
-import javax.swing.ImageIcon;
+
 import kr.or.dgit.it_3st_3team.ui.component.PagingComp;
-import kr.or.dgit.it_3st_3team.ui.table.AdminSoftwareTable.NonEditableModel;
 
 public class AdminOrderTable extends JPanel {
 	private JTable TblOrder;

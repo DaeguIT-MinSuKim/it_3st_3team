@@ -16,7 +16,7 @@ import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public abstract class AbstractLblTfBtnComp extends JPanel implements ActionListener {
-	private JTextField tfInput;
+	protected JTextField tfInput;
 	private JLabel lbltitle;
 	private JButton btn;
 
@@ -52,6 +52,14 @@ public abstract class AbstractLblTfBtnComp extends JPanel implements ActionListe
 		add(pBtnArea);
 
 		btn.setBorder(UIManager.getBorder("Button.border"));
+	}
+	
+	public void setTfText(String str) {
+		tfInput.setText(str);
+	}
+	
+	public String getTfText() {
+		return tfInput.getText();
 	}
 
 	public void actionPerformed(ActionEvent e) {
