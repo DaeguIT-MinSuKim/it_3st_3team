@@ -40,7 +40,7 @@ public class SaleOrderServiceTest {
 	public void test2FindSaleOrderWithAllBySearch() {
 		Map<String, String> maps = new HashMap<>();
 
-
+		
 		maps.put("sgName", "");
 		maps.put("adminName", "");
 		maps.put("startDate", "");
