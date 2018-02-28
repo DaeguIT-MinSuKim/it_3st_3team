@@ -14,6 +14,7 @@ public class LblCmbSoftwareGroupComp extends AbstractLabelComboBoxComp<SoftwareG
 	
 	@Override
 	public void loadData(SoftwareGroup[] data) {
+		
 		dcbm = new DefaultComboBoxModel<>(data);
 		cmbBox.setModel(dcbm);
 		

@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 
 import kr.or.dgit.it_3st_3team.ui.SoftwareGroupUI;
 import kr.or.dgit.it_3st_3team.ui.component.ImageComp;
+import kr.or.dgit.it_3st_3team.ui.component.LblCmbSoftwareGroupComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblCmbStringComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblTfComp;
 import java.awt.event.ActionListener;
@@ -45,7 +46,7 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 		pCompany.setBounds(238, 27, 243, 30);
 		pRegister.add(pCompany);
 
-		LblCmbStringComp pSWsort = new LblCmbStringComp("분류");
+		LblCmbSoftwareGroupComp pSWsort = new LblCmbSoftwareGroupComp("분류");
 		pSWsort.setBounds(556, 27, 183, 30);
 		pRegister.add(pSWsort);
 
