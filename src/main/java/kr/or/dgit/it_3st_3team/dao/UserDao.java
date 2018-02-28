@@ -6,7 +6,9 @@ import kr.or.dgit.it_3st_3team.dto.User;
 import kr.or.dgit.it_3st_3team.type.UserGroup;
 
 public interface UserDao {
-	User selectUserByNo(User UserNo);
+	User selectUserByNo(User user);
+	User selectUserByLogin(User user);
+	
 	List<User> selectUserAll();
 	List<User> selectUserAllByUserGroup(UserGroup userGroup);
 	

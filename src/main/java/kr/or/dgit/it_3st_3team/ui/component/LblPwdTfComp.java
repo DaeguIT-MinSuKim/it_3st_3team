@@ -40,6 +40,6 @@ public class LblPwdTfComp extends JPanel {
 	}
 
 	public String getTfText() {
-		return pwdField.getSelectedText();
+		return new String(pwdField.getPassword());
 	}
 }

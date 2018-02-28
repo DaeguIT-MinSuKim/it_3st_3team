@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import kr.or.dgit.it_3st_3team.dto.Admin;
 import kr.or.dgit.it_3st_3team.dto.User;
-import kr.or.dgit.it_3st_3team.ui.util.MyBatisSqlSessionFactory;
+import kr.or.dgit.it_3st_3team.util.MyBatisSqlSessionFactory;
 
 public class AdminService {
 	private static final AdminService instance = new AdminService();
