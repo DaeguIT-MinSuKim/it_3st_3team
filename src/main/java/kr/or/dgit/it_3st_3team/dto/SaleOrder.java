@@ -168,4 +168,9 @@ public class SaleOrder {
 				ordDatetime, admin, softwaregroup);
 	}
 
+	public Object[] toArray() {
+		return new Object[] {
+				ordNo,software,ordQuantity,ordSupplyPrice,ordSellPrice,ordTax,ordSellProfit,ordPayment
+		};
+	}
 }

@@ -42,11 +42,13 @@ public class SoftwareGroup {
 	@Override
 	public String toString() {
 		return String.format("%s", sgName);
+
 	}
 
 	public Object[] toArray() {
 		// TODO Auto-generated method stub
 		return new Object[] {String.format("(%s)%s",sgNo,sgName)};
+
 	}
 
 	

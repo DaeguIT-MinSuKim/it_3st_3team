@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import kr.or.dgit.it_3st_3team.ui.admin.report.AdminStatusContentTest;
 import kr.or.dgit.it_3st_3team.ui.admin.report.TestSearch;
 
 public class Test extends JFrame {
@@ -26,20 +27,19 @@ public class Test extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
+	
 	public Test() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 1250, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		JPanel jp = new TestSearch();
+		JPanel jp = new AdminStatusContentTest();
 		setContentPane(jp);
 		revalidate();
+		
 	}
 
 }

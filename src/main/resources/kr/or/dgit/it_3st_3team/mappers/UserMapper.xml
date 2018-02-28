@@ -37,6 +37,7 @@
 		select max(u_no) as last_id from user;
 	</sql>
 
+
 	<sql id="whereByNoSql">
 		where u_no = #{userNo}
 	</sql>
@@ -44,6 +45,7 @@
 	<sql id="whereByIdSql">
 		where u_id = #{userId}
 	</sql>
+
 	
 	<!-- User no 로 검색 -->
 	<select id="selectUserByNo" parameterType="User" resultMap="UserWithAdminResult">
@@ -67,6 +69,7 @@
 		<include refid="selectWithAdminSql" />
 		where u.u_group = #{userGroup}
 	</select>
+
 
 	<!-- Login 시 User 검색 -->
 	<sql id="whereLoginSql">

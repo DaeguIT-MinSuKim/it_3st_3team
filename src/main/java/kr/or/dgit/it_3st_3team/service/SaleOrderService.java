@@ -31,10 +31,17 @@ public class SaleOrderService {
 		}
 	}
 
-	public List<SaleOrder> findSaleOrderWithAllByNo(Map<String, String> map) {
-		log.debug("findSaleOrderWithAllByNo()");
+	public List<SaleOrder> findSaleOrderWithAllBySearch(Map<String, String> map) {
+		log.debug("findSaleOrderWithAllBySearch()");
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
-			return sqlSession.selectList(namespace + "selectSaleOrderWithAllByNo", map);
+			return sqlSession.selectList(namespace + "selectSaleOrderWithAllBySearch", map);
+		}
+	}
+	
+	public List<SaleOrder> findSaleOrderByAll() {
+		log.debug("findSaleOrderByAll()");
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectList(namespace + "selectSaleOrderByAll");
 		}
 	}
 

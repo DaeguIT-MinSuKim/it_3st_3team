@@ -1,8 +1,10 @@
 package kr.or.dgit.it_3st_3team.ui.component;
 
+import java.awt.Color;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Properties;
 
 import javax.swing.BoxLayout;
@@ -14,13 +16,15 @@ import javax.swing.border.EmptyBorder;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
-import java.awt.Color;
 
 @SuppressWarnings("serial")
 public class StartAndEndDate extends JPanel {
 
-	public StartAndEndDate() {
+	private JDatePickerImpl startDatePicker;
+	protected JDatePanelImpl datePanel;
+	private JDatePickerImpl endDatePicker;
 
+	public StartAndEndDate() {
 		initComponents();
 	}
 
@@ -39,12 +43,12 @@ public class StartAndEndDate extends JPanel {
 		pro1.put("text.month", "Month");
 		pro1.put("text.year", "Year");
 
-		JDatePanelImpl datePanel = new JDatePanelImpl(model, pro1);
-		JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
-		SpringLayout springLayout = (SpringLayout) datePicker.getLayout();
-		springLayout.putConstraint(SpringLayout.NORTH, datePicker.getJFormattedTextField(), 0, SpringLayout.NORTH,
-				datePicker);
-		pStartdate.add(datePicker);
+		datePanel = new JDatePanelImpl(model, pro1);
+		startDatePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
+		SpringLayout springLayout = (SpringLayout) startDatePicker.getLayout();
+		springLayout.putConstraint(SpringLayout.NORTH, startDatePicker.getJFormattedTextField(), 0, SpringLayout.NORTH,
+				startDatePicker);
+		pStartdate.add(startDatePicker);
 
 		JPanel pEnddate = new JPanel();
 		pEnddate.setBackground(new Color(255, 255, 255));
@@ -57,11 +61,19 @@ public class StartAndEndDate extends JPanel {
 		pro2.put("text.year", "Year");
 
 		JDatePanelImpl datePanel2 = new JDatePanelImpl(model2, pro2);
-		JDatePickerImpl datePicker2 = new JDatePickerImpl(datePanel2, new DateLabelFormatter());
-		SpringLayout springLayout2 = (SpringLayout) datePicker2.getLayout();
-		springLayout2.putConstraint(SpringLayout.NORTH, datePicker2.getJFormattedTextField(), 0, SpringLayout.NORTH,
-				datePicker2);
-		pEnddate.add(datePicker2);
+		endDatePicker = new JDatePickerImpl(datePanel2, new DateLabelFormatter());
+		SpringLayout springLayout2 = (SpringLayout) endDatePicker.getLayout();
+		springLayout2.putConstraint(SpringLayout.NORTH, endDatePicker.getJFormattedTextField(), 0, SpringLayout.NORTH,
+				endDatePicker);
+		pEnddate.add(endDatePicker);
+	}
+
+	public String getStartDate() {
+		return startDatePicker.getJFormattedTextField().getText();
+	}
+
+	public String getEndDate() {
+		return endDatePicker.getJFormattedTextField().getText();
 	}
 
 }
@@ -83,7 +95,6 @@ class DateLabelFormatter extends AbstractFormatter {
 			Calendar cal = (Calendar) value;
 			return dateFormatter.format(cal.getTime());
 		}
-
 		return "";
 	}
 

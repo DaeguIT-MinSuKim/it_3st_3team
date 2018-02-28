@@ -18,7 +18,7 @@ import kr.or.dgit.it_3st_3team.ui.admin.company.AdminCompanyContent;
 import kr.or.dgit.it_3st_3team.ui.admin.customer.AdminCustomerContent;
 import kr.or.dgit.it_3st_3team.ui.admin.management.AdminManagementContent;
 import kr.or.dgit.it_3st_3team.ui.admin.order.AdminOrder;
-import kr.or.dgit.it_3st_3team.ui.admin.report.AdminStatusContent;
+import kr.or.dgit.it_3st_3team.ui.admin.report.AdminStatusContentTest;
 import kr.or.dgit.it_3st_3team.ui.admin.software.AdminSoftwareContent;
 
 @SuppressWarnings("serial")
@@ -161,7 +161,7 @@ public class AdminUI extends JFrame implements ActionListener {
 	}
 
 	protected void actionPerformedBtnSupplySaleStatus(ActionEvent e) {
-		AdminStatusContent pMain = new AdminStatusContent();
+		AdminStatusContentTest pMain = new AdminStatusContentTest();
 		pMain.setBounds(0, 0, 1186, 861);
 		changeMainPanel(pMain);
 	}
