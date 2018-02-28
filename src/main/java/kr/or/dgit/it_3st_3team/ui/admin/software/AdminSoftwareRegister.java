@@ -6,18 +6,22 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 
+import kr.or.dgit.it_3st_3team.dto.SoftwareGroup;
+import kr.or.dgit.it_3st_3team.service.SoftwareGroupService;
 import kr.or.dgit.it_3st_3team.ui.SoftwareGroupUI;
 import kr.or.dgit.it_3st_3team.ui.component.ImageComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblCmbSoftwareGroupComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblCmbStringComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblTfComp;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class AdminSoftwareRegister extends JPanel implements ActionListener {
 	private JFileChooser chooser;
 	private JButton btnSubmitCF;
+	private LblCmbSoftwareGroupComp pSWsort;
 
 	/**
 	 * Create the panel.
@@ -45,9 +49,13 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 		pCompany.setBorder(null);
 		pCompany.setBounds(238, 27, 243, 30);
 		pRegister.add(pCompany);
-
-		LblCmbSoftwareGroupComp pSWsort = new LblCmbSoftwareGroupComp("분류");
+		
+		List<SoftwareGroup> lists = SoftwareGroupService.getInstance().selectSoftwareGroupByAll();
+		SoftwareGroup[] sgDatas = lists.toArray(new SoftwareGroup[lists.size()]);
+		
+		pSWsort = new LblCmbSoftwareGroupComp("분류");
 		pSWsort.setBounds(556, 27, 183, 30);
+		pSWsort.loadData(sgDatas);
 		pRegister.add(pSWsort);
 
 		
@@ -80,6 +88,13 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 	}
 	protected void actionPerformedBtnSubmitCF(ActionEvent e) {
 		SoftwareGroupUI softwareGroupUI = new SoftwareGroupUI();
+		softwareGroupUI.setParentUI(this);
 		softwareGroupUI.setVisible(true);
 	}
+	
+	public LblCmbSoftwareGroupComp getpSWsort() {
+		return pSWsort;
+	}
+	
+	
 }

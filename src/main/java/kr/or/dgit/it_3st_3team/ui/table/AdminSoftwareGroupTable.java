@@ -1,16 +1,14 @@
 package kr.or.dgit.it_3st_3team.ui.table;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 
-import kr.or.dgit.it_3st_3team.dto.Software;
 import kr.or.dgit.it_3st_3team.dto.SoftwareGroup;
 import kr.or.dgit.it_3st_3team.ui.component.AbtractTableComp;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 @SuppressWarnings("serial")
 public class AdminSoftwareGroupTable extends AbtractTableComp<SoftwareGroup> {

@@ -16,7 +16,7 @@ import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public abstract class AbstractLblTfBtnComp extends JPanel implements ActionListener {
-	protected JTextField tfInput;
+	private JTextField tfInput;
 	private JLabel lbltitle;
 	private JButton btn;
 
