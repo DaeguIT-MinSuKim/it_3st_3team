@@ -12,6 +12,7 @@ public class User {
 	private String zipcode;
 	private String addr1;
 	private String addr2;
+	private String avatar;
 	private UserGroup userGroup;
 	private Admin admin;
 
@@ -32,7 +33,7 @@ public class User {
 	}
 
 	public User(String userId, String userPwd, String name, String email, PhoneNumber phone, String zipcode,
-			String addr1, String addr2, UserGroup userGroup, Admin admin) {
+			String addr1, String addr2, String avatar, UserGroup userGroup, Admin admin) {
 		this.userId = userId;
 		this.userPwd = userPwd;
 		this.name = name;
@@ -41,13 +42,14 @@ public class User {
 		this.zipcode = zipcode;
 		this.addr1 = addr1;
 		this.addr2 = addr2;
+		this.avatar = avatar;
 		this.userGroup = userGroup;
 		this.admin = admin;
 	}
 
 	
 	public User(String userId, String name, String email, PhoneNumber phone, String zipcode, String addr1,
-			String addr2, UserGroup userGroup, Admin admin) {
+			String addr2, String avatar, UserGroup userGroup, Admin admin) {
 		this.userId = userId;
 		this.name = name;
 		this.email = email;
@@ -55,12 +57,13 @@ public class User {
 		this.zipcode = zipcode;
 		this.addr1 = addr1;
 		this.addr2 = addr2;
+		this.avatar = avatar;
 		this.userGroup = userGroup;
 		this.admin = admin;
 	}
 
 	public User(int userNo, String userId, String userPwd, String name, String email, PhoneNumber phone, String zipcode,
-			String addr1, String addr2, UserGroup userGroup, Admin admin) {
+			String addr1, String addr2, String avatar, UserGroup userGroup, Admin admin) {
 		this.userNo = userNo;
 		this.userId = userId;
 		this.userPwd = userPwd;
@@ -70,6 +73,7 @@ public class User {
 		this.zipcode = zipcode;
 		this.addr1 = addr1;
 		this.addr2 = addr2;
+		this.avatar = avatar;
 		this.userGroup = userGroup;
 		this.admin = admin;
 	}
@@ -146,6 +150,14 @@ public class User {
 		this.addr2 = addr2;
 	}
 
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
+
 	public UserGroup getUserGroup() {
 		return userGroup;
 	}
@@ -165,8 +177,8 @@ public class User {
 	@Override
 	public String toString() {
 		return String.format(
-				"User [userNo=%s, userId=%s, userPwd=%s, name=%s, email=%s, phone=%s, zipcode=%s, addr1=%s, addr2=%s, userGroup=%s, admin=%s]",
-				userNo, userId, userPwd, name, email, phone, zipcode, addr1, addr2, userGroup, admin);
+				"User [userNo=%s, userId=%s, userPwd=%s, name=%s, email=%s, phone=%s, zipcode=%s, addr1=%s, addr2=%s, avatar=%s, userGroup=%s, admin=%s]",
+				userNo, userId, userPwd, name, email, phone, zipcode, addr1, addr2, avatar, userGroup, admin);
 	}
 
 }
