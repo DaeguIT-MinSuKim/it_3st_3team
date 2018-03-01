@@ -11,6 +11,9 @@ import javax.swing.border.EmptyBorder;
 import kr.or.dgit.it_3st_3team.dto.PhoneNumber;
 import kr.or.dgit.it_3st_3team.dto.User;
 import kr.or.dgit.it_3st_3team.service.UserService;
+import kr.or.dgit.it_3st_3team.type.UserGroup;
+import kr.or.dgit.it_3st_3team.ui.listener.OpenActionListener;
+import kr.or.dgit.it_3st_3team.util.CommonUtil;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -22,10 +25,13 @@ import javax.swing.JComponent;
 import javax.swing.ImageIcon;
 import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Enumeration;
+import java.util.regex.Pattern;
 import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
@@ -40,9 +46,12 @@ public class JoinUI extends JFrame implements ActionListener {
 	private JRadioButton rdbtnCompany;
 	private JRadioButton rdbtnUser;
 	private JButton btnDuplId;
+	private boolean checkDupId = false;
 	private JButton btnUserJoinOK;
 	private JButton btnUserJoinCancel;
 	private JButton btnUerImgOK;
+	private ButtonGroup userGroup;
+	private JLabel lblUserImg;
 
 	public JoinUI() {
 		initComponents();
@@ -77,9 +86,9 @@ public class JoinUI extends JFrame implements ActionListener {
 		rdbtnUser.setBounds(144, 22, 85, 25);
 		pInput.add(rdbtnUser);
 
-		ButtonGroup group = new ButtonGroup();
-		group.add(rdbtnCompany);
-		group.add(rdbtnUser);
+		userGroup = new ButtonGroup();
+		userGroup.add(rdbtnCompany);
+		userGroup.add(rdbtnUser);
 
 		JLabel lblUserId = new JLabel("아이디");
 		lblUserId.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -102,14 +111,14 @@ public class JoinUI extends JFrame implements ActionListener {
 		pInput.add(pImgArea);
 		pImgArea.setLayout(null);
 
-		JLabel lblUserImg = new JLabel("");
-		lblUserImg.setIcon(new ImageIcon(System.getProperty("user.dir") + "\\DataImg\\nobody.png"));
+		lblUserImg = new JLabel("");
+		lblUserImg.setIcon(new ImageIcon(CommonUtil.IMG_PATH + CommonUtil.DEFAULT_USER_IMG));
 		lblUserImg.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUserImg.setBounds(0, 0, 128, 128);
 		pImgArea.add(lblUserImg);
 
 		btnUerImgOK = new JButton("사진 등록");
-		btnUerImgOK.addActionListener(this);
+		btnUerImgOK.addActionListener(new OpenActionListener(lblUserImg));
 		btnUerImgOK.setBounds(0, 138, 128, 30);
 		pImgArea.add(btnUerImgOK);
 
@@ -131,20 +140,6 @@ public class JoinUI extends JFrame implements ActionListener {
 		pfUserPwdChk = new JPasswordField();
 		pfUserPwdChk.setHorizontalAlignment(SwingConstants.LEFT);
 		pfUserPwdChk.setBounds(144, 156, 150, 30);
-		pfUserPwdChk.addFocusListener(new FocusAdapter() {
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				super.focusLost(e);
-
-				if (!Arrays.equals(pfUserPwd.getPassword(), pfUserPwdChk.getPassword())) {
-					JOptionPane.showMessageDialog(null, "비밀번호가 다릅니다. 다시 입력해주세요.");
-					pfUserPwd.setText("");
-					pfUserPwd.requestFocus();
-				}
-			}
-
-		});
 		pInput.add(pfUserPwdChk);
 
 		JLabel lblUserName = new JLabel("이름");
@@ -192,9 +187,6 @@ public class JoinUI extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == btnUerImgOK) {
-			actionPerformedBtnUerImgOK(e);
-		}
 		if (e.getSource() == btnUserJoinCancel) {
 			actionPerformedBtnUserJoinCancel(e);
 		}
@@ -213,15 +205,18 @@ public class JoinUI extends JFrame implements ActionListener {
 		}
 		String joinId = tfUserId.getText();
 		if (UserService.getInstance().existUser(new User(joinId))) {
+			checkDupId = false;
 			JOptionPane.showMessageDialog(null, "존재하는 아이디입니다.");
 			tfUserId.setText("");
 			tfUserId.requestFocus();
 		} else {
+			checkDupId = true;
 			JOptionPane.showMessageDialog(null, "사용가능한 아이디입니다.");
 			pfUserPwd.requestFocus();
 		}
 	}
 
+	// TextField, PasswordField 의 값이 비었는지 체크
 	public boolean isEmpty(JComponent comp, String title) {
 		String msg = "";
 		if (comp instanceof JTextField) {
@@ -237,38 +232,115 @@ public class JoinUI extends JFrame implements ActionListener {
 		return false;
 	}
 
-	// 회원가입
+	// 회원가입 버튼
 	protected void actionPerformedBtnUserJoinOK(ActionEvent e) {
-		if (isEmpty(tfUserId, "아이디가") ||
-				isEmpty(pfUserPwd, "비밀번호가") ||
-				isEmpty(pfUserPwdChk, "비밀번호 확인이") ||
-				isEmpty(tfUserName, "이름이") ||
-				isEmpty(tfUserEmail, "이메일이") ||
-				isEmpty(tfUserPhone, "전화번호가")) {
+		joinUser();
+	}
+
+	// 회원가입 처리
+	private void joinUser() {
+		if (isEmpty(tfUserId, "아이디가")) {
 			return;
 		}
-		
+		if (!checkDupId) {
+			JOptionPane.showMessageDialog(null, "아이디 중복체크를 해주세요.");
+			return;
+		}
 		String id = tfUserId.getText().trim();
-		if ( ! checkPwd(pfUserPwd, pfUserPwdChk)) {
+
+		if (isEmpty(pfUserPwd, "비밀번호가")) {
+			return;
+		}
+		if (isEmpty(pfUserPwdChk, "비밀번호 확인이")) {
+			return;
+		}
+		if (!checkPwd(pfUserPwd, pfUserPwdChk)) {
 			JOptionPane.showMessageDialog(null, "비밀번호가 다릅니다.");
+			pfUserPwd.setText("");
 			pfUserPwd.requestFocus();
 			return;
 		}
 		String pwd = new String(pfUserPwd.getPassword()).trim();
+
+		if (isEmpty(tfUserName, "이름이")) {
+			return;
+		}
 		String name = tfUserName.getText().trim();
+
+		if (isEmpty(tfUserEmail, "이메일이")) {
+			return;
+		}
 		String email = tfUserEmail.getText().trim();
+		if (!Pattern.matches(CommonUtil.PATTERN_EMAIL, email)) {
+			JOptionPane.showMessageDialog(null, "이메일 형식이 아닙니다. ex) aaa@test.com");
+			tfUserEmail.setText("");
+			tfUserEmail.requestFocus();
+			return;
+		}
+
+		if (isEmpty(tfUserPhone, "전화번호가")) {
+			return;
+		}
 		String phone = tfUserPhone.getText().trim();
-		
+		if (!Pattern.matches(CommonUtil.PATTERN_PHONE, phone)) {
+			JOptionPane.showMessageDialog(null, "전화번호 형식이 아닙니다. ex) 02-223-1123, 022231122");
+			tfUserPhone.setText("");
+			tfUserPhone.requestFocus();
+			return;
+		}
+		phone = CommonUtil.phoneNumberHyphenAdd(phone, false);
+
+		String uGroup = getSelectedButtonText(userGroup);
+		if (uGroup == null) {
+			JOptionPane.showMessageDialog(null, "회원 구분을 선택해주세요.");
+			return;
+		}
 		User joinUser = new User();
 		joinUser.setUserId(id);
 		joinUser.setUserPwd(pwd);
 		joinUser.setName(name);
 		joinUser.setEmail(email);
 		joinUser.setPhone(new PhoneNumber(phone));
-		UserService.getInstance().addUser(joinUser);
+		if (uGroup == "일반회원") {
+			joinUser.setUserGroup(UserGroup.CUSTOMER);
+		} else if (uGroup == "공급회사") {
+			joinUser.setUserGroup(UserGroup.COMPANY);
+		} else {
+			JOptionPane.showMessageDialog(null, "회원 구분을 선택해주세요.");
+			return;
+		}
+		joinUser.setAvatar(new File(lblUserImg.getIcon().toString()).getName());
+
+		int result = JOptionPane.showConfirmDialog(null, "회원가입 하시겠습니까?", "회원가입", JOptionPane.YES_NO_OPTION);
+		if (result == JOptionPane.CANCEL_OPTION || result == JOptionPane.NO_OPTION) {
+			return;
+		}
+
+		userImgSave();
+		if (UserService.getInstance().addUser(joinUser) != 1) {
+			JOptionPane.showMessageDialog(null, "회원가입에 실패했습니다.");
+			return;
+		}
 		JOptionPane.showMessageDialog(null, "회원가입이 완료되었습니다.");
+		resetData();
+		dispose();
 	}
-	
+
+	private void userImgSave() {
+		File imgFile = new File(lblUserImg.getIcon().toString());
+		File copyFile = new File(CommonUtil.IMG_PATH + imgFile.getName());
+		try (FileInputStream fis = new FileInputStream(imgFile);
+				FileOutputStream fos = new FileOutputStream(copyFile);) {
+
+			byte[] c = new byte[512];
+			while (fis.read(c) != -1) {
+				fos.write(c);
+			}
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(null, "사진을 저장하지 못했습니다.");
+		}
+	}
+
 	private String getSelectedButtonText(ButtonGroup buttonGroup) {
 		for (Enumeration<AbstractButton> buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
 			AbstractButton button = buttons.nextElement();
@@ -288,11 +360,20 @@ public class JoinUI extends JFrame implements ActionListener {
 		return false;
 	}
 
-	// 취소
 	protected void actionPerformedBtnUserJoinCancel(ActionEvent e) {
+		resetData();
 	}
 
-	// 이미지 업로드
-	protected void actionPerformedBtnUerImgOK(ActionEvent e) {
+	// (기본 셋팅으로 돌리기)
+	private void resetData() {
+		lblUserImg.setIcon(new ImageIcon(CommonUtil.IMG_PATH + CommonUtil.DEFAULT_USER_IMG));
+		tfUserId.setText("");
+		pfUserPwd.setText("");
+		pfUserPwdChk.setText("");
+		tfUserName.setText("");
+		tfUserEmail.setText("");
+		tfUserPhone.setText("");
+		rdbtnUser.setSelected(true);
+		checkDupId = false;
 	}
 }

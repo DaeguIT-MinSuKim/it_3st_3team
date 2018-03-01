@@ -97,7 +97,7 @@ public class UserServiceTest {
 	public void test4AddUser() {
 		User user = new User("uid7", "uid7", "테스트유저", "uid7@test.com", 
 				new PhoneNumber("010-1122-3344"), "11234", "테스트시 되지는않구 오류만나로", "233-2", 
-				UserGroup.CUSTOMER, new Admin(1));
+				"nobody.png", UserGroup.CUSTOMER, new Admin(1));
 		int res = service.addUser(user);
 		
 		assertEquals(1, res);
@@ -107,7 +107,7 @@ public class UserServiceTest {
 	public void test5ModifyUser() {
 		User user = new User("uid7", "테스트유저111", "uid7111@test.com", 
 				new PhoneNumber("010-5566-2462"), "88563", "테스트시 되지는않구 오류만나로", "233-2", 
-				UserGroup.COMPANY, new Admin(2));
+				"nobody.png", UserGroup.COMPANY, new Admin(2));
 		int res = service.modifyUser(user);
 		
 		assertEquals(1, res);

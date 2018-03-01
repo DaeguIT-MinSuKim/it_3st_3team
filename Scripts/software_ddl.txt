@@ -22,7 +22,6 @@ CREATE TABLE `software_project`.`admin` (
   CONSTRAINT `FK_admin_group_TO_admin` FOREIGN KEY (`ag_no`) REFERENCES `admin_group` (`ag_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='관리자';
 
-
 CREATE TABLE `software_project`.`user` (
   `u_no` int(11) NOT NULL COMMENT '사용자번호',
   `u_id` varchar(20) NOT NULL COMMENT '아이디',
@@ -33,6 +32,7 @@ CREATE TABLE `software_project`.`user` (
   `u_zipcode` varchar(6) DEFAULT NULL COMMENT '우편번호',
   `u_addr1` varchar(100) DEFAULT NULL COMMENT '주소',
   `u_addr2` varchar(100) DEFAULT NULL COMMENT '상세주소',
+  `u_avatar` varchar(20) DEFAULT NULL COMMENT '사진',
   `u_group` enum('CUSTOMER','COMPANY') DEFAULT NULL COMMENT '사용자구분',
   `adm_no` int(11) DEFAULT NULL COMMENT '관리자',
   PRIMARY KEY (`u_no`),
@@ -54,6 +54,7 @@ CREATE TABLE `software_project`.`software` (
   `sw_quantity` int(11) DEFAULT NULL COMMENT '재고량',
   `sw_supply_price` int(11) DEFAULT NULL COMMENT '공급가격',
   `sw_sell_price` int(11) DEFAULT NULL COMMENT '판매가격',
+  `sw_cover_img` varchar(20) DEFAULT NULL COMMENT '상품표지',
   `pc_no` int(11) DEFAULT NULL COMMENT '공급회사',
   PRIMARY KEY (`sw_no`),
   KEY `FK_software_group_TO_software` (`sg_no`),

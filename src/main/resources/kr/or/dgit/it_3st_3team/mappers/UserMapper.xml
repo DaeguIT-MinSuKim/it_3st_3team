@@ -11,6 +11,7 @@
 		<result property="zipcode" column="u_zipcode" />
 		<result property="addr1" column="u_addr1" />
 		<result property="addr2" column="u_addr2" />
+		<result property="avatar" column="u_avatar" />
 		<result property="userGroup" column="u_group" />
 	</resultMap>
 	
@@ -22,13 +23,13 @@
 	
 	<!-- USER 기본 정보 -->
 	<sql id="selectSql">
-		select u_no, u_id, u_pwd, u_name, u_email, u_phone, u_zipcode, u_addr1, u_addr2, u_group, adm_no
+		select u_no, u_id, u_pwd, u_name, u_email, u_phone, u_zipcode, u_addr1, u_addr2, u_avatar, u_group, adm_no
 		from user
 	</sql>
 	
 	<!-- USER with ADMIN 정보까지 -->
 	<sql id="selectWithAdminSql">
-		select u_no, u_id, u_pwd, u_name, u_email, u_phone, u_zipcode, u_addr1, u_addr2, u_group, u.adm_no, a.adm_id, a.adm_name
+		select u_no, u_id, u_pwd, u_name, u_email, u_phone, u_zipcode, u_addr1, u_addr2, u_avatar, u_group, u.adm_no, a.adm_id, a.adm_name
 		from user u 
 		join admin a on u.adm_no = a.adm_no
 	</sql>
@@ -82,8 +83,8 @@
 	</select>
 	
 	<sql id="insertSql">
-		insert into user(u_no, u_id, u_pwd, u_name, u_email, u_phone, u_zipcode, u_addr1, u_addr2, u_group, adm_no) values
-		(#{userNo}, #{userId},password(#{userPwd}), #{name}, #{email}, #{phone}, #{zipcode}, #{addr1}, #{addr2}, #{userGroup.value}, #{admin.adminNo});
+		insert into user(u_no, u_id, u_pwd, u_name, u_email, u_phone, u_zipcode, u_addr1, u_addr2, u_avatar, u_group, adm_no) values
+		(#{userNo}, #{userId},password(#{userPwd}), #{name}, #{email}, #{phone}, #{zipcode}, #{addr1}, #{addr2}, #{avatar}, #{userGroup.value}, #{admin.adminNo});
 	</sql>
 	
 	<!-- User 마지막 no + 1 후 insert -->
@@ -117,6 +118,9 @@
 			</if>
 			<if test="addr2 != null">
 				u_addr2 = #{addr2},
+			</if>
+			<if test="avatar != null">
+				u_avatar = #{avatar},
 			</if>
 			<if test="userGroup != null">
 				u_group = #{userGroup.value},
