@@ -32,14 +32,12 @@ public class SaleOrderServiceTest {
 		SaleOrder saleorder = new SaleOrder();
 		saleorder.setOrdNo(1);
 		SaleOrder findSaleOrder = service.findSaleOrderByNo(saleorder);
-		//assertNotNull(findSaleOrder);
-		System.out.println(findSaleOrder);
+		Assert.assertNotNull(findSaleOrder);
 	}
 
 	@Test
 	public void test2FindSaleOrderWithAllBySearch() {
 		Map<String, String> maps = new HashMap<>();
-
 		
 		maps.put("sgName", "");
 		maps.put("adminName", "");
@@ -77,7 +75,7 @@ public class SaleOrderServiceTest {
 	@Test
 	public void test3findSaleOrderByAll() {
 		List<SaleOrder> findSaleOrder = service.findSaleOrderByAll();
-		//assertNotNull(findSaleOrder);
+		Assert.assertNotNull(findSaleOrder);
 		System.out.println(findSaleOrder);
 	}
 }

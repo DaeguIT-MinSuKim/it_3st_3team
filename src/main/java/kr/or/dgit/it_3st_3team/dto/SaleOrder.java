@@ -63,6 +63,24 @@ public class SaleOrder {
 		this.ordDatetime = ordDatetime;
 		this.admin = admin;
 	}
+	
+	public SaleOrder(int ordNo, User user, Software software, int ordQuantity, int ordSupplyPrice, int ordSellPrice,
+			int ordTax, int ordSellProfit, Payment ordPayment, Date ordDatetime, Admin admin,
+			SoftwareGroup softwaregroup) {
+		super();
+		this.ordNo = ordNo;
+		this.user = user;
+		this.software = software;
+		this.ordQuantity = ordQuantity;
+		this.ordSupplyPrice = ordSupplyPrice;
+		this.ordSellPrice = ordSellPrice;
+		this.ordTax = ordTax;
+		this.ordSellProfit = ordSellProfit;
+		this.ordPayment = ordPayment;
+		this.ordDatetime = ordDatetime;
+		this.admin = admin;
+		this.softwaregroup = softwaregroup;
+	}
 
 	public int getOrdNo() {
 		return ordNo;
@@ -170,7 +188,10 @@ public class SaleOrder {
 
 	public Object[] toArray() {
 		return new Object[] {
-				ordNo,software,ordQuantity,ordSupplyPrice,ordSellPrice,ordTax,ordSellProfit,ordPayment
+				ordNo, "고객명",/*softwaregroup.getSgName()*/"분류",software.getSwName(),
+				ordQuantity,ordSupplyPrice,ordSellPrice,ordTax,ordSellProfit,
+				ordPayment,"공급회사명", ordDatetime,admin.getAdminName()
+				/*String.format("%s", user.getName())*/
 		};
 	}
 }

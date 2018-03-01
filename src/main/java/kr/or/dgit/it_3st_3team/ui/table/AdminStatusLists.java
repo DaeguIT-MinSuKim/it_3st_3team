@@ -12,16 +12,16 @@ public class AdminStatusLists extends AbtractTableComp<SaleOrder> {
 	@Override
 	public void setTableAlignWidth() {
 		// 셀의 너비와 정렬
-		setTableCellAlign(SwingConstants.CENTER, 0, 1, 2, 3, 4, 5, 6,7,8,9,10,11,12,13,14,15);
+		setTableCellAlign(SwingConstants.CENTER, 0, 1, 2, 3, 4, 5, 6,7,8,9,10,11,12);
 		
 		setTableRowHeight(30);
 		
-		setTableCellWidth(200, 500, 300, 500, 200, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500);		
+		setTableCellWidth(400, 500, 300, 500, 400, 500, 500, 500, 500, 500, 500, 1200, 500);		
 	}
 
 	@Override
 	public Object[] getColumnNames() {
-		return new String[] { "번호", "상호명", "분류", "품목명", "주문수량", "공급가격","판매가격","결제수단","매출금","날짜","공급회사명","판매이윤","AAA","BBB","CCC","DDD"};
+		return new String[] { "주문번호", "고객명", "분류", "품목명", "주문수량","공급가격","판매가격", "부가세액","판매이윤","결제수단","공급회사명","날짜","관리자"};
 
 	}
 

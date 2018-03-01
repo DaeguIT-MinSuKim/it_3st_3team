@@ -25,14 +25,14 @@
 		<result property="software.swGroup.sgName" column="sg_name" />
 	</resultMap>
 	
-	
+	<!-- SaleOrder Select -->
 	<sql id="saleOrderSql">
-	select ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no
+	select ord_no, u_no, sw_no, ord_quantity, ord_supply_price, 
+	ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no
 	from sale_order
 	</sql>
 	
-	<!-- 현황관리 조건검색 -->
-	
+	<!-- SaleOrder 현황관리 관리자 조건검색 -->
 	<sql id="selectParameterSql">
 	select us.u_group as '고객타입', us.u_name as '고객명', cu.u_group as '공급타입', cu.u_name as '공급명',
 	so.ord_no, ad.adm_name, sg.sg_name, sp.sw_name, so.ord_quantity,
@@ -46,6 +46,7 @@
 	join user as cu on sp.pc_no=cu.u_no
 	</sql>
 	
+	<!-- SaleOrder Where 주문번호-->
 	<sql id="whereSql">
 		<where>
 			<if test="ordNo != null">
@@ -54,7 +55,7 @@
 		</where>
 	</sql>
 	
-
+	<!-- 관리자 현황관리 Where 모든조건 -->
 	<sql id="whereSwNameSql">
 		<where>
 			<if test="sgName != null and sgName != ''">
@@ -85,6 +86,7 @@
 	
 	<select id="selectSaleOrderByNo" parameterType="SaleOrder" resultMap="selectSaleOrderWithAll">
 		<include refid="selectParameterSql"/>
+		<include refid="whereSql"/>
 	</select>
 
 	
