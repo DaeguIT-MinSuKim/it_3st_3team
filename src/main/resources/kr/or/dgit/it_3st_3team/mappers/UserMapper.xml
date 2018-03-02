@@ -108,7 +108,7 @@
 		update user
 		<set>
 			<if test="userPwd != null">
-				u_pwd = #{userPwd},
+				u_pwd = password(#{userPwd}),
 			</if>
 			<if test="name != null">
 				u_name = #{name},

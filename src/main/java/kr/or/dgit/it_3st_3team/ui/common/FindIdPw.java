@@ -158,8 +158,8 @@ public class FindIdPw extends JPanel implements ItemListener, ActionListener {
 	}
 
 	public void itemStateChanged(ItemEvent e) {
-		if (e.getSource() == cmbFindIdChooseEmail) {
-			itemStateChangedCmbFindIdChooseEmail(e);
+		if (e.getSource() == cmbFindIdChooseEmail || e.getSource() == cmbFindPwChooseEmail) {
+			itemStateChangedCmbChooseEmail(e);
 		}
 		if (e.getSource() == rdFindId) {
 			itemStateChangedRdFindId(e);
@@ -170,16 +170,27 @@ public class FindIdPw extends JPanel implements ItemListener, ActionListener {
 	}
 
 	// 이메일 선택 콤보박스
-	protected void itemStateChangedCmbFindIdChooseEmail(ItemEvent e) {
+	protected void itemStateChangedCmbChooseEmail(ItemEvent e) {
 		if (e.getStateChange() == ItemEvent.SELECTED) {
 			String item = e.getItem().toString();
 			if (item.equals("직접입력")) {
-				tfFindIdEmailDetail.setEditable(true);
-				tfFindIdEmailDetail.setText("");
-				tfFindIdEmailDetail.requestFocus();
+				if (e.getSource() == cmbFindIdChooseEmail) {
+					tfFindIdEmailDetail.setEditable(true);
+					tfFindIdEmailDetail.setText("");
+					tfFindIdEmailDetail.requestFocus();
+				} else {
+					tfFindPwEmailDetail.setEditable(true);
+					tfFindPwEmailDetail.setText("");
+					tfFindPwEmailDetail.requestFocus();
+				}
 			} else {
-				tfFindIdEmailDetail.setEditable(false);
-				tfFindIdEmailDetail.setText(item);
+				if (e.getSource() == cmbFindIdChooseEmail) {
+					tfFindIdEmailDetail.setEditable(false);
+					tfFindIdEmailDetail.setText(item);
+				} else {
+					tfFindPwEmailDetail.setEditable(false);
+					tfFindPwEmailDetail.setText(item);
+				}
 			}
 		}
 	}
@@ -223,36 +234,7 @@ public class FindIdPw extends JPanel implements ItemListener, ActionListener {
 		if (e.getActionCommand() == "아이디찾기") {
 			procFindUserId();
 		} else if (e.getActionCommand() == "비밀번호찾기") {
-			if (pFindPwUserId.getTfText().trim().isEmpty()) {
-				JOptionPane.showMessageDialog(null, "아이디를 입력해주세요.");
-				pFindPwUserId.requestTfFocus();
-				return;
-			}
-			if (pFindPwUserPhone.getTfText().trim().isEmpty()) {
-				JOptionPane.showMessageDialog(null, "전화번호를 입력해주세요.");
-				pFindPwUserPhone.requestTfFocus();
-				return;
-			}
-			if (tfFindPwEmail.getText().trim().isEmpty() || tfFindPwEmailDetail.getText().trim().isEmpty()) {
-				JOptionPane.showMessageDialog(null, "이메일을 입력해주세요.");
-				tfFindPwEmail.requestFocus();
-				return;
-			}
-
-			String userId = pFindPwUserId.getTfText().trim();
-			String userPhone = CommonUtil.getInstance().phoneNumberHyphenAdd(pFindPwUserPhone.getTfText().trim(), false);
-			String userEmail = String.format("%s@%s", tfFindPwEmail.getText(), tfFindPwEmailDetail.getText());
-			User findUser = new User();
-			findUser.setUserId(userId);
-			findUser.setPhone(new PhoneNumber(userPhone));
-			findUser.setEmail(userEmail);
-
-			User findedUser = UserService.getInstance().findUserByFindPw(findUser);
-			if (findedUser == null) {
-				JOptionPane.showMessageDialog(null, "입력한 정보의 유저가 존재하지 않습니다.");
-				return;
-			}
-			System.out.println(findedUser);
+			procFindPwd();
 		}
 	}
 
@@ -269,6 +251,50 @@ public class FindIdPw extends JPanel implements ItemListener, ActionListener {
 		tfFindPwEmail.setText("");
 		tfFindPwEmailDetail.setText("");
 		cmbFindPwChooseEmail.setSelectedIndex(0);
+	}
+
+	private void procFindPwd() {
+		if (pFindPwUserId.getTfText().trim().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "아이디를 입력해주세요.");
+			pFindPwUserId.requestTfFocus();
+			return;
+		}
+		if (pFindPwUserPhone.getTfText().trim().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "전화번호를 입력해주세요.");
+			pFindPwUserPhone.requestTfFocus();
+			return;
+		}
+		if (tfFindPwEmail.getText().trim().isEmpty() || tfFindPwEmailDetail.getText().trim().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "이메일을 입력해주세요.");
+			tfFindPwEmail.requestFocus();
+			return;
+		}
+
+		String userId = pFindPwUserId.getTfText().trim();
+		String userPhone = CommonUtil.getInstance().phoneNumberHyphenAdd(pFindPwUserPhone.getTfText().trim(), false);
+		String userEmail = String.format("%s@%s", tfFindPwEmail.getText(), tfFindPwEmailDetail.getText());
+		User findUser = new User();
+		findUser.setUserId(userId);
+		findUser.setPhone(new PhoneNumber(userPhone));
+		findUser.setEmail(userEmail);
+
+		User findedUser = UserService.getInstance().findUserByFindPw(findUser);
+		if (findedUser == null) {
+			JOptionPane.showMessageDialog(null, "입력한 정보의 유저가 존재하지 않습니다.");
+			return;
+		}
+
+		String tempPassword = CommonUtil.getInstance().createRandomPassword();
+		User modifyUser = new User();
+		modifyUser.setUserId(findedUser.getUserId());
+		modifyUser.setUserPwd(tempPassword);
+		if (UserService.getInstance().modifyUser(modifyUser) != 1) {
+			JOptionPane.showMessageDialog(null, "비밀번호를 변경하지 못했습니다. 관리자에게 문의!");
+			return;
+		}
+		modifyUser.setName(findedUser.getName());
+		modifyUser.setEmail(findedUser.getEmail());
+		CommonUtil.getInstance().sendFindPwdMail(modifyUser);
 	}
 
 	// 아이디 찾기 기능
