@@ -7,11 +7,14 @@ import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 
 import kr.or.dgit.it_3st_3team.dto.SoftwareGroup;
+import kr.or.dgit.it_3st_3team.dto.User;
 import kr.or.dgit.it_3st_3team.service.SoftwareGroupService;
+import kr.or.dgit.it_3st_3team.service.UserService;
 import kr.or.dgit.it_3st_3team.ui.SoftwareGroupUI;
 import kr.or.dgit.it_3st_3team.ui.component.ImageComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblCmbSoftwareGroupComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblCmbStringComp;
+import kr.or.dgit.it_3st_3team.ui.component.LblCmbUserComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblTfComp;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -22,6 +25,11 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 	private JFileChooser chooser;
 	private JButton btnSubmitCF;
 	private LblCmbSoftwareGroupComp pSWsort;
+	private LblCmbUserComp pCompany;
+	private LblTfComp pSWName;
+	private LblTfComp pSupplyPrice;
+	private LblTfComp pSalePrice;
+	private LblTfComp pCount;
 
 	/**
 	 * Create the panel.
@@ -45,10 +53,16 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 		btnSubmitCF.setBounds(779, 29, 97, 23);
 		pRegister.add(btnSubmitCF);
 		
-		LblCmbStringComp pCompany = new LblCmbStringComp("공급회사");
+		List<User> lists1 = UserService.getInstance().listUserAll();
+		User[] usDatas = lists1.toArray(new User[lists1.size()]);
+		
+		pCompany = new LblCmbUserComp("공급회사");
 		pCompany.setBorder(null);
 		pCompany.setBounds(238, 27, 243, 30);
+		pCompany.loadData(usDatas);
 		pRegister.add(pCompany);
+		
+	
 		
 		List<SoftwareGroup> lists = SoftwareGroupService.getInstance().selectSoftwareGroupByAll();
 		SoftwareGroup[] sgDatas = lists.toArray(new SoftwareGroup[lists.size()]);
@@ -63,24 +77,41 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 		pRegisterImg.setBounds(0, 0, 205, 191);
 		pRegister.add(pRegisterImg);
 		
-		LblTfComp pSWName = new LblTfComp("품목 명");
+		pSWName = new LblTfComp("품목 명");
 		pSWName.setBounds(541, 73, 340, 30);
 		pRegister.add(pSWName);
 		
-		LblTfComp pSupplyPrice = new LblTfComp("공급 가격");
+		pSupplyPrice = new LblTfComp("공급 가격");
 		pSupplyPrice.setBounds(239, 120, 242, 30);
 		pRegister.add(pSupplyPrice);
 		
-		LblTfComp pSalePrice = new LblTfComp("판매 가격");
+		pSalePrice = new LblTfComp("판매 가격");
 		pSalePrice.setBounds(238, 73, 243, 30);
 		pRegister.add(pSalePrice);
 		
-		LblTfComp panel = new LblTfComp("수량");
-		panel.setBounds(556, 120, 126, 30);
-		pRegister.add(panel);
+		pCount = new LblTfComp("수량");
+		pCount.setBounds(556, 120, 126, 30);
+		pRegister.add(pCount);
 	}
-
 	
+	
+	
+	
+	public LblCmbUserComp getpCompany() {
+		return pCompany;
+	}
+	public LblTfComp getpSWName() {
+		return pSWName;
+	}
+	public LblTfComp getpSupplyPrice() {
+		return pSupplyPrice;
+	}
+	public LblTfComp getpSalePrice() {
+		return pSalePrice;
+	}
+	public LblTfComp getpCount() {
+		return pCount;
+	}
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnSubmitCF) {
 			actionPerformedBtnSubmitCF(e);
