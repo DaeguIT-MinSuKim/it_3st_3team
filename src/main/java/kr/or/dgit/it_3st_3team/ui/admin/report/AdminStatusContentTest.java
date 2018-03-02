@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import kr.or.dgit.it_3st_3team.dto.Admin;
 import kr.or.dgit.it_3st_3team.dto.SaleOrder;
 import kr.or.dgit.it_3st_3team.dto.SoftwareGroup;
+import kr.or.dgit.it_3st_3team.dto.User;
 import kr.or.dgit.it_3st_3team.service.SaleOrderService;
 import kr.or.dgit.it_3st_3team.ui.SalesReportUI;
 import kr.or.dgit.it_3st_3team.ui.component.PagingComp;
@@ -83,7 +84,6 @@ public class AdminStatusContentTest extends JPanel implements ActionListener {
 		SoftwareGroup swg =  pSearch.getSelectedSoftwareGrp();
 		Admin ad = pSearch.getSelectedAdmin();
 		String searchBy = pSearch.getSelectedString();
-		System.out.println(ad);
 		if(swg.getSgName().equals("분류")) {
 			swg.setSgName("");
 		}if(ad.getAdminName().equals("관리자")) {
@@ -94,11 +94,8 @@ public class AdminStatusContentTest extends JPanel implements ActionListener {
 			searchBy = "company";
 		}else if(searchBy.equals("품목명")) {
 			searchBy = "softwarename";
-		}
-			
+		}	
 		String name = pSearch.getSearchText();
-		
-		
 		String startDate = pSearch.getStartDate();
 		String endDate = pSearch.getEndDate();
 		System.out.println(String.format("%s %s %s %s %s %s", swg.getSgName(), ad.getAdminName(), startDate, endDate, searchBy, name));
