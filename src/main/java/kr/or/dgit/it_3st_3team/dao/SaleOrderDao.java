@@ -15,6 +15,6 @@ public interface SaleOrderDao {
 
 	int updateOrderManagement(SaleOrder saleOrder);
 
-	int deleteOrderManagement(SaleOrder ordNo);
+	int deleteSaleOrderByNo(SaleOrder ordNo);
 
 }

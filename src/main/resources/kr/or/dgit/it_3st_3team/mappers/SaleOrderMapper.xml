@@ -26,7 +26,7 @@
 		<result property="software.swGroup.sgName" column="sg_name" />
 	</resultMap>
 	
-	<!-- SaleOrder Select -->
+	<!-- SaleOrder 기본 Select -->
 	<sql id="saleOrderSql">
 	select ord_no, u_no, sw_no, ord_quantity, ord_supply_price, 
 	ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no
@@ -47,7 +47,17 @@
 	join user as cu on sp.pc_no=cu.u_no
 	</sql>
 	
-	<!-- SaleOrder Where 주문번호-->
+	<!-- SaleOrder 보고서 관리자 조건검색 -->
+	<sql id="selectReportSql">
+	
+	</sql>
+	
+	<!-- SaleOrder 주문 삭제 -->
+	<sql id="deleteSql">
+		delete from sale_order
+	</sql>
+	
+	<!-- SaleOrder Where조건 주문번호만-->
 	<sql id="whereSql">
 		<where>
 			<if test="ordNo != null">
@@ -100,6 +110,10 @@
 		<include refid="selectParameterSql"/>
 	</select>
 	
+	<delete id="deleteSaleOrderByNo" parameterType="SaleOrder">
+		<include refid="deleteSql"/>
+		<include refid="whereSql"/>
+	</delete>
 
 
 </mapper>

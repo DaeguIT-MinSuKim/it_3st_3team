@@ -54,11 +54,11 @@ public class SaleOrderService {
 	 * + "updateOrderManagement", saleOrder); sqlSession.commit(); } return res; }
 	 */
 
-	public int deleteOrderManagement(SaleOrder ordNo) {
-		log.debug("deleteOrderManagement()");
+	public int deleteSaleOrderByNo(SaleOrder ordNo) {
+		log.debug("deleteSaleOrderByNo()");
 		int res = -1;
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
-			res = sqlSession.delete(namespace + "deleteOrderManagement", ordNo);
+			res = sqlSession.delete(namespace + "deleteSaleOrderByNo", ordNo);
 			sqlSession.commit();
 		}
 		return res;

@@ -78,4 +78,11 @@ public class SaleOrderServiceTest {
 		Assert.assertNotNull(findSaleOrder);
 		System.out.println(findSaleOrder);
 	}
+	
+	@Test
+	public void test4deleteSaleOrderByNo() {
+		int res = service.deleteSaleOrderByNo(new SaleOrder(1));
+		Assert.assertEquals(1, res);
+		System.out.println(res);
+	}
 }
