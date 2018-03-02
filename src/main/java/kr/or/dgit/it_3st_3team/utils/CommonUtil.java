@@ -10,6 +10,7 @@ public class CommonUtil {
 	private CommonUtil() {
 	}
 
+	// 전화번호를 하이픈(-) 넣은 걸로 재생성해줌
 	public String phoneNumberHyphenAdd(String num, boolean mask) {
 
 		String formatNum = "";
