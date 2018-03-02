@@ -36,17 +36,17 @@ public class UserService {
 		}
 	}
 	
-	public boolean existUser(User user) {
-		if (findUserById(user) == null) {
-			return false;
-		}
-		return true;
-	}
-	
 	public User findUserByLogin(User user) {
 		log.debug("findUserByLogin()");
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
 			return sqlSession.selectOne(namespace + "selectUserByLogin", user);
+		}
+	}
+	
+	public User findUserByFindId(User user) {
+		log.debug("findUserByFindId()");
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectOne(namespace + "selectUserByFindId", user);
 		}
 	}
 	

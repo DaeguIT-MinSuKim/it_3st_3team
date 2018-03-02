@@ -204,7 +204,7 @@ public class JoinUI extends JFrame implements ActionListener {
 			return;
 		}
 		String joinId = tfUserId.getText();
-		if (UserService.getInstance().existUser(new User(joinId))) {
+		if (UserService.getInstance().findUserById(new User(joinId)) != null) {
 			checkDupId = false;
 			JOptionPane.showMessageDialog(null, "존재하는 아이디입니다.");
 			tfUserId.setText("");

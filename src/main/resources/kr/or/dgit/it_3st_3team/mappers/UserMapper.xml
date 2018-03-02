@@ -71,6 +71,10 @@
 		where u.u_group = #{userGroup}
 	</select>
 
+	<select id="selectUserByFindId" parameterType="User" resultMap="UserBasedResult">
+		<include refid="selectWithAdminSql" />
+		where u_name = #{name} and u_email = #{email}
+	</select>
 
 	<!-- Login 시 User 검색 -->
 	<sql id="whereLoginSql">
