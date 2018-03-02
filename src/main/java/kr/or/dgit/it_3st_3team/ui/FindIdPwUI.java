@@ -19,7 +19,7 @@ public class FindIdPwUI extends JFrame {
 		setTitle("ID & PW 찾기 - 소프트웨어");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setResizable(false);
-		setBounds(100, 100, 650, 350);
+		setBounds(100, 100, 480, 270);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));

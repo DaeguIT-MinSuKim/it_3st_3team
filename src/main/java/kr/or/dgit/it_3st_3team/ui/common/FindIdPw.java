@@ -20,25 +20,32 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import kr.or.dgit.it_3st_3team.dto.PhoneNumber;
 import kr.or.dgit.it_3st_3team.dto.User;
 import kr.or.dgit.it_3st_3team.service.UserService;
 import kr.or.dgit.it_3st_3team.ui.component.LblTfComp;
+import kr.or.dgit.it_3st_3team.utils.CommonUtil;
 
 @SuppressWarnings("serial")
 public class FindIdPw extends JPanel implements ItemListener, ActionListener {
-	private JTextField tfFindIdEmail;
-	private JTextField tfFindIdEmailDetail;
 	private JRadioButton rdFindId;
 	private JRadioButton rdFindPw;
-	private JPanel p2;
-	private JPanel p3;
+
 	private JButton btnFind;
-	private LblTfComp pFindPwUserId;
-	private LblTfComp pFindPwUserEmail;
-	private JPanel pFindPwUserPhone;
-	private LblTfComp pUserName;
 	private JButton btnExit;
+
+	private JPanel p2;
+	private LblTfComp pUserName;
+	private JTextField tfFindIdEmail;
+	private JTextField tfFindIdEmailDetail;
 	private JComboBox<String> cmbFindIdChooseEmail;
+
+	private JPanel p3;
+	private LblTfComp pFindPwUserId;
+	private LblTfComp pFindPwUserPhone;
+	private JTextField tfFindPwEmail;
+	private JTextField tfFindPwEmailDetail;
+	private JComboBox<String> cmbFindPwChooseEmail;
 
 	public FindIdPw() {
 
@@ -58,32 +65,32 @@ public class FindIdPw extends JPanel implements ItemListener, ActionListener {
 		p2.setLayout(null);
 
 		pUserName = new LblTfComp((String) "상호명");
-		pUserName.setBounds(75, 21, 310, 30);
+		pUserName.setBounds(30, 23, 310, 30);
 		p2.add(pUserName);
 
 		JLabel lblFindIdEmail = new JLabel("이메일");
-		lblFindIdEmail.setBounds(75, 64, 66, 30);
+		lblFindIdEmail.setBounds(30, 66, 66, 30);
 		p2.add(lblFindIdEmail);
 
 		tfFindIdEmail = new JTextField();
-		tfFindIdEmail.setBounds(132, 65, 150, 30);
+		tfFindIdEmail.setBounds(87, 67, 100, 30);
 		p2.add(tfFindIdEmail);
 		tfFindIdEmail.setColumns(10);
 
 		tfFindIdEmailDetail = new JTextField();
-		tfFindIdEmailDetail.setBounds(305, 65, 150, 30);
+		tfFindIdEmailDetail.setBounds(211, 67, 100, 30);
 		tfFindIdEmailDetail.setColumns(10);
 		p2.add(tfFindIdEmailDetail);
 
 		JLabel lbl = new JLabel("@");
-		lbl.setBounds(284, 66, 20, 27);
+		lbl.setBounds(188, 68, 20, 27);
 		lbl.setHorizontalAlignment(SwingConstants.CENTER);
 		p2.add(lbl);
 
-		String[] arrEmail = new String[] {"직접입력", "naver.com", "gmail.com", "daum.net"};
+		String[] arrEmail = new String[] { "직접입력", "naver.com", "gmail.com", "daum.net" };
 		DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(arrEmail);
 		cmbFindIdChooseEmail = new JComboBox<>(model);
-		cmbFindIdChooseEmail.setBounds(467, 64, 100, 30);
+		cmbFindIdChooseEmail.setBounds(323, 66, 100, 30);
 		cmbFindIdChooseEmail.addItemListener(this);
 		p2.add(cmbFindIdChooseEmail);
 
@@ -92,16 +99,36 @@ public class FindIdPw extends JPanel implements ItemListener, ActionListener {
 		p3.setLayout(null);
 
 		pFindPwUserId = new LblTfComp((String) "아이디");
-		pFindPwUserId.setBounds(75, 21, 310, 30);
+		pFindPwUserId.setBounds(42, 21, 270, 30);
 		p3.add(pFindPwUserId);
 		pFindPwUserId.setLayout(new BoxLayout(pFindPwUserId, BoxLayout.X_AXIS));
 
-		pFindPwUserEmail = new LblTfComp((String) "이메일");
-		pFindPwUserEmail.setBounds(75, 61, 310, 30);
-		p3.add(pFindPwUserEmail);
+		JLabel lblFindPwEmail = new JLabel("이메일");
+		lblFindPwEmail.setBounds(42, 101, 66, 30);
+		p3.add(lblFindPwEmail);
+
+		tfFindPwEmail = new JTextField();
+		tfFindPwEmail.setBounds(101, 102, 100, 30);
+		p3.add(tfFindPwEmail);
+		tfFindPwEmail.setColumns(10);
+
+		tfFindPwEmailDetail = new JTextField();
+		tfFindPwEmailDetail.setBounds(223, 102, 100, 30);
+		tfFindPwEmailDetail.setColumns(10);
+		p3.add(tfFindPwEmailDetail);
+
+		JLabel lbl2 = new JLabel("@");
+		lbl2.setBounds(201, 103, 20, 27);
+		lbl2.setHorizontalAlignment(SwingConstants.CENTER);
+		p3.add(lbl2);
+
+		cmbFindPwChooseEmail = new JComboBox<>(model);
+		cmbFindPwChooseEmail.setBounds(335, 101, 100, 30);
+		cmbFindPwChooseEmail.addItemListener(this);
+		p3.add(cmbFindPwChooseEmail);
 
 		pFindPwUserPhone = new LblTfComp((String) "전화번호");
-		pFindPwUserPhone.setBounds(75, 101, 310, 30);
+		pFindPwUserPhone.setBounds(30, 61, 281, 30);
 		p3.add(pFindPwUserPhone);
 
 		ButtonGroup btnG = new ButtonGroup();
@@ -165,20 +192,17 @@ public class FindIdPw extends JPanel implements ItemListener, ActionListener {
 			repaint();
 			add(p3, BorderLayout.CENTER);
 			btnFind.setText("비밀번호찾기");
-			getTopLevelAncestor().setBounds(getTopLevelAncestor().getX(), getTopLevelAncestor().getY(), 450, 350);
 		}
 	}
 
 	protected void itemStateChangedRdFindId(ItemEvent e) {
 		if (e.getStateChange() == ItemEvent.SELECTED) {
+			cleanfindPwComponent();
 			remove(p3);
 			revalidate();
 			repaint();
 			add(p2, BorderLayout.CENTER);
 			btnFind.setText("아이디찾기");
-			if (getTopLevelAncestor() != null) {
-				getTopLevelAncestor().setBounds(getTopLevelAncestor().getX(), getTopLevelAncestor().getY(), 650, 350);
-			}
 		}
 	}
 
@@ -194,19 +218,57 @@ public class FindIdPw extends JPanel implements ItemListener, ActionListener {
 	protected void actionPerformedBtnExit(ActionEvent e) {
 		getTopLevelAncestor().setVisible(false);
 	}
+
 	protected void actionPerformedBtnFind(ActionEvent e) {
 		if (e.getActionCommand() == "아이디찾기") {
 			procFindUserId();
 		} else if (e.getActionCommand() == "비밀번호찾기") {
-			JOptionPane.showMessageDialog(null, e.getActionCommand());
+			if (pFindPwUserId.getTfText().trim().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "아이디를 입력해주세요.");
+				pFindPwUserId.requestTfFocus();
+				return;
+			}
+			if (pFindPwUserPhone.getTfText().trim().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "전화번호를 입력해주세요.");
+				pFindPwUserPhone.requestTfFocus();
+				return;
+			}
+			if (tfFindPwEmail.getText().trim().isEmpty() || tfFindPwEmailDetail.getText().trim().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "이메일을 입력해주세요.");
+				tfFindPwEmail.requestFocus();
+				return;
+			}
+
+			String userId = pFindPwUserId.getTfText().trim();
+			String userPhone = CommonUtil.phoneNumberHyphenAdd(pFindPwUserPhone.getTfText().trim(), false);
+			String userEmail = String.format("%s@%s", tfFindPwEmail.getText(), tfFindPwEmailDetail.getText());
+			User findUser = new User();
+			findUser.setUserId(userId);
+			findUser.setPhone(new PhoneNumber(userPhone));
+			findUser.setEmail(userEmail);
+
+			User findedUser = UserService.getInstance().findUserByFindPw(findUser);
+			if (findedUser == null) {
+				JOptionPane.showMessageDialog(null, "입력한 정보의 유저가 존재하지 않습니다.");
+				return;
+			}
+			System.out.println(findedUser);
 		}
 	}
-	
+
 	private void cleanfindIdComponent() {
 		pUserName.setTfText("");
 		tfFindIdEmail.setText("");
 		tfFindIdEmailDetail.setText("");
 		cmbFindIdChooseEmail.setSelectedIndex(0);
+	}
+
+	private void cleanfindPwComponent() {
+		pFindPwUserId.setTfText("");
+		pFindPwUserPhone.setTfText("");
+		tfFindPwEmail.setText("");
+		tfFindPwEmailDetail.setText("");
+		cmbFindPwChooseEmail.setSelectedIndex(0);
 	}
 
 	// 아이디 찾기 기능
@@ -223,7 +285,7 @@ public class FindIdPw extends JPanel implements ItemListener, ActionListener {
 		}
 		String userName = pUserName.getTfText();
 		String userEmail = String.format("%s@%s", tfFindIdEmail.getText(), tfFindIdEmailDetail.getText());
-		
+
 		User findUser = new User();
 		findUser.setName(userName);
 		findUser.setEmail(userEmail);

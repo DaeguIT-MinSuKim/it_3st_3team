@@ -13,7 +13,7 @@ import kr.or.dgit.it_3st_3team.dto.User;
 import kr.or.dgit.it_3st_3team.service.UserService;
 import kr.or.dgit.it_3st_3team.type.UserGroup;
 import kr.or.dgit.it_3st_3team.ui.listener.OpenActionListener;
-import kr.or.dgit.it_3st_3team.util.CommonUtil;
+import kr.or.dgit.it_3st_3team.utils.CommonUtil;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;

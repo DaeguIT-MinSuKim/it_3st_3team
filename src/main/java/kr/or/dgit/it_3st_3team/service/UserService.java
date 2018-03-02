@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import kr.or.dgit.it_3st_3team.dto.User;
 import kr.or.dgit.it_3st_3team.type.UserGroup;
-import kr.or.dgit.it_3st_3team.util.MyBatisSqlSessionFactory;
+import kr.or.dgit.it_3st_3team.utils.MyBatisSqlSessionFactory;
 
 public class UserService {
 	private static final UserService instance = new UserService();
@@ -47,6 +47,13 @@ public class UserService {
 		log.debug("findUserByFindId()");
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
 			return sqlSession.selectOne(namespace + "selectUserByFindId", user);
+		}
+	}
+	
+	public User findUserByFindPw(User user) {
+		log.debug("findUserByFindPw()");
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectOne(namespace + "selectUserByFindPw", user);
 		}
 	}
 	

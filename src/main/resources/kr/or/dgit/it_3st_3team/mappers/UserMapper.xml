@@ -75,6 +75,11 @@
 		<include refid="selectWithAdminSql" />
 		where u_name = #{name} and u_email = #{email}
 	</select>
+	
+	<select id="selectUserByFindPw" parameterType="User" resultMap="UserBasedResult">
+		<include refid="selectWithAdminSql" />
+		where u_id = #{userId} and u_phone = #{phone} and u_email = #{email}
+	</select>
 
 	<!-- Login 시 User 검색 -->
 	<sql id="whereLoginSql">
