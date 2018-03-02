@@ -16,7 +16,8 @@
 	<resultMap type="SaleOrder" id="selectSaleOrderWithAll" extends="SaleOrderResult">
 		<result property="user.userNo" column="u_no" />
 		<result property="user.userId" column="u_id" />
-		<result property="user.name" column="u_name" />
+		<result property="user.name" column="고객명" />
+		<result property="user.name" column="공급회사명" />
 		<result property="software.swNo" column="sw_no" />
 		<result property="software.swName" column="sw_name" />
 		<result property="admin.adminNo" column="adm_no" />
@@ -34,7 +35,7 @@
 	
 	<!-- SaleOrder 현황관리 관리자 조건검색 -->
 	<sql id="selectParameterSql">
-	select us.u_group as '고객타입', us.u_name as '고객명', cu.u_group as '공급타입', cu.u_name as '공급명',
+	select us.u_group as '고객타입', us.u_name as '고객명', cu.u_group as '공급타입', cu.u_name as '공급회사명',
 	so.ord_no, ad.adm_name, sg.sg_name, sp.sw_name, so.ord_quantity,
 	so.ord_supply_price, so.ord_sell_price, so.ord_tax, so.ord_sell_profit,
 	so.ord_payment,so.ord_datetime, ad.adm_name 

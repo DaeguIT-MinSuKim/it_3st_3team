@@ -188,10 +188,9 @@ public class SaleOrder {
 
 	public Object[] toArray() {
 		return new Object[] {
-				ordNo, "고객명",/*softwaregroup.getSgName()*/"분류",software.getSwName(),
+				ordNo, user.getName(),software.getSwGroup().getSgName(),software.getSwName(),
 				ordQuantity,ordSupplyPrice,ordSellPrice,ordTax,ordSellProfit,
-				ordPayment,"공급회사명", ordDatetime,admin.getAdminName()
-				/*String.format("%s", user.getName())*/
+				ordPayment,user.getName(), ordDatetime,admin.getAdminName()
 		};
 	}
 }
