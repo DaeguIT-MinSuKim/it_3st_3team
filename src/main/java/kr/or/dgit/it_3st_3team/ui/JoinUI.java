@@ -14,6 +14,7 @@ import kr.or.dgit.it_3st_3team.service.UserService;
 import kr.or.dgit.it_3st_3team.type.UserGroup;
 import kr.or.dgit.it_3st_3team.ui.listener.OpenActionListener;
 import kr.or.dgit.it_3st_3team.utils.CommonUtil;
+import kr.or.dgit.it_3st_3team.utils.DefineUtil;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -112,7 +113,7 @@ public class JoinUI extends JFrame implements ActionListener {
 		pImgArea.setLayout(null);
 
 		lblUserImg = new JLabel("");
-		lblUserImg.setIcon(new ImageIcon(CommonUtil.IMG_PATH + CommonUtil.DEFAULT_USER_IMG));
+		lblUserImg.setIcon(new ImageIcon(DefineUtil.IMG_PATH + DefineUtil.DEFAULT_USER_IMG));
 		lblUserImg.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUserImg.setBounds(0, 0, 128, 128);
 		pImgArea.add(lblUserImg);
@@ -271,7 +272,7 @@ public class JoinUI extends JFrame implements ActionListener {
 			return;
 		}
 		String email = tfUserEmail.getText().trim();
-		if (!Pattern.matches(CommonUtil.PATTERN_EMAIL, email)) {
+		if (!Pattern.matches(DefineUtil.PATTERN_EMAIL, email)) {
 			JOptionPane.showMessageDialog(null, "이메일 형식이 아닙니다. ex) aaa@test.com");
 			tfUserEmail.setText("");
 			tfUserEmail.requestFocus();
@@ -282,13 +283,13 @@ public class JoinUI extends JFrame implements ActionListener {
 			return;
 		}
 		String phone = tfUserPhone.getText().trim();
-		if (!Pattern.matches(CommonUtil.PATTERN_PHONE, phone)) {
+		if (!Pattern.matches(DefineUtil.PATTERN_PHONE, phone)) {
 			JOptionPane.showMessageDialog(null, "전화번호 형식이 아닙니다. ex) 02-223-1123, 022231122");
 			tfUserPhone.setText("");
 			tfUserPhone.requestFocus();
 			return;
 		}
-		phone = CommonUtil.phoneNumberHyphenAdd(phone, false);
+		phone = CommonUtil.getInstance().phoneNumberHyphenAdd(phone, false);
 
 		String uGroup = getSelectedButtonText(userGroup);
 		if (uGroup == null) {
@@ -328,7 +329,7 @@ public class JoinUI extends JFrame implements ActionListener {
 
 	private void userImgSave() {
 		File imgFile = new File(lblUserImg.getIcon().toString());
-		File copyFile = new File(CommonUtil.IMG_PATH + imgFile.getName());
+		File copyFile = new File(DefineUtil.IMG_PATH + imgFile.getName());
 		try (FileInputStream fis = new FileInputStream(imgFile);
 				FileOutputStream fos = new FileOutputStream(copyFile);) {
 
@@ -366,7 +367,7 @@ public class JoinUI extends JFrame implements ActionListener {
 
 	// (기본 셋팅으로 돌리기)
 	private void resetData() {
-		lblUserImg.setIcon(new ImageIcon(CommonUtil.IMG_PATH + CommonUtil.DEFAULT_USER_IMG));
+		lblUserImg.setIcon(new ImageIcon(DefineUtil.IMG_PATH + DefineUtil.DEFAULT_USER_IMG));
 		tfUserId.setText("");
 		pfUserPwd.setText("");
 		pfUserPwdChk.setText("");

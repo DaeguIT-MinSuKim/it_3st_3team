@@ -240,7 +240,7 @@ public class FindIdPw extends JPanel implements ItemListener, ActionListener {
 			}
 
 			String userId = pFindPwUserId.getTfText().trim();
-			String userPhone = CommonUtil.phoneNumberHyphenAdd(pFindPwUserPhone.getTfText().trim(), false);
+			String userPhone = CommonUtil.getInstance().phoneNumberHyphenAdd(pFindPwUserPhone.getTfText().trim(), false);
 			String userEmail = String.format("%s@%s", tfFindPwEmail.getText(), tfFindPwEmailDetail.getText());
 			User findUser = new User();
 			findUser.setUserId(userId);
