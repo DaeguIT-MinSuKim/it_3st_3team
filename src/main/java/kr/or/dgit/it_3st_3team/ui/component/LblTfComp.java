@@ -6,7 +6,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
-import java.awt.Color;
 
 @SuppressWarnings("serial")
 public class LblTfComp extends JPanel {
@@ -24,7 +23,6 @@ public class LblTfComp extends JPanel {
 		JPanel pTitleArea = new JPanel();
 		pTitleArea.setBorder(new EmptyBorder(0, 0, 0, 20));
 		pTitleArea.setLayout(new GridLayout(0, 1, 0, 0));
-		pTitleArea.setBackground(Color.WHITE);
 		pTitleArea.add(lblTitle);
 		
 		add(pTitleArea);
@@ -40,5 +38,9 @@ public class LblTfComp extends JPanel {
 
 	public String getTfText() {
 		return textField.getText();
+	}
+	
+	public void requestTfFocus() {
+		textField.requestFocus();
 	}
 }
