@@ -1,14 +1,13 @@
-package kr.or.dgit.it_3st_3team.ui.admin.company;
+package kr.or.dgit.it_3st_3team.ui.admin.user;
 
 import javax.swing.JPanel;
-import java.awt.Color;
-import kr.or.dgit.it_3st_3team.ui.admin.customer.AdminCustomerSearch;
+
 import kr.or.dgit.it_3st_3team.ui.component.PagingComp;
 
 @SuppressWarnings("serial")
-public class AdminCompanyContent extends JPanel {
+public class AdminUserContent extends JPanel {
 
-	public AdminCompanyContent() {
+	public AdminUserContent() {
 
 		initComponents();
 	}
@@ -17,12 +16,11 @@ public class AdminCompanyContent extends JPanel {
 		setLayout(null);
 		setBounds(0, 0, 1200, 800);
 
-		AdminCompanyRegister pInputArea = new AdminCompanyRegister();
-		pInputArea.setBackground(Color.WHITE);
+		AdminUserRegister pInputArea = new AdminUserRegister();
 		pInputArea.setBounds(12, 10, 1178, 230);
 		add(pInputArea);
 
-		AdminCustomerSearch pSearch = new AdminCustomerSearch();
+		AdminUserSearch pSearch = new AdminUserSearch();
 		pSearch.setBounds(12, 250, 1176, 50);
 		add(pSearch);
 

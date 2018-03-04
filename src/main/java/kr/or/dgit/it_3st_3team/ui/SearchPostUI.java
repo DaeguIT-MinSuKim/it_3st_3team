@@ -95,7 +95,7 @@ public class SearchPostUI extends JFrame implements ActionListener {
 		// pPostTable.setBackground(Color.WHITE);
 		pPostTable.setBounds(12, 233, 358, 185);
 		contentPane.add(pPostTable);
-		pPostTable.loadTableDatas(Collections.EMPTY_LIST);
+		//pPostTable.loadTableDatas(Collections.EMPTY_LIST);
 
 		// pPostTable.setLayout(null);
 

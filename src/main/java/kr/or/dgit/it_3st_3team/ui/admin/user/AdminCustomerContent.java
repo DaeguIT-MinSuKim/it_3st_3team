@@ -1,4 +1,4 @@
-package kr.or.dgit.it_3st_3team.ui.admin.customer;
+package kr.or.dgit.it_3st_3team.ui.admin.user;
 
 import javax.swing.JPanel;
 import java.awt.Color;
@@ -21,7 +21,7 @@ public class AdminCustomerContent extends JPanel {
 		pInputArea.setBackground(new Color(255, 255, 255));
 		add(pInputArea);
 
-		AdminCustomerSearch pSearchArea = new AdminCustomerSearch();
+		AdminUserSearch pSearchArea = new AdminUserSearch();
 		pSearchArea.setBounds(12, 250, 1176, 50);
 		add(pSearchArea);
 		

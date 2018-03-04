@@ -13,33 +13,31 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import kr.or.dgit.it_3st_3team.dto.Admin;
-import kr.or.dgit.it_3st_3team.dto.User;
-import kr.or.dgit.it_3st_3team.ui.admin.company.AdminCompanyContent;
-import kr.or.dgit.it_3st_3team.ui.admin.customer.AdminCustomerContent;
 import kr.or.dgit.it_3st_3team.ui.admin.management.AdminManagementContent;
 import kr.or.dgit.it_3st_3team.ui.admin.order.AdminOrder;
 import kr.or.dgit.it_3st_3team.ui.admin.report.AdminStatusContentTest;
 import kr.or.dgit.it_3st_3team.ui.admin.software.AdminSoftwareContent;
+import kr.or.dgit.it_3st_3team.ui.admin.user.AdminUserContent;
 
 @SuppressWarnings("serial")
 public class AdminUI extends JFrame implements ActionListener {
 	private JPanel contentPane;
-	private JButton btnSupplyRegister;
+	private JButton btnUserManager;
 	private JButton btnSWRegister;
 	private JPanel pContent;
 	private JPanel pMain;
 	private JButton btnOrderManagement;
 	private JButton btnSupplySaleStatus;
-	private JButton btnCustomerManagement;
 	private JButton btnEmpManagement;
-	private Admin user;
-	
-	public AdminUI(Admin user) {
-		this.user = user;
+	private Admin admin;
+
+	public AdminUI(Admin admin) {
+		this.admin = admin;
 		initComponents();
 	}
 
 	private void initComponents() {
+		setTitle("관리자 - 소프트웨어");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1500, 900);
 		contentPane = new JPanel();
@@ -69,12 +67,12 @@ public class AdminUI extends JFrame implements ActionListener {
 		JLabel lblEmpty_2 = new JLabel("");
 		pAdminMenu.add(lblEmpty_2);
 
-		btnSupplyRegister = new JButton("공급회사 등록");
-		btnSupplyRegister.addActionListener(this);
-		btnSupplyRegister.setForeground(Color.DARK_GRAY);
-		btnSupplyRegister.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
-		btnSupplyRegister.setBackground(new Color(51, 153, 204));
-		pAdminMenu.add(btnSupplyRegister);
+		btnUserManager = new JButton("사용자 관리");
+		btnUserManager.addActionListener(this);
+		btnUserManager.setForeground(Color.DARK_GRAY);
+		btnUserManager.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
+		btnUserManager.setBackground(new Color(51, 153, 204));
+		pAdminMenu.add(btnUserManager);
 
 		btnSWRegister = new JButton("소프트웨어 등록");
 		btnSWRegister.addActionListener(this);
@@ -103,13 +101,6 @@ public class AdminUI extends JFrame implements ActionListener {
 		btnSupplySaleStatusGraph.setBackground(new Color(51, 153, 204));
 		pAdminMenu.add(btnSupplySaleStatusGraph);
 
-		btnCustomerManagement = new JButton("고객 관리");
-		btnCustomerManagement.addActionListener(this);
-		btnCustomerManagement.setForeground(Color.DARK_GRAY);
-		btnCustomerManagement.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
-		btnCustomerManagement.setBackground(new Color(51, 153, 204));
-		pAdminMenu.add(btnCustomerManagement);
-
 		btnEmpManagement = new JButton("직원 관리");
 		btnEmpManagement.addActionListener(this);
 		btnEmpManagement.setForeground(Color.DARK_GRAY);
@@ -119,14 +110,13 @@ public class AdminUI extends JFrame implements ActionListener {
 
 		JLabel lblEmpty_1 = new JLabel("");
 		pAdminMenu.add(lblEmpty_1);
+		
+		displayFirstView();
 	}
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnEmpManagement) {
 			actionPerformedBtnEmpManagement(e);
-		}
-		if (e.getSource() == btnCustomerManagement) {
-			actionPerformedBtnCustomerManagement(e);
 		}
 		if (e.getSource() == btnSupplySaleStatus) {
 			actionPerformedBtnSupplySaleStatus(e);
@@ -137,13 +127,20 @@ public class AdminUI extends JFrame implements ActionListener {
 		if (e.getSource() == btnSWRegister) {
 			actionPerformedBtnSWRegister(e);
 		}
-		if (e.getSource() == btnSupplyRegister) {
-			actionPerformedBtnSupplyRegister(e);
+		if (e.getSource() == btnUserManager) {
+			actionPerformedBtnUserManager(e);
 		}
 	}
 
-	protected void actionPerformedBtnSupplyRegister(ActionEvent e) {
-		AdminCompanyContent pMain = new AdminCompanyContent();
+	// 처음에 기본적으로 주문관리 보여줌
+	private void displayFirstView() {
+		AdminOrder pMain = new AdminOrder();
+		pMain.setBounds(0, 0, 1186, 861);
+		changeMainPanel(pMain);
+	}
+
+	protected void actionPerformedBtnUserManager(ActionEvent e) {
+		AdminUserContent pMain = new AdminUserContent();
 		pMain.setBounds(0, 0, 1186, 861);
 		changeMainPanel(pMain);
 	}
@@ -155,19 +152,11 @@ public class AdminUI extends JFrame implements ActionListener {
 	}
 
 	protected void actionPerformedBtnOrderManagement(ActionEvent e) {
-		AdminOrder pMain = new AdminOrder();
-		pMain.setBounds(0, 0, 1186, 861);
-		changeMainPanel(pMain);
+		displayFirstView();
 	}
 
 	protected void actionPerformedBtnSupplySaleStatus(ActionEvent e) {
 		AdminStatusContentTest pMain = new AdminStatusContentTest();
-		pMain.setBounds(0, 0, 1186, 861);
-		changeMainPanel(pMain);
-	}
-
-	protected void actionPerformedBtnCustomerManagement(ActionEvent e) {
-		AdminCustomerContent pMain = new AdminCustomerContent();
 		pMain.setBounds(0, 0, 1186, 861);
 		changeMainPanel(pMain);
 	}
@@ -177,7 +166,7 @@ public class AdminUI extends JFrame implements ActionListener {
 		pMain.setBounds(0, 0, 1186, 861);
 		changeMainPanel(pMain);
 	}
-	
+
 	private void changeMainPanel(JPanel pMain) {
 		pContent.removeAll();
 		pContent.add(pMain);

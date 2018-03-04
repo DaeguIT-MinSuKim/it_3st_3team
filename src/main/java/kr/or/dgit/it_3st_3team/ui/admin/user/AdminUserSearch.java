@@ -1,4 +1,4 @@
-package kr.or.dgit.it_3st_3team.ui.admin.customer;
+package kr.or.dgit.it_3st_3team.ui.admin.user;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -8,15 +8,14 @@ import javax.swing.JTextField;
 import java.awt.Color;
 
 @SuppressWarnings("serial")
-public class AdminCustomerSearch extends JPanel {
+public class AdminUserSearch extends JPanel {
 	private JTextField textField;
 
-	public AdminCustomerSearch() {
+	public AdminUserSearch() {
 
 		initComponents();
 	}
 	private void initComponents() {
-		setBackground(new Color(255, 255, 255));
 		setLayout(null);
 		setBounds(0, 0, 1178, 50);
 		

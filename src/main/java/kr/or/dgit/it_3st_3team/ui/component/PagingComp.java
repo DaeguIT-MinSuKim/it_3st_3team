@@ -4,7 +4,6 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Color;
 
 @SuppressWarnings("serial")
 public class PagingComp extends JPanel {
@@ -15,7 +14,6 @@ public class PagingComp extends JPanel {
 	}
 
 	private void initComponents() {
-		setBackground(new Color(255, 255, 255));
 		setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		setBounds(0, 0, 1178, 40);
 

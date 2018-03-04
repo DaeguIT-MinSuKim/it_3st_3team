@@ -32,9 +32,9 @@ public abstract class AbstractLabelAddressComp<T> extends JPanel {
 		pSpace.setLayout(new GridLayout(2, 0, 5, 5));
 
 		tfAddress1 = new JTextField();
-
-		pSpace.add(tfAddress1);
 		tfAddress1.setColumns(10);
+		tfAddress1.setEnabled(false);
+		pSpace.add(tfAddress1);
 
 		tfAddress2 = new JTextField();
 		pSpace.add(tfAddress2);
