@@ -6,6 +6,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -105,6 +106,7 @@ public class SalesReportUI extends JFrame implements ActionListener {
 		cmbString = new JComboBox<>();
 		cmbString.setBounds(0, 0, 125, 30);
 		p4_1.add(cmbString);
+		setCmbString();
 		
 		tfSearch = new JTextField();
 		tfSearch.setBounds(137, 0, 326, 30);
@@ -131,5 +133,12 @@ public class SalesReportUI extends JFrame implements ActionListener {
 	protected void actionPerformedBtnReport(ActionEvent arg0) {
 		JFrame jf = new SalesReportDetailsUI();
 		jf.setVisible(true);
+	}
+	
+	public void setCmbString() {
+		// 검색필드 콤보박스 넣는 코드
+		String[] st = { "고객명", "공급회사명", "품목명" };
+		DefaultComboBoxModel<String> dcbm = new DefaultComboBoxModel<>(st);
+		cmbString.setModel(dcbm);
 	}
 }

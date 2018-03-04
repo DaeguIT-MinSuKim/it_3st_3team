@@ -16,7 +16,7 @@ public class AdminStatusLists extends AbtractTableComp<SaleOrder> {
 		
 		setTableRowHeight(30);
 		
-		setTableCellWidth(400, 500, 300, 500, 400, 500, 500, 500, 500, 500, 500, 1200, 500);		
+		setTableCellWidth(400, 500, 300, 500, 400, 500, 500, 500, 500, 500, 500, 600, 500);		
 	}
 
 	@Override

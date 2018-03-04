@@ -1,8 +1,10 @@
 package kr.or.dgit.it_3st_3team.dto;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import kr.or.dgit.it_3st_3team.type.Payment;
+import kr.or.dgit.it_3st_3team.type.UserGroup;
 
 public class SaleOrder {
 	private int ordNo;
@@ -190,7 +192,12 @@ public class SaleOrder {
 		return new Object[] {
 				ordNo, user.getName(),software.getSwGroup().getSgName(),software.getSwName(),
 				ordQuantity,ordSupplyPrice,ordSellPrice,ordTax,ordSellProfit,
-				ordPayment,user.getName(), ordDatetime,admin.getAdminName()
+				ordPayment,user.getUserGroup().getClass(), dateToString(ordDatetime),admin.getAdminName()
 		};
+	}
+	
+	public String dateToString(Date date) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		return sdf.format(date);
 	}
 }

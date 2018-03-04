@@ -80,7 +80,7 @@ public class AdminStatusContentTest extends JPanel implements ActionListener {
 		
 	}
 
-	private SaleOrder callGetSelectedValues() {
+	private void callGetSelectedValues() {
 		SoftwareGroup swg =  pSearch.getSelectedSoftwareGrp();
 		Admin ad = pSearch.getSelectedAdmin();
 		String searchBy = pSearch.getSelectedString();
@@ -108,7 +108,9 @@ public class AdminStatusContentTest extends JPanel implements ActionListener {
 		map.put("name", name);
 		List<SaleOrder> list = soService.findSaleOrderWithAllBySearch(map);
 		System.out.println(list);
-		return null;
+		pListTable.loadTableDatas(soService.findSaleOrderWithAllBySearch(map));
+		add(pListTable);
+		
 	}
 	
 	//판매보고서 버튼 액션
