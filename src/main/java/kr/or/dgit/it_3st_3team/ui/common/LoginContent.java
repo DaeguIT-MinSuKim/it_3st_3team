@@ -18,12 +18,10 @@ import kr.or.dgit.it_3st_3team.dto.Admin;
 import kr.or.dgit.it_3st_3team.dto.User;
 import kr.or.dgit.it_3st_3team.service.AdminService;
 import kr.or.dgit.it_3st_3team.service.UserService;
-import kr.or.dgit.it_3st_3team.type.UserGroup;
 import kr.or.dgit.it_3st_3team.ui.AdminUI;
 import kr.or.dgit.it_3st_3team.ui.FindIdPwUI;
 import kr.or.dgit.it_3st_3team.ui.JoinUI;
-import kr.or.dgit.it_3st_3team.ui.UserCompanyUI;
-import kr.or.dgit.it_3st_3team.ui.UserCustomerUI;
+import kr.or.dgit.it_3st_3team.ui.UserUI;
 import kr.or.dgit.it_3st_3team.ui.component.LblPwdTfComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblTfComp;
 
@@ -124,25 +122,21 @@ public class LoginContent extends JPanel implements ActionListener {
 		String id = pID.getTfText();
 		String password = pPW.getTfText();
 
+		Object loginUser = null;
 		if (chkManager.isSelected()) {
 			// 관리자
-			Admin loginUser = AdminService.getInstance().findAdminByLogin(new Admin(id, password));
-			if (isLogin(loginUser)) {
-				AdminUI Adminsw = new AdminUI(loginUser);
-				Adminsw.setVisible(true);
-			}
+			loginUser = AdminService.getInstance().findAdminByLogin(new Admin(id, password));
 		} else {
-			User loginUser = UserService.getInstance().findUserByLogin(new User(id, password));
-			if (isLogin(loginUser)) {
-				if (loginUser.getUserGroup().equals(UserGroup.CUSTOMER)) {
-					// 고객
-					UserCustomerUI userUI = new UserCustomerUI(loginUser);
-					userUI.setVisible(true);
-				} else {
-					// 공급회사
-					UserCompanyUI userUI = new UserCompanyUI(loginUser);
-					userUI.setVisible(true);
-				}
+			// 사용자
+			loginUser = UserService.getInstance().findUserByLogin(new User(id, password));
+		}
+		if (isLogin(loginUser)) {
+			if (loginUser instanceof Admin) {
+				AdminUI showUI = new AdminUI((Admin)loginUser);
+				showUI.setVisible(true);
+			} else {
+				UserUI showUI = new UserUI((User)loginUser);
+				showUI.setVisible(true);
 			}
 		}
 	}

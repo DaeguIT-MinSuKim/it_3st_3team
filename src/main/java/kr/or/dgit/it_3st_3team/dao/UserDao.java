@@ -1,6 +1,7 @@
 package kr.or.dgit.it_3st_3team.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.or.dgit.it_3st_3team.dto.User;
 import kr.or.dgit.it_3st_3team.type.UserGroup;
@@ -16,6 +17,9 @@ public interface UserDao {
 	List<User> selectUserAllByUserGroup(UserGroup userGroup);
 	
 	int insertUser(User user);
+	
 	int updateUser(User user);
+	int updateUserPassword(Map<String, String> map);
+	
 	int deleteUser(User userNo);
 }

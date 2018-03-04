@@ -1,6 +1,7 @@
 package kr.or.dgit.it_3st_3team.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
@@ -86,6 +87,15 @@ public class UserService {
 		int res = -1;
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
 			res = sqlSession.update(namespace + "updateUser", user);
+			sqlSession.commit();
+		}
+		return res;
+	}
+	public int modifyUserPassword(Map<String, String> map) {
+		log.debug("modifyUserPassword()");
+		int res = -1;
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			res = sqlSession.update(namespace + "updateUserPassword", map);
 			sqlSession.commit();
 		}
 		return res;

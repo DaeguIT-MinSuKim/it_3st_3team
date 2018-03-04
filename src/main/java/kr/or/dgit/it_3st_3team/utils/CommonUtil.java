@@ -1,6 +1,11 @@
 package kr.or.dgit.it_3st_3team.utils;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -13,6 +18,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 
 import kr.or.dgit.it_3st_3team.dto.User;
 
@@ -130,5 +136,27 @@ public class CommonUtil {
 			System.err.println("관리자에게 문의!!");
 		}
 		JOptionPane.showMessageDialog(null, "임시 비밀번호를 메일로 발송하였습니다.");
+	}
+	
+	public void userImgSave(String userImgFullPath) {
+		File imgFile = new File(userImgFullPath);
+		File copyFile = new File(DefineUtil.IMG_PATH + imgFile.getName());
+		try (FileInputStream fis = new FileInputStream(imgFile);
+				FileOutputStream fos = new FileOutputStream(copyFile);) {
+
+			byte[] c = new byte[512];
+			while (fis.read(c) != -1) {
+				fos.write(c);
+			}
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(null, "사진을 저장하지 못했습니다.");
+		}
+	}
+	
+	public boolean checkPwd(JPasswordField pwd1, JPasswordField pwd2) {
+		if (Arrays.equals(pwd1.getPassword(), pwd2.getPassword())) {
+			return true;
+		}
+		return false;
 	}
 }

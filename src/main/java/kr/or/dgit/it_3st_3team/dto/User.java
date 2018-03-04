@@ -32,6 +32,19 @@ public class User {
 		this.userPwd = userPwd;
 	}
 
+	public User(String userId, String name, String email, PhoneNumber phone, String zipcode, String addr1, String addr2,
+			String avatar) {
+		super();
+		this.userId = userId;
+		this.name = name;
+		this.email = email;
+		this.phone = phone;
+		this.zipcode = zipcode;
+		this.addr1 = addr1;
+		this.addr2 = addr2;
+		this.avatar = avatar;
+	}
+
 	public User(String userId, String userPwd, String name, String email, PhoneNumber phone, String zipcode,
 			String addr1, String addr2, String avatar, UserGroup userGroup, Admin admin) {
 		this.userId = userId;
@@ -47,9 +60,8 @@ public class User {
 		this.admin = admin;
 	}
 
-	
-	public User(String userId, String name, String email, PhoneNumber phone, String zipcode, String addr1,
-			String addr2, String avatar, UserGroup userGroup, Admin admin) {
+	public User(String userId, String name, String email, PhoneNumber phone, String zipcode, String addr1, String addr2,
+			String avatar, UserGroup userGroup, Admin admin) {
 		this.userId = userId;
 		this.name = name;
 		this.email = email;

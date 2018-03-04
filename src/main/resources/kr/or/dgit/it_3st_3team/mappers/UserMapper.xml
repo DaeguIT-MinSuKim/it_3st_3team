@@ -86,8 +86,8 @@
 		where u_id = #{userId} and u_pwd = password(#{userPwd})
 	</sql>
 	
-	<select id="selectUserByLogin" parameterType="User" resultMap="UserBasedResult">
-		<include refid="selectSql" />
+	<select id="selectUserByLogin" parameterType="User" resultMap="UserWithAdminResult">
+		<include refid="selectWithAdminSql" />
 		<include refid="whereLoginSql" />
 	</select>
 	
@@ -144,6 +144,12 @@
 	<update id="updateUser" parameterType="User">
 		<include refid="updateSql" />
 		<include refid="whereByIdSql" />
+	</update>
+	
+	<!-- 비밀번호 업데이트 User -->
+	<update id="updateUserPassword" parameterType="map">
+		update user set u_pwd = password(#{newPwd})
+		<include refid="whereLoginSql" />
 	</update>
 	
 	<!-- 삭제 User -->

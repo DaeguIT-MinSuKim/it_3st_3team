@@ -2,10 +2,10 @@ package kr.or.dgit.it_3st_3team.ui.component;
 
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
-import java.awt.Color;
 import javax.swing.JPasswordField;
 import javax.swing.SwingConstants;
 
@@ -25,7 +25,6 @@ public class LblPwdTfComp extends JPanel {
 		JPanel pTitleArea = new JPanel();
 		pTitleArea.setBorder(new EmptyBorder(0, 0, 0, 20));
 		pTitleArea.setLayout(new GridLayout(0, 1, 0, 0));
-		pTitleArea.setBackground(Color.WHITE);
 		pTitleArea.add(lblTitle);
 		
 		add(pTitleArea);
@@ -41,5 +40,23 @@ public class LblPwdTfComp extends JPanel {
 
 	public String getTfText() {
 		return new String(pwdField.getPassword());
+	}
+	
+	public void requestTfFocus() {
+		pwdField.requestFocus();
+	}
+	
+	public boolean isTfEmpty(String message) {
+		if (new String(pwdField.getPassword()).trim().isEmpty()) {
+			JOptionPane.showMessageDialog(null, message);
+			pwdField.setText("");
+			pwdField.requestFocus();
+			return true;
+		}
+		return false;
+	}
+	
+	public void setTfEnable(boolean enable) {
+		pwdField.setEnabled(enable);
 	}
 }

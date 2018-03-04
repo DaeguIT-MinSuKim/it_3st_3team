@@ -1,60 +1,131 @@
 package kr.or.dgit.it_3st_3team.ui.user;
 
-import java.awt.Color;
-
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import kr.or.dgit.it_3st_3team.dto.User;
+import kr.or.dgit.it_3st_3team.service.UserService;
+import kr.or.dgit.it_3st_3team.ui.UserUI;
 import kr.or.dgit.it_3st_3team.ui.component.LblPwdTfComp;
+import kr.or.dgit.it_3st_3team.utils.CommonUtil;
+
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
+import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
-public class UserModifyContent extends JPanel {
+public class UserModifyContent extends JPanel implements ActionListener {
 
-	public UserModifyContent() {
+	private UserInfoContent pUserInfo;
+	private JButton btnModifyUserInfo;
+	private JButton btnModifyPwdOK;
+	private UserUI userUI;
+	private LblPwdTfComp currentPwd;
+	private LblPwdTfComp newPwd;
+	private LblPwdTfComp newPwdChk;
+
+	public UserModifyContent(UserUI userUI) {
+		this.userUI = userUI;
 		initComponents();
 	}
 
 	private void initComponents() {
-		setBackground(Color.WHITE);
 		setLayout(null);
 
-		UserInfoContent panel = new UserInfoContent();
-		panel.setLayout(null);
-		panel.setBounds(10, 10, 688, 460);
-		add(panel);
+		pUserInfo = new UserInfoContent();
+		pUserInfo.setLayout(null);
+		pUserInfo.setBounds(204, 79, 686, 420);
+		add(pUserInfo);
 
-		JButton btnNewButton = new JButton("수정");
-		btnNewButton.setBounds(223, 411, 97, 30);
-		panel.add(btnNewButton);
+		btnModifyUserInfo = new JButton("수정");
+		btnModifyUserInfo.addActionListener(this);
+		btnModifyUserInfo.setBounds(252, 380, 150, 30);
+		pUserInfo.add(btnModifyUserInfo);
 
-		JButton btnNewButton_1 = new JButton("취소");
-		btnNewButton_1.setBounds(386, 411, 97, 30);
-		panel.add(btnNewButton_1);
+		JPanel pModifyPassword = new JPanel();
+		pModifyPassword.setLayout(null);
+		pModifyPassword.setBounds(204, 509, 686, 236);
+		add(pModifyPassword);
 
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(Color.WHITE);
-		panel_1.setBounds(10, 480, 686, 194);
-		add(panel_1);
-		panel_1.setLayout(null);
+		currentPwd = new LblPwdTfComp("현재 비밀번호");
+		currentPwd.setBounds(178, 29, 280, 38);
+		pModifyPassword.add(currentPwd);
+		
+		newPwd = new LblPwdTfComp("바꿀 비밀번호");
+		newPwd.setBounds(178, 77, 280, 38);
+		pModifyPassword.add(newPwd);
 
-		LblPwdTfComp labelPwdFieldComponent = new LblPwdTfComp("현재 비밀번호");
-		labelPwdFieldComponent.setBounds(86, 37, 280, 38);
-		panel_1.add(labelPwdFieldComponent);
+		newPwdChk = new LblPwdTfComp("바꿀 비밀번호 확인");
+		newPwdChk.setBounds(150, 125, 308, 38);
+		pModifyPassword.add(newPwdChk);
 
-		LblPwdTfComp labelPwdFieldComponent_1 = new LblPwdTfComp("바꿀 비밀번호 확인");
-		labelPwdFieldComponent_1.setBounds(58, 133, 308, 38);
-		panel_1.add(labelPwdFieldComponent_1);
+		
 
-		LblPwdTfComp labelPwdFieldComponent_2 = new LblPwdTfComp("바꿀 비밀번호");
-		labelPwdFieldComponent_2.setBounds(86, 85, 280, 38);
-		panel_1.add(labelPwdFieldComponent_2);
-
-		JButton button = new JButton("수정");
-		button.setBounds(421, 141, 97, 30);
-		panel_1.add(button);
-
-		JButton button_1 = new JButton("취소");
-		button_1.setBounds(553, 141, 97, 30);
-		panel_1.add(button_1);
+		btnModifyPwdOK = new JButton("수정");
+		btnModifyPwdOK.addActionListener(this);
+		btnModifyPwdOK.setBounds(254, 196, 150, 30);
+		pModifyPassword.add(btnModifyPwdOK);
 	}
+
+	public UserInfoContent getUserPanel() {
+		return pUserInfo;
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnModifyPwdOK) {
+			actionPerformedBtnModifyPwdOK(e);
+		}
+		if (e.getSource() == btnModifyUserInfo) {
+			actionPerformedBtnModifyUserInfo(e);
+		}
+	}
+
+	// 개인정보 수정 버튼
+	protected void actionPerformedBtnModifyUserInfo(ActionEvent e) {
+		User modifyUser = pUserInfo.getUserInfo();
+		CommonUtil.getInstance().userImgSave(modifyUser.getAvatar());
+		modifyUser.setAvatar(new File(modifyUser.getAvatar()).getName());
+		
+		if (UserService.getInstance().modifyUser(modifyUser) != 1) {
+			JOptionPane.showMessageDialog(null, "회원정보 수정에 실패했습니다.");
+			return;
+		}
+		userUI.setUser(modifyUser);
+		userUI.setUserNameAndAvatar();
+		JOptionPane.showMessageDialog(null, "회원정보가 수정되었습니다.");
+	}
+
+	// 비밀번호 수정 버튼
+	protected void actionPerformedBtnModifyPwdOK(ActionEvent e) {
+		if (currentPwd.isTfEmpty("현재 비밀번호를 입력해주세요.")) {
+			return;
+		}
+		if (newPwd.isTfEmpty("바꿀 비밀번호를 입력해주세요.")) {
+			return;
+		}
+		if (newPwdChk.isTfEmpty("바꿀 비밀번호를 한번 더 입력해주세요.")) {
+			return;
+		}
+		
+		if ( ! newPwd.getTfText().equals(newPwdChk.getTfText())) {
+			JOptionPane.showMessageDialog(null, "비밀번호가 다릅니다.");
+			newPwd.setTfText("");
+			newPwd.requestTfFocus();
+			return;
+		}
+		
+		Map<String, String> map = new HashMap<>();
+		map.put("userId", userUI.getUser().getUserId());
+		map.put("userPwd", currentPwd.getTfText());
+		map.put("newPwd", newPwd.getTfText());
+		if (UserService.getInstance().modifyUserPassword(map) != 1) {
+			JOptionPane.showMessageDialog(null, "비밀번호를 갱신하지 못했습니다.");
+			return;
+		}
+		JOptionPane.showMessageDialog(null, "비밀번호를 갱신하였습니다.");
+	}
+	
 }

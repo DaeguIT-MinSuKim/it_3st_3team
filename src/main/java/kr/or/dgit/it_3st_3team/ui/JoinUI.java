@@ -27,10 +27,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.regex.Pattern;
 import java.awt.event.ActionEvent;
@@ -255,7 +251,7 @@ public class JoinUI extends JFrame implements ActionListener {
 		if (isEmpty(pfUserPwdChk, "비밀번호 확인이")) {
 			return;
 		}
-		if (!checkPwd(pfUserPwd, pfUserPwdChk)) {
+		if ( ! CommonUtil.getInstance().checkPwd(pfUserPwd, pfUserPwdChk)) {
 			JOptionPane.showMessageDialog(null, "비밀번호가 다릅니다.");
 			pfUserPwd.setText("");
 			pfUserPwd.requestFocus();
@@ -310,14 +306,15 @@ public class JoinUI extends JFrame implements ActionListener {
 			JOptionPane.showMessageDialog(null, "회원 구분을 선택해주세요.");
 			return;
 		}
-		joinUser.setAvatar(new File(lblUserImg.getIcon().toString()).getName());
+		String userImgFullPath = lblUserImg.getIcon().toString();
+		joinUser.setAvatar(new File(userImgFullPath).getName());
 
 		int result = JOptionPane.showConfirmDialog(null, "회원가입 하시겠습니까?", "회원가입", JOptionPane.YES_NO_OPTION);
 		if (result == JOptionPane.CANCEL_OPTION || result == JOptionPane.NO_OPTION) {
 			return;
 		}
 
-		userImgSave();
+		CommonUtil.getInstance().userImgSave(userImgFullPath);
 		if (UserService.getInstance().addUser(joinUser) != 1) {
 			JOptionPane.showMessageDialog(null, "회원가입에 실패했습니다.");
 			return;
@@ -325,21 +322,6 @@ public class JoinUI extends JFrame implements ActionListener {
 		JOptionPane.showMessageDialog(null, "회원가입이 완료되었습니다.");
 		resetData();
 		dispose();
-	}
-
-	private void userImgSave() {
-		File imgFile = new File(lblUserImg.getIcon().toString());
-		File copyFile = new File(DefineUtil.IMG_PATH + imgFile.getName());
-		try (FileInputStream fis = new FileInputStream(imgFile);
-				FileOutputStream fos = new FileOutputStream(copyFile);) {
-
-			byte[] c = new byte[512];
-			while (fis.read(c) != -1) {
-				fos.write(c);
-			}
-		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, "사진을 저장하지 못했습니다.");
-		}
 	}
 
 	private String getSelectedButtonText(ButtonGroup buttonGroup) {
@@ -352,13 +334,6 @@ public class JoinUI extends JFrame implements ActionListener {
 		}
 
 		return null;
-	}
-
-	private boolean checkPwd(JPasswordField pwd1, JPasswordField pwd2) {
-		if (Arrays.equals(pwd1.getPassword(), pwd2.getPassword())) {
-			return true;
-		}
-		return false;
 	}
 
 	protected void actionPerformedBtnUserJoinCancel(ActionEvent e) {

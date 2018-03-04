@@ -1,6 +1,5 @@
 package kr.or.dgit.it_3st_3team.ui.component;
 
-import java.awt.Color;
 import java.awt.GridLayout;
 
 import javax.swing.BoxLayout;
@@ -30,11 +29,9 @@ public abstract class AbstractLblTfBtnComp extends JPanel implements ActionListe
 	}
 
 	private void initComponents() {
-		setBackground(Color.WHITE);
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 
 		JPanel pLabelArea = new JPanel();
-		pLabelArea.setBackground(Color.WHITE);
 		pLabelArea.setBorder(new EmptyBorder(0, 0, 0, 20));
 		pLabelArea.setLayout(new GridLayout(0, 1, 0, 0));
 		pLabelArea.add(lbltitle);
@@ -45,7 +42,6 @@ public abstract class AbstractLblTfBtnComp extends JPanel implements ActionListe
 		add(tfInput);
 
 		JPanel pBtnArea = new JPanel();
-		pBtnArea.setBackground(Color.WHITE);
 		pBtnArea.setBorder(new EmptyBorder(0, 20, 0, 0));
 		pBtnArea.setLayout(new GridLayout(0, 1, 0, 0));
 		pBtnArea.add(btn);
@@ -60,6 +56,10 @@ public abstract class AbstractLblTfBtnComp extends JPanel implements ActionListe
 	
 	public String getTfText() {
 		return tfInput.getText();
+	}
+	
+	public void setTfEnable(boolean enable) {
+		tfInput.setEnabled(enable);
 	}
 
 	public void actionPerformed(ActionEvent e) {

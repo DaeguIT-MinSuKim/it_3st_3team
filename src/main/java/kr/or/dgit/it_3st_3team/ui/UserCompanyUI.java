@@ -12,6 +12,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import kr.or.dgit.it_3st_3team.dto.User;
+import kr.or.dgit.it_3st_3team.type.UserGroup;
 import kr.or.dgit.it_3st_3team.ui.admin.report.CompanyStatusContent;
 import kr.or.dgit.it_3st_3team.ui.admin.software.AdminSoftwareContent;
 import kr.or.dgit.it_3st_3team.ui.user.UserModifyContent;
@@ -73,7 +74,7 @@ public class UserCompanyUI extends JFrame implements ActionListener {
 		JLabel lblEmty_2_3 = new JLabel("");
 		lblEmty_2_3.setBounds(0, 0, 300, 105);
 		pMenu.add(lblEmty_2_3);
-
+		
 		btnRegister = new JButton("소프트웨어 등록");
 		btnRegister.setBounds(0, 105, 298, 105);
 		btnRegister.addActionListener(this);
@@ -160,11 +161,11 @@ public class UserCompanyUI extends JFrame implements ActionListener {
 	}
 
 	protected void actionPerformedBtnUserModify(ActionEvent e) {
-		pContent.removeAll();
-		UserModifyContent panel = new UserModifyContent();
+		/*pContent.removeAll();
+		UserModifyContent panel = new UserModifyContent(this);
 		panel.setBounds(0, 0, 1186, 861);
 		pContent.add(panel);
 		pContent.revalidate();
-		pContent.repaint();
+		pContent.repaint();*/
 	}
 }

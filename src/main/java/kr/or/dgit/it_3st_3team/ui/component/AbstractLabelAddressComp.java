@@ -6,7 +6,6 @@ import javax.swing.JLabel;
 import java.awt.GridLayout;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-import java.awt.Color;
 import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
@@ -25,12 +24,10 @@ public abstract class AbstractLabelAddressComp<T> extends JPanel {
 		setLayout(new BorderLayout(0, 0));
 
 		JPanel pAddress = new JPanel();
-		pAddress.setBackground(new Color(255, 255, 255));
 		add(pAddress, BorderLayout.CENTER);
 		pAddress.setLayout(new BorderLayout(0, 0));
 
 		JPanel pSpace = new JPanel();
-		pSpace.setBackground(new Color(255, 255, 255));
 		pAddress.add(pSpace, BorderLayout.CENTER);
 		pSpace.setLayout(new GridLayout(2, 0, 5, 5));
 
@@ -45,7 +42,6 @@ public abstract class AbstractLabelAddressComp<T> extends JPanel {
 
 		panel = new JPanel();
 		panel.setBorder(new EmptyBorder(0, 0, 0, 20));
-		panel.setBackground(new Color(255, 255, 255));
 		pAddress.add(panel, BorderLayout.WEST);
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
 

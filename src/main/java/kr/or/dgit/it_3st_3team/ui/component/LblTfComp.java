@@ -2,6 +2,7 @@ package kr.or.dgit.it_3st_3team.ui.component;
 
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -42,5 +43,19 @@ public class LblTfComp extends JPanel {
 	
 	public void requestTfFocus() {
 		textField.requestFocus();
+	}
+	
+	public boolean isTfEmpty(String message) {
+		if (textField.getText().trim().isEmpty()) {
+			JOptionPane.showMessageDialog(null, message);
+			textField.setText("");
+			textField.requestFocus();
+			return true;
+		}
+		return false;
+	}
+	
+	public void setTfEnable(boolean enable) {
+		textField.setEnabled(enable);
 	}
 }
