@@ -214,13 +214,6 @@ public class AdminStatusContent extends JPanel implements ActionListener {
 			}
 		}
 		
-		
-		
-		
-		
-		
-		
-		
 	/*	SoftwareGroup swg =  pSearch.getSelectedSoftwareGrp();
 		Admin ad = pSearch.getSelectedAdmin();
 		String searchBy = pSearch.getSelectedString();
