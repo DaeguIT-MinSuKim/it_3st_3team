@@ -16,6 +16,10 @@
 			<if test="sgNo != null">
 				sg_no= #{sgNo}
 			</if>
+			
+			<if test="sgName != null">
+				AND sg_name = #{sgName}
+			</if>
 		</where>
 	</sql>
 	

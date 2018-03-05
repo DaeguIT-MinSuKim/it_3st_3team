@@ -56,7 +56,7 @@ public class SoftwareGroupTest {
 	
 	@Test
 	public void testDdeleteSoftwareGroup() {
-		int res = service.deleteSoftwareGroup(new SoftwareGroup(4));
+		int res = service.deleteSoftwareGroup(new SoftwareGroup(5));
 		
 		assertEquals(1, res);
 		System.out.println(res);

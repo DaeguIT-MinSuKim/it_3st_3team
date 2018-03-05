@@ -1,6 +1,8 @@
 package kr.or.dgit.it_3st_3team.ui.component;
 
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.sql.SQLException;
@@ -38,6 +40,7 @@ public abstract class AbtractTableComp<T> extends JPanel {
 		table.setModel(model);
 		setTableAlignWidth();
 	}
+	
 
 	protected void setTableRowHeight(int height) {
 		table.getTableHeader().setPreferredSize(new Dimension(scrollPane.getWidth(), height));
@@ -59,6 +62,10 @@ public abstract class AbtractTableComp<T> extends JPanel {
 		for (int i = 0; i < idx.length; i++) {
 			tcModel.getColumn(idx[i]).setCellRenderer(dtcRenderer);
 		}
+	}
+	
+	public void setPopupMenu(JPopupMenu menu) {
+		table.setComponentPopupMenu(menu);
 	}
 
 	public abstract void setTableAlignWidth();

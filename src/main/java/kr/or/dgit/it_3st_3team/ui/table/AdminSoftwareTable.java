@@ -19,9 +19,19 @@ import kr.or.dgit.it_3st_3team.dto.Address;
 import kr.or.dgit.it_3st_3team.dto.Software;
 import kr.or.dgit.it_3st_3team.ui.component.AbtractTableComp;
 import kr.or.dgit.it_3st_3team.ui.component.PagingComp;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 @SuppressWarnings("serial")
-public class AdminSoftwareTable extends AbtractTableComp<Software> {
+public class AdminSoftwareTable extends AbtractTableComp<Software> implements MouseListener {
+	public AdminSoftwareTable() {
+		initComponents();
+	}
+	private void initComponents() {
+		table.addMouseListener(this);
+		
+	}
 	private Object[][] rows;
 	
 	@Override
@@ -48,4 +58,20 @@ public class AdminSoftwareTable extends AbtractTableComp<Software> {
 		return rows;
 	}
 	
+	
+	public void mouseClicked(MouseEvent e) {
+	}
+	public void mouseEntered(MouseEvent e) {
+	}
+	public void mouseExited(MouseEvent e) {
+	}
+	public void mousePressed(MouseEvent e) {
+		if (e.getSource() == table) {
+			mousePressedThisTable(e);
+		}
+	}
+	public void mouseReleased(MouseEvent e) {
+	}
+	protected void mousePressedThisTable(MouseEvent e) {
+	}
 }

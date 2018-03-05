@@ -3,12 +3,21 @@ package kr.or.dgit.it_3st_3team.ui.admin.software;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import kr.or.dgit.it_3st_3team.dto.Software;
+import kr.or.dgit.it_3st_3team.dto.SoftwareGroup;
+import kr.or.dgit.it_3st_3team.dto.User;
+import kr.or.dgit.it_3st_3team.service.SoftwareGroupService;
 import kr.or.dgit.it_3st_3team.service.SoftwareService;
+import kr.or.dgit.it_3st_3team.service.UserService;
+import kr.or.dgit.it_3st_3team.ui.component.CmbStringComp;
 import kr.or.dgit.it_3st_3team.ui.component.PagingComp;
 import kr.or.dgit.it_3st_3team.ui.table.AdminSoftwareTable;
 
@@ -82,28 +91,61 @@ public class AdminSoftwareContent extends JPanel implements ActionListener {
 
 	// 등록버튼
 	protected void actionPerformedBtnRegister(ActionEvent e) {
-		String f = pRegister.getpCompany().getCmbBox();
-		String a = pRegister.getpSWsort().getCmbBox();
-		String b = pRegister.getpSWName().getTfText();
-		String c = pRegister.getpSupplyPrice().getTfText();
-		String d = pRegister.getpSalePrice().getTfText();
-		System.out.println(f);
-		System.out.println(a);
-		System.out.println(b);
-		System.out.println(c);
-		System.out.println(d);
-		if (b.equals("")) {
-			JOptionPane.showMessageDialog(null, "입력해주세요");
-			return;
-		}
+		
+		User Company = (User) pRegister.getpCompany().getCmbBox();
+		SoftwareGroup swGroup = (SoftwareGroup) pRegister.getpSWsort().getCmbBox();
+		String swName = pRegister.getpSWName().getTfText();
+		int swQuantity = Integer.parseInt(pRegister.getpCount().getTfText());
+		int spPrice = Integer.parseInt(pRegister.getpSupplyPrice().getTfText());
+		int slPrice = Integer.parseInt(pRegister.getpSalePrice().getTfText());
+	
+		
+		Software sw = new Software(swName, spPrice, slPrice, swGroup, swQuantity, Company);
+		SoftwareService.getInstance().insertSoftware(sw);
+		List<Software> lists = SoftwareService.getInstance().selectSoftwareByAll();
+		pTable.loadTableDatas(lists);
+		
+		
+	
 
 	}
 
 	// 취소버튼
 	protected void actionPerformedBtnCancel(ActionEvent e) {
+		
 	}
 
 	// 검색버튼
 	protected void actionPerformedBtnSearch(ActionEvent e) {
+		
+		String cmbSearch = (String) pSearch.getpCmbSearch().getCmbBox();
+		
+		Map<String, String> map = new HashMap<>();
+		
+		switch(cmbSearch) {
+		case "공급회사명" :
+			map.put("searchBy", "company");
+			break;
+		case "품목명" : 
+			map.put("searchBy", "swName");
+			break;
+		case "분류" :
+			map.put("searchBy", "swGroup");
+			break;
+		default: 
+			JOptionPane.showMessageDialog(null, "그런건 없습니다.");
+			return;
+		}
+		if(pSearch.getTfSearch().equals("")) {
+			List<Software> li = SoftwareService.getInstance().selectSoftwareByAll();
+			pTable.loadTableDatas(li);
+		}else {
+			map.put("searchText", pSearch.getTfSearch());
+			List<Software> li = SoftwareService.getInstance().selectSoftwareBySearch(map);
+			pTable.loadTableDatas(li);
+			pSearch.setTfSearch("");
+		}
+		
+		
 	}
 }

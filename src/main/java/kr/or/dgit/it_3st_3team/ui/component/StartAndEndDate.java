@@ -29,12 +29,12 @@ public class StartAndEndDate extends JPanel {
 	}
 
 	private void initComponents() {
-		setBackground(new Color(255, 255, 255));
+		
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 
 		JPanel pStartdate = new JPanel();
-		pStartdate.setBackground(new Color(255, 255, 255));
+		
 		add(pStartdate);
 
 		UtilDateModel model = new UtilDateModel();
@@ -51,7 +51,7 @@ public class StartAndEndDate extends JPanel {
 		pStartdate.add(startDatePicker);
 
 		JPanel pEnddate = new JPanel();
-		pEnddate.setBackground(new Color(255, 255, 255));
+		
 		add(pEnddate);
 
 		UtilDateModel model2 = new UtilDateModel();

@@ -1,17 +1,20 @@
 package kr.or.dgit.it_3st_3team.ui.admin.order;
 
+import java.awt.Color;
+
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import kr.or.dgit.it_3st_3team.ui.table.AdminOrderTable;
-
-import java.awt.Color;
-import javax.swing.JButton;
+import kr.or.dgit.it_3st_3team.service.SaleOrderService;
+import kr.or.dgit.it_3st_3team.ui.table.AdminStatusLists;
+import kr.or.dgit.it_3st_3team.ui.component.PagingComp;
 
 @SuppressWarnings("serial")
 public class AdminOrder extends JPanel {
+	private SaleOrderService soService;
 
 	public AdminOrder() {
-
+		this.soService = SaleOrderService.getInstance();
 		initComponents();
 	}
 	private void initComponents() {
@@ -30,9 +33,9 @@ public class AdminOrder extends JPanel {
 		pOrderSearch.setBounds(0, 176, 1060, 50);
 		add(pOrderSearch);
 		
-		AdminOrderTable pOrderTable = new AdminOrderTable();
-		pOrderTable.setBackground(new Color(240, 240, 24));
-		pOrderTable.setBounds(0, 226, 1200, 600);
+		AdminStatusLists pOrderTable = new AdminStatusLists();
+		pOrderTable.loadTableDatas(soService.findSaleOrderByAll());
+		pOrderTable.setBounds(0, 226, 1200, 585);
 		add(pOrderTable);
 		
 		JButton btnSearch = new JButton("검색");
@@ -46,6 +49,9 @@ public class AdminOrder extends JPanel {
 		JButton btnCancel = new JButton("취소");
 		btnCancel.setBounds(1090, 143, 97, 23);
 		add(btnCancel);
+		
+		PagingComp pPaging = new PagingComp();
+		pPaging.setBounds(0, 810, 1176, 40);
+		add(pPaging);
 	}
-
 }
