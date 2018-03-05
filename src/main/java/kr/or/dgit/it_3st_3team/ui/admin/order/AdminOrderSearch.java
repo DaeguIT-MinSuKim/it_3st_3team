@@ -74,6 +74,30 @@ public class AdminOrderSearch extends JPanel {
 		textField.setColumns(10);
 	}
 	
+	
+	public SoftwareGroup getSelectedSoftwareGrp() {
+		return (SoftwareGroup) pSearchSoftwareSort.getCmbBox();
+	}
+	
+	public Admin getSelectedAdmin() {
+		return (Admin) pAdmin.getCmbBox();
+	}
+	
+	public String getSelectedString() {
+		return (String) pSortUserNameSWName.getCmbBox();
+	}
+	
+	public String getStartDate() {
+		return pDate.getStartDate();
+	}
+	
+	public String getEndDate() {
+		return pDate.getEndDate();
+	}
+	
+	public String getSearchText() {
+		return textField.getText().trim();
+	}
 
 	
 

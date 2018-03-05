@@ -84,4 +84,8 @@ public abstract class AbtractTableComp<T> extends JPanel {
 			return false;
 		}
 	}
+	
+	public int getselectedNo() {
+		return (int) table.getValueAt(table.getSelectedRow(), 0);
+	}
 }
