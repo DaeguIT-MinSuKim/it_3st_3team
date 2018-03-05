@@ -2,6 +2,8 @@ package kr.or.dgit.it_3st_3team.ui.admin.software;
 
 import java.awt.Color;
 
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import kr.or.dgit.it_3st_3team.ui.component.CmbStringComp;
@@ -10,7 +12,8 @@ import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
 public class AdminSoftwareSearch extends JPanel {
-	private JTextField textField;
+	private JTextField tfSearch;
+	private CmbStringComp pCmbSearch;
 
 	public AdminSoftwareSearch() {
 
@@ -27,13 +30,47 @@ public class AdminSoftwareSearch extends JPanel {
 		add(pSWSearch);
 		pSWSearch.setLayout(null);
 
-		CmbStringComp pSWNamePCName = new CmbStringComp();
-		pSWNamePCName.setBounds(148, 9, 137, 25);
-		pSWSearch.add(pSWNamePCName);
+		pCmbSearch = new CmbStringComp();	//분류별,품목명
+		pCmbSearch.setBounds(148, 9, 137, 25);
+		pSWSearch.add(pCmbSearch);
+		String[] st = { "공급회사명", "품목명","분류" };
+		pCmbSearch.loadData(st);
 		
-		textField = new JTextField();
-		textField.setBounds(312, 7, 615, 27);
-		pSWSearch.add(textField);
-		textField.setColumns(10);
+		tfSearch = new JTextField();
+		tfSearch.setBounds(312, 7, 615, 27);
+		pSWSearch.add(tfSearch);
+		tfSearch.setColumns(10);
 	}
+
+	public String getTfSearch() {
+		return tfSearch.getText().trim();
+	}
+
+	public void setTfSearch(String text) {
+		tfSearch.setText(text);
+	}
+	
+	public void requestTfFocus() {
+		tfSearch.requestFocus();
+	}
+	
+	
+	
+	public CmbStringComp getpCmbSearch() {
+		return pCmbSearch;
+	}
+
+
+
+	public boolean isTfEmpty(String message) {
+		if (tfSearch.getText().trim().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "검색어를 입력해주세요");
+			tfSearch.setText("");
+			tfSearch.requestFocus();
+			return true;
+		}
+		return false;
+	}
+
+	
 }

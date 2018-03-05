@@ -1,4 +1,4 @@
-package kr.or.dgit.it_3st_3team.ui.admin.report;
+package kr.or.dgit.it_3st_3team.ui.admin.chart;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ import kr.or.dgit.it_3st_3team.service.SoftwareGroupService;
 import kr.or.dgit.it_3st_3team.ui.component.StartAndEndDate;
 
 @SuppressWarnings("serial")
-public class AdminStatusSearch extends JPanel {
+public class AdminChartStatusSearch extends JPanel {
 	protected JTextField tfSearch;
 	protected DefaultComboBoxModel<SoftwareGroup> dcbm;
 	private SoftwareGroupService swgService;
@@ -28,7 +28,7 @@ public class AdminStatusSearch extends JPanel {
 	private Admin admin;
 	private User user;
 
-	public AdminStatusSearch(Object who) {
+	public AdminChartStatusSearch(Object who) {
 		setUsingUser(who);
 		swgService = SoftwareGroupService.getInstance();
 		adService = AdminService.getInstance();

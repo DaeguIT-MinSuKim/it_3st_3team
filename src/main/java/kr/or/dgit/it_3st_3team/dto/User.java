@@ -195,6 +195,9 @@ public class User {
 	public void setNameCu(String nameCu) {
 		this.nameCu = nameCu;
 	}
+	
+	
+
 
 	@Override
 	public String toString() {

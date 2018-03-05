@@ -8,10 +8,12 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 
+import kr.or.dgit.it_3st_3team.dto.Software;
 import kr.or.dgit.it_3st_3team.dto.SoftwareGroup;
 import kr.or.dgit.it_3st_3team.dto.User;
 import kr.or.dgit.it_3st_3team.service.SoftwareGroupService;
 import kr.or.dgit.it_3st_3team.service.UserService;
+import kr.or.dgit.it_3st_3team.type.UserGroup;
 import kr.or.dgit.it_3st_3team.ui.SoftwareGroupUI;
 import kr.or.dgit.it_3st_3team.ui.component.ImageComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblCmbSoftwareGroupComp;
@@ -47,7 +49,7 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 		btnSubmitCF.setBounds(779, 29, 97, 23);
 		pRegister.add(btnSubmitCF);
 
-		List<User> lists1 = UserService.getInstance().listUserAll();
+		List<User> lists1 = UserService.getInstance().listUserAllByUserGroup(UserGroup.COMPANY);
 		User[] usDatas = lists1.toArray(new User[lists1.size()]);
 
 		pCompany = new LblCmbUserComp("공급회사");
@@ -104,6 +106,16 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 	public LblTfComp getpCount() {
 		return pCount;
 	}
+	
+	public void setItem(Software sw) {
+		pSWName.setTfText(sw.getSwName());
+		pSalePrice.setTfText(Integer.toString(sw.getSwSellPrice()));
+		pSWsort.getCmbBox();
+		pCompany.getCmbBox();
+		pCount.setTfText(Integer.toString(sw.getSwQuantity()));
+		pSupplyPrice.setTfText(Integer.toString(sw.getSwSupplyPrice()));
+		
+	}
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnSubmitCF) {
@@ -120,5 +132,6 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 	public LblCmbSoftwareGroupComp getpSWsort() {
 		return pSWsort;
 	}
+	
 
 }

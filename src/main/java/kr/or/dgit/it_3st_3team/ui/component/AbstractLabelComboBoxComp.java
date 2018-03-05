@@ -36,8 +36,8 @@ public abstract class AbstractLabelComboBoxComp<T> extends JPanel {
 		pLC.add(cmbBox);
 	}
 
-	public String getCmbBox() {
-		return cmbBox.getSelectedItem().toString();
+	public Object getCmbBox() {
+		return cmbBox.getSelectedItem();
 	}
 
 	public void loadData(T[] data) {

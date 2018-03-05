@@ -188,7 +188,8 @@ public class SaleOrder {
 				ordDatetime, admin, softwaregroup);
 	}
 
-	public Object[] toArray() {
+	//총관리자 모든리스트 
+	public Object[] toArrayAllLists() {
 		return new Object[] {
 				ordNo, user.getName(),software.getSwGroup().getSgName(),software.getSwName(),
 				ordQuantity,ordSupplyPrice,ordSellPrice,ordTax,ordSellProfit,
@@ -196,6 +197,32 @@ public class SaleOrder {
 		};
 	}
 	
+	//영업사원 리스트
+	public Object[] toArraySalesLists() {
+		return new Object[] {
+				ordNo, user.getName(),software.getSwGroup().getSgName(),software.getSwName(),
+				ordQuantity,ordSupplyPrice,ordSellPrice,ordTax,ordSellProfit,
+				ordPayment,user.getNameCu(), dateToString(ordDatetime)
+		};
+	}
+	
+	//고객 리스트
+	public Object[] toArrayCustomerLists() {
+		return new Object[] {
+				ordNo,software.getSwGroup().getSgName(),software.getSwName(),
+				ordQuantity,ordSupplyPrice,ordSellPrice,ordTax,ordSellProfit,
+				ordPayment,user.getNameCu(), dateToString(ordDatetime)
+		};
+	}
+	
+	//공급회사 리스트
+		public Object[] toArrayCompanyLists() {
+			return new Object[] {
+					ordNo,software.getSwGroup().getSgName(),software.getSwName(),
+					ordQuantity,ordSupplyPrice,ordSellPrice,ordTax,ordSellProfit,
+					ordPayment, dateToString(ordDatetime)
+			};
+		}
 	public Object[] toArrayTransaction() {
 		return new Object[] {
 				dateToString(ordDatetime), user.getName(),

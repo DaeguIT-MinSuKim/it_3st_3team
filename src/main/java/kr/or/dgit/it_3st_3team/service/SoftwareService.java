@@ -1,6 +1,7 @@
 package kr.or.dgit.it_3st_3team.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
@@ -28,12 +29,21 @@ public class SoftwareService {
 		}
 	}
 	
+	public List<Software> selectSoftwareBySearch(Map<String, String> map){
+		log.debug(" selectSoftwareBySearch()");
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectList(namespace + "selectSoftwareBySearch",map);
+		}
+	}
+	
 	public List<Software> selectSoftwareByAll(){
 		log.debug("selectSoftwareByAll()");
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
 			return sqlSession.selectList(namespace + "selectSoftwareByAll");
 		}
 	}
+	
+	
 	
 	public int insertSoftware(Software software) {
 		log.debug("insertSoftware()");
