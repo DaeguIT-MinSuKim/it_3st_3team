@@ -1,13 +1,10 @@
 package kr.or.dgit.it_3st_3team.ui.component;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.util.List;
 
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
-
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.sql.SQLException;
-import java.util.List;
-
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -29,10 +26,12 @@ public abstract class AbtractTableComp<T> extends JPanel {
 
 		scrollPane = new JScrollPane();
 		add(scrollPane, BorderLayout.CENTER);
-
+		
+		
 		table = new JTable();
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(table);
+		
 	}
 
 	public void loadTableDatas(List<T> list) {

@@ -38,6 +38,13 @@ public class SaleOrderService {
 		}
 	}
 	
+	public List<SaleOrder> findSaleOrderWithoutadminName(Map<String, String> map) {
+		log.debug("findSaleOrderWithoutadminName()");
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectList(namespace + "selectSaleOrderWithoutadminName", map);
+		}
+	}
+	
 	public List<SaleOrder> findSaleOrderByAll() {
 		log.debug("findSaleOrderByAll()");
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
