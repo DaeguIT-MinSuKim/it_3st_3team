@@ -214,6 +214,15 @@ public class SaleOrder {
 				ordPayment,user.getNameCu(), dateToString(ordDatetime)
 		};
 	}
+	
+	//공급회사 리스트
+		public Object[] toArrayCompanyLists() {
+			return new Object[] {
+					ordNo,software.getSwGroup().getSgName(),software.getSwName(),
+					ordQuantity,ordSupplyPrice,ordSellPrice,ordTax,ordSellProfit,
+					ordPayment, dateToString(ordDatetime)
+			};
+		}
 	public Object[] toArrayTransaction() {
 		return new Object[] {
 				dateToString(ordDatetime), user.getName(),
