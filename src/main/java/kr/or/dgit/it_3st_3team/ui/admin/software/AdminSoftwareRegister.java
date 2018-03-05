@@ -1,6 +1,8 @@
 package kr.or.dgit.it_3st_3team.ui.admin.software;
 
-import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -15,9 +17,6 @@ import kr.or.dgit.it_3st_3team.ui.component.ImageComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblCmbSoftwareGroupComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblCmbUserComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblTfComp;
-import java.awt.event.ActionListener;
-import java.util.List;
-import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class AdminSoftwareRegister extends JPanel implements ActionListener {
@@ -39,7 +38,7 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 		setLayout(null);
 
 		JPanel pRegister = new JPanel();
-		pRegister.setBounds(0, 0, 1200, 191);
+		pRegister.setBounds(0, 0, 1200, 204);
 		add(pRegister);
 		pRegister.setLayout(null);
 
@@ -66,7 +65,7 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 		pRegister.add(pSWsort);
 
 		ImageComp pRegisterImg = new ImageComp();
-		pRegisterImg.setBounds(0, 0, 205, 191);
+		pRegisterImg.setBounds(0, 0, 205, 204);
 		pRegister.add(pRegisterImg);
 
 		pSWName = new LblTfComp("품목 명");
