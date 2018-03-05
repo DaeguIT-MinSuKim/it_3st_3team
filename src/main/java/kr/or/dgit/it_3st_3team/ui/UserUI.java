@@ -1,9 +1,10 @@
 package kr.or.dgit.it_3st_3team.ui;
 
 import java.awt.Color;
-
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -12,13 +13,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 import kr.or.dgit.it_3st_3team.dto.User;
 import kr.or.dgit.it_3st_3team.type.UserGroup;
 import kr.or.dgit.it_3st_3team.ui.admin.report.AdminStatusContent;
-import kr.or.dgit.it_3st_3team.ui.admin.report.UserStatusContent;
 import kr.or.dgit.it_3st_3team.ui.admin.software.AdminSoftwareContent;
 import kr.or.dgit.it_3st_3team.ui.user.CustomerOrderContent;
 import kr.or.dgit.it_3st_3team.ui.user.UserModifyContent;
