@@ -17,6 +17,7 @@ import kr.or.dgit.it_3st_3team.ui.component.StartAndEndDate;
 import kr.or.dgit.it_3st_3team.ui.table.AdminSalesStatusLists;
 import kr.or.dgit.it_3st_3team.ui.table.AdminStatusLists;
 import kr.or.dgit.it_3st_3team.ui.table.CompanyStatusLists;
+import kr.or.dgit.it_3st_3team.ui.table.CustomerStatusLists;
 
 
 @SuppressWarnings("serial")
@@ -24,11 +25,8 @@ public class AdminStatusContent extends JPanel implements ActionListener {
 	private JButton btnSearch;
 	private AdminStatusSearch pSearch;	
 	private StartAndEndDate calendar;
-	
 	private SalesReportUI ss;
 	private SaleOrderService soService;
-	private AdminStatusLists pAllListTable;
-	
 	private Admin admin;
 	private User user;
 	private SoftwareGroup swg;
@@ -37,14 +35,17 @@ public class AdminStatusContent extends JPanel implements ActionListener {
 	private String name;
 	private String searchBy;
 	private Admin ad;
+	private AdminStatusLists pAllListTable;
 	private AdminSalesStatusLists pSalesAllListTable;
 	private CompanyStatusLists pCompanyListTable;
+	private CustomerStatusLists pCustomerListTable;
 	
 	public AdminStatusContent(Object user) {
 		this.soService = SaleOrderService.getInstance();
 		setUsingUser(user);
 		pSalesAllListTable = new AdminSalesStatusLists(); 
 		pCompanyListTable = new CompanyStatusLists();
+		pCustomerListTable = new CustomerStatusLists();
 		initComponents(user);
 	}
 
@@ -172,8 +173,14 @@ public class AdminStatusContent extends JPanel implements ActionListener {
 				map.put("searchBy", searchBy);
 				map.put("name", name);
 				
-				pAllListTable.loadTableDatas(soService.findSaleOrderWithAllBySearch(map));
-				add(pAllListTable);
+				remove(pAllListTable);
+				revalidate();
+				repaint();
+				
+				pCustomerListTable.setBounds(12, 116, 1157, 670);
+				pCustomerListTable.loadTableDatas(soService.findSaleOrderWithoutadminName(map));
+				add(pCustomerListTable);
+				
 			}else {
 			//사용자 공급회사라면	
 				swg = pSearch.getSelectedSoftwareGrp();
