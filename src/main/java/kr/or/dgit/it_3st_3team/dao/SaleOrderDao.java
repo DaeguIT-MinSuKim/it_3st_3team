@@ -10,6 +10,8 @@ public interface SaleOrderDao {
 
 	SaleOrder selectSaleOrderWithAllBySearch(Map<String, String> map);
 
+	SaleOrder selectSaleOrderWithoutadminName(Map<String, String> map);
+
 	List<SaleOrder> selectSaleOrderByAll();
 	// 소프트웨어 주문 관리
 

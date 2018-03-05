@@ -53,6 +53,25 @@ public class SaleOrderServiceTest {
 		for (SaleOrder s : saleOrders) {
 			System.out.println(s);
 		}
+	}
+		@Test
+		public void test3FindSaleOrderWithoutadminName() {
+			Map<String, String> maps = new HashMap<>();
+			
+			maps.put("sgName", "");
+			maps.put("startDate", "");
+			maps.put("endDate", "");
+			//maps.put("searchBy", "softwarename");
+			maps.put("searchBy", "company");
+			maps.put("name", ""); 
+			//maps.put("name", "재밌는게임방");
+			//maps.put("swName", "바람의 제국");
+			List<SaleOrder> saleOrders = service.findSaleOrderWithoutadminName(maps);
+			Assert.assertNotNull(saleOrders);
+			for (SaleOrder s : saleOrders) {
+				System.out.println(s);
+			}
+
 
 	/*
 	 * @Test public void testBselectOrderManagementByNo() { SaleOrder so = new
