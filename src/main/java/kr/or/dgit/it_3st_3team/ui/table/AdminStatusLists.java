@@ -7,6 +7,7 @@ import javax.swing.SwingConstants;
 import kr.or.dgit.it_3st_3team.dto.SaleOrder;
 import kr.or.dgit.it_3st_3team.ui.component.AbtractTableComp;
 
+@SuppressWarnings("serial")
 public class AdminStatusLists extends AbtractTableComp<SaleOrder> {
 
 	@Override
@@ -30,7 +31,7 @@ public class AdminStatusLists extends AbtractTableComp<SaleOrder> {
 		Object[][] rows = null;
 		rows = new Object[list.size()][];
 		for(int i=0; i<list.size(); i++) {
-			rows[i] = list.get(i).toArray();
+			rows[i] = list.get(i).toArrayAllLists();
 		}
 		return rows;
 	}
