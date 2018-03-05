@@ -17,6 +17,7 @@ import java.awt.event.ActionEvent;
 
 import kr.or.dgit.it_3st_3team.dto.User;
 import kr.or.dgit.it_3st_3team.type.UserGroup;
+import kr.or.dgit.it_3st_3team.ui.admin.report.AdminStatusContent;
 import kr.or.dgit.it_3st_3team.ui.admin.report.UserStatusContent;
 import kr.or.dgit.it_3st_3team.ui.admin.software.AdminSoftwareContent;
 import kr.or.dgit.it_3st_3team.ui.user.CustomerOrderContent;
@@ -222,7 +223,7 @@ public class UserUI extends JFrame implements ActionListener {
 	}
 
 	protected void actionPerformedBtnSupplyStatus(ActionEvent e) {
-		UserStatusContent pMain = new UserStatusContent();
+		AdminStatusContent pMain = new AdminStatusContent(user);
 		pMain.setBounds(0, 0, 1186, 861);
 		changeMainPanel(pMain);
 	}
