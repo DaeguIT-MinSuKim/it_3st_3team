@@ -9,7 +9,7 @@
 		<result property="phone" column="adm_phone" />
 	</resultMap>
 	
-	<resultMap type="AdminGroup" id="AdminWithAdmin_groupResult" extends="AdminBasedResult">
+	<resultMap type="Admin" id="AdminWithAdminGroupResult" extends="AdminBasedResult">
 		<result property="adminGroup.agNo" column="ag_no"/>
 		<result property="adminGroup.agName" column="ag_name"/>
 		<result property="adminGroup.agAuth" column="ag_auth"/>
@@ -22,14 +22,14 @@
 	
 	<!-- Admin with Admin_group 정보 -->
 	<sql id="selectWtihAdminGroupSql">
-		select adm_no, adm_name, adm_id, adm_pwd, adm_phone, ag_no from admin ad join admin_group ag
-		on ag.ag_no=ad.adm_no;
+		select adm_no, adm_name, adm_id, adm_pwd, adm_phone, ad.ag_no from admin ad join admin_group ag
+		on ag.ag_no=ad.adm_no
 	</sql>
 	
 	
 	
 	<sql id="whereLoginSql">
-		where adm_id = #{adminId} AND adm_pwd = password(#{adminPwd})
+		where ad.adm_id = #{adminId} AND ad.adm_pwd = password(#{adminPwd})
 	</sql>
 	
 	<sql id="whereSql">
@@ -40,8 +40,8 @@
 		</where>
 	</sql>
 	
-	<select id="selectAdminByLogin" parameterType="Admin" resultMap="AdminBasedResult">
-		<include refid="selectSql"/>
+	<select id="selectAdminByLogin" parameterType="Admin" resultMap="AdminWithAdminGroupResult">
+		<include refid="selectWtihAdminGroupSql"/>
 		<include refid="whereLoginSql"/>
 	</select>
 	

@@ -1,11 +1,10 @@
 package kr.or.dgit.it_3st_3team.ui.component;
-
-import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.sql.SQLException;
 import java.util.List;
 
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -27,10 +26,12 @@ public abstract class AbtractTableComp<T> extends JPanel {
 
 		scrollPane = new JScrollPane();
 		add(scrollPane, BorderLayout.CENTER);
-
+		
+		
 		table = new JTable();
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(table);
+		
 	}
 
 	public void loadTableDatas(List<T> list) {
@@ -38,6 +39,7 @@ public abstract class AbtractTableComp<T> extends JPanel {
 		table.setModel(model);
 		setTableAlignWidth();
 	}
+	
 
 	protected void setTableRowHeight(int height) {
 		table.getTableHeader().setPreferredSize(new Dimension(scrollPane.getWidth(), height));
@@ -60,6 +62,10 @@ public abstract class AbtractTableComp<T> extends JPanel {
 			tcModel.getColumn(idx[i]).setCellRenderer(dtcRenderer);
 		}
 	}
+	
+	public void setPopupMenu(JPopupMenu menu) {
+		table.setComponentPopupMenu(menu);
+	}
 
 	public abstract void setTableAlignWidth();
 
@@ -76,5 +82,9 @@ public abstract class AbtractTableComp<T> extends JPanel {
 		public boolean isCellEditable(int row, int column) {
 			return false;
 		}
+	}
+	
+	public int getselectedNo() {
+		return (int) table.getValueAt(table.getSelectedRow(), 0);
 	}
 }
