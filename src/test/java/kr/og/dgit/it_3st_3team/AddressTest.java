@@ -49,10 +49,10 @@ public class AddressTest {
 	@Test
 	public void testCselectAddressByDoro() {
 		Address ad = new Address();
+		ad.setSido("대구광역시");
 		ad.setSigungu("달서구");
-		ad.setDoro("진천로");
-		ad.setBuilding1(0);
-		ad.setBuilding2(0);
+		ad.setDoro("");
+		
 		List<Address> listad = service.selectAddressByDoro(ad);
 		//Address res = service.selectAddressByDoro(ad);
 		assertNotNull(listad);

@@ -39,7 +39,7 @@
 			<if test="sigungu != null">
 				AND sigungu=#{sigungu}
 			</if>
-			<if test="doro != null">
+			<if test="doro != null and !doro.equals('')">
 				AND doro=#{doro}
 			</if>
 			<if test="building1 != null and building1>0">
