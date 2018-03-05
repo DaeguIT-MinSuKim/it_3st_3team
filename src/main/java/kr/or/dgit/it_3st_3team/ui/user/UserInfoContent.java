@@ -34,7 +34,7 @@ public class UserInfoContent extends JPanel {
 		setLayout(null);
 
 		pImg = new ImageComp();
-		pImg.setBounds(12, 10, 181, 230);
+		pImg.setBounds(12, 10, 180, 230);
 		add(pImg);
 
 		pUserId = new LblTfComp("아이디");

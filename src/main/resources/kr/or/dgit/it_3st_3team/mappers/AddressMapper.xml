@@ -40,7 +40,7 @@
 				AND sigungu=#{sigungu}
 			</if>
 			<if test="doro != null and !doro.equals('')">
-				AND doro=#{doro}
+				AND doro like concat(#{doro}, "%")
 			</if>
 			<if test="building1 != null and building1>0">
 				AND building1=#{building1}

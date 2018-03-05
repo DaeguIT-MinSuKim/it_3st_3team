@@ -16,7 +16,6 @@ public class LblTfBtnPostSearchComp extends AbstractLblTfBtnComp {
 	protected void actionPerformedBtn(ActionEvent e) {
 		SearchPostUI frame = new SearchPostUI();
 		frame.setVisible(true);
-		frame.setPostSearch(this);
 	}
 
 	public void setPanelAddress(LblAddressComp pInputAddress) {

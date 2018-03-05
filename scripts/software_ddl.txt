@@ -1,5 +1,8 @@
-set FOREIGN_key_checks = 0; /* 포린키 무시 */
+set FOREIGN_key_checks = 0; -- 포린키 무시
 
+DROP SCHEMA IF EXISTS software_project;
+
+CREATE SCHEMA software_project;
 
 use software_project;
 
@@ -85,7 +88,7 @@ CREATE TABLE `software_project`.`sale_order` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='판매현황';
 
 
-CREATE TABLE `address` (
+CREATE TABLE `software_project`.`address` (
   `zipcode` char(5) DEFAULT NULL COMMENT '우편번호',
   `sido` varchar(20) DEFAULT NULL COMMENT '시도',
   `sigungu` varchar(20) DEFAULT NULL COMMENT '시군구',
@@ -97,14 +100,7 @@ CREATE TABLE `address` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='우편번호';
 
 
-load data local infile 'C:/Users/SCARLETT/Desktop/3조 프로젝트/zipcode_DB/울산광역시.txt'
-into table  address
-character set 'euckr'
-fields terminated by '|'
-ignore 1 lines(@zipcode,@sido,@d,@sigungu,@d,@d,@d,@d,@doro,@d,@d,@building1,@building2,@d,@d,@d,@d,@d,@d,@d,@d,@d,@d,@d,@d,@d)
-set	zipcode=@zipcode, sido=@sido, sigungu=@sigungu,doro=@doro,building1=@building1,building2=@building2;
+set FOREIGN_key_checks = 1; -- 포린키 설정
 
 
-set FOREIGN_key_checks = 1; /* 포린키 설정 */
-
-
+grant select, insert, update, delete, ALTER ROUTINE on software_project.* to 'user_software' identified by 'rootroot';

@@ -198,9 +198,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return String.format(
-				"User [userNo=%s, userId=%s, userPwd=%s, name=%s, email=%s, phone=%s, zipcode=%s, addr1=%s, addr2=%s, avatar=%s, userGroup=%s, admin=%s]",
-				userNo, userId, userPwd, name, email, phone, zipcode, addr1, addr2, avatar, userGroup, admin);
+		return String.format("%s", name);
 	}
 
 }

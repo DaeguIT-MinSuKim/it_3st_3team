@@ -30,6 +30,7 @@ public class AdminUI extends JFrame implements ActionListener {
 	private JButton btnSupplySaleStatus;
 	private JButton btnEmpManagement;
 	private Admin admin;
+	private JButton btnDbSetting;
 
 	public AdminUI(Admin admin) {
 		this.admin = admin;
@@ -108,13 +109,23 @@ public class AdminUI extends JFrame implements ActionListener {
 		btnEmpManagement.setBackground(new Color(51, 153, 204));
 		pAdminMenu.add(btnEmpManagement);
 
+		btnDbSetting = new JButton("설정");
+		btnDbSetting.addActionListener(this);
+		btnDbSetting.setForeground(Color.DARK_GRAY);
+		btnDbSetting.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
+		btnDbSetting.setBackground(new Color(51, 153, 204));
+		pAdminMenu.add(btnDbSetting);
+
 		JLabel lblEmpty_1 = new JLabel("");
 		pAdminMenu.add(lblEmpty_1);
-		
+
 		displayFirstView();
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnDbSetting) {
+			actionPerformedBtnDbSetting(e);
+		}
 		if (e.getSource() == btnEmpManagement) {
 			actionPerformedBtnEmpManagement(e);
 		}
@@ -168,10 +179,14 @@ public class AdminUI extends JFrame implements ActionListener {
 		changeMainPanel(pMain);
 	}
 
+	protected void actionPerformedBtnDbSetting(ActionEvent e) {
+	}
+
 	private void changeMainPanel(JPanel pMain) {
 		pContent.removeAll();
 		pContent.add(pMain);
 		pContent.revalidate();
 		pContent.repaint();
 	}
+
 }
