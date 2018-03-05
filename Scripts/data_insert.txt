@@ -58,65 +58,159 @@ insert into software(sw_no, sg_no, sw_name, sw_quantity,sw_supply_price, sw_sell
 	
 	BANK, ATM, CARD, MOBILE, SIMPLE
 */
-call proc_insert_sale_order(1, 25, 1, 1, 2);
-call proc_insert_sale_order(2, 25, 2, 5, 3);
-call proc_insert_sale_order(3, 20, 2, 4, 2);
-call proc_insert_sale_order(4, 20, 4, 4, 6);
-call proc_insert_sale_order(5, 150, 2, 9, 8);
-call proc_insert_sale_order(6, 30, 1, 9, 6);
-call proc_insert_sale_order(7, 52, 3, 1, 3);
-call proc_insert_sale_order(8, 28, 4, 7, 9);
-call proc_insert_sale_order(9, 37, 2, 7, 6);
-call proc_insert_sale_order(10, 245, 3, 10, 11);
+-- call proc_insert_sale_order(1, 25, 1, 1, 2);
 
-/*sale_order주문 11번~50번까지*/
-call proc_insert_sale_order(11, 15, 4, 1, 2);
-call proc_insert_sale_order(12, 5, 2, 5, 3);
-call proc_insert_sale_order(13, 40, 1, 4, 2);
-call proc_insert_sale_order(14, 40, 3, 2, 6);
-call proc_insert_sale_order(15, 10, 2, 5, 8);
-call proc_insert_sale_order(16, 20, 1, 9, 6);
-call proc_insert_sale_order(17, 52, 2, 1, 3);
-call proc_insert_sale_order(18, 28, 4, 3, 9);
-call proc_insert_sale_order(19, 37, 3, 7, 6);
-call proc_insert_sale_order(20, 123, 3, 5, 11);
 
--- 
-call proc_insert_sale_order(21, 67, 4, 7, 2);
-call proc_insert_sale_order(22, 26, 4, 5, 3);
-call proc_insert_sale_order(23, 12, 2, 8, 2);
-call proc_insert_sale_order(24, 20, 3, 10, 6);
-call proc_insert_sale_order(25, 13, 2, 9, 8);
-call proc_insert_sale_order(26, 142, 1, 6, 6);
-call proc_insert_sale_order(27, 75, 3, 4, 3);
-call proc_insert_sale_order(28, 28, 3, 10, 9);
-call proc_insert_sale_order(29, 37, 2, 7, 6);
-call proc_insert_sale_order(30, 63, 1, 10, 11);
-
--- 
-call proc_insert_sale_order(31, 2, 1, 4, 2);
-call proc_insert_sale_order(32, 86, 4, 5, 3);
-call proc_insert_sale_order(33, 62, 1, 9, 2);
-call proc_insert_sale_order(34, 10, 4, 10, 6);
-call proc_insert_sale_order(35, 8, 2, 9, 9);
-call proc_insert_sale_order(36, 252, 1, 6, 6);
-call proc_insert_sale_order(37, 83, 4, 4, 3);
-call proc_insert_sale_order(38, 45, 3, 10, 9);
-call proc_insert_sale_order(39, 37, 4, 8, 6);
-call proc_insert_sale_order(40, 136, 1, 10, 11);
-
--- 
-call proc_insert_sale_order(41, 244, 4, 7, 2);
-call proc_insert_sale_order(42, 23, 2, 3, 3);
-call proc_insert_sale_order(43, 9, 2, 8, 2);
-call proc_insert_sale_order(44, 22, 3, 5, 6);
-call proc_insert_sale_order(45, 33, 2, 9, 8);
-call proc_insert_sale_order(46, 8, 1, 6, 6);
-call proc_insert_sale_order(47, 65, 3, 4, 3);
-call proc_insert_sale_order(48, 144, 3, 3, 9);
-call proc_insert_sale_order(49, 37, 2, 5, 6);
-call proc_insert_sale_order(50, 63, 4, 6, 11);
-
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(1, 2, 1, 25, 625000, 1000000, 100000, 375000, 'BANK', '2018-02-27 22:27:59.000', 2);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(2, 3, 5, 25, 875000, 1268750, 126875, 393750, 'ATM', '2018-02-27 22:28:00.000', 2);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(3, 2, 4, 20, 640000, 960000, 96000, 320000, 'ATM', '2018-02-27 22:28:01.000', 3);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(4, 6, 4, 20, 640000, 960000, 96000, 320000, 'MOBILE', '2018-02-27 22:28:01.000', 3);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(5, 8, 9, 150, 207000000, 327060000, 32706000, 120060000, 'ATM', '2018-02-27 22:28:02.000', 2);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(6, 6, 9, 30, 41400000, 65412000, 6541200, 24012000, 'BANK', '2018-02-27 22:28:03.000', 2);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(7, 3, 1, 52, 1300000, 2080000, 208000, 780000, 'CARD', '2018-02-27 22:28:04.000', 2);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(8, 9, 7, 28, 27440000, 42532000, 4253200, 15092000, 'MOBILE', '2018-02-27 22:28:04.000', 3);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(9, 6, 7, 37, 36260000, 56203000, 5620300, 19943000, 'ATM', '2018-02-27 22:28:05.000', 3);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(10, 11, 10, 245, 605150000, 816952500, 81695250, 211802500, 'CARD', '2018-02-27 22:28:06.000', 2);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(11, 2, 1, 15, 375000, 600000, 60000, 225000, 'MOBILE', '2018-03-05 20:00:36.000', 2);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(12, 3, 5, 5, 175000, 253750, 25375, 78750, 'ATM', '2018-03-05 20:00:37.000', 2);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(13, 2, 4, 40, 1280000, 1920000, 192000, 640000, 'BANK', '2018-03-05 20:00:38.000', 3);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(14, 6, 2, 40, 1200000, 1920000, 192000, 720000, 'CARD', '2018-03-05 20:00:39.000', 2);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(15, 8, 5, 10, 350000, 507500, 50750, 157500, 'ATM', '2018-03-05 20:00:39.000', 2);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(16, 6, 9, 20, 27600000, 43608000, 4360800, 16008000, 'BANK', '2018-03-05 20:00:40.000', 2);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(17, 3, 1, 52, 1300000, 2080000, 208000, 780000, 'ATM', '2018-03-05 20:00:41.000', 2);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(18, 9, 3, 28, 756000, 1134000, 113400, 378000, 'MOBILE', '2018-03-05 20:00:41.000', 3);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(19, 6, 7, 37, 36260000, 56203000, 5620300, 19943000, 'CARD', '2018-03-05 20:00:42.000', 3);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(20, 11, 5, 123, 4305000, 6242250, 624225, 1937250, 'CARD', '2018-03-05 20:00:43.000', 2);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(21, 2, 7, 67, 65660000, 101773000, 10177300, 36113000, 'MOBILE', '2018-03-05 20:00:44.000', 3);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(22, 3, 5, 26, 910000, 1319500, 131950, 409500, 'MOBILE', '2018-03-05 20:00:45.000', 2);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(23, 2, 8, 12, 28080000, 47736000, 4773600, 19656000, 'ATM', '2018-03-05 20:00:46.000', 3);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(24, 6, 10, 20, 49400000, 66690000, 6669000, 17290000, 'CARD', '2018-03-05 20:00:47.000', 2);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(25, 8, 9, 13, 17940000, 28345200, 2834520, 10405200, 'ATM', '2018-03-05 20:00:48.000', 2);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(26, 6, 6, 142, 194540000, 272356000, 27235600, 77816000, 'BANK', '2018-03-05 20:00:48.000', 2);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(27, 3, 4, 75, 2400000, 3600000, 360000, 1200000, 'CARD', '2018-03-05 20:00:49.000', 3);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(28, 9, 10, 28, 69160000, 93366000, 9336600, 24206000, 'CARD', '2018-03-05 20:00:50.000', 2);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(29, 6, 7, 37, 36260000, 56203000, 5620300, 19943000, 'ATM', '2018-03-05 20:00:51.000', 3);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(30, 11, 10, 63, 155610000, 210073500, 21007350, 54463500, 'BANK', '2018-03-05 20:00:52.000', 2);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(31, 2, 4, 2, 64000, 96000, 9600, 32000, 'BANK', '2018-03-05 20:00:53.000', 3);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(32, 3, 5, 86, 3010000, 4364500, 436450, 1354500, 'MOBILE', '2018-03-05 20:00:54.000', 2);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(33, 2, 9, 62, 85560000, 135184800, 13518480, 49624800, 'BANK', '2018-03-05 20:00:55.000', 2);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(34, 6, 10, 10, 24700000, 33345000, 3334500, 8645000, 'MOBILE', '2018-03-05 20:00:56.000', 2);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(35, 9, 9, 8, 11040000, 17443200, 1744320, 6403200, 'ATM', '2018-03-05 20:00:56.000', 2);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(36, 6, 6, 252, 345240000, 483336000, 48333600, 138096000, 'BANK', '2018-03-05 20:00:57.000', 2);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(37, 3, 4, 83, 2656000, 3984000, 398400, 1328000, 'MOBILE', '2018-03-05 20:00:58.000', 3);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(38, 9, 10, 45, 111150000, 150052500, 15005250, 38902500, 'CARD', '2018-03-05 20:00:59.000', 2);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(39, 6, 8, 37, 86580000, 147186000, 14718600, 60606000, 'MOBILE', '2018-03-05 20:01:00.000', 3);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(40, 11, 10, 136, 335920000, 453492000, 45349200, 117572000, 'BANK', '2018-03-05 20:01:01.000', 2);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(41, 2, 7, 244, 239120000, 370636000, 37063600, 131516000, 'MOBILE', '2018-03-05 20:01:03.000', 3);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(42, 3, 3, 23, 621000, 931500, 93150, 310500, 'ATM', '2018-03-05 20:01:03.000', 3);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(43, 2, 8, 9, 21060000, 35802000, 3580200, 14742000, 'ATM', '2018-03-05 20:01:04.000', 3);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(44, 6, 5, 22, 770000, 1116500, 111650, 346500, 'CARD', '2018-03-05 20:01:05.000', 2);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(45, 8, 9, 33, 45540000, 71953200, 7195320, 26413200, 'ATM', '2018-03-05 20:01:06.000', 2);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(46, 6, 6, 8, 10960000, 15344000, 1534400, 4384000, 'BANK', '2018-03-05 20:01:07.000', 2);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(47, 3, 4, 65, 2080000, 3120000, 312000, 1040000, 'CARD', '2018-03-05 20:01:07.000', 3);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(48, 9, 3, 144, 3888000, 5832000, 583200, 1944000, 'CARD', '2018-03-05 20:01:08.000', 3);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(49, 6, 5, 37, 1295000, 1877750, 187775, 582750, 'ATM', '2018-03-05 20:01:09.000', 2);
+INSERT INTO software_project.sale_order
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
+VALUES(50, 11, 6, 63, 86310000, 120834000, 12083400, 34524000, 'MOBILE', '2018-03-05 20:01:10.000', 2);
 
 
 select * from sale_order;
