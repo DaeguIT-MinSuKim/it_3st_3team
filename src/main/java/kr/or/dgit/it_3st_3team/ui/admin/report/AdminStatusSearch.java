@@ -60,7 +60,7 @@ public class AdminStatusSearch extends JPanel {
 		tfSearch.setColumns(10);
 		add(tfSearch);
 		
-		System.out.println(admin.getAdminGroup());
+		
 		if (admin != null) {
 			System.out.println(admin);
 			// 관리자
