@@ -15,7 +15,7 @@ import javax.swing.border.EmptyBorder;
 import kr.or.dgit.it_3st_3team.dto.Admin;
 import kr.or.dgit.it_3st_3team.ui.admin.management.AdminManagementContent;
 import kr.or.dgit.it_3st_3team.ui.admin.order.AdminOrder;
-import kr.or.dgit.it_3st_3team.ui.admin.report.AdminStatusContentTest;
+import kr.or.dgit.it_3st_3team.ui.admin.report.AdminStatusContent;
 import kr.or.dgit.it_3st_3team.ui.admin.software.AdminSoftwareContent;
 import kr.or.dgit.it_3st_3team.ui.admin.user.AdminUserContent;
 
@@ -168,7 +168,7 @@ public class AdminUI extends JFrame implements ActionListener {
 	}
 
 	protected void actionPerformedBtnSupplySaleStatus(ActionEvent e) {
-		AdminStatusContentTest pMain = new AdminStatusContentTest();
+		AdminStatusContent pMain = new AdminStatusContent(admin);
 		pMain.setBounds(0, 0, 1186, 861);
 		changeMainPanel(pMain);
 	}

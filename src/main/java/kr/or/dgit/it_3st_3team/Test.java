@@ -7,8 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import kr.or.dgit.it_3st_3team.ui.admin.report.AdminStatusContentTest;
-import kr.or.dgit.it_3st_3team.ui.admin.report.TestSearch;
+import kr.or.dgit.it_3st_3team.ui.admin.report.AdminStatusContent;
 
 public class Test extends JFrame {
 
@@ -36,7 +35,7 @@ public class Test extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		JPanel jp = new AdminStatusContentTest();
+		JPanel jp = new AdminStatusContent(new Object());
 		setContentPane(jp);
 		revalidate();
 		

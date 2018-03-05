@@ -2,6 +2,9 @@ package kr.or.dgit.it_3st_3team.ui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -12,15 +15,8 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import kr.or.dgit.it_3st_3team.dto.User;
-import kr.or.dgit.it_3st_3team.type.UserGroup;
-import kr.or.dgit.it_3st_3team.ui.admin.report.CompanyStatusContent;
+import kr.or.dgit.it_3st_3team.ui.admin.chart.CompanyStatusContent;
 import kr.or.dgit.it_3st_3team.ui.admin.software.AdminSoftwareContent;
-import kr.or.dgit.it_3st_3team.ui.user.UserModifyContent;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
-import java.awt.Rectangle;
 
 @SuppressWarnings("serial")
 public class UserCompanyUI extends JFrame implements ActionListener {

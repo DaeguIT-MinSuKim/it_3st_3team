@@ -22,26 +22,28 @@ import kr.or.dgit.it_3st_3team.ui.table.AdminStatusLists;
 
 
 @SuppressWarnings("serial")
-public class AdminStatusContentTest extends JPanel implements ActionListener {
+public class AdminStatusContent extends JPanel implements ActionListener {
 	private JButton btnSearch;
-	private TestSearch pSearch;	
+	private AdminStatusSearch pSearch;	
 	private StartAndEndDate calendar;
 	private JButton btnReport;
 	private SalesReportUI ss;
 	private SaleOrderService soService;
 	private AdminStatusLists pListTable;
+	private Admin admin;
+	private User user;
 	
 	
-	public AdminStatusContentTest() {
+	public AdminStatusContent(Object user) {
 		this.soService = SaleOrderService.getInstance();
-		
-		initComponents();
+		setUsingUser(user);
+		initComponents(user);
 	}
 
-	private void initComponents() {
+	private void initComponents(Object user) {
 		setLayout(null);
 
-		pSearch = new TestSearch();
+		pSearch = new AdminStatusSearch(user);
 		pSearch.setBounds(12, 10, 1178, 96);
 		add(pSearch);
 		
@@ -118,5 +120,13 @@ public class AdminStatusContentTest extends JPanel implements ActionListener {
 	protected void actionPerformedBtnReport(ActionEvent e) {
 		JFrame jf = new SalesReportUI();
 		jf.setVisible(true);
+	}
+	
+	public void setUsingUser(Object who) {
+		if (who instanceof Admin) {
+			admin = (Admin) who;
+		} else {
+			user = (User) who;
+		}
 	}
 }
