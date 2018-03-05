@@ -8,39 +8,25 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.GridLayout;
+import java.util.List;
 import java.awt.Font;
+
+import kr.or.dgit.it_3st_3team.dto.SaleOrder;
 import kr.or.dgit.it_3st_3team.ui.table.SalesReportDetailsLists;
 
+@SuppressWarnings("serial")
 public class SalesReportDetailsUI extends JFrame {
-
 	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					SalesReportDetailsUI frame = new SalesReportDetailsUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	private SalesReportDetailsLists pLists;
+	
+	
+	public SalesReportDetailsUI(String lblTitle, List<SaleOrder> list) {
+		initComponents(lblTitle, list);
 	}
-
-	/**
-	 * Create the frame.
-	 */
-	public SalesReportDetailsUI() {
-		initComponents();
-	}
-	private void initComponents() {
+	private void initComponents(String lblTitle, List<SaleOrder> list) {
 		setTitle("보고서");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 800, 500);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -60,20 +46,13 @@ public class SalesReportDetailsUI extends JFrame {
 		JPanel pSearchedLists = new JPanel();
 		pTitle.add(pSearchedLists);
 		
-		JLabel lblSelected1 = new JLabel("2018-01-01");
-		pSearchedLists.add(lblSelected1);
+		JLabel lblSelected = new JLabel(lblTitle);
+		pSearchedLists.add(lblSelected);
 		
-		JLabel lblSelected2 = new JLabel("2018-02-24");
-		pSearchedLists.add(lblSelected2);
-		
-		JLabel lblSelected3 = new JLabel("게임");
-		pSearchedLists.add(lblSelected3);
-		
-		JLabel lblSelected4 = new JLabel("오버워치");
-		pSearchedLists.add(lblSelected4);
-		
-		SalesReportDetailsLists pLists = new SalesReportDetailsLists();
+		pLists = new SalesReportDetailsLists();
 		contentPane.add(pLists, BorderLayout.CENTER);
+		
+		pLists.loadTableDatas(list);
 	}
 
 }
