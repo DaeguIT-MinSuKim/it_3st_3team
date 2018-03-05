@@ -1,6 +1,7 @@
 package kr.or.dgit.it_3st_3team.ui.table;
 
 import java.awt.BorderLayout;
+import java.util.List;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -11,80 +12,35 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
-public class SalesTransactionLists extends JPanel {
-	protected JTable table;
+import kr.or.dgit.it_3st_3team.dto.SaleOrder;
+import kr.or.dgit.it_3st_3team.ui.component.AbtractTableComp;
 
-	public SalesTransactionLists() {
+@SuppressWarnings("serial")
+public class SalesTransactionLists extends AbtractTableComp<SaleOrder> {
 
-		initComponents();
+	@Override
+	public void setTableAlignWidth() {
+		setTableCellAlign(SwingConstants.CENTER, 0, 1, 2, 3, 4, 5, 6, 7);
 
-	}
+		setTableRowHeight(30);
 
-	private void initComponents() {
-		setLayout(new BorderLayout(0, 0));
-
-		JScrollPane scrollPane = new JScrollPane();
-		add(scrollPane, BorderLayout.CENTER);
-
-		table = new JTable();
-		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		loadDatas();
-		scrollPane.setViewportView(table);
-	}
-
-	private void loadDatas() {
-		NonEditableModel model = new NonEditableModel(getRows(), getColumNames());
-		table.setModel(model);
-		setAlignWidth();
+		setTableCellWidth(300, 300, 200, 300, 200, 300, 300, 300);
 
 	}
 
-	private Object[][] getRows() {
-		return new Object[][] {
-				{"2018-02-23", "재밌는피시방", "한컴오피스", "3", "120,000원", "150,000원", "12,000원", "100,000원" },
-				{"2018-02-23", "아산시스템", "인디자인", "2", "120,000원", "150,000원", "12,000원", "100,000원" },
-				{"2018-02-23", "충청남도교육청", "바람의제국", "5", "120,000원", "150,000원", "12,000원", "100,000원" } };
+	@Override
+	public Object[] getColumnNames() {
+		return new String[] { "주문날짜", "고객명", "분류", "품목명", "주문수량", "공급가격", "세금", "총납품금액" };
 	}
 
-	public String[] getColumNames() {
-		return new String[] { "주문일자", "고객상호", "품명", "수량", "단가", "금액", "세금", "총납품금액" };
-
-	}
-
-	private void setAlignWidth() {
-		tableCellAlign(SwingConstants.CENTER, 0, 1, 2, 3, 4, 5, 6, 7);
-		tableCellWidth(500, 500, 400, 500, 200, 500, 500, 500);
-
-	}
-
-	protected void tableCellWidth(int... width) {
-		TableColumnModel model = table.getColumnModel();
-		for (int i = 0; i < width.length; i++) {
-			model.getColumn(i).setPreferredWidth(width[i]);
+	@Override
+	public Object[][] getRows(List<SaleOrder> list) {
+		Object[][] rows = null;
+		rows = new Object[list.size()][];
+		for (int i = 0; i < list.size(); i++) {
+			rows[i] = list.get(i).toArrayTransaction();
 		}
-
-	}
-
-	protected void tableCellAlign(int align, int... idx) {
-		DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
-		dtcr.setHorizontalAlignment(align);
-
-		TableColumnModel model = table.getColumnModel();
-		for (int i = 0; i < idx.length; i++) {
-			model.getColumn(idx[i]).setCellRenderer(dtcr);
-		}
-	}
-
-	
-	class NonEditableModel extends DefaultTableModel {
-		public NonEditableModel(Object[][] data, Object[] columnNames) {
-			super(data, columnNames);
-		}
-
-		@Override
-		public boolean isCellEditable(int row, int column) {
-			return false;
-		}
+		return rows;
 	}
 
 }

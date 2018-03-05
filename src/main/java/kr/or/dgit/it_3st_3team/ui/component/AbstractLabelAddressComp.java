@@ -33,7 +33,7 @@ public abstract class AbstractLabelAddressComp<T> extends JPanel {
 
 		tfAddress1 = new JTextField();
 		tfAddress1.setColumns(10);
-		tfAddress1.setEnabled(false);
+		tfAddress1.setEditable(false);
 		pSpace.add(tfAddress1);
 
 		tfAddress2 = new JTextField();

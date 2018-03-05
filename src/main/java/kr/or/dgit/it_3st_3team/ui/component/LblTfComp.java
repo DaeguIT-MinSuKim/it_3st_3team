@@ -38,7 +38,7 @@ public class LblTfComp extends JPanel {
 	}
 
 	public String getTfText() {
-		return textField.getText();
+		return textField.getText().trim();
 	}
 	
 	public void requestTfFocus() {

@@ -47,10 +47,9 @@ public class SearchPostUI extends JFrame implements ActionListener {
 
 	private void initComponents() {
 		setTitle("주소 검색");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 398, 601);
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.WHITE);
 		contentPane.setToolTipText("주소 검색");
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -95,7 +94,7 @@ public class SearchPostUI extends JFrame implements ActionListener {
 		// pPostTable.setBackground(Color.WHITE);
 		pPostTable.setBounds(12, 233, 358, 185);
 		contentPane.add(pPostTable);
-		//pPostTable.loadTableDatas(Collections.EMPTY_LIST);
+		pPostTable.loadTableDatas(Collections.emptyList());
 
 		// pPostTable.setLayout(null);
 
@@ -229,7 +228,6 @@ public class SearchPostUI extends JFrame implements ActionListener {
 		list = AddressService.getInstance().selectAddressByDoro(address);
 
 		pPostTable.loadTableDatas(list);
-
 	}
 
 	protected void actionPerformedBtnZipCodeOK(ActionEvent e) {

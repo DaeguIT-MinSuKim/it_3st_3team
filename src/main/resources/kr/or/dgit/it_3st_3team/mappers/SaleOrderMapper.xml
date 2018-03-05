@@ -17,7 +17,7 @@
 		<result property="user.userNo" column="u_no" />
 		<result property="user.userId" column="u_id" />
 		<result property="user.name" column="고객명" />
-		<result property="user.name" column="공급회사명" />
+		<result property="user.nameCu" column="공급회사명" />
 		<result property="software.swNo" column="sw_no" />
 		<result property="software.swName" column="sw_name" />
 		<result property="admin.adminNo" column="adm_no" />

@@ -84,4 +84,27 @@ CREATE TABLE `software_project`.`sale_order` (
   CONSTRAINT `FK_user_TO_sale_order` FOREIGN KEY (`u_no`) REFERENCES `user` (`u_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='판매현황';
 
+
+CREATE TABLE `address` (
+  `zipcode` char(5) DEFAULT NULL COMMENT '우편번호',
+  `sido` varchar(20) DEFAULT NULL COMMENT '시도',
+  `sigungu` varchar(20) DEFAULT NULL COMMENT '시군구',
+  `doro` varchar(80) DEFAULT NULL COMMENT '도로',
+  `building1` int(5) DEFAULT NULL COMMENT '건물번호1',
+  `building2` int(5) NOT NULL COMMENT '건물번호2',
+  KEY `index_sido` (`sido`),
+  KEY `index_sigungu` (`sigungu`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='우편번호';
+
+
+load data local infile 'C:/Users/SCARLETT/Desktop/3조 프로젝트/zipcode_DB/울산광역시.txt'
+into table  address
+character set 'euckr'
+fields terminated by '|'
+ignore 1 lines(@zipcode,@sido,@d,@sigungu,@d,@d,@d,@d,@doro,@d,@d,@building1,@building2,@d,@d,@d,@d,@d,@d,@d,@d,@d,@d,@d,@d,@d)
+set	zipcode=@zipcode, sido=@sido, sigungu=@sigungu,doro=@doro,building1=@building1,building2=@building2;
+
+
 set FOREIGN_key_checks = 1; /* 포린키 설정 */
+
+

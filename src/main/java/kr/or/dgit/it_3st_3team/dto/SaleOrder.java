@@ -192,7 +192,15 @@ public class SaleOrder {
 		return new Object[] {
 				ordNo, user.getName(),software.getSwGroup().getSgName(),software.getSwName(),
 				ordQuantity,ordSupplyPrice,ordSellPrice,ordTax,ordSellProfit,
-				ordPayment,user.getUserGroup().getClass(), dateToString(ordDatetime),admin.getAdminName()
+				ordPayment,user.getNameCu(), dateToString(ordDatetime),admin.getAdminName()
+		};
+	}
+	
+	public Object[] toArrayTransaction() {
+		return new Object[] {
+				dateToString(ordDatetime), user.getName(),
+				software.getSwGroup().getSgName(),software.getSwName(),
+				ordQuantity,ordSupplyPrice,ordTax,ordSellPrice
 		};
 	}
 	

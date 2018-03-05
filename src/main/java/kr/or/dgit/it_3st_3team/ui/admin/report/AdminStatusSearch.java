@@ -55,14 +55,9 @@ public class AdminStatusSearch extends JPanel {
 		add(cmbSwgType);
 		setCmbSgGroup();
 
-		cmbSearchBy = new JComboBox<>();
-		cmbSearchBy.setBounds(12, 60, 125, 30);
-		add(cmbSearchBy);
-		setCmbString();
-		
+
 		tfSearch = new JTextField();
 		tfSearch.setColumns(10);
-		tfSearch.setBounds(160, 60, 300, 30);
 		add(tfSearch);
 		
 		
@@ -77,18 +72,16 @@ public class AdminStatusSearch extends JPanel {
 				setCmbAdGroup();
 			}
 			
+			cmbSearchBy = new JComboBox<>();
+			cmbSearchBy.setBounds(12, 60, 125, 30);
+			add(cmbSearchBy);
+			setCmbString();
+
+			tfSearch.setBounds(160, 60, 300, 30);
 		} else {
-			if(user.getUserGroup().getValue() == 1) {
-				//고객
-				cmbSearchBy.removeItemAt(0);
-			//	revalidate();
-			//	repaint();
-			}else {
-				//공급회사
-				cmbSearchBy.removeItemAt(1);
-			//	revalidate();
-			//	repaint();
-			}
+			// 유저
+			tfSearch.setBounds(12, 60, 448, 30);
+
 		}
 		
 		
@@ -123,6 +116,7 @@ public class AdminStatusSearch extends JPanel {
 		DefaultComboBoxModel<String> dcbm = new DefaultComboBoxModel<>(st);
 		cmbSearchBy.setModel(dcbm);
 	}
+
 
 
 	//get 메소드

@@ -15,7 +15,8 @@ public class User {
 	private String avatar;
 	private UserGroup userGroup;
 	private Admin admin;
-
+	private String nameCu;
+	
 	public User() {
 	}
 
@@ -26,7 +27,7 @@ public class User {
 	public User(String userId) {
 		this.userId = userId;
 	}
-
+	
 	public User(String userId, String userPwd) {
 		this.userId = userId;
 		this.userPwd = userPwd;
@@ -184,6 +185,15 @@ public class User {
 
 	public void setAdmin(Admin admin) {
 		this.admin = admin;
+	}
+
+	
+	public String getNameCu() {
+		return nameCu;
+	}
+
+	public void setNameCu(String nameCu) {
+		this.nameCu = nameCu;
 	}
 
 	@Override
