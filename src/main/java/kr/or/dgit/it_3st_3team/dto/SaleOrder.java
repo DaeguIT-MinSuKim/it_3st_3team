@@ -196,6 +196,14 @@ public class SaleOrder {
 		};
 	}
 	
+	public Object[] toArrayTransaction() {
+		return new Object[] {
+				dateToString(ordDatetime), user.getName(),
+				software.getSwGroup().getSgName(),software.getSwName(),
+				ordQuantity,ordSupplyPrice,ordTax,ordSellPrice
+		};
+	}
+	
 	public String dateToString(Date date) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		return sdf.format(date);
