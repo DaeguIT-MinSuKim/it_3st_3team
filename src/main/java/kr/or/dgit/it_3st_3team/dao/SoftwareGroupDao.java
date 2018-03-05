@@ -10,4 +10,5 @@ public interface SoftwareGroupDao {
 	
 	int insertSoftwareGroup(SoftwareGroup softwaregroup);
 	int deleteSoftwareGroup(SoftwareGroup sgNo);
+	
 }

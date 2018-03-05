@@ -1,12 +1,17 @@
 package kr.or.dgit.it_3st_3team.ui.admin.order;
 
 import java.awt.Color;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import kr.or.dgit.it_3st_3team.dto.SaleOrder;
+import kr.or.dgit.it_3st_3team.service.SaleOrderService;
+import kr.or.dgit.it_3st_3team.type.Payment;
 import kr.or.dgit.it_3st_3team.ui.component.CalenderTfComp;
+import kr.or.dgit.it_3st_3team.ui.component.LblCmbStringComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblTfComp;
 import kr.or.dgit.it_3st_3team.ui.component.StringLblCmbComponent;
 import javax.swing.SwingConstants;
@@ -24,7 +29,7 @@ public class AdminOrderRegister extends JPanel {
 
 		JPanel pCorrection = new JPanel();
 		pCorrection.setBackground(new Color(240, 240, 240));
-		pCorrection.setBounds(0, 0, 961, 166);
+		pCorrection.setBounds(0, 0, 1652, 166);
 		add(pCorrection);
 		pCorrection.setLayout(null);
 
@@ -32,14 +37,16 @@ public class AdminOrderRegister extends JPanel {
 		pOrderCount.setBounds(333, 116, 170, 30);
 		pCorrection.add(pOrderCount);
 
-		StringLblCmbComponent pPayment = new StringLblCmbComponent("결제수단");
+		LblCmbStringComp pPayment = new LblCmbStringComp("결제수단");
+		String[] payli = {"카드","모바일","계좌이체","무통장","간편결제"};
+		pPayment.loadData(payli);
 		pPayment.setBounds(661, 117, 215, 30);
 
 		pCorrection.add(pPayment);
 
-		CalenderTfComp panel = new CalenderTfComp((String) null);
-		panel.setBounds(721, 11, 220, 42);
-		pCorrection.add(panel);
+		CalenderTfComp pDate = new CalenderTfComp((String) null);
+		pDate.setBounds(721, 11, 204, 42);
+		pCorrection.add(pDate);
 
 		JLabel lblNewLabel = new JLabel("주문일자");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -58,8 +65,8 @@ public class AdminOrderRegister extends JPanel {
 		lblTfComp.setBounds(337, 19, 170, 30);
 		pCorrection.add(lblTfComp);
 
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(80, 20, 128, 128);
-		pCorrection.add(panel_1);
+		JPanel pImg = new JPanel();
+		pImg.setBounds(80, 20, 128, 128);
+		pCorrection.add(pImg);
 	}
 }

@@ -1,4 +1,4 @@
-package kr.or.dgit.it_3st_3team.ui.admin.report;
+package kr.or.dgit.it_3st_3team.ui.admin.chart;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ import kr.or.dgit.it_3st_3team.service.SoftwareGroupService;
 import kr.or.dgit.it_3st_3team.ui.component.StartAndEndDate;
 
 @SuppressWarnings("serial")
-public class AdminStatusSearch extends JPanel {
+public class AdminChartStatusSearch extends JPanel {
 	protected JTextField tfSearch;
 	protected DefaultComboBoxModel<SoftwareGroup> dcbm;
 	private SoftwareGroupService swgService;
@@ -28,7 +28,7 @@ public class AdminStatusSearch extends JPanel {
 	private Admin admin;
 	private User user;
 
-	public AdminStatusSearch(Object who) {
+	public AdminChartStatusSearch(Object who) {
 		setUsingUser(who);
 		swgService = SoftwareGroupService.getInstance();
 		adService = AdminService.getInstance();
@@ -55,13 +55,11 @@ public class AdminStatusSearch extends JPanel {
 		add(cmbSwgType);
 		setCmbSgGroup();
 
-
 		cmbSearchBy = new JComboBox<>();
 		cmbSearchBy.setBounds(12, 60, 125, 30);
 		add(cmbSearchBy);
 		setCmbString();
 		
-
 		tfSearch = new JTextField();
 		tfSearch.setColumns(10);
 		tfSearch.setBounds(160, 60, 300, 30);
@@ -80,7 +78,6 @@ public class AdminStatusSearch extends JPanel {
 			}
 			
 		} else {
-
 			if(user.getUserGroup().getValue() == 1) {
 				//고객
 				cmbSearchBy.removeItemAt(0);
@@ -92,7 +89,6 @@ public class AdminStatusSearch extends JPanel {
 			//	revalidate();
 			//	repaint();
 			}
-
 		}
 		
 		
@@ -127,7 +123,6 @@ public class AdminStatusSearch extends JPanel {
 		DefaultComboBoxModel<String> dcbm = new DefaultComboBoxModel<>(st);
 		cmbSearchBy.setModel(dcbm);
 	}
-
 
 
 	//get 메소드

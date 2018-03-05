@@ -1,4 +1,4 @@
-package kr.or.dgit.it_3st_3team.ui.admin.report;
+package kr.or.dgit.it_3st_3team.ui.admin.chart;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,6 +13,7 @@ import kr.or.dgit.it_3st_3team.dto.SoftwareGroup;
 import kr.or.dgit.it_3st_3team.dto.User;
 import kr.or.dgit.it_3st_3team.service.SaleOrderService;
 import kr.or.dgit.it_3st_3team.ui.SalesReportUI;
+import kr.or.dgit.it_3st_3team.ui.admin.report.AdminStatusSearch;
 import kr.or.dgit.it_3st_3team.ui.component.StartAndEndDate;
 import kr.or.dgit.it_3st_3team.ui.table.AdminSalesStatusLists;
 import kr.or.dgit.it_3st_3team.ui.table.AdminStatusLists;
@@ -21,7 +22,7 @@ import kr.or.dgit.it_3st_3team.ui.table.CustomerStatusLists;
 
 
 @SuppressWarnings("serial")
-public class AdminStatusContent extends JPanel implements ActionListener {
+public class AdminChartStatusContent extends JPanel implements ActionListener {
 	private JButton btnSearch;
 	private AdminStatusSearch pSearch;	
 	private StartAndEndDate calendar;
@@ -40,7 +41,7 @@ public class AdminStatusContent extends JPanel implements ActionListener {
 	private CompanyStatusLists pCompanyListTable;
 	private CustomerStatusLists pCustomerListTable;
 	
-	public AdminStatusContent(Object user) {
+	public AdminChartStatusContent(Object user) {
 		this.soService = SaleOrderService.getInstance();
 		setUsingUser(user);
 		pSalesAllListTable = new AdminSalesStatusLists(); 

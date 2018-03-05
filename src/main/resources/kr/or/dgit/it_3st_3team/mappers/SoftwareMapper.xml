@@ -26,7 +26,7 @@
 	</sql>
 	
 	<sql id="selectWithGroupwithUserSql">
-		select sw_no, sw_name, sw_supply_price, sw_sell_price, sw_quantity, g.sg_no, p.u_no, g.sg_name, p.u_name from software s 
+		select sw_no, sw_name, sw_supply_price, sw_sell_price, sw_quantity, g.sg_no, s.pc_no, g.sg_name, p.u_name from software s 
 		join software_group g on s.sg_no = g.sg_no join `user` p on s.pc_no = p.u_no
 	</sql>
 	
@@ -35,12 +35,34 @@
 	<!-- where -->
 	<sql id="whereSql">
 		<where>
-			<if test="swNo != null">
-				sw_no= #{swNo}
+			<if test="swNo != null and swNo>0">
+				sw_no=#{swNo}
+			</if>
+			
+			<if test="userNo.userNo != null and userNo.userNo>0">
+				AND p.u_no=#{userNo.userNo}
+			</if>
+			<if test="userNo.name != null">
+				AND p.u_name=#{userNo.name}
 			</if>
 		</where>
 	</sql>
 	
+	<sql id="whereBySearchSql">
+		<where>
+			<choose>
+				<when test="searchBy == 'company'">
+					p.u_name = #{searchText}
+				</when>
+				<when test="searchBy == 'swName'">
+					s.sw_name = #{searchText}
+				</when>
+				<when test="searchBy == 'swGroup'">
+					g.sg_name = #{searchText}
+				</when>
+			</choose>
+		</where>
+	</sql>
 	<!-- software 등록 -->
 	<sql id="insertSql">
 		insert into software(sw_no,sg_no,sw_name,sw_supply_price,sw_sell_price,sw_quantity,pc_no) 
@@ -68,6 +90,11 @@
 	
 	<select id="selectSoftwareByAll" parameterType="Software" resultMap="SoftwarewithUserResult">
 		<include refid="selectWithGroupwithUserSql"/>
+	</select>
+	
+	<select id="selectSoftwareBySearch" parameterType="map" resultMap="SoftwarewithUserResult">
+		<include refid="selectWithGroupwithUserSql"/>
+		<include refid="whereBySearchSql"/>
 	</select>
 	
 	<insert id="insertSoftware" parameterType="Software">

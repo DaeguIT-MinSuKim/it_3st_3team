@@ -2,14 +2,18 @@ package kr.og.dgit.it_3st_3team;
 
 import static org.junit.Assert.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import kr.or.dgit.it_3st_3team.dto.SaleOrder;
 import kr.or.dgit.it_3st_3team.dto.Software;
 import kr.or.dgit.it_3st_3team.dto.SoftwareGroup;
 import kr.or.dgit.it_3st_3team.dto.User;
@@ -33,12 +37,31 @@ public class SoftwareTest {
 	@Test
 	public void testAselectSoftwareByNo() {
 		Software sw = new Software();
-		sw.setSwNo(1);
+		User user = new User();
+		user.setName("크라이스");
+		sw.setUserNo(user);
+		
 		Software findsw = service.selectSoftwareByNo(sw);
-		System.out.println(findsw);
+		
 		
 		assertNotNull(findsw);
-		assertEquals(sw.getSwNo(), findsw.getSwNo());
+		assertEquals(sw.getUserNo().getName(), findsw.getUserNo().getName());
+	}
+	
+	@Test
+	public void testEselectSoftwareBySearch() {
+		Map<String, String> map = new HashMap<>();
+		
+		// searchBy = 공급회사 or 품목명 or 분류
+		// searchText = "";
+		map.put("searchBy", "company");
+		//map.put("searchBy", "swName");
+		//map.put("searchBy", "swGroup");
+		map.put("searchText", "크라이스");
+		
+		List<Software> listpc = service.selectSoftwareBySearch(map);
+		assertNotNull(listpc);
+		
 	}
 	
 	@Test
@@ -53,16 +76,16 @@ public class SoftwareTest {
 	
 	@Test
 	public void testCinsertSoftware() {
-		Software sw = new Software("배고파", 123456, 354411, new SoftwareGroup(2), 100, new User(3));
+		/*Software sw = new Software("배고파", 123456, 354411, new SoftwareGroup(2), 100, new User(4));
 		int res = service.insertSoftware(sw);
 		System.out.println(sw);
 		
-		assertEquals(1, res);
+		assertEquals(1, res);*/
 	}
 	
 	@Test
 	public void testDupdateSoftware() {
-		Software sw = new Software(11);
+		/*Software sw = new Software(11);
 		sw.setSwGroup(new SoftwareGroup(2));
 		sw.setSwName("집에갈래");
 		sw.setSwQuantity(250);
@@ -71,15 +94,17 @@ public class SoftwareTest {
 		sw.setUserNo(new User(1));
 		
 		int res = service.updateSoftware(sw);
-		assertEquals(1, res);
+		assertEquals(1, res);*/
 	}
 	
 	@Test
 	public void testFdeleteSoftware() {
-		int res = service.deleteSoftware(new Software(11));
-		assertEquals(1, res);
+		/*int res = service.deleteSoftware(new Software(11));
+		assertEquals(1, res);*/
 	}
 	
+	
+
 	
 
 }

@@ -31,8 +31,8 @@ public abstract class AbtractTableComp<T> extends JPanel {
 		table = new JTable();
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-		add(table);
-		//scrollPane.setViewportView(table);
+		scrollPane.setViewportView(table);
+		
 
 	}
 

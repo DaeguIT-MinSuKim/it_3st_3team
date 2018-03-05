@@ -33,6 +33,10 @@ public abstract class AbstractComboboxComp<T> extends JPanel {
 
 	}
 	
+	public Object getCmbBox() {
+		return comboBox.getSelectedItem();
+	}
+	
 	public void getCmbItem() {
 		System.out.println(comboBox.getSelectedItem());
 		System.out.println(comboBox.getSelectedIndex());
