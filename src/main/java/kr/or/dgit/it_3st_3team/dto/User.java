@@ -202,7 +202,7 @@ public class User {
 
 	public Object[] toArray() {
 		return new Object[] { userNo, userId, name, phone, email, userGroup, admin.getAdminName(), zipcode,
-				String.format("%s %s", addr1, addr2) };
+				String.format("%s %s", ((addr1!=null)? addr1:""), ((addr2!=null)? addr2:"")) };
 	}
 
 }

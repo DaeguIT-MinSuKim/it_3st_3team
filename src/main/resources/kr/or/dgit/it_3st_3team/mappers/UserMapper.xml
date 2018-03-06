@@ -31,7 +31,7 @@
 	<sql id="selectWithAdminSql">
 		select u_no, u_id, u_pwd, u_name, u_email, u_phone, u_zipcode, u_addr1, u_addr2, u_avatar, u_group, u.adm_no, a.adm_id, a.adm_name
 		from user u 
-		join admin a on u.adm_no = a.adm_no
+		left join admin a on u.adm_no = a.adm_no
 	</sql>
 	
 	<sql id="selectLastNo">
