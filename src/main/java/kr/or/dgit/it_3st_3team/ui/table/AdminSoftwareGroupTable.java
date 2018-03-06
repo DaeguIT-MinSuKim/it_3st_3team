@@ -12,6 +12,8 @@ import javax.swing.JPopupMenu;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 
+import org.apache.ibatis.exceptions.PersistenceException;
+
 import kr.or.dgit.it_3st_3team.dto.SoftwareGroup;
 import kr.or.dgit.it_3st_3team.service.SoftwareGroupService;
 import kr.or.dgit.it_3st_3team.ui.SoftwareGroupUI;
@@ -54,22 +56,38 @@ public class AdminSoftwareGroupTable extends AbtractTableComp<SoftwareGroup> {
 
 	ActionListener menuListener = new ActionListener() {
 
+		private String sg;
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getActionCommand().equals("삭제")) {
-				actionDeleteItem();
-				JOptionPane.showMessageDialog(null, "삭제하셨습니다.");
+				int result = JOptionPane.showConfirmDialog(null, "삭제하시겠습니까?", "분류삭제", JOptionPane.OK_CANCEL_OPTION);
+				if(result==0) {
+					try {
+						actionDeleteItem();
+					} catch (PersistenceException e2) {
+						JOptionPane.showMessageDialog(null, "기본 설정은 지울 수 없습니다.", "경고", JOptionPane.ERROR_MESSAGE);
+						return;
+					}
+					
+				}
+				
 			}
 			if (e.getActionCommand().equals("수정")) {
-				actionUpdateItem();
+				int result = JOptionPane.showConfirmDialog(null, "수정하시겠습니까?", "분류명 수정", JOptionPane.OK_CANCEL_OPTION);
+				if(result==0) {
+					actionUpdateItem();
+				}
+				
 
 			}
 		}
 
 		private void actionUpdateItem() {
 			ui.getpInput().setBtnTitle("수정");
-			SoftwareGroup sg = (SoftwareGroup) table.getValueAt(table.getSelectedRow(), 0);
-			System.out.println(sg);
+			sg = table.getValueAt(table.getSelectedRow(), 0).toString();
+			ui.getpInput().setTfText(sg);
+			
 			
 			
 		}

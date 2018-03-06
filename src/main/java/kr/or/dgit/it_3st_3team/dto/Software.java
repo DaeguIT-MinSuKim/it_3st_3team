@@ -8,7 +8,7 @@ public class Software {
 	private int swSellPrice;
 	private SoftwareGroup swGroup;
 	private int swQuantity;
-	private byte[] swCoverImg;
+	private String swCoverImg;
 	private User userNo;
 
 	public Software(User userNo) {
@@ -58,7 +58,7 @@ public class Software {
 	}
 
 	public Software(int swNo, String swName, int swSupplyPrice, int swSellPrice, SoftwareGroup swGroup, int swQuantity,
-			byte[] swCoverImg, User userNo) {
+			String swCoverImg, User userNo) {
 		super();
 		this.swNo = swNo;
 		this.swName = swName;
@@ -124,6 +124,16 @@ public class Software {
 
 	public void setUserNo(User userNo) {
 		this.userNo = userNo;
+	}
+	
+	
+
+	public String getSwCoverImg() {
+		return swCoverImg;
+	}
+
+	public void setSwCoverImg(String swCoverImg) {
+		this.swCoverImg = swCoverImg;
 	}
 
 	@Override

@@ -2,7 +2,9 @@ package kr.og.dgit.it_3st_3team;
 
 import static org.junit.Assert.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -64,11 +66,11 @@ public class SoftwareGroupTest {
 	
 	@Test
 	public void testEupdateSoftwareGroup() {
-		SoftwareGroup sg = new SoftwareGroup("모듈");
+		Map<String, String> map = new HashMap<>();
+		map.put("changeSgName", "게임2");
+		map.put("oriSgName", "실험2");
 		
-		sg.setSgName("사무");
-		
-		int res = service.updateSoftwareGroup(sg);
+		int res = service.updateSoftwareGroup(map);
 		
 		assertEquals(1, res);
 		System.out.println(res);

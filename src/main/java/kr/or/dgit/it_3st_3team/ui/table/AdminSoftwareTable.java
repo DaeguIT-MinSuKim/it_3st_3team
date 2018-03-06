@@ -35,6 +35,8 @@ import java.awt.event.MouseEvent;
 
 @SuppressWarnings("serial")
 public class AdminSoftwareTable extends AbtractTableComp<Software>{
+	private AdminSoftwareContent ac;
+	
 	public AdminSoftwareTable() {
 		initComponents();
 	}
@@ -79,7 +81,23 @@ public class AdminSoftwareTable extends AbtractTableComp<Software>{
 		
 
 		private void actionUpdateItem() {
-	
+			ac.setBtnRegister("수정");
+			int no = getSelectedNo();
+			Software so = SoftwareService.getInstance().selectSoftwareByNo(new Software(no));
+			ac.getpRegister().setSoftwareData(so);
+			/*int selectIndex = getSelectedRow()+1;
+			
+			System.out.println(so);
+			*/
+		/*	String sg = table.getValueAt(table.getSelectedRow(), 1).toString();
+			String sgname = table.getValueAt(table.getSelectedRow(), 2).toString();
+			String quan = table.getValueAt(table.getSelectedRow(), 3).toString();
+			String spp = table.getValueAt(table.getSelectedRow(), 4).toString();
+			String slp = table.getValueAt(table.getSelectedRow(), 5).toString();
+			String sppc = table.getValueAt(table.getSelectedRow(), 6).toString();
+			
+			
+			System.out.println(sg+sgname+quan+spp+slp+sppc);*/
 		}
 	};
 	
@@ -107,6 +125,9 @@ public class AdminSoftwareTable extends AbtractTableComp<Software>{
 		}
 		
 		return rows;
+	}
+	public void setAc(AdminSoftwareContent ac) {
+		this.ac = ac;
 	}
 	
 	

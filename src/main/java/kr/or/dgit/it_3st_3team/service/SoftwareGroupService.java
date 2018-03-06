@@ -1,6 +1,7 @@
 package kr.or.dgit.it_3st_3team.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
@@ -55,11 +56,11 @@ public class SoftwareGroupService {
 		return res;
 	}
 	
-	public int updateSoftwareGroup(SoftwareGroup softwareGroup) {
+	public int updateSoftwareGroup(Map<String, String> map) {
 		log.debug("updateSoftwareGroup()");
 		int res=-1;
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
-			res= sqlSession.update(namespace + "updateSoftwareGroup", softwareGroup);
+			res= sqlSession.update(namespace + "updateSoftwareGroup", map);
 			sqlSession.commit();
 		}
 		return res;

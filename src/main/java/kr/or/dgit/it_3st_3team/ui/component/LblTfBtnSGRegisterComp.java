@@ -1,14 +1,15 @@
 package kr.or.dgit.it_3st_3team.ui.component;
 
 import java.awt.event.ActionEvent;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.JOptionPane;
 
 import kr.or.dgit.it_3st_3team.dto.SoftwareGroup;
 import kr.or.dgit.it_3st_3team.service.SoftwareGroupService;
 import kr.or.dgit.it_3st_3team.ui.SoftwareGroupUI;
-import kr.or.dgit.it_3st_3team.ui.table.AdminSoftwareGroupTable;
 
 @SuppressWarnings("serial")
 public class LblTfBtnSGRegisterComp extends AbstractLblTfBtnComp {
@@ -21,27 +22,36 @@ public class LblTfBtnSGRegisterComp extends AbstractLblTfBtnComp {
 	public LblTfBtnSGRegisterComp(String title, String btnName) {
 		super(title, btnName);
 	}
+	public String rgTf() {
+		String a = ui.getpSgTable().table.getValueAt(ui.getpSgTable().table.getSelectedRow(), 0).toString();
+		
+		return a;
+	}
 
 	@Override
 	protected void actionPerformedBtn(ActionEvent e) {
 		
 		String tfSgName = getTfText();
 		
-		if(e.getActionCommand() == "등록") {
-			if(tfSgName.equals("")) {
+
+		if (e.getActionCommand() == "등록") {
+			if (tfSgName.equals("")) {
 				JOptionPane.showMessageDialog(null, "분류명을 입력해주세요.");
 				return;
 			}
-			
+
 			SoftwareGroupService.getInstance().insertSoftwareGroup(new SoftwareGroup(tfSgName));
 			
-			
-			
 		}else {
+			Map<String, String> map = new HashMap<>();
+			map.put("changeSgName", tfSgName);
+			map.put("oriSgName",rgTf());
 			
-			//SoftwareGroupService.getInstance().updateSoftwareGroup();
+			SoftwareGroupService.getInstance().updateSoftwareGroup(map);
 			setBtnTitle("등록");
 		}
+		
+		
 		List<SoftwareGroup> lists = SoftwareGroupService.getInstance().selectSoftwareGroupByAll();
 		ui.getpSgTable().loadTableDatas(lists);
 		setTfText("");

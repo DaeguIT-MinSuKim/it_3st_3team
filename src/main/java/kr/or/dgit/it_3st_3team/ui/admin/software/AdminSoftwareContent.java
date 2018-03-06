@@ -28,6 +28,16 @@ public class AdminSoftwareContent extends JPanel implements ActionListener {
 	private JButton btnCancel;
 	private JButton btnSearch;
 
+	
+	
+	public String getBtnRegister() {
+		return btnRegister.getText();
+	}
+
+	public void setBtnRegister(String str) {
+		this.btnRegister.setText(str);
+	}
+
 	public AdminSoftwareContent() {
 
 		initComponents();
@@ -49,6 +59,7 @@ public class AdminSoftwareContent extends JPanel implements ActionListener {
 		pTable = new AdminSoftwareTable();
 		pTable.setBackground(new Color(240, 240, 240));
 		pTable.setBounds(0, 244, 1190, 572);
+		pTable.setAc(this);
 		pTable.loadTableDatas(SoftwareService.getInstance().selectSoftwareByAll());
 		add(pTable);
 
@@ -85,26 +96,37 @@ public class AdminSoftwareContent extends JPanel implements ActionListener {
 			actionPerformedBtnRegister(e);
 		}
 	}
+	
+	
 
 	// 등록버튼
 	protected void actionPerformedBtnRegister(ActionEvent e) {
+		if(e.getActionCommand()=="등록") {
+			Software sw = pRegister.getSofwareData();
 		
-		User Company = (User) pRegister.getpCompany().getCmbSelectItem();
-		SoftwareGroup swGroup = (SoftwareGroup) pRegister.getpSWsort().getCmbSelectItem();
-		String swName = pRegister.getpSWName().getTfText();
-		int swQuantity = Integer.parseInt(pRegister.getpCount().getTfText());
-		int spPrice = Integer.parseInt(pRegister.getpSupplyPrice().getTfText());
-		int slPrice = Integer.parseInt(pRegister.getpSalePrice().getTfText());
+			SoftwareService.getInstance().insertSoftware(sw);
+		}else {
+			
+			Software sw = pRegister.getSofwareData();
+			SoftwareService.getInstance().updateSoftware(sw);
+		}
 	
-		
-		Software sw = new Software(swName, spPrice, slPrice, swGroup, swQuantity, Company);
-		SoftwareService.getInstance().insertSoftware(sw);
 		List<Software> lists = SoftwareService.getInstance().selectSoftwareByAll();
 		pTable.loadTableDatas(lists);
 		
 		
 	
 
+	}
+	
+	
+
+	public AdminSoftwareRegister getpRegister() {
+		return pRegister;
+	}
+
+	public void setpRegister(AdminSoftwareRegister pRegister) {
+		this.pRegister = pRegister;
 	}
 
 	// 취소버튼
@@ -145,4 +167,8 @@ public class AdminSoftwareContent extends JPanel implements ActionListener {
 		
 		
 	}
+	
+	
+	
+	
 }
