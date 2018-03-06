@@ -79,7 +79,7 @@
 				and ord_datetime &gt;= #{startDate}
 			</if>
 			<if test="endDate != null and endDate != ''">
-				and ord_datetime &lt;= #{endDate}
+				and ord_datetime &lt;= CONCAT(#{endDate}," 23:59:59")
 			</if>
 				<choose>
 					<when test="searchBy=='customer' and name != ''">
@@ -124,12 +124,14 @@
 	<select id="selectSaleOrderByNo" parameterType="SaleOrder" resultMap="selectSaleOrderWithAll">
 		<include refid="selectParameterSql"/>
 		<include refid="whereSql"/>
+		
 	</select>
 
 	<!-- 총관리자 -->
 	<select id="selectSaleOrderWithAllBySearch" parameterType="Map" resultMap="selectSaleOrderWithAll">
 		<include refid="selectParameterSql"/>
 		<include refid="whereSwNameSql"/>
+		order by ord_datetime desc
 	</select>
 	
 	<!-- 영업사원 -->
@@ -141,6 +143,7 @@
 	<!-- 모든List -->
 	<select id="selectSaleOrderByAll"  resultMap="selectSaleOrderWithAll">
 		<include refid="selectParameterSql"/>
+		order by ord_datetime desc
 	</select>
 	
 	<!-- 삭제 -->
