@@ -14,10 +14,7 @@ import javax.swing.JPanel;
 import kr.or.dgit.it_3st_3team.dto.Software;
 import kr.or.dgit.it_3st_3team.dto.SoftwareGroup;
 import kr.or.dgit.it_3st_3team.dto.User;
-import kr.or.dgit.it_3st_3team.service.SoftwareGroupService;
 import kr.or.dgit.it_3st_3team.service.SoftwareService;
-import kr.or.dgit.it_3st_3team.service.UserService;
-import kr.or.dgit.it_3st_3team.ui.component.CmbStringComp;
 import kr.or.dgit.it_3st_3team.ui.component.PagingComp;
 import kr.or.dgit.it_3st_3team.ui.table.AdminSoftwareTable;
 
@@ -92,8 +89,8 @@ public class AdminSoftwareContent extends JPanel implements ActionListener {
 	// 등록버튼
 	protected void actionPerformedBtnRegister(ActionEvent e) {
 		
-		User Company = (User) pRegister.getpCompany().getCmbBox();
-		SoftwareGroup swGroup = (SoftwareGroup) pRegister.getpSWsort().getCmbBox();
+		User Company = (User) pRegister.getpCompany().getCmbSelectItem();
+		SoftwareGroup swGroup = (SoftwareGroup) pRegister.getpSWsort().getCmbSelectItem();
 		String swName = pRegister.getpSWName().getTfText();
 		int swQuantity = Integer.parseInt(pRegister.getpCount().getTfText());
 		int spPrice = Integer.parseInt(pRegister.getpSupplyPrice().getTfText());
@@ -118,7 +115,7 @@ public class AdminSoftwareContent extends JPanel implements ActionListener {
 	// 검색버튼
 	protected void actionPerformedBtnSearch(ActionEvent e) {
 		
-		String cmbSearch = (String) pSearch.getpCmbSearch().getCmbBox();
+		String cmbSearch = (String) pSearch.getpCmbSearch().getCmbItem();
 		
 		Map<String, String> map = new HashMap<>();
 		

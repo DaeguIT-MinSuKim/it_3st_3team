@@ -1,4 +1,5 @@
 package kr.or.dgit.it_3st_3team.ui.component;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.util.List;
@@ -16,6 +17,7 @@ import javax.swing.table.TableColumnModel;
 public abstract class AbtractTableComp<T> extends JPanel {
 	protected JTable table;
 	private JScrollPane scrollPane;
+	private DefaultTableModel model;
 
 	public AbtractTableComp() {
 		initComponents();
@@ -26,26 +28,24 @@ public abstract class AbtractTableComp<T> extends JPanel {
 
 		scrollPane = new JScrollPane();
 		add(scrollPane, BorderLayout.CENTER);
-		
-		
+
 		table = new JTable();
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(table);
-		
+
 	}
 
 	public void loadTableDatas(List<T> list) {
-		DefaultTableModel model = new NonEditableModel(getRows(list), getColumnNames());
+		model = new NonEditableModel(getRows(list), getColumnNames());
 		table.setModel(model);
 		setTableAlignWidth();
 	}
-	
 
 	protected void setTableRowHeight(int height) {
 		table.getTableHeader().setPreferredSize(new Dimension(scrollPane.getWidth(), height));
 		table.setRowHeight(height);
 	}
-	
+
 	protected void setTableCellWidth(int... width) {
 		TableColumnModel tcModel = table.getColumnModel();
 		for (int i = 0; i < width.length; i++) {
@@ -62,9 +62,21 @@ public abstract class AbtractTableComp<T> extends JPanel {
 			tcModel.getColumn(idx[i]).setCellRenderer(dtcRenderer);
 		}
 	}
-	
+
 	public void setPopupMenu(JPopupMenu menu) {
 		table.setComponentPopupMenu(menu);
+	}
+
+	public int getSelectedNo() {
+		return (int) table.getValueAt(table.getSelectedRow(), 0);
+	}
+
+	public int getSelectedRow() {
+		return table.getSelectedRow();
+	}
+
+	public void removeRow(int row) {
+		model.removeRow(row);
 	}
 
 	public abstract void setTableAlignWidth();
@@ -83,8 +95,5 @@ public abstract class AbtractTableComp<T> extends JPanel {
 			return false;
 		}
 	}
-	
-	public int getselectedNo() {
-		return (int) table.getValueAt(table.getSelectedRow(), 0);
-	}
+
 }
