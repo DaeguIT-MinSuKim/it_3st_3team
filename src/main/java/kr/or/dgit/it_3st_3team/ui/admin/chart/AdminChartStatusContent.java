@@ -44,6 +44,7 @@ public class AdminChartStatusContent extends JPanel implements ActionListener {
 	public AdminChartStatusContent(Object user) {
 		this.soService = SaleOrderService.getInstance();
 		setUsingUser(user);
+		
 		pSalesAllListTable = new AdminSalesStatusLists(); 
 		pCompanyListTable = new CompanyStatusLists();
 		pCustomerListTable = new CustomerStatusLists();
