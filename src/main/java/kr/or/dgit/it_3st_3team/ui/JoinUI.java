@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import kr.or.dgit.it_3st_3team.dto.Admin;
 import kr.or.dgit.it_3st_3team.dto.PhoneNumber;
 import kr.or.dgit.it_3st_3team.dto.User;
 import kr.or.dgit.it_3st_3team.service.UserService;
@@ -308,6 +309,8 @@ public class JoinUI extends JFrame implements ActionListener {
 		}
 		String userImgFullPath = lblUserImg.getIcon().toString();
 		joinUser.setAvatar(new File(userImgFullPath).getName());
+		// 일반회원은 기본적으로 총관리자가 관리
+		joinUser.setAdmin(new Admin(1));
 
 		int result = JOptionPane.showConfirmDialog(null, "회원가입 하시겠습니까?", "회원가입", JOptionPane.YES_NO_OPTION);
 		if (result == JOptionPane.CANCEL_OPTION || result == JOptionPane.NO_OPTION) {

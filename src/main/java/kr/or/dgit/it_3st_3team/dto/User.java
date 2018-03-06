@@ -16,7 +16,7 @@ public class User {
 	private UserGroup userGroup;
 	private Admin admin;
 	private String nameCu;
-	
+
 	public User() {
 	}
 
@@ -27,7 +27,7 @@ public class User {
 	public User(String userId) {
 		this.userId = userId;
 	}
-	
+
 	public User(String userId, String userPwd) {
 		this.userId = userId;
 		this.userPwd = userPwd;
@@ -187,7 +187,6 @@ public class User {
 		this.admin = admin;
 	}
 
-	
 	public String getNameCu() {
 		return nameCu;
 	}
@@ -195,13 +194,15 @@ public class User {
 	public void setNameCu(String nameCu) {
 		this.nameCu = nameCu;
 	}
-	
-	
-
 
 	@Override
 	public String toString() {
 		return String.format("%s", name);
+	}
+
+	public Object[] toArray() {
+		return new Object[] { userNo, userId, name, phone, email, userGroup, admin.getAdminName(), zipcode,
+				String.format("%s %s", ((addr1!=null)? addr1:""), ((addr2!=null)? addr2:"")) };
 	}
 
 }

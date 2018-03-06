@@ -31,7 +31,7 @@
 	<sql id="selectWithAdminSql">
 		select u_no, u_id, u_pwd, u_name, u_email, u_phone, u_zipcode, u_addr1, u_addr2, u_avatar, u_group, u.adm_no, a.adm_id, a.adm_name
 		from user u 
-		join admin a on u.adm_no = a.adm_no
+		left join admin a on u.adm_no = a.adm_no
 	</sql>
 	
 	<sql id="selectLastNo">
@@ -47,6 +47,16 @@
 		where u_id = #{userId}
 	</sql>
 
+	<sql id="whereSql">
+		<where>
+			<if test="userId != null and userId != ''">
+				u_id = #{userId}
+			</if>
+			<if test="userNo != null and userNo > 0">
+				AND u_no = #{userNo}
+			</if>
+		</where>
+	</sql>
 	
 	<!-- User no 로 검색 -->
 	<select id="selectUserByNo" parameterType="User" resultMap="UserWithAdminResult">
@@ -63,6 +73,7 @@
 	<!-- 모든 User 검색 -->
 	<select id="selectUserAll" resultMap="UserWithAdminResult">
 		<include refid="selectWithAdminSql" />
+		order by u_no desc
 	</select>
 	
 	<!-- User group 별 검색 -->
@@ -71,6 +82,28 @@
 		where u.u_group = #{userGroup}
 	</select>
 
+	<sql id="whereSearchSql">
+		<where>
+			<choose>
+				<when test="searchBy == 'id'">
+					u_id like CONCAT(#{searchText}, "%")
+				</when>
+				<when test="searchBy == 'name'">
+					u_name like CONCAT(#{searchText}, "%")
+				</when>
+				<when test="searchBy == 'phone'">
+					u_phone = #{searchText}
+				</when>
+			</choose>
+		</where>
+	</sql>
+	
+	<!-- 검색어에 따른 user 검색 -->
+	<select id="selectUserBySearch" parameterType="map" resultMap="UserWithAdminResult">
+		<include refid="selectWithAdminSql" />
+		<include refid="whereSearchSql" />
+	</select>
+	
 	<select id="selectUserByFindId" parameterType="User" resultMap="UserBasedResult">
 		<include refid="selectWithAdminSql" />
 		where u_name = #{name} and u_email = #{email}
@@ -155,6 +188,6 @@
 	<!-- 삭제 User -->
 	<delete id="deleteUser" parameterType="User">
 		delete from user 
-		<include refid="whereByIdSql" />
+		<include refid="whereSql" />
 	</delete>
 </mapper>

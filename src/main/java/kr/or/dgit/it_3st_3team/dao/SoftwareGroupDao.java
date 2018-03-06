@@ -9,6 +9,6 @@ public interface SoftwareGroupDao {
 	List<SoftwareGroup> selectSoftwareGroupByAll();
 	
 	int insertSoftwareGroup(SoftwareGroup softwaregroup);
-	int deleteSoftwareGroup(SoftwareGroup sgNo);
-	
+	int deleteSoftwareGroup(SoftwareGroup sgName);
+	int updateSoftwareGroup(SoftwareGroup softwareGroup);
 }

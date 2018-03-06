@@ -70,4 +70,14 @@ public class SaleOrderService {
 		}
 		return res;
 	}
+	
+	public int sumCount() {
+		log.debug("sumCount()");
+		int res = -1;
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			res = sqlSession.selectOne(namespace + "sumCount");
+		
+		}
+		return res;
+	}
 }

@@ -75,7 +75,14 @@ public class StartAndEndDate extends JPanel {
 	public String getEndDate() {
 		return endDatePicker.getJFormattedTextField().getText();
 	}
-
+	
+	public void clearStartDate() {
+		startDatePicker.getModel().setValue(null);
+	}
+	
+	public void clearEndDate() {
+		endDatePicker.getModel().setValue(null);
+	}
 }
 
 @SuppressWarnings("serial")

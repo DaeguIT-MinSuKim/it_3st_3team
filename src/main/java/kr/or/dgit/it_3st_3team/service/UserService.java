@@ -65,6 +65,13 @@ public class UserService {
 		}
 	}
 	
+	public List<User> listUserBySearch(Map<String, String> map) {
+		log.debug("listUserBySearch()");
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectList(namespace + "selectUserBySearch", map);
+		}
+	}
+	
 	public List<User> listUserAllByUserGroup(UserGroup userGroup) {
 		log.debug("listUserAllByUserGroup()");
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {

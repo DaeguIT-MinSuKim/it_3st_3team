@@ -21,17 +21,21 @@ public class LblPwdTfComp extends JPanel {
 
 	private void initComponents() {
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-		
+
 		JPanel pTitleArea = new JPanel();
 		pTitleArea.setBorder(new EmptyBorder(0, 0, 0, 20));
 		pTitleArea.setLayout(new GridLayout(0, 1, 0, 0));
 		pTitleArea.add(lblTitle);
-		
+
 		add(pTitleArea);
-		
+
 		pwdField = new JPasswordField();
 		pwdField.setHorizontalAlignment(SwingConstants.LEFT);
 		add(pwdField);
+	}
+
+	public JPasswordField getPwdField() {
+		return pwdField;
 	}
 
 	public void setTfText(String text) {
@@ -41,11 +45,11 @@ public class LblPwdTfComp extends JPanel {
 	public String getTfText() {
 		return new String(pwdField.getPassword());
 	}
-	
+
 	public void requestTfFocus() {
 		pwdField.requestFocus();
 	}
-	
+
 	public boolean isTfEmpty(String message) {
 		if (new String(pwdField.getPassword()).trim().isEmpty()) {
 			JOptionPane.showMessageDialog(null, message);
@@ -55,7 +59,7 @@ public class LblPwdTfComp extends JPanel {
 		}
 		return false;
 	}
-	
+
 	public void setTfEnable(boolean enable) {
 		pwdField.setEnabled(enable);
 	}

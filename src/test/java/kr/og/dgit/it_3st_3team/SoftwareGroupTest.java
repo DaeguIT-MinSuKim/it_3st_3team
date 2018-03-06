@@ -2,7 +2,9 @@ package kr.og.dgit.it_3st_3team;
 
 import static org.junit.Assert.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -45,18 +47,30 @@ public class SoftwareGroupTest {
 		}
 	}
 	
-	@Test
+	/*@Test
 	public void testCinsertSoftwareGroup() {
 		SoftwareGroup sg = new SoftwareGroup(4, "디자인");
 		int res = service.insertSoftwareGroup(sg);
 		System.out.println(sg);
 		
 		assertEquals(1, res);
-	}
+	}*/
+	
+	/*@Test
+	public void testDdeleteSoftwareGroup() {
+		int res = service.deleteSoftwareGroup(new SoftwareGroup("디자인"));
+		
+		assertEquals(1, res);
+		System.out.println(res);
+	}*/
 	
 	@Test
-	public void testDdeleteSoftwareGroup() {
-		int res = service.deleteSoftwareGroup(new SoftwareGroup(5));
+	public void testEupdateSoftwareGroup() {
+		Map<String, String> map = new HashMap<>();
+		map.put("changeSgName", "게임2");
+		map.put("oriSgName", "실험2");
+		
+		int res = service.updateSoftwareGroup(map);
 		
 		assertEquals(1, res);
 		System.out.println(res);

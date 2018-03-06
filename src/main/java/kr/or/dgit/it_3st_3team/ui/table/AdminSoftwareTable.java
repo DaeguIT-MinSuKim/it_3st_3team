@@ -20,6 +20,8 @@ import javax.swing.JScrollPane;
 
 import kr.or.dgit.it_3st_3team.dto.Address;
 import kr.or.dgit.it_3st_3team.dto.Software;
+import kr.or.dgit.it_3st_3team.dto.SoftwareGroup;
+import kr.or.dgit.it_3st_3team.service.SoftwareGroupService;
 import kr.or.dgit.it_3st_3team.service.SoftwareService;
 import kr.or.dgit.it_3st_3team.ui.admin.software.AdminSoftwareContent;
 import kr.or.dgit.it_3st_3team.ui.admin.software.AdminSoftwareRegister;
@@ -33,6 +35,8 @@ import java.awt.event.MouseEvent;
 
 @SuppressWarnings("serial")
 public class AdminSoftwareTable extends AbtractTableComp<Software>{
+	private AdminSoftwareContent ac;
+	
 	public AdminSoftwareTable() {
 		initComponents();
 	}
@@ -47,12 +51,8 @@ public class AdminSoftwareTable extends AbtractTableComp<Software>{
 		popMenu.add(delMenu);
 		JMenuItem updateMenu = new JMenuItem("수정");
 		popMenu.add(updateMenu);
-	
-		
-		
 		delMenu.addActionListener(menuListener);
 		updateMenu.addActionListener(menuListener);
-		
 		
 		return popMenu;
 	}
@@ -62,7 +62,7 @@ public class AdminSoftwareTable extends AbtractTableComp<Software>{
 		public void actionPerformed(ActionEvent e) {
 			if(e.getActionCommand().equals("삭제")) {
 				actionDeleteItem();
-				JOptionPane.showMessageDialog(null, "삭제버튼 선택");
+				JOptionPane.showMessageDialog(null, "삭제하셨습니다.");
 			}if(e.getActionCommand().equals("수정")) {
 				actionUpdateItem();
 				
@@ -71,18 +71,33 @@ public class AdminSoftwareTable extends AbtractTableComp<Software>{
 		}
 
 		private void actionDeleteItem() {
-			// TODO Auto-generated method stub
-			
+			String val = table.getValueAt(table.getSelectedRow(), 2).toString();
+			Software sw = new Software();
+			SoftwareService.getInstance().deleteSoftware(new Software(val));
+			List<Software> lists = SoftwareService.getInstance().selectSoftwareByAll();
+			loadTableDatas(lists);
 		}
+		
+		
 
 		private void actionUpdateItem() {
-			int swNo = table.getSelectedColumn();
-			Software software = SoftwareService.getInstance().selectSoftwareByNo(new Software(swNo));
-			AdminSoftwareRegister ar = new AdminSoftwareRegister();
-			ar.setItem(software);
+			ac.setBtnRegister("수정");
+			int no = getSelectedNo();
+			Software so = SoftwareService.getInstance().selectSoftwareByNo(new Software(no));
+			ac.getpRegister().setSoftwareData(so);
+			/*int selectIndex = getSelectedRow()+1;
+			
+			System.out.println(so);
+			*/
+		/*	String sg = table.getValueAt(table.getSelectedRow(), 1).toString();
+			String sgname = table.getValueAt(table.getSelectedRow(), 2).toString();
+			String quan = table.getValueAt(table.getSelectedRow(), 3).toString();
+			String spp = table.getValueAt(table.getSelectedRow(), 4).toString();
+			String slp = table.getValueAt(table.getSelectedRow(), 5).toString();
+			String sppc = table.getValueAt(table.getSelectedRow(), 6).toString();
 			
 			
-			
+			System.out.println(sg+sgname+quan+spp+slp+sppc);*/
 		}
 	};
 	
@@ -110,6 +125,9 @@ public class AdminSoftwareTable extends AbtractTableComp<Software>{
 		}
 		
 		return rows;
+	}
+	public void setAc(AdminSoftwareContent ac) {
+		this.ac = ac;
 	}
 	
 	
