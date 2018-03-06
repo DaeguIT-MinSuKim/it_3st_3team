@@ -76,15 +76,15 @@ public class AdminOrderSearch extends JPanel {
 	
 	
 	public SoftwareGroup getSelectedSoftwareGrp() {
-		return (SoftwareGroup) pSearchSoftwareSort.getCmbBox();
+		return (SoftwareGroup) pSearchSoftwareSort.getCmbItem();
 	}
 	
 	public Admin getSelectedAdmin() {
-		return (Admin) pAdmin.getCmbBox();
+		return (Admin) pAdmin.getCmbItem();
 	}
 	
 	public String getSelectedString() {
-		return (String) pSortUserNameSWName.getCmbBox();
+		return (String) pSortUserNameSWName.getCmbItem();
 	}
 	
 	public String getStartDate() {

@@ -58,4 +58,8 @@ public class LblTfComp extends JPanel {
 	public void setTfEnable(boolean enable) {
 		textField.setEnabled(enable);
 	}
+	
+	public void setTfEditable(boolean enable) {
+		textField.setEditable(enable);
+	}
 }

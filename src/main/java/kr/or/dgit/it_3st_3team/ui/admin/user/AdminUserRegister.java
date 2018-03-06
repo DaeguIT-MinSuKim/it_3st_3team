@@ -3,6 +3,7 @@ package kr.or.dgit.it_3st_3team.ui.admin.user;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -11,9 +12,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import kr.or.dgit.it_3st_3team.dto.Admin;
+import kr.or.dgit.it_3st_3team.dto.PhoneNumber;
 import kr.or.dgit.it_3st_3team.dto.User;
 import kr.or.dgit.it_3st_3team.service.AdminService;
 import kr.or.dgit.it_3st_3team.service.UserService;
+import kr.or.dgit.it_3st_3team.type.UserGroup;
 import kr.or.dgit.it_3st_3team.ui.SearchPostUI;
 import kr.or.dgit.it_3st_3team.ui.component.ImageComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblAddressComp;
@@ -34,12 +37,15 @@ public class AdminUserRegister extends JPanel implements ActionListener {
 	private LblPwdTfComp pUserPwdChk;
 	private LblTfComp pUserName;
 	private LblTfComp pUserPhone;
-	private LblCmbAdminComp pUsereAdmin;
+	private LblCmbAdminComp pUserAdmin;
 	private LblTfComp pZipcode;
 	private LblAddressComp pAddress;
 
 	private boolean checkDupId = false;
 	private LblTfComp pUserEmail;
+	private LblCmbStringComp pUserGroup;
+	private ImageComp pImgArea;
+	private JButton btnCancel;
 
 	public AdminUserRegister() {
 		initComponents();
@@ -49,7 +55,7 @@ public class AdminUserRegister extends JPanel implements ActionListener {
 		setLayout(null);
 		setBounds(0, 0, 1178, 250);
 
-		ImageComp pImgArea = new ImageComp();
+		pImgArea = new ImageComp();
 		pImgArea.setBounds(12, 10, 180, 230);
 		add(pImgArea);
 
@@ -72,7 +78,7 @@ public class AdminUserRegister extends JPanel implements ActionListener {
 		pInfo.add(pUserPwd);
 
 		pUserPwdChk = new LblPwdTfComp("비밀번호 확인");
-		pUserPwdChk.setBounds(25, 91, 291, 30);
+		pUserPwdChk.setBounds(387, 51, 291, 30);
 		pInfo.add(pUserPwdChk);
 
 		pUserName = new LblTfComp("상호명");
@@ -83,23 +89,23 @@ public class AdminUserRegister extends JPanel implements ActionListener {
 		pUserPhone.setBounds(53, 171, 263, 30);
 		pInfo.add(pUserPhone);
 
-		pUsereAdmin = new LblCmbAdminComp("담당자");
-		pUsereAdmin.setBackground(new Color(255, 255, 255));
-		pUsereAdmin.setBounds(699, 10, 200, 30);
-		pInfo.add(pUsereAdmin);
+		pUserAdmin = new LblCmbAdminComp("담당자");
+		pUserAdmin.setBackground(new Color(255, 255, 255));
+		pUserAdmin.setBounds(699, 10, 200, 30);
+		pInfo.add(pUserAdmin);
 
 		// 담당자 콤보박스에 데이터 넣기
 		List<Admin> aList = AdminService.getInstance().selectAdminAll();
 		Admin[] arrAdmin = aList.toArray(new Admin[aList.size()]);
-		pUsereAdmin.loadData(arrAdmin);
-		
+		pUserAdmin.loadData(arrAdmin);
+
 		pUserEmail = new LblTfComp("이메일");
-		pUserEmail.setBounds(429, 52, 287, 30);
+		pUserEmail.setBounds(65, 91, 287, 30);
 		pInfo.add(pUserEmail);
 
 		pZipcode = new LblTfComp("우편번호");
 		pZipcode.setBounds(416, 93, 180, 30);
-		pZipcode.setTfEnable(false);
+		pZipcode.setTfEditable(false);
 		pInfo.add(pZipcode);
 
 		pAddress = new LblAddressComp("상세주소");
@@ -113,18 +119,26 @@ public class AdminUserRegister extends JPanel implements ActionListener {
 
 		btnUserOK = new JButton("등록");
 		btnUserOK.addActionListener(this);
-		btnUserOK.setBounds(799, 150, 100, 50);
+		btnUserOK.setBounds(742, 161, 90, 40);
 		pInfo.add(btnUserOK);
-		
-		LblCmbStringComp pUserGroup = new LblCmbStringComp("사용자 그룹");
+
+		btnCancel = new JButton("취소");
+		btnCancel.addActionListener(this);
+		btnCancel.setBounds(844, 161, 90, 40);
+		pInfo.add(btnCancel);
+
+		pUserGroup = new LblCmbStringComp("사용자 그룹");
 		pUserGroup.setBounds(400, 10, 208, 30);
 		pInfo.add(pUserGroup);
-		
+
 		String[] arrUserGroup = new String[] { "일반회원", "공급회사" };
 		pUserGroup.loadData(arrUserGroup);
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnCancel) {
+			actionPerformedBtnCancel(e);
+		}
 		if (e.getSource() == btnZipcodeSearch) {
 			actionPerformedBtnZipcodeSearch(e);
 		}
@@ -157,7 +171,7 @@ public class AdminUserRegister extends JPanel implements ActionListener {
 			pUserPwd.requestTfFocus();
 			return;
 		}
-		
+
 		if (pUserName.isTfEmpty("상호명을 입력해주세요.")) {
 			return;
 		}
@@ -172,7 +186,7 @@ public class AdminUserRegister extends JPanel implements ActionListener {
 			return;
 		}
 		phone = CommonUtil.getInstance().phoneNumberHyphenAdd(phone, false);
-		
+
 		String email = pUserEmail.getTfText().trim();
 		if (!Pattern.matches(DefineUtil.PATTERN_EMAIL, email)) {
 			JOptionPane.showMessageDialog(null, "이메일 형식이 아닙니다. ex) aaa@test.com");
@@ -180,11 +194,89 @@ public class AdminUserRegister extends JPanel implements ActionListener {
 			pUserEmail.requestTfFocus();
 			return;
 		}
-		
+
 		String id = pUserId.getTfText().trim();
 		String pwd = pUserPwd.getTfText().trim();
 		String name = pUserName.getTfText().trim();
-		JOptionPane.showMessageDialog(null, "등록 및 수정 버튼");
+		Admin admin = (Admin) pUserAdmin.getCmbSelectItem();
+		String zipcode = pZipcode.getTfText().trim();
+		String addr1 = pAddress.getTfAddress1();
+		String addr2 = pAddress.getTfAddress2();
+
+		User user = new User();
+		user.setUserId(id);
+		user.setUserPwd(pwd);
+		user.setName(name);
+		user.setEmail(email);
+		user.setPhone(new PhoneNumber(phone));
+		user.setZipcode(zipcode);
+		user.setAddr1(addr1);
+		user.setAddr2(addr2);
+		user.setAdmin(admin);
+		String userImgFullPath = pImgArea.getImageIcon().toString();
+		user.setAvatar(new File(userImgFullPath).getName());
+
+		String uGroup = (String) pUserGroup.getCmbSelectItem();
+		if (uGroup.equals("일반회원")) {
+			user.setUserGroup(UserGroup.CUSTOMER);
+		} else {
+			user.setUserGroup(UserGroup.COMPANY);
+		}
+
+		int result = JOptionPane.showConfirmDialog(null, "사용자 등록을 하시겠습니까?", "사용자 등록", JOptionPane.YES_NO_OPTION);
+		if (result == JOptionPane.CANCEL_OPTION || result == JOptionPane.NO_OPTION) {
+			return;
+		}
+
+		CommonUtil.getInstance().userImgSave(userImgFullPath);
+		if (UserService.getInstance().addUser(user) != 1) {
+			JOptionPane.showMessageDialog(null, "사용자 등록에 실패하였습니다.");
+			return;
+		}
+		JOptionPane.showMessageDialog(null, "사용자 등록이 완료되었습니다.");
+		resetData();
+	}
+
+	private void resetData() {
+		pUserId.setTfText("");
+		pUserId.setTfEditable(true);
+		checkDupId = false;
+		btnDuplId.setVisible(true);
+		pUserPwd.setTfText("");
+		pUserPwdChk.setTfText("");
+		pUserName.setTfText("");
+		pUserPhone.setTfText("");
+		pUserEmail.setTfText("");
+		pZipcode.setTfText("");
+		pAddress.resetTfAddress();
+		pUserAdmin.setCmbSelectIndex(0);
+		pUserGroup.setCmbSelectIndex(0);
+		btnUserOK.setText("등록");
+		btnCancel.setText("취소");
+	}
+
+	public void setUserData(User user) {
+		pUserId.setTfText(user.getUserId());
+		pUserId.setTfEditable(false);
+		checkDupId = true;
+		btnDuplId.setVisible(false);
+		pUserPwd.setTfText(user.getUserPwd());
+		pUserPwdChk.setTfText(user.getUserPwd());
+		pUserName.setTfText(user.getName());
+		pUserPhone.setTfText(user.getPhone().toString());
+		pUserEmail.setTfText(user.getEmail());
+		pZipcode.setTfText(user.getZipcode());
+		pAddress.setTfAddress1(user.getAddr1());
+		pAddress.setTfAddress2(user.getAddr2());
+		System.out.println(user.getAdmin());
+		pUserAdmin.setCmbSelectItem(user.getAdmin());
+		if (user.getUserGroup() == UserGroup.COMPANY) {
+			pUserGroup.setCmbSelectIndex(1);
+		} else {
+			pUserGroup.setCmbSelectIndex(0);
+		}
+		btnUserOK.setText("수정");
+		btnCancel.setText("수정취소");
 	}
 
 	// 중복아이디 체크
@@ -213,5 +305,9 @@ public class AdminUserRegister extends JPanel implements ActionListener {
 		// 우편번호 필드, 주소 필드를 넘겨줌.
 		postUI.setParentInComp(pZipcode, pAddress);
 		postUI.setVisible(true);
+	}
+
+	protected void actionPerformedBtnCancel(ActionEvent e) {
+		resetData();
 	}
 }
