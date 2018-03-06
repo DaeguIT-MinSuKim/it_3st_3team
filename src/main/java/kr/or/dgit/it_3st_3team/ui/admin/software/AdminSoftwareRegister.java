@@ -106,8 +106,7 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 	public LblTfComp getpCount() {
 		return pCount;
 	}
-	
-	
+
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnSubmitCF) {

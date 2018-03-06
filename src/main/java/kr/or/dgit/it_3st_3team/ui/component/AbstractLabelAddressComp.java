@@ -66,4 +66,8 @@ public abstract class AbstractLabelAddressComp<T> extends JPanel {
 		return tfAddress2.getText();
 	}
 
+	public void resetTfAddress() {
+		tfAddress1.setText("");
+		tfAddress2.setText("");
+	}
 }

@@ -10,42 +10,29 @@ public class Software {
 	private int swQuantity;
 	private byte[] swCoverImg;
 	private User userNo;
-	
-	
-	
-
-
 
 	public Software(User userNo) {
 
 		this.userNo = userNo;
 	}
 
-
-
 	public Software(SoftwareGroup swGroup) {
 
 		this.swGroup = swGroup;
 	}
 
-
-
 	public Software() {
 	}
-	
-	
 
 	public Software(int swNo) {
 		this.swNo = swNo;
 	}
 
 
-
 	public Software(String swName) {
 	
 		this.swName = swName;
 	}
-
 
 
 	public Software(String swName, int swSupplyPrice, int swSellPrice, SoftwareGroup swGroup, int swQuantity,
@@ -69,8 +56,7 @@ public class Software {
 		this.swQuantity = swQuantity;
 		this.userNo = userNo;
 	}
-	
-	
+
 	public Software(int swNo, String swName, int swSupplyPrice, int swSellPrice, SoftwareGroup swGroup, int swQuantity,
 			byte[] swCoverImg, User userNo) {
 		super();
@@ -147,11 +133,10 @@ public class Software {
 				swNo, swName, swSupplyPrice, swSellPrice, swGroup, swQuantity, userNo);
 	}
 
-
-
 	public Object[] toArray() {
-		
-		return new Object[] {swNo,swGroup.getSgName(),swName,swQuantity,swSupplyPrice,swSellPrice,userNo.getName()};
+
+		return new Object[] { swNo, swGroup.getSgName(), swName, swQuantity, swSupplyPrice, swSellPrice,
+				userNo.getName() };
 	}
 
 }

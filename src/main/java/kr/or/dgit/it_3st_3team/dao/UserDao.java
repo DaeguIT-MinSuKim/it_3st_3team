@@ -15,6 +15,7 @@ public interface UserDao {
 
 	List<User> selectUserAll();
 	List<User> selectUserAllByUserGroup(UserGroup userGroup);
+	List<User> selectUserBySearch(Map<String, String> map);
 	
 	int insertUser(User user);
 	
