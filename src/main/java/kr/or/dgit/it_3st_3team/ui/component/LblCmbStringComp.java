@@ -10,7 +10,6 @@ public class LblCmbStringComp extends AbstractLabelComboBoxComp<String> {
 	}
 
 	@Override
-
 	public void loadData(String[] data) {
 		dcbm = new DefaultComboBoxModel<>(data);
 		cmbBox.setModel(dcbm);
