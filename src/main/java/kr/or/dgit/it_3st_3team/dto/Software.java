@@ -41,6 +41,13 @@ public class Software {
 
 
 
+	public Software(String swName) {
+	
+		this.swName = swName;
+	}
+
+
+
 	public Software(String swName, int swSupplyPrice, int swSellPrice, SoftwareGroup swGroup, int swQuantity,
 			User userNo) {
 		this.swName = swName;

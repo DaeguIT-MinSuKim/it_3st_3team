@@ -99,8 +99,8 @@ public class SoftwareTest {
 	
 	@Test
 	public void testFdeleteSoftware() {
-		/*int res = service.deleteSoftware(new Software(11));
-		assertEquals(1, res);*/
+		int res = service.deleteSoftware(new Software("ㄴㄴㄴ"));
+		assertEquals(1, res);
 	}
 	
 	

@@ -13,12 +13,20 @@
 	</sql>
 	<sql id="whereSql">
 		<where>
-			<if test="sgNo != null">
+			<if test="sgNo != null and sgNo>0">
 				sg_no= #{sgNo}
 			</if>
 			
 			<if test="sgName != null">
 				AND sg_name = #{sgName}
+			</if>
+		</where>
+	</sql>
+	
+	<sql id="whereUpSql">
+		<where>
+			<if test="sgName != null">
+				sg_name = #{sgName}
 			</if>
 		</where>
 	</sql>
@@ -51,4 +59,13 @@
 		<include refid="deleteSql"/>
 		<include refid="whereSql"/>
 	</delete>	
+	
+	<sql id="updateSql">
+		update software_group set sg_name=#{sgName}
+	</sql>
+	
+	<update id="updateSoftwareGroup" parameterType="SoftwareGroup">
+		<include refid="updateSql"/>
+		<include refid="whereUpSql"/>
+	</update>
 </mapper>

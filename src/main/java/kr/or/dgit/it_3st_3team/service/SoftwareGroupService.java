@@ -45,11 +45,21 @@ public class SoftwareGroupService {
 		return res;
 	}
 	
-	public int deleteSoftwareGroup(SoftwareGroup sgNo) {
+	public int deleteSoftwareGroup(SoftwareGroup sgName) {
 		log.debug("deleteSoftwareGroup()");
 		int res=-1;
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
-			res= sqlSession.delete(namespace + "deleteSoftwareGroup", sgNo);
+			res= sqlSession.delete(namespace + "deleteSoftwareGroup", sgName);
+			sqlSession.commit();
+		}
+		return res;
+	}
+	
+	public int updateSoftwareGroup(SoftwareGroup softwareGroup) {
+		log.debug("updateSoftwareGroup()");
+		int res=-1;
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			res= sqlSession.update(namespace + "updateSoftwareGroup", softwareGroup);
 			sqlSession.commit();
 		}
 		return res;

@@ -45,18 +45,30 @@ public class SoftwareGroupTest {
 		}
 	}
 	
-	@Test
+	/*@Test
 	public void testCinsertSoftwareGroup() {
 		SoftwareGroup sg = new SoftwareGroup(4, "디자인");
 		int res = service.insertSoftwareGroup(sg);
 		System.out.println(sg);
 		
 		assertEquals(1, res);
-	}
+	}*/
+	
+	/*@Test
+	public void testDdeleteSoftwareGroup() {
+		int res = service.deleteSoftwareGroup(new SoftwareGroup("디자인"));
+		
+		assertEquals(1, res);
+		System.out.println(res);
+	}*/
 	
 	@Test
-	public void testDdeleteSoftwareGroup() {
-		int res = service.deleteSoftwareGroup(new SoftwareGroup(5));
+	public void testEupdateSoftwareGroup() {
+		SoftwareGroup sg = new SoftwareGroup("모듈");
+		
+		sg.setSgName("사무");
+		
+		int res = service.updateSoftwareGroup(sg);
 		
 		assertEquals(1, res);
 		System.out.println(res);

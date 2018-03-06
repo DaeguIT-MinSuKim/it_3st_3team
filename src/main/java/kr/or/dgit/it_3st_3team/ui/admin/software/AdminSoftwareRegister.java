@@ -107,15 +107,7 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 		return pCount;
 	}
 	
-	public void setItem(Software sw) {
-		pSWName.setTfText(sw.getSwName());
-		pSalePrice.setTfText(Integer.toString(sw.getSwSellPrice()));
-		pSWsort.getCmbBox();
-		pCompany.getCmbBox();
-		pCount.setTfText(Integer.toString(sw.getSwQuantity()));
-		pSupplyPrice.setTfText(Integer.toString(sw.getSwSupplyPrice()));
-		
-	}
+	
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnSubmitCF) {

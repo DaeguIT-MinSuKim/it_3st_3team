@@ -48,6 +48,14 @@
 		</where>
 	</sql>
 	
+	<sql id="wheredelUpSql">
+		<where>
+			<if test="swName != null">
+				sw_name=#{swName}
+			</if>
+		</where>
+	</sql>
+	
 	<sql id="whereBySearchSql">
 		<where>
 			<choose>
@@ -111,7 +119,7 @@
 	
 	<delete id="deleteSoftware" parameterType="Software">
 		<include refid="deleteSql"/>
-		<include refid="whereSql"/>
+		<include refid="wheredelUpSql"/>
 	</delete>
 	
 
