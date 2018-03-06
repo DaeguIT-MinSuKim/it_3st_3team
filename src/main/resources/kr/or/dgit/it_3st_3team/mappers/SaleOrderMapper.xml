@@ -95,32 +95,6 @@
 		</where>
 	</sql>
 	
-	<!-- 영업사원 현황관리 Where 모든조건 -->
-	<sql id="whereSwSalesSql">
-		<where>
-			<if test="sgName != null and sgName != ''">
-				sg_name = #{sgName}
-			</if>
-			<if test="startDate != null and startDate != ''">
-				and ord_datetime &gt;= #{startDate}
-			</if>
-			<if test="endDate != null and endDate != ''">
-				and ord_datetime &lt;= #{endDate}
-			</if>
-				<choose>
-					<when test="searchBy=='customer' and name != ''">
-						and us.u_name = #{name} and us.u_group = 'CUSTOMER'
-					</when>
-					<when test="searchBy=='company' and name != ''">
-						and cu.u_name = #{name} and cu.u_group = 'COMPANY'
-					</when>
-					<when test="searchBy=='softwarename' and name != ''">
-						and sw_name = #{name}
-					</when>
-				</choose>
-		</where>
-	</sql>
-	
 	<select id="selectSaleOrderByNo" parameterType="SaleOrder" resultMap="selectSaleOrderWithAll">
 		<include refid="selectParameterSql"/>
 		<include refid="whereSql"/>
@@ -132,12 +106,6 @@
 		<include refid="selectParameterSql"/>
 		<include refid="whereSwNameSql"/>
 		order by ord_datetime desc
-	</select>
-	
-	<!-- 영업사원 -->
-	<select id="selectSaleOrderWithoutadminName" parameterType="Map" resultMap="selectSaleOrderWithAll">
-		<include refid="selectParameterSql"/>
-		<include refid="whereSwSalesSql"/>
 	</select>
 	
 	<!-- 모든List -->

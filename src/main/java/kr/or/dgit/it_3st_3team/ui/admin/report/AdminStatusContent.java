@@ -139,7 +139,7 @@ public class AdminStatusContent extends JPanel implements ActionListener {
 					searchBy = "softwarename";
 				}
 				map.put("searchBy", searchBy);
-				pSalesAllListTable.loadTableDatas(soService.findSaleOrderWithoutadminName(map));
+				pSalesAllListTable.loadTableDatas(soService.findSaleOrderWithAllBySearch(map));
 				add(pSalesAllListTable);
 			}
 		} else {
@@ -164,7 +164,7 @@ public class AdminStatusContent extends JPanel implements ActionListener {
 					searchBy = "softwarename";
 				}
 				map.put("searchBy", searchBy);
-				pCustomerListTable.loadTableDatas(soService.findSaleOrderWithoutadminName(map));
+				pCustomerListTable.loadTableDatas(soService.findSaleOrderWithAllBySearch(map));
 				add(pCustomerListTable);
 
 			} else {
@@ -189,7 +189,7 @@ public class AdminStatusContent extends JPanel implements ActionListener {
 					searchBy = "softwarename";
 				}
 				map.put("searchBy", searchBy);
-				pCompanyListTable.loadTableDatas(soService.findSaleOrderWithoutadminName(map));
+				pCompanyListTable.loadTableDatas(soService.findSaleOrderWithAllBySearch(map));
 				add(pCompanyListTable);
 			}
 		}
