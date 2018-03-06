@@ -27,77 +27,18 @@ public class AdminStatusSearch extends JPanel {
 	private StartAndEndDate pCalendar;
 	private Admin admin;
 	private User user;
+	private List<SoftwareGroup> swg;
 
 	public AdminStatusSearch(Object who) {
 		setUsingUser(who);
 		swgService = SoftwareGroupService.getInstance();
 		adService = AdminService.getInstance();
+
 		initComponents();
-	}
-	
-	public void setUsingUser(Object who) {
-		if (who instanceof Admin) {
-			admin = (Admin) who;
-		} else {
-			user = (User) who;
-		}
-	}
-
-	private void initComponents() {
-		setLayout(null);
-
-		pCalendar = new StartAndEndDate();
-		pCalendar.setBounds(744, 0, 434, 43);
-		add(pCalendar);
-
-		cmbSwgType = new JComboBox<>();
-		cmbSwgType.setBounds(12, 10, 125, 30);
-		add(cmbSwgType);
-		setCmbSgGroup();
-
-		cmbSearchBy = new JComboBox<>();
-		cmbSearchBy.setBounds(12, 60, 125, 30);
-		add(cmbSearchBy);
-		setCmbString();
-		
-		tfSearch = new JTextField();
-		tfSearch.setColumns(10);
-		tfSearch.setBounds(160, 60, 300, 30);
-		add(tfSearch);
-		
-		
-		if (admin != null) {
-			System.out.println(admin);
-			// 관리자
-			if (admin.getAdminGroup().getAgNo() == 1) {
-				// 총관리자
-				cmbAdmin = new JComboBox<>();
-				cmbAdmin.setBounds(161, 10, 125, 30);
-				add(cmbAdmin);
-				setCmbAdGroup();
-			}
-			
-		} else {
-			if(user.getUserGroup().getValue() == 1) {
-				//고객
-				cmbSearchBy.removeItemAt(0);
-			//	revalidate();
-			//	repaint();
-			}else {
-				//공급회사
-				cmbSearchBy.removeItemAt(1);
-			//	revalidate();
-			//	repaint();
-			}
-		}
-		
-		
-		
 	}
 
 	public void setCmbSgGroup() {
-		// 분류 콤보박스 넣는 코드
-		List<SoftwareGroup> swg = new ArrayList<>();
+		swg = new ArrayList<>();
 		swg = swgService.selectSoftwareGroupByAll();
 		swg.add(0, new SoftwareGroup("분류"));
 		SoftwareGroup[] items = new SoftwareGroup[swg.size()];
@@ -124,29 +65,115 @@ public class AdminStatusSearch extends JPanel {
 		cmbSearchBy.setModel(dcbm);
 	}
 
+	public void setUsingUser(Object who) {
+		if (who instanceof Admin) {
+			admin = (Admin) who;
+		} else {
+			user = (User) who;
+		}
+	}
 
-	//get 메소드
+	private void initComponents() {
+		setLayout(null);
+
+		pCalendar = new StartAndEndDate();
+		pCalendar.setBounds(744, 0, 434, 43);
+		add(pCalendar);
+
+		cmbSwgType = new JComboBox<>();
+		cmbSwgType.setBounds(12, 10, 125, 30);
+		add(cmbSwgType);
+		setCmbSgGroup();
+
+		cmbSearchBy = new JComboBox<>();
+		cmbSearchBy.setBounds(12, 60, 125, 30);
+		add(cmbSearchBy);
+		setCmbString();
+
+		tfSearch = new JTextField();
+		tfSearch.setColumns(10);
+		tfSearch.setBounds(160, 60, 300, 30);
+		add(tfSearch);
+
+		if (admin != null) {
+			System.out.println(admin);
+			// 관리자
+			if (admin.getAdminGroup().getAgNo() == 1) {
+				// 총관리자
+				cmbAdmin = new JComboBox<>();
+				cmbAdmin.setBounds(161, 10, 125, 30);
+				add(cmbAdmin);
+				setCmbAdGroup();
+			}
+		} else {
+			if (user.getUserGroup().getValue() == 1) {
+				// 고객
+				cmbSearchBy.removeItemAt(0);
+			} else {
+				// 공급회사
+				cmbSearchBy.removeItemAt(1);
+			}
+		}
+	}
+
+	// get 메소드
 	public SoftwareGroup getSelectedSoftwareGrp() {
 		return (SoftwareGroup) cmbSwgType.getSelectedItem();
 	}
-	
+
 	public Admin getSelectedAdmin() {
 		return (Admin) cmbAdmin.getSelectedItem();
 	}
-	
+
 	public String getSelectedString() {
 		return (String) cmbSearchBy.getSelectedItem();
 	}
-	
+
 	public String getStartDate() {
 		return pCalendar.getStartDate();
 	}
-	
+
 	public String getEndDate() {
 		return pCalendar.getEndDate();
 	}
-	
+
 	public String getSearchText() {
 		return tfSearch.getText().trim();
+	}
+	
+	// 초기화
+	public void clearItem() {
+		if (admin != null) {
+			// 관리자
+			if (admin.getAdminGroup().getAgNo() == 1) {
+				cmbSwgType.setSelectedIndex(0);
+				cmbAdmin.setSelectedIndex(0);
+				cmbSearchBy.setSelectedIndex(0);
+				tfSearch.setText("");
+				pCalendar.clearStartDate();
+				pCalendar.clearEndDate();
+			} else {
+				cmbSwgType.setSelectedIndex(0);
+				cmbSearchBy.setSelectedIndex(0);
+				tfSearch.setText("");
+				pCalendar.clearStartDate();
+				pCalendar.clearEndDate();
+			}
+		} else {
+			// 사용자
+			if (user.getUserGroup().getValue() == 1) {
+				cmbSwgType.setSelectedIndex(0);
+				cmbSearchBy.setSelectedIndex(0);
+				tfSearch.setText("");
+				pCalendar.clearStartDate();
+				pCalendar.clearEndDate();
+			} else {
+				cmbSwgType.setSelectedIndex(0);
+				cmbSearchBy.setSelectedIndex(0);
+				tfSearch.setText("");
+				pCalendar.clearStartDate();
+				pCalendar.clearEndDate();
+			}
+		}
 	}
 }
