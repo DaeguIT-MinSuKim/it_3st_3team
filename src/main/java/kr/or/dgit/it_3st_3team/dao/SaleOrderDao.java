@@ -12,6 +12,8 @@ public interface SaleOrderDao {
 
 	SaleOrder selectSaleOrderWithoutadminName(Map<String, String> map);
 
+	int sumCount();
+	
 	List<SaleOrder> selectSaleOrderByAll();
 	// 소프트웨어 주문 관리
 

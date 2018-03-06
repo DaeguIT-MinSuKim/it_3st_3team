@@ -47,6 +47,19 @@
 	join user as cu on sp.pc_no=cu.u_no
 	</sql>
 	
+	<!-- count -->
+	<sql id="count">
+	select sum(ord_quantity) as cnt
+	from sale_order as so 
+	join software as sp on so.sw_no=sp.sw_no
+	join software_group as sg on sp.sg_no=sg.sg_no
+	join admin as ad on so.adm_no=ad.adm_no
+	join user as us on so.u_no=us.u_no
+	join user as cu on sp.pc_no=cu.u_no
+	where us.u_group = 'CUSTOMER'
+	and ad.adm_name = '영업1';
+	</sql>
+	
 	<!-- SaleOrder 보고서 관리자 조건검색 -->
 	<sql id="selectReportSql">
 	
@@ -120,5 +133,8 @@
 		<include refid="whereSql"/>
 	</delete>
 
+	<select id="sumCount" resultType="int">
+		<include refid="count"/>
+	</select>
 
 </mapper>
