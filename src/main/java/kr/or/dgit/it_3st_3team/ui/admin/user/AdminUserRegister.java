@@ -3,6 +3,8 @@ package kr.or.dgit.it_3st_3team.ui.admin.user;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.io.File;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -129,11 +131,26 @@ public class AdminUserRegister extends JPanel implements ActionListener {
 
 		pUserGroup = new LblCmbStringComp("사용자 그룹");
 		pUserGroup.setBounds(400, 10, 208, 30);
+		pUserGroup.setCmbEventListener(uGroupItemListener);
 		pInfo.add(pUserGroup);
 
-		String[] arrUserGroup = new String[] { "일반회원", "공급회사" };
+		String[] arrUserGroup = new String[] { "공급회사", "일반회원" };
 		pUserGroup.loadData(arrUserGroup);
 	}
+
+	private ItemListener uGroupItemListener = new ItemListener() {
+
+		@Override
+		public void itemStateChanged(ItemEvent e) {
+			if (e.getStateChange() == ItemEvent.SELECTED) {
+				if (e.getItem().equals("일반회원")) {
+					pUserAdmin.setVisible(false);
+				} else {
+					pUserAdmin.setVisible(true);
+				}
+			}
+		}
+	};
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnCancel) {
@@ -159,10 +176,10 @@ public class AdminUserRegister extends JPanel implements ActionListener {
 			JOptionPane.showMessageDialog(null, "아이디 중복체크를 해주세요.");
 			return;
 		}
-		if (pUserPwd.isTfEmpty("비밀번호를 입력해주세요.")) {
+		if (pUserPwd.isVisible() && pUserPwd.isTfEmpty("비밀번호를 입력해주세요.")) {
 			return;
 		}
-		if (pUserPwdChk.isTfEmpty("비밀번호를 한번 더 입력해주세요.")) {
+		if (pUserPwdChk.isVisible() && pUserPwdChk.isTfEmpty("비밀번호를 한번 더 입력해주세요.")) {
 			return;
 		}
 		if (!CommonUtil.getInstance().checkPwd(pUserPwd.getPwdField(), pUserPwd.getPwdField())) {
@@ -198,10 +215,19 @@ public class AdminUserRegister extends JPanel implements ActionListener {
 		String id = pUserId.getTfText().trim();
 		String pwd = pUserPwd.getTfText().trim();
 		String name = pUserName.getTfText().trim();
-		Admin admin = (Admin) pUserAdmin.getCmbSelectItem();
+		// 담당자가 보이면 공급회사고 공급회사는 담당자 선택에 의해 지정
+		// 아니라면 일반회원이고 무조건 총관리자가 담당.
+		Admin admin = new Admin(1);
+		if (pUserAdmin.isVisible()) {
+			admin = (Admin) pUserAdmin.getCmbSelectItem();
+		}
+		
 		String zipcode = pZipcode.getTfText().trim();
 		String addr1 = pAddress.getTfAddress1();
-		String addr2 = pAddress.getTfAddress2();
+		String addr2 = "";
+		if (!zipcode.equals("") && !addr1.equals("")) {
+			addr2 = pAddress.getTfAddress2();
+		}
 
 		User user = new User();
 		user.setUserId(id);
@@ -213,8 +239,6 @@ public class AdminUserRegister extends JPanel implements ActionListener {
 		user.setAddr1(addr1);
 		user.setAddr2(addr2);
 		user.setAdmin(admin);
-		String userImgFullPath = pImgArea.getImageIcon().toString();
-		user.setAvatar(new File(userImgFullPath).getName());
 
 		String uGroup = (String) pUserGroup.getCmbSelectItem();
 		if (uGroup.equals("일반회원")) {
@@ -223,17 +247,29 @@ public class AdminUserRegister extends JPanel implements ActionListener {
 			user.setUserGroup(UserGroup.COMPANY);
 		}
 
-		int result = JOptionPane.showConfirmDialog(null, "사용자 등록을 하시겠습니까?", "사용자 등록", JOptionPane.YES_NO_OPTION);
+		String userImgFullPath = pImgArea.getImageIcon().toString();
+		user.setAvatar(new File(userImgFullPath).getName());
+
+		String commandType = e.getActionCommand();
+		String commandMessage = String.format("사용자 %s", commandType);
+		int result = JOptionPane.showConfirmDialog(null, String.format("%s을 하시겠습니까?", commandMessage), commandMessage,
+				JOptionPane.YES_NO_OPTION);
 		if (result == JOptionPane.CANCEL_OPTION || result == JOptionPane.NO_OPTION) {
 			return;
 		}
 
 		CommonUtil.getInstance().userImgSave(userImgFullPath);
-		if (UserService.getInstance().addUser(user) != 1) {
-			JOptionPane.showMessageDialog(null, "사용자 등록에 실패하였습니다.");
+		if (commandType.equals("등록")) {
+			result = UserService.getInstance().addUser(user);
+		} else {
+			result = UserService.getInstance().modifyUser(user);
+		}
+		if (result != 1) {
+			JOptionPane.showMessageDialog(null, String.format("%s에 실패하였습니다.", commandMessage));
 			return;
 		}
-		JOptionPane.showMessageDialog(null, "사용자 등록이 완료되었습니다.");
+		JOptionPane.showMessageDialog(null, String.format("%s이 완료되었습니다.", commandMessage));
+
 		resetData();
 	}
 
@@ -243,7 +279,9 @@ public class AdminUserRegister extends JPanel implements ActionListener {
 		checkDupId = false;
 		btnDuplId.setVisible(true);
 		pUserPwd.setTfText("");
+		pUserPwd.setVisible(true);
 		pUserPwdChk.setTfText("");
+		pUserPwdChk.setVisible(true);
 		pUserName.setTfText("");
 		pUserPhone.setTfText("");
 		pUserEmail.setTfText("");
@@ -260,8 +298,10 @@ public class AdminUserRegister extends JPanel implements ActionListener {
 		pUserId.setTfEditable(false);
 		checkDupId = true;
 		btnDuplId.setVisible(false);
-		pUserPwd.setTfText(user.getUserPwd());
-		pUserPwdChk.setTfText(user.getUserPwd());
+		// pUserPwd.setTfText(user.getUserPwd());
+		pUserPwd.setVisible(false);
+		// pUserPwdChk.setTfText(user.getUserPwd());
+		pUserPwdChk.setVisible(false);
 		pUserName.setTfText(user.getName());
 		pUserPhone.setTfText(user.getPhone().toString());
 		pUserEmail.setTfText(user.getEmail());
@@ -271,9 +311,9 @@ public class AdminUserRegister extends JPanel implements ActionListener {
 		System.out.println(user.getAdmin());
 		pUserAdmin.setCmbSelectItem(user.getAdmin());
 		if (user.getUserGroup() == UserGroup.COMPANY) {
-			pUserGroup.setCmbSelectIndex(1);
-		} else {
 			pUserGroup.setCmbSelectIndex(0);
+		} else {
+			pUserGroup.setCmbSelectIndex(1);
 		}
 		btnUserOK.setText("수정");
 		btnCancel.setText("수정취소");
