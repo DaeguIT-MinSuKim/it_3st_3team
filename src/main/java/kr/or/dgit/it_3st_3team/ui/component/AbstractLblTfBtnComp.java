@@ -61,6 +61,16 @@ public abstract class AbstractLblTfBtnComp extends JPanel implements ActionListe
 	public void setTfEnable(boolean enable) {
 		tfInput.setEnabled(enable);
 	}
+	
+	
+
+	public String getBtnTitle() {
+		return btn.getText();
+	}
+
+	public void setBtnTitle(String str) {
+		this.btn.setText(str);
+	}
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btn) {

@@ -47,7 +47,7 @@ public class SoftwareGroup {
 
 	public Object[] toArray() {
 		// TODO Auto-generated method stub
-		return new Object[] {String.format("(%s)%s",sgNo,sgName)};
+		return new Object[] {String.format("%s",sgName)};
 
 	}
 

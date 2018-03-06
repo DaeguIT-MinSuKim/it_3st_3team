@@ -13,7 +13,7 @@
 	</sql>
 	<sql id="whereSql">
 		<where>
-			<if test="sgNo != null">
+			<if test="sgNo != null and sgNo>0">
 				sg_no= #{sgNo}
 			</if>
 			
@@ -22,7 +22,7 @@
 			</if>
 		</where>
 	</sql>
-	
+		
 	<select id="selectSoftwareGroupByNo" parameterType="SoftwareGroup" resultMap="SoftBasedResult">
 		<include refid="selectSql"/>
 		<include refid="whereSql"/>
@@ -51,4 +51,9 @@
 		<include refid="deleteSql"/>
 		<include refid="whereSql"/>
 	</delete>	
+	
+	<update id="updateSoftwareGroup" parameterType="map">
+		update software_group set sg_name = #{changeSgName}
+		where sg_name = #{oriSgName}
+	</update>
 </mapper>

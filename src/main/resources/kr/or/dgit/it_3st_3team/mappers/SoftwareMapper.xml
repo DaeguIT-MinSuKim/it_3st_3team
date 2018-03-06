@@ -48,6 +48,24 @@
 		</where>
 	</sql>
 	
+	<sql id="whereNoSql">
+		<where>
+			<if test="swNo != null and swNo>0">
+				sw_no=#{swNo}
+			</if>
+		</where>
+	</sql>
+	
+	
+	
+	<sql id="wheredelUpSql">
+		<where>
+			<if test="swName != null">
+				sw_name=#{swName}
+			</if>
+		</where>
+	</sql>
+	
 	<sql id="whereBySearchSql">
 		<where>
 			<choose>
@@ -85,7 +103,7 @@
 	
 	<select id="selectSoftwareByNo" parameterType="Software" resultMap="SoftwarewithUserResult">
 		<include refid="selectWithGroupwithUserSql"/>
-		<include refid="whereSql"/>
+		<include refid="whereNoSql"/>
 	</select>
 	
 	<select id="selectSoftwareByAll" parameterType="Software" resultMap="SoftwarewithUserResult">
@@ -106,12 +124,12 @@
 	
 	<update id="updateSoftware" parameterType="Software">
 		<include refid="updateSql"/>
-		<include refid="whereSql"/>
+		<include refid="whereNoSql"/>
 	</update>
 	
 	<delete id="deleteSoftware" parameterType="Software">
 		<include refid="deleteSql"/>
-		<include refid="whereSql"/>
+		<include refid="wheredelUpSql"/>
 	</delete>
 	
 

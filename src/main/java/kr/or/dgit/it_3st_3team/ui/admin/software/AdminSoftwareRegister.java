@@ -19,6 +19,7 @@ import kr.or.dgit.it_3st_3team.ui.component.ImageComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblCmbSoftwareGroupComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblCmbUserComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblTfComp;
+import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
 public class AdminSoftwareRegister extends JPanel implements ActionListener {
@@ -30,6 +31,16 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 	private LblTfComp pSupplyPrice;
 	private LblTfComp pSalePrice;
 	private LblTfComp pCount;
+	
+	private AdminSoftwareContent ac;
+	private JTextField upNum;
+	
+	
+	
+
+	public void setAc(AdminSoftwareContent ac) {
+		this.ac = ac;
+	}
 
 	public AdminSoftwareRegister() {
 
@@ -40,7 +51,7 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 		setLayout(null);
 
 		JPanel pRegister = new JPanel();
-		pRegister.setBounds(0, 0, 1200, 204);
+		pRegister.setBounds(0, 0, 1200, 296);
 		add(pRegister);
 		pRegister.setLayout(null);
 
@@ -85,6 +96,13 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 		pCount = new LblTfComp("수량");
 		pCount.setBounds(556, 120, 126, 30);
 		pRegister.add(pCount);
+		
+		upNum = new JTextField();
+		upNum.setBounds(708, 129, 116, 21);
+		
+		upNum.setColumns(10);
+		
+		
 	}
 
 	public LblCmbUserComp getpCompany() {
@@ -106,16 +124,7 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 	public LblTfComp getpCount() {
 		return pCount;
 	}
-	
-	public void setItem(Software sw) {
-		pSWName.setTfText(sw.getSwName());
-		pSalePrice.setTfText(Integer.toString(sw.getSwSellPrice()));
-		pSWsort.getCmbSelectItem();
-		pCompany.getCmbSelectItem();
-		pCount.setTfText(Integer.toString(sw.getSwQuantity()));
-		pSupplyPrice.setTfText(Integer.toString(sw.getSwSupplyPrice()));
-		
-	}
+
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnSubmitCF) {
@@ -133,5 +142,30 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 		return pSWsort;
 	}
 	
-
+	public void setSoftwareData(Software sw) {
+		pCompany.setCmbSelectItem(sw.getUserNo());
+		pSWsort.setCmbSelectItem(sw.getSwGroup());
+		pCount.setTfText(Integer.toString(sw.getSwQuantity()));
+		pSalePrice.setTfText(Integer.toString(sw.getSwSellPrice()));
+		pSupplyPrice.setTfText(Integer.toString(sw.getSwSupplyPrice()));
+		pSWName.setTfText(sw.getSwName());
+		upNum.setText(Integer.toString(sw.getSwNo()));
+		
+	}
+	
+	public Software getSofwareData() {
+		User Company = (User) pCompany.getCmbSelectItem();
+		SoftwareGroup swGroup = (SoftwareGroup) pSWsort.getCmbSelectItem();
+		String swName =pSWName.getTfText();
+		int swQuantity = Integer.parseInt(pCount.getTfText());
+		int spPrice = Integer.parseInt(pSupplyPrice.getTfText());
+		int slPrice = Integer.parseInt(pSalePrice.getTfText());
+		int swNo = 0;
+		if(!upNum.getText().equals("")) {
+			swNo = Integer.parseInt(upNum.getText());
+		}
+		
+		return new Software(swNo, swName, spPrice, slPrice, swGroup, swQuantity, "nobody.png", Company);
+	}
+	
 }

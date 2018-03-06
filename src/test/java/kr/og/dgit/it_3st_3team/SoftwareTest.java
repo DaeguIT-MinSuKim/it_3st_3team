@@ -37,15 +37,16 @@ public class SoftwareTest {
 	@Test
 	public void testAselectSoftwareByNo() {
 		Software sw = new Software();
-		User user = new User();
+		sw.setSwNo(1);
+		/*User user = new User();
 		user.setName("크라이스");
-		sw.setUserNo(user);
+		sw.setUserNo(user);*/
 		
 		Software findsw = service.selectSoftwareByNo(sw);
 		
 		
 		assertNotNull(findsw);
-		assertEquals(sw.getUserNo().getName(), findsw.getUserNo().getName());
+		assertEquals(sw.getSwNo(), findsw.getSwNo());
 	}
 	
 	@Test
@@ -99,8 +100,8 @@ public class SoftwareTest {
 	
 	@Test
 	public void testFdeleteSoftware() {
-		/*int res = service.deleteSoftware(new Software(11));
-		assertEquals(1, res);*/
+		int res = service.deleteSoftware(new Software("ㄴㄴㄴ"));
+		assertEquals(1, res);
 	}
 	
 	
