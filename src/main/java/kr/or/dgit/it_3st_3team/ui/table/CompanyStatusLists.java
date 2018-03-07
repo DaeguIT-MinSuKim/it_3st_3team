@@ -21,7 +21,7 @@ public class CompanyStatusLists extends AbtractTableComp<SaleOrder> {
 
 	@Override
 	public Object[] getColumnNames() {
-		return new String[] { "주문번호", "고객명", "분류", "품목명", "주문수량", "공급가격", "판매가격", "부가세액", "판매이윤", "결제수단", "날짜" };
+		return new String[] { "주문번호", "고객명", "분류", "품목명", "주문수량", "공급금액", "판매금액", "부가세액", "판매이윤", "결제수단", "날짜" };
 	}
 
 	@Override
