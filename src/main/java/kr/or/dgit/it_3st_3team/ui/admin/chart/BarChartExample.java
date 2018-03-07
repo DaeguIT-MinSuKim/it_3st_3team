@@ -1,6 +1,8 @@
 package kr.or.dgit.it_3st_3team.ui.admin.chart;
 
 import java.awt.Font;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
@@ -14,20 +16,18 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
-import kr.or.dgit.it_3st_3team.dto.SoftwareGroup;
 import kr.or.dgit.it_3st_3team.service.SaleOrderService;
-import kr.or.dgit.it_3st_3team.service.SoftwareGroupService;
 
 public class BarChartExample extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JFreeChart chart;
-	private SoftwareGroupService swgService;
 	private SaleOrderService saleOrder;
-	private SoftwareGroup swgGroup;
+	
 
 	public BarChartExample(String appTitle) {
 		super(appTitle);
+		saleOrder = new SaleOrderService();
 		initComponents();
 	}
 
@@ -60,30 +60,38 @@ public class BarChartExample extends JFrame {
 	}
 
 	private CategoryDataset createDataset() {
-		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+		DefaultCategoryDataset dataset1 = new DefaultCategoryDataset();
 		
-		saleOrder = new SaleOrderService();
-		int res = saleOrder.sumCount();
+		Map<String, String> maps1 = new HashMap<>();
+		maps1.put("adminName", "영업1");
+		maps1.put("date", "2016");
+		Map<String, Integer> listChart1 = saleOrder.selectSaleOrderBySwgType(maps1);
 		
-		//여기서 DB자료 가져옴
+		Map<String, String> maps2 = new HashMap<>();
+		maps2.put("adminName", "영업1");
+		maps2.put("date", "2017");
+		Map<String, Integer> listChart2 = saleOrder.selectSaleOrderBySwgType(maps2);
 		
+		Map<String, String> maps3 = new HashMap<>();
+		maps3.put("adminName", "영업1");
+		maps3.put("date", "2018");
+		Map<String, Integer> listChart3 = saleOrder.selectSaleOrderBySwgType(maps3);
 		
-		// Population in 2015
-		dataset.addValue(res, "사무", "2015");
-		dataset.addValue(15, "게임", "2015");
-		dataset.addValue(20, "그래픽", "2015");
+		dataset1.addValue(listChart1.get("사무"), "사무", "2016");
+		dataset1.addValue(listChart1.get("게임"), "게임", "2016");
+		dataset1.addValue(listChart1.get("그래픽"), "그래픽", "2016");
 
-		// Population in 2016
-		dataset.addValue(15, "사무", "2016");
-		dataset.addValue(20, "게임", "2016");
-		dataset.addValue(25, "그래픽", "2016");
+		
+		dataset1.addValue(listChart2.get("사무"), "사무", "2017");
+		dataset1.addValue(listChart2.get("게임"), "게임", "2017");
+		dataset1.addValue(listChart2.get("그래픽"), "그래픽", "2017");
 
-		// Population in 2017
-		dataset.addValue(20, "사무", "2017");
-		dataset.addValue(25, "게임", "2017");
-		dataset.addValue(30, "그래픽", "2017");
+		
+		dataset1.addValue(listChart3.get("사무"), "사무", "2018");
+		dataset1.addValue(listChart3.get("게임"), "게임", "2018");
+		dataset1.addValue(listChart3.get("그래픽"), "그래픽", "2018");
 
-		return dataset;
+		return dataset1;
 	}
 
 	public static void main(String[] args) throws Exception {
