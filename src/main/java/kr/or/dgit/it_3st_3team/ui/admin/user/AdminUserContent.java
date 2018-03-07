@@ -31,6 +31,7 @@ public class AdminUserContent extends JPanel implements ActionListener {
 
 		pInputArea = new AdminUserRegister();
 		pInputArea.setBounds(12, 10, 1156, 230);
+		pInputArea.setParent(this);
 		add(pInputArea);
 
 		AdminUserSearch pSearch = new AdminUserSearch();
@@ -41,7 +42,7 @@ public class AdminUserContent extends JPanel implements ActionListener {
 		pList = new AdminUserList();
 		pList.setBounds(12, 310, 1156, 530);
 		add(pList);
-		
+
 		JPopupMenu menu = new JPopupMenu();
 		modifyMenu = new JMenuItem("     수정   ");
 		deleteMenu = new JMenuItem("     삭제   ");
@@ -50,11 +51,15 @@ public class AdminUserContent extends JPanel implements ActionListener {
 		menu.add(modifyMenu);
 		menu.add(deleteMenu);
 		pList.setPopupMenu(menu);
-		
+
+		reFreshUserList();
+	}
+
+	public void reFreshUserList() {
 		List<User> userList = UserService.getInstance().listUserAll();
 		pList.loadTableDatas(userList);
 	}
-	
+
 	public void setListBySearchData(List<User> searchData) {
 		pList.loadTableDatas(searchData);
 	}
@@ -70,7 +75,7 @@ public class AdminUserContent extends JPanel implements ActionListener {
 
 	private void actionPerformedBtnDeleteMenu(ActionEvent e) {
 		int no = pList.getSelectedNo();
-		
+
 		int res = JOptionPane.showConfirmDialog(null, "사용자를 삭제하시겠습니까?", "사용자 삭제", JOptionPane.OK_CANCEL_OPTION);
 		if (res == JOptionPane.OK_OPTION) {
 			int result = UserService.getInstance().removeUser(new User(no));
@@ -78,14 +83,15 @@ public class AdminUserContent extends JPanel implements ActionListener {
 				JOptionPane.showMessageDialog(null, "사용자를 삭제하지 못했습니다.");
 				return;
 			}
-			pList.removeRow(pList.getSelectedRow());
+			reFreshUserList();
+			pInputArea.resetData();
 			JOptionPane.showMessageDialog(null, "사용자를 삭제하였습니다.");
 		}
 	}
 
 	private void actionPerformedBtnModifyMenu(ActionEvent e) {
 		int no = pList.getSelectedNo();
-		
+
 		User user = UserService.getInstance().findUserByNo(new User(no));
 		pInputArea.setUserData(user);
 	}

@@ -19,6 +19,9 @@ import java.awt.Color;
 @SuppressWarnings("serial")
 public class CalenderTfComp extends JPanel {
 
+	private JDatePanelImpl datePanel;
+	private JDatePickerImpl datePicker;
+
 	public CalenderTfComp(String lblTitle) {
 		initComponents();
 	}
@@ -29,7 +32,7 @@ public class CalenderTfComp extends JPanel {
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 
 		JPanel pStartdate = new JPanel();
-		pStartdate.setBackground(new Color(255, 255, 255));
+	
 		add(pStartdate);
 		
 		UtilDateModel model = new UtilDateModel();
@@ -38,8 +41,8 @@ public class CalenderTfComp extends JPanel {
 		pro1.put("text.month", "Month");
 		pro1.put("text.year", "Year");
 
-		JDatePanelImpl datePanel = new JDatePanelImpl(model, pro1);
-		JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
+		datePanel = new JDatePanelImpl(model, pro1);
+		datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
 		datePicker.getJFormattedTextField().setBackground(new Color(255, 255, 255));
 		SpringLayout springLayout = (SpringLayout) datePicker.getLayout();
 		springLayout.putConstraint(SpringLayout.NORTH, datePicker.getJFormattedTextField(), 0, SpringLayout.NORTH,
@@ -68,4 +71,18 @@ public class CalenderTfComp extends JPanel {
 		}
 
 	}
+
+	public String getDate() {
+		return datePicker.getJFormattedTextField().getText();
+	}
+
+	
+	public void setDate(String date) {
+		datePicker.getJFormattedTextField().setText(date);
+	}
+	
+	
+
+	
+	
 }

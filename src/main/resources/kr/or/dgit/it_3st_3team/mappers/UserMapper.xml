@@ -102,6 +102,7 @@
 	<select id="selectUserBySearch" parameterType="map" resultMap="UserWithAdminResult">
 		<include refid="selectWithAdminSql" />
 		<include refid="whereSearchSql" />
+		order by u_no desc
 	</select>
 	
 	<select id="selectUserByFindId" parameterType="User" resultMap="UserBasedResult">
