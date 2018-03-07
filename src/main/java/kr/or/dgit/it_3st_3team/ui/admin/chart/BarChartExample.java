@@ -66,6 +66,8 @@ public class BarChartExample extends JFrame {
 		maps1.put("adminName", "영업1");
 		maps1.put("date", "2016");
 		Map<String, Integer> listChart1 = saleOrder.selectSaleOrderBySwgType(maps1);
+		System.out.println(listChart1);
+		
 		
 		Map<String, String> maps2 = new HashMap<>();
 		maps2.put("adminName", "영업1");

@@ -60,7 +60,7 @@
 	join admin as ad on so.adm_no=ad.adm_no
 	</sql>
 	
-	<select id="test11" parameterType="" resultMap="">
+	<!-- <select id="test11" parameterType="" resultMap="">
 		select t.sg_name, sum(ord_quantity)
 		from sale_order as so 
 		     right join (select sw.*, sg_name from software sw right join software_group sg  on sg.sg_no=sw.sg_no) as t on so.sw_no = t.sw_no
@@ -73,7 +73,7 @@
 		from sale_order so join admin ad on so.adm_no = ad.adm_no
 		where ad.adm_name = #{}
 		      and so.ord_datetime like #{}
-	</select>
+	</select> -->
 	
 	<!-- SaleOrder 주문 삭제 -->
 	<sql id="deleteSql">
