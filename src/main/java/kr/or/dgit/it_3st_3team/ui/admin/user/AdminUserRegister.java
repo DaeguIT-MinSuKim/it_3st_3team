@@ -99,7 +99,7 @@ public class AdminUserRegister extends JPanel implements ActionListener {
 		pInfo.add(pUserAdmin);
 
 		// 담당자 콤보박스에 데이터 넣기
-		List<Admin> aList = AdminService.getInstance().selectAdminAll();
+		List<Admin> aList = AdminService.getInstance().listAdminAll();
 		Admin[] arrAdmin = aList.toArray(new Admin[aList.size()]);
 		pUserAdmin.loadData(arrAdmin);
 
@@ -184,7 +184,7 @@ public class AdminUserRegister extends JPanel implements ActionListener {
 		if (pUserPwdChk.isVisible() && pUserPwdChk.isTfEmpty("비밀번호를 한번 더 입력해주세요.")) {
 			return;
 		}
-		if (!CommonUtil.getInstance().checkPwd(pUserPwd.getPwdField(), pUserPwd.getPwdField())) {
+		if (!CommonUtil.getInstance().checkPwd(pUserPwd.getPwdField(), pUserPwdChk.getPwdField())) {
 			JOptionPane.showMessageDialog(null, "비밀번호가 다릅니다.");
 			pUserPwd.setTfText("");
 			pUserPwd.requestTfFocus();
@@ -212,10 +212,9 @@ public class AdminUserRegister extends JPanel implements ActionListener {
 			pUserPhone.requestTfFocus();
 			return;
 		}
-		System.out.println(phone);
+		
 		phone = CommonUtil.getInstance().phoneNumberHyphenAdd(phone, false);
 		pUserPhone.setTfText(phone);
-		System.out.println(phone);
 		
 		String id = pUserId.getTfText().trim();
 		String pwd = pUserPwd.getTfText().trim();

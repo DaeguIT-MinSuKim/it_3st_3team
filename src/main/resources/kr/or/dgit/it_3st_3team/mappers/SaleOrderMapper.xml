@@ -47,23 +47,33 @@
 	join user as cu on sp.pc_no=cu.u_no
 	</sql>
 	
-	<!-- count -->
-	<sql id="count">
-	select sum(ord_quantity) as cnt
+	<!-- 차트 품목별 갯수 -->
+	<sql id="selectChartByType">
+	select ord_quantity, 
+	sum(if(sg.sg_name='게임',ord_quantity,0))as '게임',
+	sum(if(sg.sg_name='사무',ord_quantity,0))as '사무',
+	sum(if(sg.sg_name='그래픽',ord_quantity,0))as '그래픽',
+	sum(ord_quantity) as '합계'
 	from sale_order as so 
 	join software as sp on so.sw_no=sp.sw_no
 	join software_group as sg on sp.sg_no=sg.sg_no
 	join admin as ad on so.adm_no=ad.adm_no
-	join user as us on so.u_no=us.u_no
-	join user as cu on sp.pc_no=cu.u_no
-	where us.u_group = 'CUSTOMER'
-	and ad.adm_name = '영업1';
 	</sql>
 	
-	<!-- SaleOrder 보고서 관리자 조건검색 -->
-	<sql id="selectReportSql">
-	
-	</sql>
+	<select id="test11" parameterType="" resultMap="">
+		select t.sg_name, sum(ord_quantity)
+		from sale_order as so 
+		     right join (select sw.*, sg_name from software sw right join software_group sg  on sg.sg_no=sw.sg_no) as t on so.sw_no = t.sw_no
+		     left join admin ad on so.adm_no = ad.adm_no
+		where ad.adm_name = #{adminName}
+		      and so.ord_datetime like #{}
+		group by t.sg_name
+		union
+		select '총합', sum(ord_quantity)
+		from sale_order so join admin ad on so.adm_no = ad.adm_no
+		where ad.adm_name = #{}
+		      and so.ord_datetime like #{}
+	</select>
 	
 	<!-- SaleOrder 주문 삭제 -->
 	<sql id="deleteSql">
@@ -108,6 +118,19 @@
 		</where>
 	</sql>
 	
+	
+	<!-- 차트 품목별 갯수  -->
+	<sql id="whereSwNameSqlChart">
+		<where>
+			<if test="adminName != null" >
+				adm_name = #{adminName}
+			</if>
+			<if test="date != null">
+				and ord_datetime like CONCAT(#{date},"%")
+			</if>	
+		</where>
+	</sql>
+	
 	<select id="selectSaleOrderByNo" parameterType="SaleOrder" resultMap="selectSaleOrderWithAll">
 		<include refid="selectParameterSql"/>
 		<include refid="whereSql"/>
@@ -138,8 +161,10 @@
 		<include refid="whereSql"/>
 	</delete>
 
-	<select id="sumCount" resultType="int">
-		<include refid="count"/>
+	<!-- 차트 품목별 갯수 -->
+	<select id="selectSaleOrderBySwgType" parameterType="map" resultType="map">
+		<include refid="selectChartByType"/>
+		<include refid="whereSwNameSqlChart"/>
 	</select>
 
 </mapper>
