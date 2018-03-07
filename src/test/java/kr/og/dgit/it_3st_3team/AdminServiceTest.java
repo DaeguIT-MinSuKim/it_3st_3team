@@ -46,4 +46,15 @@ public class AdminServiceTest {
 		}
 	}
 
+	@Test
+	public void test3FindAdminById() {
+		Admin admin = new Admin();
+		admin.setAdminId("admin1");
+		
+		Admin findAdmin = service.findAdminById(admin);
+		System.out.println(findAdmin);
+		
+		assertNotNull(findAdmin);
+		assertEquals(admin.getAdminId(), findAdmin.getAdminId());
+	}
 }

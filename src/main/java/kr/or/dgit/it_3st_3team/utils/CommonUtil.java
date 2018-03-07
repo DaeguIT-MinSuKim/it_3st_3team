@@ -47,7 +47,7 @@ public class CommonUtil {
 		} else if (num.length() == 8) {
 			formatNum = num.replaceAll("(\\d{4})(\\d{4})", "$1-$2");
 		} else {
-			if (num.indexOf("02") == 0) {
+			if (num.length() == 9) {
 				if (mask) {
 					formatNum = num.replaceAll("(\\d{2})(\\d{3,4})(\\d{4})", "$1-****-$3");
 				} else {

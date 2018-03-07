@@ -1,9 +1,9 @@
 package kr.or.dgit.it_3st_3team.ui.admin.management;
 
-import javax.swing.JPanel;
-
-import kr.or.dgit.it_3st_3team.ui.component.PagingComp;
 import java.awt.Color;
+
+import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
 
 @SuppressWarnings("serial")
 public class AdminManagementContent extends JPanel {
@@ -14,28 +14,22 @@ public class AdminManagementContent extends JPanel {
 
 	private void initComponents() {
 		setLayout(null);
+		setBounds(0, 0, 1180, 850);
 
 		AdminManagementRegister pInputArea = new AdminManagementRegister();
-		pInputArea.setBackground(Color.WHITE);
-		pInputArea.setBounds(0, 0, 1186, 263);
+		//pInputArea.setBorder(new LineBorder(Color.DARK_GRAY, 2, true));
+		pInputArea.setBounds(10, 10, 1160, 235);
 		add(pInputArea);
 		pInputArea.setLayout(null);
 
 		AdminManagementSearch pSearchArea = new AdminManagementSearch();
-		pSearchArea.setBackground(Color.WHITE);
-		pSearchArea.setBounds(0, 260, 1186, 50);
+		pSearchArea.setBounds(10, 250, 1158, 50);
 		add(pSearchArea);
 		pSearchArea.setLayout(null);
 
 		JPanel pDataArea = new JPanel();
-		pDataArea.setBackground(Color.WHITE);
-		pDataArea.setBounds(0, 309, 1186, 512);
+		pDataArea.setBounds(10, 310, 1158, 530);
 		add(pDataArea);
-
-		PagingComp pPaging = new PagingComp();
-		pPaging.setBackground(Color.WHITE);
-		pPaging.setBounds(0, 822, 1186, 44);
-		add(pPaging);
 	}
 
 }

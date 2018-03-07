@@ -48,6 +48,8 @@ public class AdminUserRegister extends JPanel implements ActionListener {
 	private LblCmbStringComp pUserGroup;
 	private ImageComp pImgArea;
 	private JButton btnCancel;
+	
+	private AdminUserContent parent;
 
 	public AdminUserRegister() {
 		initComponents();
@@ -189,6 +191,14 @@ public class AdminUserRegister extends JPanel implements ActionListener {
 			return;
 		}
 
+		String email = pUserEmail.getTfText().trim();
+		if (!Pattern.matches(DefineUtil.PATTERN_EMAIL, email)) {
+			JOptionPane.showMessageDialog(null, "이메일 형식이 아닙니다. ex) aaa@test.com");
+			pUserEmail.setTfText("");
+			pUserEmail.requestTfFocus();
+			return;
+		}
+		
 		if (pUserName.isTfEmpty("상호명을 입력해주세요.")) {
 			return;
 		}
@@ -202,16 +212,11 @@ public class AdminUserRegister extends JPanel implements ActionListener {
 			pUserPhone.requestTfFocus();
 			return;
 		}
+		System.out.println(phone);
 		phone = CommonUtil.getInstance().phoneNumberHyphenAdd(phone, false);
-
-		String email = pUserEmail.getTfText().trim();
-		if (!Pattern.matches(DefineUtil.PATTERN_EMAIL, email)) {
-			JOptionPane.showMessageDialog(null, "이메일 형식이 아닙니다. ex) aaa@test.com");
-			pUserEmail.setTfText("");
-			pUserEmail.requestTfFocus();
-			return;
-		}
-
+		pUserPhone.setTfText(phone);
+		System.out.println(phone);
+		
 		String id = pUserId.getTfText().trim();
 		String pwd = pUserPwd.getTfText().trim();
 		String name = pUserName.getTfText().trim();
@@ -270,10 +275,12 @@ public class AdminUserRegister extends JPanel implements ActionListener {
 		}
 		JOptionPane.showMessageDialog(null, String.format("%s이 완료되었습니다.", commandMessage));
 
+		parent.reFreshUserList();
 		resetData();
 	}
 
-	private void resetData() {
+	public void resetData() {
+		pImgArea.setImageIcon("nobody.png");
 		pUserId.setTfText("");
 		pUserId.setTfEditable(true);
 		checkDupId = false;
@@ -294,13 +301,16 @@ public class AdminUserRegister extends JPanel implements ActionListener {
 	}
 
 	public void setUserData(User user) {
+		if (user.getAvatar() != null && !user.getAvatar().equals("")) {
+			pImgArea.setImageIcon(user.getAvatar());
+		} else {
+			pImgArea.setImageIcon("nobody.png");
+		}
 		pUserId.setTfText(user.getUserId());
 		pUserId.setTfEditable(false);
 		checkDupId = true;
 		btnDuplId.setVisible(false);
-		// pUserPwd.setTfText(user.getUserPwd());
 		pUserPwd.setVisible(false);
-		// pUserPwdChk.setTfText(user.getUserPwd());
 		pUserPwdChk.setVisible(false);
 		pUserName.setTfText(user.getName());
 		pUserPhone.setTfText(user.getPhone().toString());
@@ -349,5 +359,9 @@ public class AdminUserRegister extends JPanel implements ActionListener {
 
 	protected void actionPerformedBtnCancel(ActionEvent e) {
 		resetData();
+	}
+	
+	public void setParent(AdminUserContent adminUserContent) {
+		this.parent = adminUserContent;
 	}
 }
