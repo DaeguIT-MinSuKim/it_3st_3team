@@ -49,7 +49,7 @@ public class AdminOrderSearch extends JPanel {
 		pSearchSoftwareSort.loadData(sgDatas);
 		pOrderSearch.add(pSearchSoftwareSort);
 		
-		List<Admin> adli = AdminService.getInstance().selectAdminAll();
+		List<Admin> adli = AdminService.getInstance().listAdminAll();
 		Admin[] adDatas = adli.toArray(new Admin[adli.size()]);
 
 		pAdmin = new CmbAdminComp();

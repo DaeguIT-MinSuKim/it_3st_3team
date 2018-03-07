@@ -109,7 +109,7 @@ public class AdminChartStatusSearch extends JPanel {
 	public void setCmbAdGroup() {
 		// 관리자 콤보박스 넣는 코드
 		List<Admin> ad = new ArrayList<>();
-		ad = adService.selectAdminAll();
+		ad = adService.listAdminAll();
 		ad.add(0, new Admin("관리자"));
 		Admin[] items = new Admin[ad.size()];
 		ad.toArray(items);
