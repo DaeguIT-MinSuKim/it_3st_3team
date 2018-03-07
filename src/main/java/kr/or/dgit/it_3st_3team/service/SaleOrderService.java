@@ -71,13 +71,11 @@ public class SaleOrderService {
 		return res;
 	}
 	
-	public int sumCount() {
-		log.debug("sumCount()");
-		int res = -1;
+	// 차트
+	public Map<String, Integer> selectSaleOrderBySwgType(Map<String, String> map) {
+		log.debug("selectSaleOrderBySwgType()");
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
-			res = sqlSession.selectOne(namespace + "sumCount");
-		
+			return sqlSession.selectOne(namespace + "selectSaleOrderBySwgType", map);
 		}
-		return res;
 	}
 }
