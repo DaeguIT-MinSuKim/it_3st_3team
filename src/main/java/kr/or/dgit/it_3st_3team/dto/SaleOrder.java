@@ -192,7 +192,7 @@ public class SaleOrder {
 	public Object[] toArrayAllLists() {
 		return new Object[] {
 				ordNo, user.getName(),software.getSwGroup().getSgName(),software.getSwName(),
-				ordQuantity,String.format("%,d", ordSupplyPrice),String.format("%,d",ordSellPrice),
+				ordQuantity,String.format("%,d", ordSupplyPrice),String.format("%,d",ordSellPrice+ordTax),
 				String.format("%,d", ordTax), String.format("%,d",ordSellProfit),
 				ordPayment,user.getNameCu(), dateToString(ordDatetime),admin.getAdminName()
 		};
@@ -202,7 +202,7 @@ public class SaleOrder {
 	public Object[] toArraySalesLists() {
 		return new Object[] {
 				ordNo, user.getName(),software.getSwGroup().getSgName(),software.getSwName(),
-				ordQuantity,String.format("%,d", ordSupplyPrice),String.format("%,d",ordSellPrice),
+				ordQuantity,String.format("%,d", ordSupplyPrice),String.format("%,d",ordSellPrice+ordTax),
 				String.format("%,d", ordTax), String.format("%,d",ordSellProfit),
 				ordPayment,user.getNameCu(), dateToString(ordDatetime)
 		};
@@ -212,7 +212,7 @@ public class SaleOrder {
 	public Object[] toArrayCustomerLists() {
 		return new Object[] {
 				ordNo,software.getSwGroup().getSgName(),software.getSwName(),
-				ordQuantity,String.format("%,d", ordSupplyPrice),String.format("%,d",ordSellPrice),
+				ordQuantity,String.format("%,d", ordSupplyPrice),String.format("%,d",ordSellPrice+ordTax),
 				String.format("%,d", ordTax), String.format("%,d",ordSellProfit),
 				ordPayment,user.getNameCu(), dateToString(ordDatetime)
 		};
@@ -222,7 +222,7 @@ public class SaleOrder {
 		public Object[] toArrayCompanyLists() {
 			return new Object[] {
 					ordNo,user.getName(),software.getSwGroup().getSgName(),software.getSwName(),
-					ordQuantity,String.format("%,d", ordSupplyPrice),String.format("%,d",ordSellPrice),
+					ordQuantity,String.format("%,d", ordSupplyPrice),String.format("%,d",ordSellPrice+ordTax),
 					String.format("%,d", ordTax), String.format("%,d",ordSellProfit),
 					ordPayment, dateToString(ordDatetime)
 			};
