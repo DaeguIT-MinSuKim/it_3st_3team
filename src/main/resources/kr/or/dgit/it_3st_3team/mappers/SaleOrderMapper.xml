@@ -75,6 +75,20 @@
 		      and so.ord_datetime like #{}
 	</select> -->
 	
+	<!-- 품목종류 자동 업데이트 차트 -->
+	<select id="">
+		
+	select t.sg_name, ifnull(sum(ord_quantity),0)
+	from sale_order as so 
+    right join (select sw.*, sg_name from software sw right join software_group sg  on sg.sg_no=sw.sg_no) as t on so.sw_no = t.sw_no
+    left join admin ad on so.adm_no = ad.adm_no
+	group by t.sg_name
+	union
+	select '총합', sum(ord_quantity)
+	from sale_order so join admin ad on so.adm_no = ad.adm_no
+		
+	</select>
+	
 	<!-- SaleOrder 주문 삭제 -->
 	<sql id="deleteSql">
 		delete from sale_order
