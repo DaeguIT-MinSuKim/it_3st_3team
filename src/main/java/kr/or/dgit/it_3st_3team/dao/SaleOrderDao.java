@@ -17,7 +17,7 @@ public interface SaleOrderDao {
 	List<SaleOrder> selectSaleOrderByAll();
 	// 소프트웨어 주문 관리
 
-	int updateOrderManagement(SaleOrder saleOrder);
+	int updateOrderManagementNo(SaleOrder saleOrder);
 
 	int deleteSaleOrderByNo(SaleOrder ordNo);
 

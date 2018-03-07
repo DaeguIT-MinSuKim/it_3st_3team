@@ -19,6 +19,10 @@ public class User {
 
 	public User() {
 	}
+	
+	
+
+
 
 	public User(int userNo) {
 		this.userNo = userNo;

@@ -33,8 +33,7 @@ public class AdminOrder extends JPanel implements ActionListener {
 	private JMenuItem modifyMenu;
 	private JMenuItem deleteMenu;
 
-	private JButton btnRewrite;
-	private JButton btnCancel;
+	
 	public AdminOrder() {
 		this.soService = SaleOrderService.getInstance();
 		initComponents();
@@ -42,23 +41,23 @@ public class AdminOrder extends JPanel implements ActionListener {
 	private void initComponents() {
 		setBackground(new Color(240, 240, 240));
 		setLayout(null);
-		setBounds(0, 0, 1200, 850);
+		setBounds(0, 0, 1187, 850);
 		
 		pOrderRegi = new AdminOrderRegister();
 		pOrderRegi.setBackground(new Color(240, 240, 240));
-		pOrderRegi.setBounds(0, 0, 962, 176);
+		pOrderRegi.setBounds(0, 0, 1187, 179);
 		pOrderRegi.setAdOrder(this);
 		add(pOrderRegi);
 		pOrderRegi.setLayout(null);
 		
 		pOrderSearch = new AdminOrderSearch();
 		pOrderSearch.setBackground(new Color(240, 240, 240));
-		pOrderSearch.setBounds(0, 176, 1060, 50);
+		pOrderSearch.setBounds(0, 180, 1060, 50);
 		add(pOrderSearch);
 		
 		pOrderTable = new AdminOrderManagementLists();
 		pOrderTable.loadTableDatas(soService.findSaleOrderByAll());
-		pOrderTable.setBounds(0, 226, 1200, 585);
+		pOrderTable.setBounds(0, 230, 1187, 630);
 		add(pOrderTable);
 		JPopupMenu menu = new JPopupMenu();
 		modifyMenu = new JMenuItem("     수정   ");
@@ -75,16 +74,10 @@ public class AdminOrder extends JPanel implements ActionListener {
 		
 		btnSearch = new JButton("검색");
 		btnSearch.addActionListener(this);
-		btnSearch.setBounds(1072, 193, 97, 23);
+		btnSearch.setBounds(1072, 189, 97, 23);
 		add(btnSearch);
 		
-		btnRewrite = new JButton("수정");
-		btnRewrite.setBounds(981, 143, 97, 23);
-		add(btnRewrite);
 		
-		btnCancel = new JButton("취소");
-		btnCancel.setBounds(1090, 143, 97, 23);
-		add(btnCancel);
 	
 	}
 	public void actionPerformed(ActionEvent e) {
@@ -125,6 +118,7 @@ public class AdminOrder extends JPanel implements ActionListener {
 		SoftwareGroup swg =  pOrderSearch.getSelectedSoftwareGrp();
 		Admin ad = pOrderSearch.getSelectedAdmin();
 		String searchBy = pOrderSearch.getSelectedString();
+		
 		if(swg.getSgName().equals("분류")) {
 			swg.setSgName("");
 		}if(ad.getAdminName().equals("관리자")) {
@@ -152,12 +146,7 @@ public class AdminOrder extends JPanel implements ActionListener {
 		pOrderTable.loadTableDatas(soService.findSaleOrderWithAllBySearch(map));
 		add(pOrderTable);
 	}
-	public String getBtnRewrite() {
-		return btnRewrite.getText();
-	}
-	public void setBtnRewrite(String str) {
-		this.btnRewrite.setText(str);
-	}
+	
 	
 	
 }

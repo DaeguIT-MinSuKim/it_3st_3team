@@ -53,13 +53,17 @@ public class SaleOrderService {
 	}
 
 	// 주문관리
-
-	/*
-	 * public int updateOrderManagement(SaleOrder saleOrder) {
-	 * log.debug("updateOrderManagement()"); int res=-1; try (SqlSession sqlSession
-	 * = MyBatisSqlSessionFactory.openSession();) { res= sqlSession.update(namespace
-	 * + "updateOrderManagement", saleOrder); sqlSession.commit(); } return res; }
-	 */
+	public int updateOrderManagementNo(SaleOrder saleOrder) {
+		log.debug("updateOrderManagementNo()");
+		 int res=-1;
+		 try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();){
+			 res= sqlSession.update(namespace+ "updateOrderManagementNo", saleOrder);
+			 sqlSession.commit();
+			 }
+		 return res;
+	}
+	
+	 
 
 	public int deleteSaleOrderByNo(SaleOrder ordNo) {
 		log.debug("deleteSaleOrderByNo()");

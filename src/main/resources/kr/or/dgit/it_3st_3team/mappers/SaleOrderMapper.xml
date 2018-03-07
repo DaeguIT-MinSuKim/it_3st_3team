@@ -127,6 +127,11 @@
 		order by ord_datetime desc
 	</select>
 	
+	<!-- 수정 -->
+	<update id="updateOrderManagementNo" parameterType="SaleOrder">
+		
+	</update>
+	
 	<!-- 삭제 -->
 	<delete id="deleteSaleOrderByNo" parameterType="SaleOrder">
 		<include refid="deleteSql"/>

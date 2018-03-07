@@ -7,6 +7,7 @@
 		<result property="swSupplyPrice" column="sw_supply_price"/>
 		<result property="swSellPrice" column="sw_sell_price"/>
 		<result property="swQuantity" column="sw_quantity"/>
+		<result property="swCoverImg" column="sw_cover_img"/>
 	</resultMap>
 	
 	<resultMap type="Software" id="SoftwarewithGroupResult" extends="SoftwareBasedResult">
@@ -26,7 +27,7 @@
 	</sql>
 	
 	<sql id="selectWithGroupwithUserSql">
-		select sw_no, sw_name, sw_supply_price, sw_sell_price, sw_quantity, g.sg_no, s.pc_no, g.sg_name, p.u_name from software s 
+		select sw_no, sw_name, sw_supply_price, sw_sell_price, sw_quantity, sw_cover_img,g.sg_no, s.pc_no, g.sg_name, p.u_name from software s 
 		join software_group g on s.sg_no = g.sg_no join `user` p on s.pc_no = p.u_no
 	</sql>
 	
@@ -83,13 +84,13 @@
 	</sql>
 	<!-- software 등록 -->
 	<sql id="insertSql">
-		insert into software(sw_no,sg_no,sw_name,sw_supply_price,sw_sell_price,sw_quantity,pc_no) 
-		values(#{swNo},#{swGroup.sgNo},#{swName},#{swSupplyPrice},#{swSellPrice},#{swQuantity},#{userNo.userNo})
+		insert into software(sw_no,sg_no,sw_name,sw_supply_price,sw_sell_price,sw_quantity,pc_no,sw_cover_img) 
+		values(#{swNo},#{swGroup.sgNo},#{swName},#{swSupplyPrice},#{swSellPrice},#{swQuantity},#{userNo.userNo},#{swCoverImg})
 	</sql>
 	
 	<!-- software 수정  -->
 	<sql id="updateSql">
-		update software set sg_no=#{swGroup.sgNo}, sw_name=#{swName}, sw_quantity=#{swQuantity}, sw_supply_price=#{swSupplyPrice}, sw_sell_price=#{swSellPrice}, pc_no=#{userNo.userNo}
+		update software set sg_no=#{swGroup.sgNo}, sw_name=#{swName}, sw_quantity=#{swQuantity}, sw_supply_price=#{swSupplyPrice}, sw_sell_price=#{swSellPrice}, pc_no=#{userNo.userNo},sw_cover_img=#{swCoverImg}
 	</sql>
 
 	<!-- software 삭제 -->

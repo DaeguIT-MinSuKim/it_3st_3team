@@ -111,7 +111,7 @@ public class AdminSoftwareGroupTable extends AbtractTableComp<SoftwareGroup> {
 	@Override
 	public void setTableAlignWidth() {
 		setTableCellAlign(SwingConstants.CENTER, 0);
-		setTableRowHeight(30);
+		setTableRowHeight(40);
 		setTableCellWidth(200);
 
 	}

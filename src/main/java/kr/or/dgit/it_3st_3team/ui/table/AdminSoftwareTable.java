@@ -76,12 +76,10 @@ public class AdminSoftwareTable extends AbtractTableComp<Software> {
 				}
 			}
 			if (e.getActionCommand().equals("수정")) {
-				int result = JOptionPane.showConfirmDialog(null, "수정하시겠습니까?", "소프트웨어 수정", JOptionPane.OK_CANCEL_OPTION);
-				if (result == 0) {
 					actionUpdateItem();
-				}
 			}
 		}
+		
 
 		private void actionDeleteItem() {
 			String val = table.getValueAt(table.getSelectedRow(), 2).toString();
@@ -92,10 +90,10 @@ public class AdminSoftwareTable extends AbtractTableComp<Software> {
 		}
 
 		private void actionUpdateItem() {
-			ac.setBtnRegister("수정");
+			
 			int no = getSelectedNo();
 			Software so = SoftwareService.getInstance().selectSoftwareByNo(new Software(no));
-			ac.getpRegister().setSoftwareData(so);
+			ac.setDate(so);
 		}
 	};
 
@@ -104,7 +102,7 @@ public class AdminSoftwareTable extends AbtractTableComp<Software> {
 	@Override
 	public void setTableAlignWidth() {
 		setTableCellAlign(SwingConstants.CENTER, 0, 1, 2, 3, 4, 5, 6);
-		setTableRowHeight(30);
+		setTableRowHeight(40);
 		setTableCellWidth(100, 100, 200, 100, 150, 150, 200);
 	}
 

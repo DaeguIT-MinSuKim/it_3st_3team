@@ -27,7 +27,7 @@ public class CalenderTfComp extends JPanel {
 	}
 
 	private void initComponents() {
-		setBackground(new Color(255, 255, 255));
+		
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 

@@ -1,19 +1,26 @@
 package kr.or.dgit.it_3st_3team.ui.admin.software;
 
-import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
-import kr.or.dgit.it_3st_3team.ui.component.CmbStringComp;
-import kr.or.dgit.it_3st_3team.ui.component.TfBtnSearchComp;
 import javax.swing.JTextField;
 
+import kr.or.dgit.it_3st_3team.dto.Software;
+import kr.or.dgit.it_3st_3team.service.SoftwareService;
+import kr.or.dgit.it_3st_3team.ui.component.CmbStringComp;
+
 @SuppressWarnings("serial")
-public class AdminSoftwareSearch extends JPanel {
+public class AdminSoftwareSearch extends JPanel implements ActionListener{
 	private JTextField tfSearch;
 	private CmbStringComp pCmbSearch;
+	private JButton btnSearch;
+	private AdminSoftwareContent parent;
 
 	public AdminSoftwareSearch() {
 
@@ -21,12 +28,10 @@ public class AdminSoftwareSearch extends JPanel {
 	}
 
 	private void initComponents() {
-		setBackground(Color.WHITE);
 		setLayout(null);
 
 		JPanel pSWSearch = new JPanel();
-		pSWSearch.setBackground(new Color(244, 244, 244));
-		pSWSearch.setBounds(0, 0, 939, 42);
+		pSWSearch.setBounds(0, 0, 1120, 42);
 		add(pSWSearch);
 		pSWSearch.setLayout(null);
 
@@ -40,6 +45,11 @@ public class AdminSoftwareSearch extends JPanel {
 		tfSearch.setBounds(312, 7, 615, 27);
 		pSWSearch.add(tfSearch);
 		tfSearch.setColumns(10);
+		
+		btnSearch = new JButton("검색");
+		btnSearch.setBounds(980, 9, 97, 23);
+		pSWSearch.add(btnSearch);
+		btnSearch.addActionListener(this);
 	}
 
 	public String getTfSearch() {
@@ -60,17 +70,47 @@ public class AdminSoftwareSearch extends JPanel {
 		return pCmbSearch;
 	}
 
-
-
-	public boolean isTfEmpty(String message) {
-		if (tfSearch.getText().trim().isEmpty()) {
-			JOptionPane.showMessageDialog(null, "검색어를 입력해주세요");
-			tfSearch.setText("");
-			tfSearch.requestFocus();
-			return true;
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnSearch) {
+			actionPerformedBtnSearch(e);
 		}
-		return false;
+		
+	}
+	
+
+	protected void actionPerformedBtnSearch(ActionEvent e) {
+		Map<String, String> map = new HashMap<>();
+		tfSearch.setText(tfSearch.getText().trim());
+		
+		
+		if(!tfSearch.getText().isEmpty()) {
+			String item = (String) pCmbSearch.getCmbItem();
+			switch(item) {
+			case "공급회사명" :
+				map.put("searchBy", "company");
+				break;
+			case "품목명" : 
+				map.put("searchBy", "swName");
+				break;
+			case "분류" :
+				map.put("searchBy", "swGroup");
+				break;
+			default: 
+				JOptionPane.showMessageDialog(null, "그런건 없습니다.");
+				return;
+			}
+		}
+		map.put("searchText", tfSearch.getText());
+		List<Software> li = SoftwareService.getInstance().selectSoftwareBySearch(map);
+		parent.setListBySearchData(li);
+
 	}
 
+
+	public void setParent(AdminSoftwareContent parent) {
+		this.parent = parent;
+	}
+
+	
 	
 }
