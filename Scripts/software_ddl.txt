@@ -85,7 +85,7 @@ CREATE TABLE `software_project`.`sale_order` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='판매현황';
 
 
-CREATE TABLE `address` (
+CREATE TABLE `software_project`.`address` (
   `zipcode` char(5) DEFAULT NULL COMMENT '우편번호',
   `sido` varchar(20) DEFAULT NULL COMMENT '시도',
   `sigungu` varchar(20) DEFAULT NULL COMMENT '시군구',
@@ -97,7 +97,7 @@ CREATE TABLE `address` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='우편번호';
 
 
-load data local infile 'C:/Users/SCARLETT/Desktop/3조 프로젝트/zipcode_DB/울산광역시.txt'
+load data local infile 'G:\Programming\workspaces\workspace_java\it_3st_3team\zipcode_DB\대구광역시.txt'
 into table  address
 character set 'euckr'
 fields terminated by '|'

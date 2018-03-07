@@ -14,20 +14,7 @@
 	<sql id="selectSql">
 		select zipcode,sido,sigungu,doro,building1,building2 from Address
 	</sql>
-	
-<!-- 	<sql id="selectSidoSql">
-		select sido from Address 
-	</sql>
-	
-	<sql id="selectSigunguSql">
-		select sigungu from Address
-	</sql> -->
-	
-	
 
-	
-	
-	
 	<sql id="whereSql">
 		<where>
 			<if test="zipcode != null">
