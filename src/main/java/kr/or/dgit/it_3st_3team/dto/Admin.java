@@ -6,6 +6,7 @@ public class Admin {
 	private String adminName;
 	private String adminPwd;
 	private PhoneNumber phone;
+	private String avatar;
 	private AdminGroup adminGroup;
 
 	public Admin() {
@@ -24,13 +25,14 @@ public class Admin {
 		this.adminPwd = adminPwd;
 	}
 
-	public Admin(int adminNo, String adminId, String adminName, String adminPwd, PhoneNumber phone,
+	public Admin(int adminNo, String adminId, String adminName, String adminPwd, PhoneNumber phone, String avatar,
 			AdminGroup adminGroup) {
 		this.adminNo = adminNo;
 		this.adminId = adminId;
 		this.adminName = adminName;
 		this.adminPwd = adminPwd;
 		this.phone = phone;
+		this.avatar = avatar;
 		this.adminGroup = adminGroup;
 	}
 
@@ -74,6 +76,14 @@ public class Admin {
 		this.phone = phone;
 	}
 
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
+
 	public AdminGroup getAdminGroup() {
 		return adminGroup;
 	}
@@ -107,5 +117,9 @@ public class Admin {
 	@Override
 	public String toString() {
 		return String.format("%s", adminName);
+	}
+	
+	public Object[] toArray() {
+		return new Object[] {adminNo, adminId, adminName, phone, adminGroup.getAgName()};
 	}
 }

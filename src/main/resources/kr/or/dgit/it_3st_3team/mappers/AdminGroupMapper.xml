@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.dgit.it_3st_3team.dao.AdminGroupDao">
+	<resultMap type="AdminGroup" id="AdminGroupResult">
+		<id property="agNo" column="ag_no" />
+		<result property="agName" column="ag_name" />
+		<result property="agAuth" column="ag_auth" />
+	</resultMap>
+	
+	<sql id="selectSql">
+		select ag_no, ag_name, ag_auth from admin_group
+	</sql>
+	
+	<sql id="whereSql">
+		<where>
+			ag_no = #{agNo}
+		</where>
+	</sql>
+	
+	<!-- 전체 AdminGroup 검색 -->
+	<select id="selectAdminGroupByAll" parameterType="AdminGroup" resultMap="AdminGroupResult">
+		<include refid="selectSql" />
+	</select>
+	
+	<select id="selectAdminByNo" parameterType="AdminGroup" resultMap="AdminGroupResult">
+		<include refid="selectSql" />
+		<include refid="whereSql" />
+	</select>
+</mapper>

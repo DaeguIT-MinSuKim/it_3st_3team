@@ -13,7 +13,7 @@ import kr.or.dgit.it_3st_3team.dto.Admin;
 import kr.or.dgit.it_3st_3team.service.AdminService;
 
 public class AdminServiceTest {
-		private static AdminService service;
+	private static AdminService service;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -37,8 +37,8 @@ public class AdminServiceTest {
 	}
 
 	@Test
-	public void test2selectAdminAll() {
-		List<Admin> listad = service.selectAdminAll();
+	public void test2ListAdminAll() {
+		List<Admin> listad = service.listAdminAll();
 		System.out.println(listad);
 		assertNotNull(listad);
 		for(Admin ad : listad) {

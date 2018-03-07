@@ -12,5 +12,5 @@ public interface AdminDao {
 	
 	int insertAdmin(Admin admin);
 	int updateAdmin(Admin admin);
-	int deleteAdmin(Admin adminNo);
+	int deleteAdmin(Admin admin);
 }
