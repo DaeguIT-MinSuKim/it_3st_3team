@@ -23,6 +23,7 @@ public class SoftwareGroupUI extends JFrame {
 	private JPanel contentPane;
 	private AdminSoftwareGroupTable pSgTable;
 	private AdminSoftwareRegister parentUi;
+	private LblTfBtnSGRegisterComp pInput;
 
 	public SoftwareGroupUI() {
 		initComponents();
@@ -42,15 +43,23 @@ public class SoftwareGroupUI extends JFrame {
 		pSgTable.setBackground(new Color(240, 240, 240));
 		pSgTable.loadTableDatas(SoftwareGroupService.getInstance().selectSoftwareGroupByAll());
 		pSgTable.setBounds(12, 50, 410, 201);
+		pSgTable.setUI(this);
 		contentPane.add(pSgTable);
 
-		LblTfBtnSGRegisterComp panel_1 = new LblTfBtnSGRegisterComp("분류 명", "등록");
-		panel_1.setUI(this);
-		panel_1.setBounds(12, 10, 410, 30);
+		pInput = new LblTfBtnSGRegisterComp("분류 명", "등록");
+		pInput.setUI(this);
+		pInput.setBounds(12, 10, 410, 30);
 
-		contentPane.add(panel_1);
+		contentPane.add(pInput);
 
 	}
+	
+
+	public LblTfBtnSGRegisterComp getpInput() {
+		return pInput;
+	}
+
+	
 
 	public AdminSoftwareGroupTable getpSgTable() {
 		return pSgTable;

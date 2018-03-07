@@ -49,7 +49,7 @@ public class AdminOrderSearch extends JPanel {
 		pSearchSoftwareSort.loadData(sgDatas);
 		pOrderSearch.add(pSearchSoftwareSort);
 		
-		List<Admin> adli = AdminService.getInstance().selectAdminAll();
+		List<Admin> adli = AdminService.getInstance().listAdminAll();
 		Admin[] adDatas = adli.toArray(new Admin[adli.size()]);
 
 		pAdmin = new CmbAdminComp();
@@ -76,15 +76,15 @@ public class AdminOrderSearch extends JPanel {
 	
 	
 	public SoftwareGroup getSelectedSoftwareGrp() {
-		return (SoftwareGroup) pSearchSoftwareSort.getCmbBox();
+		return (SoftwareGroup) pSearchSoftwareSort.getCmbItem();
 	}
 	
 	public Admin getSelectedAdmin() {
-		return (Admin) pAdmin.getCmbBox();
+		return (Admin) pAdmin.getCmbItem();
 	}
 	
 	public String getSelectedString() {
-		return (String) pSortUserNameSWName.getCmbBox();
+		return (String) pSortUserNameSWName.getCmbItem();
 	}
 	
 	public String getStartDate() {

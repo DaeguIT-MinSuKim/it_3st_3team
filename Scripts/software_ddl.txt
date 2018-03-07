@@ -1,5 +1,8 @@
-set FOREIGN_key_checks = 0; /* 포린키 무시 */
+set FOREIGN_key_checks = 0; -- 포린키 무시
 
+DROP SCHEMA IF EXISTS software_project;
+
+CREATE SCHEMA software_project;
 
 use software_project;
 
@@ -16,6 +19,7 @@ CREATE TABLE `software_project`.`admin` (
   `adm_id` varchar(20) NOT NULL COMMENT '아이디',
   `adm_pwd` varchar(64) NOT NULL COMMENT '비밀번호',
   `adm_phone` varchar(14) DEFAULT NULL COMMENT '전화번호',
+  `adm_avatar` varchar(100) DEFAULT NULL COMMENT '사진',
   `ag_no` int(11) DEFAULT NULL COMMENT '관리자그룹',
   PRIMARY KEY (`adm_no`),
   KEY `FK_admin_group_TO_admin` (`ag_no`),
@@ -32,7 +36,7 @@ CREATE TABLE `software_project`.`user` (
   `u_zipcode` varchar(6) DEFAULT NULL COMMENT '우편번호',
   `u_addr1` varchar(100) DEFAULT NULL COMMENT '주소',
   `u_addr2` varchar(100) DEFAULT NULL COMMENT '상세주소',
-  `u_avatar` varchar(20) DEFAULT NULL COMMENT '사진',
+  `u_avatar` varchar(100) DEFAULT NULL COMMENT '사진',
   `u_group` enum('CUSTOMER','COMPANY') DEFAULT NULL COMMENT '사용자구분',
   `adm_no` int(11) DEFAULT NULL COMMENT '관리자',
   PRIMARY KEY (`u_no`),
@@ -54,7 +58,7 @@ CREATE TABLE `software_project`.`software` (
   `sw_quantity` int(11) DEFAULT NULL COMMENT '재고량',
   `sw_supply_price` int(11) DEFAULT NULL COMMENT '공급가격',
   `sw_sell_price` int(11) DEFAULT NULL COMMENT '판매가격',
-  `sw_cover_img` varchar(20) DEFAULT NULL COMMENT '상품표지',
+  `sw_cover_img` varchar(100) DEFAULT NULL COMMENT '상품표지',
   `pc_no` int(11) DEFAULT NULL COMMENT '공급회사',
   PRIMARY KEY (`sw_no`),
   KEY `FK_software_group_TO_software` (`sg_no`),
@@ -104,7 +108,8 @@ fields terminated by '|'
 ignore 1 lines(@zipcode,@sido,@d,@sigungu,@d,@d,@d,@d,@doro,@d,@d,@building1,@building2,@d,@d,@d,@d,@d,@d,@d,@d,@d,@d,@d,@d,@d)
 set	zipcode=@zipcode, sido=@sido, sigungu=@sigungu,doro=@doro,building1=@building1,building2=@building2;
 
+set FOREIGN_key_checks = 1; -- 포린키 설정
 
-set FOREIGN_key_checks = 1; /* 포린키 설정 */
 
 
+grant select, insert, update, delete, ALTER ROUTINE on software_project.* to 'user_software' identified by 'rootroot';

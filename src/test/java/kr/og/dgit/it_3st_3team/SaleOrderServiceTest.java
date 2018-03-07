@@ -5,6 +5,7 @@ package kr.og.dgit.it_3st_3team;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -54,42 +55,6 @@ public class SaleOrderServiceTest {
 			System.out.println(s);
 		}
 	}
-		@Test
-		public void test3FindSaleOrderWithoutadminName() {
-			Map<String, String> maps = new HashMap<>();
-			
-			maps.put("sgName", "");
-			maps.put("startDate", "");
-			maps.put("endDate", "");
-			//maps.put("searchBy", "softwarename");
-			maps.put("searchBy", "company");
-			maps.put("name", ""); 
-			//maps.put("name", "재밌는게임방");
-			//maps.put("swName", "바람의 제국");
-			List<SaleOrder> saleOrders = service.findSaleOrderWithoutadminName(maps);
-			Assert.assertNotNull(saleOrders);
-			for (SaleOrder s : saleOrders) {
-				System.out.println(s);
-			}
-
-
-	/*
-	 * @Test public void testBselectOrderManagementByNo() { SaleOrder so = new
-	 * SaleOrder(); so.setSoftwaregroup(new SoftwareGroup("게임")); so.setAdmin(new
-	 * Admin("영업1")); so.setOrdDatetime(2018/02/01); SaleOrder findso =
-	 * service.selectOrderManagementByNo(so); System.out.println(findso);
-	 * 
-	 * assertNotNull(findso); assertEquals(so.getOrdNo(), findso.getOrdNo()); } }
-	 */
-
-	/*
-	 * @Test public void testCupdateOrderManagement() { SaleOrder so = new
-	 * SaleOrder(10); so.setOrdQuantity(40); so.setOrdPayment(Payment.MOBILE);
-	 * 
-	 * int res = service.updateOrderManagement(so); assertEquals(1, res); }
-	 */
-
-	}
 	
 	@Test
 	public void test3findSaleOrderByAll() {
@@ -103,5 +68,22 @@ public class SaleOrderServiceTest {
 		int res = service.deleteSaleOrderByNo(new SaleOrder(1));
 		Assert.assertEquals(1, res);
 		System.out.println(res);
+	}
+	
+	@Test
+	public void test5SelectSaleOrderBySwgType() {
+		Map<String, String> maps = new HashMap<>();
+		
+		maps.put("adminName", "영업1");
+		maps.put("date", "2018");
+		
+		Map<String, Integer> listChart = service.selectSaleOrderBySwgType(maps);
+		Assert.assertNotNull(listChart);
+		for(Entry<String, Integer> e : listChart.entrySet()) {
+			System.out.printf("%s - %s%n", e.getKey(), e.getValue());
+		}
+		/*for(Integer c : listChart) {
+			System.out.println(c);
+		}*/
 	}
 }

@@ -13,6 +13,7 @@ public class LblCmbUserComp extends AbstractLabelComboBoxComp<User> {
 
 	@Override
 	public void loadData(User[] data) {
+		
 		dcbm = new DefaultComboBoxModel<>(data);
 		cmbBox.setModel(dcbm);
 	}

@@ -2,7 +2,9 @@ package kr.og.dgit.it_3st_3team;
 
 import static org.junit.Assert.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -19,6 +21,7 @@ import kr.or.dgit.it_3st_3team.type.UserGroup;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class UserServiceTest {
 	private static UserService service;
+	private int addUserNo;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -129,5 +132,22 @@ public class UserServiceTest {
 		
 		assertNotNull(findUser);
 		assertEquals(user.getUserId(), findUser.getUserId());
+	}
+	
+	@Test
+	public void test8FindUserBySearch() {
+		Map<String, String> map = new HashMap<>();
+		//map.put("searchBy", "id");
+		map.put("searchBy", "name");
+		//map.put("searchBy", "phone");
+		map.put("searchText", "재밌는");
+		
+		List<User> listUser = service.listUserBySearch(map);
+		System.out.println(listUser);
+		
+		assertNotNull(listUser);
+		for (User u : listUser) {
+			System.out.println(u);
+		}
 	}
 }

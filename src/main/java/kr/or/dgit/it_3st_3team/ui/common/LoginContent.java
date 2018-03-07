@@ -39,66 +39,59 @@ public class LoginContent extends JPanel implements ActionListener {
 	}
 
 	private void initComponents() {
-		setBounds(new Rectangle(0, 0, 1500, 900));
+		setBounds(0, 0, 900, 500);
 		setLayout(new BorderLayout(0, 0));
 
 		JPanel pLogin = new JPanel();
-		pLogin.setBackground(Color.WHITE);
-		pLogin.setBounds(new Rectangle(0, 0, 1500, 900));
+		pLogin.setBounds(0, 0, 900, 500);
 		add(pLogin);
 		pLogin.setLayout(null);
 
 		pID = new LblTfComp("userID");
-		pID.setFont(new Font("Gulim", Font.PLAIN, 12));
-		pID.setBounds(576, 409, 347, 51);
+		pID.setBounds(281, 154, 300, 45);
 		pLogin.add(pID);
+		pID.setFont(new Font("Gulim", Font.PLAIN, 12));
 
 		pPW = new LblPwdTfComp("password");
-		pPW.setBounds(556, 481, 367, 51);
+		pPW.setBounds(261, 215, 320, 45);
 		pLogin.add(pPW);
 
 		JPanel pCheck = new JPanel();
 		pCheck.setLayout(null);
-		pCheck.setBackground(Color.WHITE);
-		pCheck.setBounds(636, 557, 255, 33);
+		pCheck.setBounds(310, 286, 255, 40);
 		pLogin.add(pCheck);
 
 		btnSignIn = new JButton("로그인");
 		btnSignIn.addActionListener(this);
 		btnSignIn.setForeground(Color.BLACK);
 		btnSignIn.setFont(new Font("나눔바른고딕", Font.PLAIN, 12));
-		btnSignIn.setBackground(Color.WHITE);
-		btnSignIn.setBounds(28, 5, 78, 23);
+		btnSignIn.setBounds(28, 5, 78, 30);
 		pCheck.add(btnSignIn);
 
 		chkManager = new JCheckBox("관리자 로그인");
 		chkManager.setFont(new Font("나눔바른고딕", Font.PLAIN, 12));
-		chkManager.setBackground(Color.WHITE);
-		chkManager.setBounds(127, 5, 95, 23);
+		chkManager.setBounds(128, 5, 95, 30);
 		pCheck.add(chkManager);
 
 		JPanel pRegister = new JPanel();
-		pRegister.setBackground(Color.WHITE);
-		pRegister.setBounds(576, 612, 367, 56);
+		pRegister.setBounds(261, 353, 367, 56);
 		pLogin.add(pRegister);
 		pRegister.setLayout(null);
 
 		btnJoinIn = new JButton("회원 가입");
 		btnJoinIn.addActionListener(this);
-		btnJoinIn.setBackground(Color.WHITE);
-		btnJoinIn.setBounds(34, 10, 114, 23);
+		btnJoinIn.setBounds(34, 10, 114, 30);
 		pRegister.add(btnJoinIn);
 
 		btnSearchIDPW = new JButton("아이디/비밀번호 찾기");
 		btnSearchIDPW.addActionListener(this);
-		btnSearchIDPW.setBackground(Color.WHITE);
-		btnSearchIDPW.setBounds(173, 10, 159, 23);
+		btnSearchIDPW.setBounds(173, 10, 159, 30);
 		pRegister.add(btnSearchIDPW);
 
 		JLabel lblSubject = new JLabel("DGIT SW sales program");
 		lblSubject.setFont(new Font("다음_Regular", Font.PLAIN, 43));
 		lblSubject.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSubject.setBounds(333, 131, 781, 121);
+		lblSubject.setBounds(54, 23, 781, 121);
 		pLogin.add(lblSubject);
 	}
 
@@ -132,10 +125,10 @@ public class LoginContent extends JPanel implements ActionListener {
 		}
 		if (isLogin(loginUser)) {
 			if (loginUser instanceof Admin) {
-				AdminUI showUI = new AdminUI((Admin)loginUser);
+				AdminUI showUI = new AdminUI((Admin) loginUser);
 				showUI.setVisible(true);
 			} else {
-				UserUI showUI = new UserUI((User)loginUser);
+				UserUI showUI = new UserUI((User) loginUser);
 				showUI.setVisible(true);
 			}
 		}

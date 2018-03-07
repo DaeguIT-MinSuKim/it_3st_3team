@@ -7,6 +7,7 @@
 		<result property="adminName" column="adm_name" />
 		<result property="adminPwd" column="adm_pwd" />
 		<result property="phone" column="adm_phone" />
+		<result property="avatar" column="adm_avatar" />
 	</resultMap>
 	
 	<resultMap type="Admin" id="AdminWithAdminGroupResult" extends="AdminBasedResult">
@@ -22,8 +23,8 @@
 	
 	<!-- Admin with Admin_group 정보 -->
 	<sql id="selectWtihAdminGroupSql">
-		select adm_no, adm_name, adm_id, adm_pwd, adm_phone, ad.ag_no from admin ad join admin_group ag
-		on ag.ag_no=ad.adm_no
+		select ad.adm_no, ad.adm_name, ad.adm_id, ad.adm_pwd, ad.adm_phone, adm_avatar, ad.ag_no, ag.ag_name, ag.ag_auth from admin ad 
+		join admin_group ag on ag.ag_no=ad.ag_no
 	</sql>
 	
 	
@@ -34,8 +35,11 @@
 	
 	<sql id="whereSql">
 		<where>
-			<if test="adminNo != null">
+			<if test="adminNo != null and adminNo > 0">
 				adm_no = #{adminNo}
+			</if>
+			<if test="adminId != null and !adminId.equals('')">
+				adm_id = #{adminId}
 			</if>
 		</where>
 	</sql>
@@ -45,12 +49,55 @@
 		<include refid="whereLoginSql"/>
 	</select>
 	
-	<select id="selectAdminByNo" parameterType="Admin" resultMap="AdminBasedResult">
+	<select id="selectAdminByNo" parameterType="Admin" resultMap="AdminWithAdminGroupResult">
+		<include refid="selectWtihAdminGroupSql" />
+		<include refid="whereSql" />
+	</select>
+	
+	<select id="selectAdminById" parameterType="Admin" resultMap="AdminBasedResult">
 		<include refid="selectSql" />
 		<include refid="whereSql" />
 	</select>
 	
-	<select id="selectAdminAll" parameterType="Admin" resultMap="AdminBasedResult">
-		<include refid="selectSql" />
+	<select id="selectAdminAll" parameterType="Admin" resultMap="AdminWithAdminGroupResult">
+		<include refid="selectWtihAdminGroupSql" />
 	</select>
+
+	<insert id="insertAdmin" parameterType="Admin">
+		<selectKey resultType="integer" keyProperty="adminNo" order="BEFORE">
+			select max(adm_no)+1 from admin;
+		</selectKey>
+		insert into admin(adm_no, adm_id, adm_pwd, adm_name, adm_phone, adm_avatar, ag_no) values
+		(#{adminNo}, #{adminId},password(#{adminPwd}), #{adminName}, #{phone}, #{avatar}, #{adminGroup.agNo});
+	</insert>
+	
+	<sql id="updateSql">
+		update admin
+		<set>
+			<if test="adminPwd != null">
+				adm_pwd = password(#{adminPwd}),
+			</if>
+			<if test="adminName != null">
+				adm_name = #{adminName},
+			</if>
+			<if test="phone != null">
+				adm_phone = #{phone},
+			</if>
+			<if test="avatar != null">
+				adm_avatar = #{avatar},
+			</if>
+			<if test="adminGroup != null">
+				ag_no = #{adminGroup.agNo},
+			</if>
+		</set>
+	</sql>
+	
+	<update id="updateAdmin" parameterType="Admin">
+		<include refid="updateSql" />
+		<include refid="whereSql" />
+	</update>
+	
+	<delete id="deleteAdmin" parameterType="Admin">
+		delete from admin where adm_no = #{adminNo}
+	</delete>
 </mapper>

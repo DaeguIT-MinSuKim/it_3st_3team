@@ -32,10 +32,10 @@
 	<mappers>
 		<mapper resource="kr/or/dgit/it_3st_3team/mappers/UserMapper.xml" />
 		<mapper resource="kr/or/dgit/it_3st_3team/mappers/AdminMapper.xml" />
+		<mapper resource="kr/or/dgit/it_3st_3team/mappers/AdminGroupMapper.xml" />
 		<mapper resource="kr/or/dgit/it_3st_3team/mappers/SaleOrderMapper.xml" />
 		<mapper resource="kr/or/dgit/it_3st_3team/mappers/SoftwareGroupMapper.xml" />
 		<mapper resource="kr/or/dgit/it_3st_3team/mappers/SoftwareMapper.xml" />
 		<mapper resource="kr/or/dgit/it_3st_3team/mappers/AddressMapper.xml" />
-
 	</mappers>
 </configuration>

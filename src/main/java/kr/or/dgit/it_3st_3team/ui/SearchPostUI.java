@@ -1,6 +1,5 @@
 package kr.or.dgit.it_3st_3team.ui;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -21,7 +20,6 @@ import javax.swing.border.EmptyBorder;
 import kr.or.dgit.it_3st_3team.dto.Address;
 import kr.or.dgit.it_3st_3team.service.AddressService;
 import kr.or.dgit.it_3st_3team.ui.component.LblAddressComp;
-import kr.or.dgit.it_3st_3team.ui.component.LblTfBtnPostSearchComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblTfComp;
 import kr.or.dgit.it_3st_3team.ui.table.PostTable;
 
@@ -39,7 +37,9 @@ public class SearchPostUI extends JFrame implements ActionListener {
 	private JButton btnZipCodeOK;
 	private List<Address> list;
 	private LblAddressComp pInputAddr;
-	private LblTfBtnPostSearchComp parent;
+	
+	private LblTfComp parentZipcode;
+	private LblAddressComp parentIntputAddr;
 
 	public SearchPostUI() {
 		initComponents();
@@ -57,7 +57,7 @@ public class SearchPostUI extends JFrame implements ActionListener {
 
 		JLabel lblBNum = new JLabel("건물번호");
 		lblBNum.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblBNum.setBounds(39, 166, 48, 15);
+		lblBNum.setBounds(28, 166, 60, 15);
 		contentPane.add(lblBNum);
 
 		tfBNum1 = new JTextField();
@@ -246,20 +246,23 @@ public class SearchPostUI extends JFrame implements ActionListener {
 			address.setSigungu(addrs[2]);
 			address.setDoro(addrs[3]);
 		}
-
-		parent.setTfText(address.getZipcode());// 우편번호;
-		parent.getpInputAddress().setTfAddress1(address.getFirstAddress());
-		parent.getpInputAddress().setTfAddress2(str2);
+		
+		System.out.println(address);
+		parentZipcode.setTfText(address.getZipcode());
+		parentIntputAddr.setTfAddress1(address.getFirstAddress());
+		parentIntputAddr.setTfAddress2(str2);
+		
 		SearchPostUI.this.dispose();
-	}
-
-	public void setPostSearch(LblTfBtnPostSearchComp postComp) {
-		this.parent = postComp;
 	}
 
 	protected void actionPerformedBtnSearchCancel(ActionEvent e) {
 		pDoro.setTfText("");
 		tfBNum1.setText("");
 		tfNum2.setText("");
+	}
+
+	public void setParentInComp(LblTfComp pZipcode, LblAddressComp pAddress) {
+		parentZipcode = pZipcode;
+		parentIntputAddr = pAddress;
 	}
 }

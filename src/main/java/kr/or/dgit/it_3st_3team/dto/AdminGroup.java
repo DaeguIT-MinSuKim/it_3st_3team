@@ -7,7 +7,8 @@ public class AdminGroup {
 	private String agName;
 	private AdminGroupAuth agAuth;
 
-	public AdminGroup() {}
+	public AdminGroup() {
+	}
 
 	public AdminGroup(int agNo, String agName, AdminGroupAuth agAuth) {
 		super();
@@ -15,7 +16,6 @@ public class AdminGroup {
 		this.agName = agName;
 		this.agAuth = agAuth;
 	}
-
 
 	public int getAgNo() {
 		return agNo;
@@ -39,6 +39,28 @@ public class AdminGroup {
 
 	public void setAgAuth(AdminGroupAuth agAuth) {
 		this.agAuth = agAuth;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + agNo;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AdminGroup other = (AdminGroup) obj;
+		if (agNo != other.agNo)
+			return false;
+		return true;
 	}
 
 	@Override

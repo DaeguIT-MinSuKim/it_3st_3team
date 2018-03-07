@@ -1,7 +1,9 @@
 package kr.or.dgit.it_3st_3team.ui.component;
 
 import java.awt.event.ActionEvent;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.JOptionPane;
 
@@ -13,25 +15,42 @@ import kr.or.dgit.it_3st_3team.ui.SoftwareGroupUI;
 public class LblTfBtnSGRegisterComp extends AbstractLblTfBtnComp {
 
 	private SoftwareGroupUI ui;
-
+	
 	/**
 	 * Create the panel.
 	 */
 	public LblTfBtnSGRegisterComp(String title, String btnName) {
 		super(title, btnName);
 	}
+	public String rgTf() {
+		String a = ui.getpSgTable().table.getValueAt(ui.getpSgTable().table.getSelectedRow(), 0).toString();
+		
+		return a;
+	}
 
 	@Override
 	protected void actionPerformedBtn(ActionEvent e) {
 		
 		String tfSgName = getTfText();
-		System.out.println(tfSgName);
-		if(tfSgName.equals("")) {
-			JOptionPane.showMessageDialog(null, "분류명을 입력해주세요.");
-			return;
+		
+
+		if (e.getActionCommand() == "등록") {
+			if (tfSgName.equals("")) {
+				JOptionPane.showMessageDialog(null, "분류명을 입력해주세요.");
+				return;
+			}
+
+			SoftwareGroupService.getInstance().insertSoftwareGroup(new SoftwareGroup(tfSgName));
+			
+		}else {
+			Map<String, String> map = new HashMap<>();
+			map.put("changeSgName", tfSgName);
+			map.put("oriSgName",rgTf());
+			
+			SoftwareGroupService.getInstance().updateSoftwareGroup(map);
+			setBtnTitle("등록");
 		}
-		SoftwareGroup sg = new SoftwareGroup(tfSgName);
-		SoftwareGroupService.getInstance().insertSoftwareGroup(sg);
+		
 		
 		List<SoftwareGroup> lists = SoftwareGroupService.getInstance().selectSoftwareGroupByAll();
 		ui.getpSgTable().loadTableDatas(lists);
@@ -39,6 +58,11 @@ public class LblTfBtnSGRegisterComp extends AbstractLblTfBtnComp {
 		
 		SoftwareGroup[] sgDatas = lists.toArray(new SoftwareGroup[lists.size()]);
 		ui.getParentUi().getpSWsort().loadData(sgDatas);
+		
+		
+		
+		
+		
 	}
 	
 	public void setUI(SoftwareGroupUI ui) {

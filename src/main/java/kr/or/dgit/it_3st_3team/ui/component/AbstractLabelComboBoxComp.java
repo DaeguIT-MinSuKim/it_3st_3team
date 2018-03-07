@@ -1,6 +1,8 @@
 package kr.or.dgit.it_3st_3team.ui.component;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemListener;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
@@ -36,13 +38,25 @@ public abstract class AbstractLabelComboBoxComp<T> extends JPanel {
 		pLC.add(cmbBox);
 	}
 
-	public Object getCmbBox() {
+	public Object getCmbSelectItem() {
 		return cmbBox.getSelectedItem();
+	}
+
+	public void setCmbSelectIndex(int index) {
+		cmbBox.setSelectedIndex(index);
+	}
+
+	public void setCmbSelectItem(T item) {
+		cmbBox.setSelectedItem(item);
 	}
 
 	public void loadData(T[] data) {
 		dcbm = new DefaultComboBoxModel<>(data);
 		cmbBox.setModel(dcbm);
+	}
+	
+	public void setCmbEventListener(ItemListener listner) {
+		cmbBox.addItemListener(listner);
 	}
 
 }
