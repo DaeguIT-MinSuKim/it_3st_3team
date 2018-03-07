@@ -34,8 +34,11 @@
 	
 	<sql id="whereSql">
 		<where>
-			<if test="adminNo != null">
+			<if test="adminNo != null and adminNo > 0">
 				adm_no = #{adminNo}
+			</if>
+			<if test="adminId != null and !adminId.equals('')">
+				adm_id = #{adminId}
 			</if>
 		</where>
 	</sql>
@@ -46,6 +49,11 @@
 	</select>
 	
 	<select id="selectAdminByNo" parameterType="Admin" resultMap="AdminBasedResult">
+		<include refid="selectSql" />
+		<include refid="whereSql" />
+	</select>
+	
+	<select id="selectAdminById" parameterType="Admin" resultMap="AdminBasedResult">
 		<include refid="selectSql" />
 		<include refid="whereSql" />
 	</select>

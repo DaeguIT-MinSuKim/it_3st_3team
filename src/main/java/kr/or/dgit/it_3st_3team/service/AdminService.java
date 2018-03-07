@@ -27,6 +27,13 @@ public class AdminService {
 			return sqlSession.selectOne(namespace + "selectAdminByLogin", admin);
 		}
 	}
+	
+	public Admin findAdminById(Admin admin) {
+		log.debug("findAdminById()");
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectOne(namespace + "selectAdminById", admin);
+		}
+	}
 
 	public List<Admin> selectAdminAll() {
 		log.debug("selectAdminAll()");

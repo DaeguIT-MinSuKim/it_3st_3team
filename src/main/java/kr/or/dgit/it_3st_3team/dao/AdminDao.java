@@ -6,6 +6,7 @@ import kr.or.dgit.it_3st_3team.dto.Admin;
 
 public interface AdminDao {
 	Admin selectAdminByNo(Admin admin);
+	Admin selectAdminById(Admin admin);
 	Admin selectAdminByLogin(Admin admin);
 	List<Admin> selectAdminAll();
 	
