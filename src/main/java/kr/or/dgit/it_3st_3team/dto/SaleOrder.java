@@ -212,8 +212,8 @@ public class SaleOrder {
 	public Object[] toArrayCustomerLists() {
 		return new Object[] {
 				ordNo,software.getSwGroup().getSgName(),software.getSwName(),
-				ordQuantity,String.format("%,d", ordSupplyPrice),String.format("%,d",ordSellPrice+ordTax),
-				String.format("%,d", ordTax), String.format("%,d",ordSellProfit),
+				ordQuantity,String.format("%,d",ordSellPrice+ordTax),
+				String.format("%,d", ordTax), 
 				ordPayment,user.getNameCu(), dateToString(ordDatetime)
 		};
 	}
