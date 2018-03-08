@@ -1,5 +1,10 @@
 package kr.or.dgit.it_3st_3team.ui.user;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -9,12 +14,6 @@ import kr.or.dgit.it_3st_3team.service.UserService;
 import kr.or.dgit.it_3st_3team.ui.UserUI;
 import kr.or.dgit.it_3st_3team.ui.component.LblPwdTfComp;
 import kr.or.dgit.it_3st_3team.utils.CommonUtil;
-
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
-import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class UserModifyContent extends JPanel implements ActionListener {
@@ -86,13 +85,14 @@ public class UserModifyContent extends JPanel implements ActionListener {
 	// 개인정보 수정 버튼
 	protected void actionPerformedBtnModifyUserInfo(ActionEvent e) {
 		User modifyUser = pUserInfo.getUserInfo();
-		CommonUtil.getInstance().userImgSave(modifyUser.getAvatar());
-		modifyUser.setAvatar(new File(modifyUser.getAvatar()).getName());
+		String imgName = CommonUtil.getInstance().createRndImgName(modifyUser.getAvatar(), modifyUser.getUserId());
+		modifyUser.setAvatar(imgName);
 		
 		if (UserService.getInstance().modifyUser(modifyUser) != 1) {
 			JOptionPane.showMessageDialog(null, "회원정보 수정에 실패했습니다.");
 			return;
 		}
+		CommonUtil.getInstance().userImgSave(modifyUser.getAvatar(), imgName);
 		userUI.setUser(modifyUser);
 		userUI.setUserNameAndAvatar();
 		JOptionPane.showMessageDialog(null, "회원정보가 수정되었습니다.");

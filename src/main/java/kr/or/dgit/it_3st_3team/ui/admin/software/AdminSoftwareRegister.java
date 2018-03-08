@@ -2,13 +2,13 @@ package kr.or.dgit.it_3st_3team.ui.admin.software;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import kr.or.dgit.it_3st_3team.dto.Software;
 import kr.or.dgit.it_3st_3team.dto.SoftwareGroup;
@@ -23,8 +23,7 @@ import kr.or.dgit.it_3st_3team.ui.component.LblCmbSoftwareGroupComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblCmbUserComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblTfComp;
 import kr.or.dgit.it_3st_3team.utils.CommonUtil;
-
-import javax.swing.JTextField;
+import kr.or.dgit.it_3st_3team.utils.DefineUtil;
 
 @SuppressWarnings("serial")
 public class AdminSoftwareRegister extends JPanel implements ActionListener {
@@ -175,7 +174,8 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 		
 		
 		String softwareImgFullPath = pSwRegisterImg.getImageIcon().toString();
-		inputSw.setSwCoverImg(new File(softwareImgFullPath).getName());
+		String imgName = CommonUtil.getInstance().createRndImgName(softwareImgFullPath, String.format("software%04d", inputSw.getSwNo()));
+		inputSw.setSwCoverImg(imgName);
 		/*System.out.println(softwareImgFullPath);
 		System.out.println(new File(softwareImgFullPath).getName());*/
 		
@@ -185,7 +185,7 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 		if(result == JOptionPane.CANCEL_OPTION || result == JOptionPane.NO_OPTION) {
 			return;
 		}
-		CommonUtil.getInstance().userImgSave(softwareImgFullPath);
+		CommonUtil.getInstance().userImgSave(softwareImgFullPath, imgName);
 		
 		if(commandType.equals("등록")) {
 			result = SoftwareService.getInstance().insertSoftware(inputSw);
@@ -212,7 +212,7 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 		if(sw.getSwCoverImg() != null && !sw.getSwCoverImg().equals("")) {
 			pSwRegisterImg.setImageIcon(sw.getSwCoverImg());
 		}else {
-			pSwRegisterImg.setImageIcon("nobody.png");
+			pSwRegisterImg.setImageIcon(DefineUtil.DEFAULT_USER_IMG);
 		}
 		
 		pCompany.setCmbSelectItem(sw.getUserNo());

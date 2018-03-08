@@ -1,6 +1,7 @@
 package kr.or.dgit.it_3st_3team.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
@@ -49,6 +50,13 @@ public class AdminService {
 		}
 	}
 	
+	public List<Admin> listAdminBySearch(Map<String, String> map) {
+		log.debug("findAdminById()");
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectList(namespace + "selectAdminBySearch", map);
+		}
+	}
+	
 	public int addAdmin(Admin admin) {
 		log.debug("addAdmin()");
 		int res = -1;
@@ -78,4 +86,5 @@ public class AdminService {
 		}
 		return res;
 	}
+
 }

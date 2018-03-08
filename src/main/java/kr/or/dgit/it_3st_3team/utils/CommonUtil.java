@@ -138,9 +138,9 @@ public class CommonUtil {
 		JOptionPane.showMessageDialog(null, "임시 비밀번호를 메일로 발송하였습니다.");
 	}
 	
-	public void userImgSave(String userImgFullPath) {
+	public void userImgSave(String userImgFullPath, String imgName) {
 		File imgFile = new File(userImgFullPath);
-		File copyFile = new File(DefineUtil.IMG_PATH + imgFile.getName());
+		File copyFile = new File(DefineUtil.USER_IMG_PATH + imgName);
 		try (FileInputStream fis = new FileInputStream(imgFile);
 				FileOutputStream fos = new FileOutputStream(copyFile);) {
 
@@ -151,6 +151,13 @@ public class CommonUtil {
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null, "사진을 저장하지 못했습니다.");
 		}
+	}
+	
+	public String createRndImgName(String imgFullPath, String id) {
+		// 선택한 이미지 확장자
+		String ext = imgFullPath.substring(imgFullPath.lastIndexOf("."));
+		// 저장할 이미지 랜덤 이름 생성. (userId_밀리세컨트초.이미지 확장자)
+		return String.format("%s_%s%s", id, System.currentTimeMillis(), ext);
 	}
 	
 	public boolean checkPwd(JPasswordField pwd1, JPasswordField pwd2) {

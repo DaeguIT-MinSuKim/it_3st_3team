@@ -183,7 +183,7 @@ public class UserUI extends JFrame implements ActionListener {
 		if (user.getAvatar() == null || user.getAvatar().equals("")) {
 			user.setAvatar(DefineUtil.DEFAULT_USER_IMG);
 		}
-		lblImg.setIcon(new ImageIcon(DefineUtil.IMG_PATH + user.getAvatar()));
+		lblImg.setIcon(new ImageIcon(DefineUtil.DEFAULT_IMG_PATH + user.getAvatar()));
 
 		lblName.setText(String.format("%s님 환영합니다.", user.getName()));
 	}
