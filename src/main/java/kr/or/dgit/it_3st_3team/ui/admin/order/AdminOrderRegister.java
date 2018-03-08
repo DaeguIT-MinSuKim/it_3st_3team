@@ -22,6 +22,7 @@ import kr.or.dgit.it_3st_3team.ui.component.ImageComp;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.awt.event.ActionEvent;
+import kr.or.dgit.it_3st_3team.ui.component.LblSpinnerComp;
 
 @SuppressWarnings("serial")
 public class AdminOrderRegister extends JPanel implements ActionListener {
@@ -32,12 +33,13 @@ public class AdminOrderRegister extends JPanel implements ActionListener {
 	private JLabel lblDate;
 	private CalenderTfComp pDate;
 	private LblCmbStringComp pPayment;
-	private LblTfComp pOrderCount;
+	//private LblTfComp pOrderCount;
 	private AdminOrderContent adOrder;
 	private JPanel pOrderRegi;
 	private ImageComp pImg;
 	private JButton btnRewrite;
 	private JButton btnCancel;
+	private LblSpinnerComp pOrderCount;
 
 	public AdminOrderRegister() {
 
@@ -51,10 +53,6 @@ public class AdminOrderRegister extends JPanel implements ActionListener {
 		pOrderRegi.setBounds(0, 0, 1184, 201);
 		add(pOrderRegi);
 		pOrderRegi.setLayout(null);
-
-		pOrderCount = new LblTfComp("품목 수량");
-		pOrderCount.setBounds(278, 116, 170, 30);
-		pOrderRegi.add(pOrderCount);
 
 		pPayment = new LblCmbStringComp("결제수단");
 		String[] payli = {"카드","모바일","계좌이체","무통장","간편결제"};
@@ -102,12 +100,17 @@ public class AdminOrderRegister extends JPanel implements ActionListener {
 		btnCancel.addActionListener(this);
 		btnCancel.setBounds(1005, 148, 97, 23);
 		pOrderRegi.add(btnCancel);
+		
+		pOrderCount = new LblSpinnerComp("품목 수량");
+		pOrderCount.setBounds(279, 116, 170, 30);
+		pOrderCount.setIntSpinner(1, 1, 999, 1);
+		pOrderRegi.add(pOrderCount);
 	}
 	
 	
 	public void setOrderData(SaleOrder saleOrder) {
 		pUserName.setTfText(saleOrder.getUser().getName());
-		pOrderCount.setTfText(Integer.toString(saleOrder.getOrdQuantity()));
+		pOrderCount.setSpnValue(saleOrder.getOrdQuantity());
 		pSwName.setTfText(saleOrder.getSoftware().getSwName());
 		pOrderNum.setTfText(Integer.toString(saleOrder.getOrdNo()));
 		
@@ -141,12 +144,9 @@ public class AdminOrderRegister extends JPanel implements ActionListener {
 		}
 	}
 	protected void actionPerformedBtnRewrite(ActionEvent e) {
-		if(pOrderCount.isTfEmpty("수량을 입력해주세요")) {
-			return;
-		}
 		
 		String swName = pSwName.getTfText().trim();
-		int orderCount = Integer.parseInt(pOrderCount.getTfText().trim());
+		int orderCount = pOrderCount.getSpnValue();
 		String userName = pUserName.getTfText().trim();
 		int orderNo = Integer.parseInt(pOrderNum.getTfText().trim());
 		String payment =  (String) pPayment.getCmbSelectItem();
@@ -195,7 +195,7 @@ public class AdminOrderRegister extends JPanel implements ActionListener {
 	public void resetData() {
 		pDate.setDate("");
 		pImg.setImageIcon("nobody.png");
-		pOrderCount.setTfText("");
+		pOrderCount.setSpnValue(1);
 		pOrderNum.setTfText("");
 		pSwName.setTfText("");
 		pUserName.setTfText("");
