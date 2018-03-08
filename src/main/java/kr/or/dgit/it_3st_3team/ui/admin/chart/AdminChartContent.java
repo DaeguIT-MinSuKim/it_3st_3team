@@ -1,11 +1,5 @@
 package kr.or.dgit.it_3st_3team.ui.admin.chart;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import kr.or.dgit.it_3st_3team.dto.Admin;
@@ -19,8 +13,8 @@ import kr.or.dgit.it_3st_3team.ui.table.CustomerStatusLists;
 
 
 @SuppressWarnings("serial")
-public class AdminChartContent extends JPanel implements ActionListener {
-	private JButton btnSearch;
+public class AdminChartContent extends JPanel {
+	
 	private AdminChartSearch pSearch;	
 	private SalesReportUI ss;
 	private SaleOrderService soService;
@@ -51,30 +45,19 @@ public class AdminChartContent extends JPanel implements ActionListener {
 		pSearch.setBounds(0, 10, 1190, 96);
 		add(pSearch);
 		
-		btnSearch = new JButton("검색");
-		btnSearch.addActionListener(this);
-		btnSearch.setBounds(552, 10, 80, 30);
-		pSearch.add(btnSearch);
+		
 		
 		tt = new AdminChartBySwgTypeFullYear(); 
 		tt.setBounds(12, 116, 1157, 670);
 		add(tt);
 	}
-	public void actionPerformed(ActionEvent e) {
-		
-		if (e.getSource() == btnSearch) {
-			actionPerformedBtnSearch(e);
-		}
-	}
+	
 	
 	//검색버튼 액션
 	
-	protected void actionPerformedBtnSearch(ActionEvent e) {
-		callGetSelectedValues();
-		
-	}
+	
 
-	private void callGetSelectedValues() {
+	/*private void callGetSelectedValues() {
 		
 		
 		if(admin != null) {
@@ -121,7 +104,7 @@ public class AdminChartContent extends JPanel implements ActionListener {
 				add(pAllSwgChart);
 			}
 		}
-	}
+	}*/
 
 	public void setUsingUser(Object who) {
 		if (who instanceof Admin) {

@@ -14,6 +14,11 @@ import kr.or.dgit.it_3st_3team.dto.User;
 import kr.or.dgit.it_3st_3team.service.AdminService;
 import kr.or.dgit.it_3st_3team.service.SoftwareGroupService;
 import kr.or.dgit.it_3st_3team.ui.component.StartAndEndDate;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import java.awt.BorderLayout;
+import javax.swing.border.EmptyBorder;
+import java.awt.FlowLayout;
 
 @SuppressWarnings("serial")
 public class AdminChartSearch extends JPanel {
@@ -21,13 +26,14 @@ public class AdminChartSearch extends JPanel {
 	protected DefaultComboBoxModel<SoftwareGroup> dcbm;
 	private SoftwareGroupService swgService;
 	private AdminService adService;
-	private JComboBox<SoftwareGroup> cmbSwgType;
 	private JComboBox<Admin> cmbAdmin;
-	private JComboBox<String> cmbSearchBy;
-	private StartAndEndDate pCalendar;
 	private Admin admin;
 	private User user;
 	private List<SoftwareGroup> swg;
+	private JPanel p1;
+	private JButton btnType;
+	private JButton btnPayment;
+	private JPanel p2;
 
 	public AdminChartSearch(Object who) {
 		setUsingUser(who);
@@ -37,16 +43,7 @@ public class AdminChartSearch extends JPanel {
 		initComponents();
 	}
 
-	public void setCmbSgGroup() {
-		swg = new ArrayList<>();
-		swg = swgService.selectSoftwareGroupByAll();
-		swg.add(0, new SoftwareGroup("분류"));
-		SoftwareGroup[] items = new SoftwareGroup[swg.size()];
-		swg.toArray(items);
-		DefaultComboBoxModel<SoftwareGroup> dcbm = new DefaultComboBoxModel<>(items);
-		cmbSwgType.setModel(dcbm);
-	}
-
+	
 	public void setCmbAdGroup() {
 		// 관리자 콤보박스 넣는 코드
 		List<Admin> ad = new ArrayList<>();
@@ -58,12 +55,7 @@ public class AdminChartSearch extends JPanel {
 		cmbAdmin.setModel(dcbm);
 	}
 
-	public void setCmbString() {
-		// 검색필드 콤보박스 넣는 코드
-		String[] st = { "고객명", "공급회사명", "품목명" };
-		DefaultComboBoxModel<String> dcbm = new DefaultComboBoxModel<>(st);
-		cmbSearchBy.setModel(dcbm);
-	}
+	
 
 	public void setUsingUser(Object who) {
 		if (who instanceof Admin) {
@@ -74,71 +66,64 @@ public class AdminChartSearch extends JPanel {
 	}
 
 	private void initComponents() {
-		setLayout(null);
+		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+		
+		p1 = new JPanel();
+		p1.setBorder(new EmptyBorder(0, 10, 0, 0));
+		add(p1);
+		p1.setLayout(null);
 
-		pCalendar = new StartAndEndDate();
-		pCalendar.setBounds(744, 0, 434, 43);
-		add(pCalendar);
-
-		cmbSwgType = new JComboBox<>();
-		cmbSwgType.setBounds(12, 10, 125, 30);
-		add(cmbSwgType);
-		setCmbSgGroup();
-
-		cmbSearchBy = new JComboBox<>();
-		cmbSearchBy.setBounds(12, 60, 125, 30);
-		add(cmbSearchBy);
-		setCmbString();
-
-		tfSearch = new JTextField();
-		tfSearch.setColumns(10);
-		tfSearch.setBounds(160, 60, 300, 30);
-		add(tfSearch);
-
+		/*cmbAdmin = new JComboBox<>();
+		cmbAdmin.setBounds(10, 0, 125, 30);
+		p1.add(cmbAdmin);
+		setCmbAdGroup();*/
+		
+		p2 = new JPanel();
+		p2.setBorder(new EmptyBorder(0, 0, 0, 20));
+		add(p2);
+		p2.setLayout(null);
+		
+		
+		
+		btnType = new JButton("연도별 품목 판매갯수현황");
+		btnType.setBounds(150, 0, 200, 30);
+		p1.add(btnType);
+		
 		if (admin != null) {
 			System.out.println(admin);
 			// 관리자
 			if (admin.getAdminGroup().getAgNo() == 1) {
 				// 총관리자
 				cmbAdmin = new JComboBox<>();
-				cmbAdmin.setBounds(161, 10, 125, 30);
-				add(cmbAdmin);
+				cmbAdmin.setBounds(10, 0, 125, 30);
+				p1.add(cmbAdmin);
 				setCmbAdGroup();
+				
+				btnPayment = new JButton("결제타입별 구매현황");
+				btnPayment.setBounds(390, 0, 180, 30);
+				p2.add(btnPayment);
+			}else {
+				
+				btnType.setBounds(10, 0, 200, 30);
+				
 			}
 		} else {
 			if (user.getUserGroup().getValue() == 1) {
 				// 고객
-				cmbSearchBy.removeItemAt(0);
+				btnType.setBounds(10, 0, 200, 30);
 			} else {
 				// 공급회사
-				cmbSearchBy.removeItemAt(1);
+				btnType.setBounds(10, 0, 200, 30);
 			}
 		}
+		
+		
 	}
 
 	// get 메소드
-	public SoftwareGroup getSelectedSoftwareGrp() {
-		return (SoftwareGroup) cmbSwgType.getSelectedItem();
-	}
-
+	
 	public Admin getSelectedAdmin() {
 		return (Admin) cmbAdmin.getSelectedItem();
-	}
-
-	public String getSelectedString() {
-		return (String) cmbSearchBy.getSelectedItem();
-	}
-
-	public String getStartDate() {
-		return pCalendar.getStartDate();
-	}
-
-	public String getEndDate() {
-		return pCalendar.getEndDate();
-	}
-
-	public String getSearchText() {
-		return tfSearch.getText().trim();
 	}
 	
 	// 초기화
@@ -146,33 +131,16 @@ public class AdminChartSearch extends JPanel {
 		if (admin != null) {
 			// 관리자
 			if (admin.getAdminGroup().getAgNo() == 1) {
-				cmbSwgType.setSelectedIndex(0);
 				cmbAdmin.setSelectedIndex(0);
-				cmbSearchBy.setSelectedIndex(0);
-				tfSearch.setText("");
-				pCalendar.clearStartDate();
-				pCalendar.clearEndDate();
 			} else {
-				cmbSwgType.setSelectedIndex(0);
-				cmbSearchBy.setSelectedIndex(0);
-				tfSearch.setText("");
-				pCalendar.clearStartDate();
-				pCalendar.clearEndDate();
+		
 			}
 		} else {
 			// 사용자
 			if (user.getUserGroup().getValue() == 1) {
-				cmbSwgType.setSelectedIndex(0);
-				cmbSearchBy.setSelectedIndex(0);
-				tfSearch.setText("");
-				pCalendar.clearStartDate();
-				pCalendar.clearEndDate();
+		
 			} else {
-				cmbSwgType.setSelectedIndex(0);
-				cmbSearchBy.setSelectedIndex(0);
-				tfSearch.setText("");
-				pCalendar.clearStartDate();
-				pCalendar.clearEndDate();
+			
 			}
 		}
 	}
