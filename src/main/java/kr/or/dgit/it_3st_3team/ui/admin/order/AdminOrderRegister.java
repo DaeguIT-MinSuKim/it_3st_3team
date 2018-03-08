@@ -1,8 +1,9 @@
 package kr.or.dgit.it_3st_3team.ui.admin.order;
 
-import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -16,24 +17,20 @@ import kr.or.dgit.it_3st_3team.dto.User;
 import kr.or.dgit.it_3st_3team.service.SaleOrderService;
 import kr.or.dgit.it_3st_3team.type.Payment;
 import kr.or.dgit.it_3st_3team.ui.component.CalenderTfComp;
-import kr.or.dgit.it_3st_3team.ui.component.LblCmbStringComp;
-import kr.or.dgit.it_3st_3team.ui.component.LblTfComp;
 import kr.or.dgit.it_3st_3team.ui.component.ImageComp;
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.awt.event.ActionEvent;
+import kr.or.dgit.it_3st_3team.ui.component.LblCmbStringComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblSpinnerComp;
+import kr.or.dgit.it_3st_3team.ui.component.LblTfComp;
+import kr.or.dgit.it_3st_3team.utils.DefineUtil;
 
 @SuppressWarnings("serial")
 public class AdminOrderRegister extends JPanel implements ActionListener {
-
 	private LblTfComp pOrderNum;
 	private LblTfComp pUserName;
 	private LblTfComp pSwName;
 	private JLabel lblDate;
 	private CalenderTfComp pDate;
 	private LblCmbStringComp pPayment;
-	//private LblTfComp pOrderCount;
 	private AdminOrderContent adOrder;
 	private JPanel pOrderRegi;
 	private ImageComp pImg;
@@ -114,7 +111,11 @@ public class AdminOrderRegister extends JPanel implements ActionListener {
 		pSwName.setTfText(saleOrder.getSoftware().getSwName());
 		pOrderNum.setTfText(Integer.toString(saleOrder.getOrdNo()));
 		
-		
+		if(saleOrder.getSoftware().getSwCoverImg() != null && !saleOrder.getSoftware().getSwCoverImg().equals("")) {
+			pImg.setImageIcon(saleOrder.getSoftware().getSwCoverImg());
+		}else {
+			pImg.setImageIcon(DefineUtil.DEFAULT_USER_IMG);
+		}
 		
 		if(saleOrder.getOrdPayment()==Payment.CARD) {
 			pPayment.setCmbSelectIndex(0);
@@ -150,7 +151,7 @@ public class AdminOrderRegister extends JPanel implements ActionListener {
 		String userName = pUserName.getTfText().trim();
 		int orderNo = Integer.parseInt(pOrderNum.getTfText().trim());
 		String payment =  (String) pPayment.getCmbSelectItem();
-		System.out.println(payment);
+		
 		
 		SaleOrder inputOrder = new SaleOrder();
 		inputOrder.setOrdNo(orderNo);//번호

@@ -51,6 +51,7 @@ public class AdminOrderSearch extends JPanel implements ActionListener {
 		pOrderSearch.setLayout(null);
 
 		List<SoftwareGroup> lists = SoftwareGroupService.getInstance().selectSoftwareGroupByAll();
+		lists.add(0, new SoftwareGroup("분류"));
 		SoftwareGroup[] sgDatas = lists.toArray(new SoftwareGroup[lists.size()]);
 		
 		pSearchSoftwareSort = new CmbSoftwareGroupComp();
@@ -59,10 +60,12 @@ public class AdminOrderSearch extends JPanel implements ActionListener {
 		pOrderSearch.add(pSearchSoftwareSort);
 		
 		List<Admin> adli = AdminService.getInstance().listAdminAll();
+		adli.add(0, new Admin("관리자"));
 		Admin[] adDatas = adli.toArray(new Admin[adli.size()]);
 
 		pAdmin = new CmbAdminComp();
 		pAdmin.setBounds(144, 10, 120, 30);
+		
 		pAdmin.loadData(adDatas);
 		pOrderSearch.add(pAdmin);
 
@@ -114,7 +117,7 @@ public class AdminOrderSearch extends JPanel implements ActionListener {
 		String name = textField.getText();
 		String startDate = pDate.getStartDate();
 		String endDate = pDate.getEndDate();
-		System.out.println(String.format("%s %s %s %s %s %s", swg.getSgName(), ad.getAdminName(), startDate, endDate, searchBy, name));
+		//System.out.println(String.format("%s %s %s %s %s %s", swg.getSgName(), ad.getAdminName(), startDate, endDate, searchBy, name));
 		Map<String, String> map = new HashMap<>();
 		map.put("sgName", swg.getSgName());
 		map.put("adminName", ad.getAdminName());
@@ -124,6 +127,8 @@ public class AdminOrderSearch extends JPanel implements ActionListener {
 		map.put("name", name);
 		List<SaleOrder> list = SaleOrderService.getInstance().findSaleOrderWithAllBySearch(map);
 		parent.setListBySearchData(list);
+		swg.setSgName("분류");
+		ad.setAdminName("관리자");
 		
 	}
 

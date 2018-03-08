@@ -82,6 +82,22 @@
 			</choose>
 		</where>
 	</sql>
+	
+	
+	<sql id="whereSwCustomer">
+		<where>
+			<if test="swGroup.sgName != null">
+				g.sg_name=#{swGroup.sgName}
+			</if>
+			<if test="userNo.name != null">
+				AND	p.u_name=#{userNo.name}
+			</if>
+			<if test="swName !=null and swName !=''">
+				AND s.sw_name = #{swName}
+			</if>
+		</where>
+	</sql>
+	
 	<!-- software 등록 -->
 	<sql id="insertSql">
 		insert into software(sw_no,sg_no,sw_name,sw_supply_price,sw_sell_price,sw_quantity,pc_no,sw_cover_img) 
@@ -99,7 +115,16 @@
 	</sql>
 
 	
+	<!-- customerSearchSw -->
+	<select id="selectSoftwareByNoCustomer" parameterType="Software" resultMap="SoftwarewithUserResult">
+		<include refid="selectWithGroupwithUserSql"/>
+		<include refid="whereSwCustomer"/>
+	</select>
 	
+	<select id="selectSoftwareByNameCustomer" parameterType="Software" resultMap="SoftwarewithUserResult">
+		<include refid="selectWithGroupwithUserSql"/>
+		<include refid="wheredelUpSql"/>
+	</select>
 	
 	
 	<select id="selectSoftwareByNo" parameterType="Software" resultMap="SoftwarewithUserResult">
