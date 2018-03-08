@@ -66,6 +66,35 @@ public class SoftwareTest {
 	}
 	
 	@Test
+	public void selectSoftwareByNoCustomer() {
+		Software sw = new Software();
+		sw.setSwGroup(new SoftwareGroup("게임"));
+		User us = new User();
+		us.setName("크라이스");
+		sw.setUserNo(us);
+		sw.setSwName("");
+		
+		List<Software> findsw = service.selectSoftwareByNoCustomer(sw);
+		System.out.println(sw);
+		for(Software s : findsw) {
+			System.out.println(s);
+		}
+	}
+	
+	@Test
+	public void selectSoftwareByNameCustomer() {
+		Software sw = new Software();
+		sw.setSwName("아마겟돈");
+		
+		List<Software> findsw = service.selectSoftwareByNameCustomer(sw);
+		System.out.println(sw);
+		for(Software s : findsw) {
+			System.out.println(s);
+		}
+	}
+	
+	
+	@Test
 	public void testBselectSoftwareByAll() {
 		List<Software> listsw = service.selectSoftwareByAll();
 		System.out.println(listsw);

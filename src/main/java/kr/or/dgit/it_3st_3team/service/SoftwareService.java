@@ -36,6 +36,20 @@ public class SoftwareService {
 		}
 	}
 	
+	public List<Software> selectSoftwareByNoCustomer(Software software){
+		log.debug(" selectSoftwareByNoCustomer()");
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectList(namespace + "selectSoftwareByNoCustomer",software);
+		}
+	}
+	
+	public List<Software> selectSoftwareByNameCustomer(Software software){
+		log.debug(" selectSoftwareByNameCustomer()");
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectList(namespace + "selectSoftwareByNameCustomer",software);
+		}
+	}
+	
 	public List<Software> selectSoftwareByAll(){
 		log.debug("selectSoftwareByAll()");
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {

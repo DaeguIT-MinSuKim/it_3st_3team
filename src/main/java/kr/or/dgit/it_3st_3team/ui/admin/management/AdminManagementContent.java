@@ -2,6 +2,7 @@ package kr.or.dgit.it_3st_3team.ui.admin.management;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
@@ -9,9 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 
 import kr.or.dgit.it_3st_3team.dto.Admin;
-import kr.or.dgit.it_3st_3team.dto.User;
 import kr.or.dgit.it_3st_3team.service.AdminService;
-import kr.or.dgit.it_3st_3team.service.UserService;
 
 @SuppressWarnings("serial")
 public class AdminManagementContent extends JPanel implements ActionListener {
@@ -39,6 +38,7 @@ public class AdminManagementContent extends JPanel implements ActionListener {
 		AdminManagementSearch pSearchArea = new AdminManagementSearch();
 		pSearchArea.setBounds(10, 250, 1158, 50);
 		pSearchArea.setLayout(null);
+		pSearchArea.setParent(this);
 		add(pSearchArea);
 
 		pDataArea = new AdminManagementList();
@@ -58,6 +58,10 @@ public class AdminManagementContent extends JPanel implements ActionListener {
 		reFreshAdminList();
 	}
 
+	public void setListBySearchData(List<Admin> searchData) {
+		pDataArea.loadTableDatas(searchData);
+	}
+	
 	public void reFreshAdminList() {
 		pDataArea.loadTableDatas(AdminService.getInstance().listAdminAll());
 	}

@@ -8,11 +8,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 
+import org.jfree.ui.StrokeSample;
+
 import kr.or.dgit.it_3st_3team.dto.Admin;
 import kr.or.dgit.it_3st_3team.dto.SaleOrder;
+import kr.or.dgit.it_3st_3team.dto.Software;
 import kr.or.dgit.it_3st_3team.dto.SoftwareGroup;
 import kr.or.dgit.it_3st_3team.dto.User;
 import kr.or.dgit.it_3st_3team.service.SaleOrderService;
+import kr.or.dgit.it_3st_3team.service.SoftwareService;
 import kr.or.dgit.it_3st_3team.service.UserService;
 import kr.or.dgit.it_3st_3team.ui.table.AdminOrderManagementLists;
 import kr.or.dgit.it_3st_3team.ui.table.AdminStatusLists;
@@ -24,9 +28,8 @@ import java.util.Map;
 import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
-public class AdminOrder extends JPanel implements ActionListener {
+public class AdminOrderContent extends JPanel implements ActionListener {
 	private SaleOrderService soService;
-	private JButton btnSearch;
 	private AdminOrderSearch pOrderSearch;
 	private AdminOrderRegister pOrderRegi;
 	private AdminOrderManagementLists pOrderTable;
@@ -34,7 +37,7 @@ public class AdminOrder extends JPanel implements ActionListener {
 	private JMenuItem deleteMenu;
 
 	
-	public AdminOrder() {
+	public AdminOrderContent() {
 		this.soService = SaleOrderService.getInstance();
 		initComponents();
 	}
@@ -52,7 +55,8 @@ public class AdminOrder extends JPanel implements ActionListener {
 		
 		pOrderSearch = new AdminOrderSearch();
 		pOrderSearch.setBackground(new Color(240, 240, 240));
-		pOrderSearch.setBounds(0, 180, 1060, 50);
+		pOrderSearch.setBounds(0, 180, 1187, 50);
+		pOrderSearch.setParent(this);
 		add(pOrderSearch);
 		
 		pOrderTable = new AdminOrderManagementLists();
@@ -72,18 +76,12 @@ public class AdminOrder extends JPanel implements ActionListener {
 		pOrderTable.loadTableDatas(orderList);
 		
 		
-		btnSearch = new JButton("검색");
-		btnSearch.addActionListener(this);
-		btnSearch.setBounds(1072, 189, 97, 23);
-		add(btnSearch);
 		
 		
 	
 	}
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == btnSearch) {
-			actionPerformedBtnSearch(e);
-		}if (e.getSource() == modifyMenu) {
+		if (e.getSource() == modifyMenu) {
 			actionPerformedBtnModifyMenu(e);
 		} else if (e.getSource() == deleteMenu) {
 			actionPerformedBtnDeleteMenu(e);
@@ -114,39 +112,18 @@ public class AdminOrder extends JPanel implements ActionListener {
 		
 		pOrderRegi.setOrderData(saleOrder);
 	}
-	protected void actionPerformedBtnSearch(ActionEvent e) {
-		SoftwareGroup swg =  pOrderSearch.getSelectedSoftwareGrp();
-		Admin ad = pOrderSearch.getSelectedAdmin();
-		String searchBy = pOrderSearch.getSelectedString();
-		
-		if(swg.getSgName().equals("분류")) {
-			swg.setSgName("");
-		}if(ad.getAdminName().equals("관리자")) {
-			ad.setAdminName("");
-		}if(searchBy.equals("고객명")) {
-			searchBy = "customer";
-		}else if(searchBy.equals("공급회사명")) {
-			searchBy = "company";
-		}else if(searchBy.equals("품목명")) {
-			searchBy = "softwarename";
-		}	
-		String name = pOrderSearch.getSearchText();
-		String startDate = pOrderSearch.getStartDate();
-		String endDate = pOrderSearch.getEndDate();
-		System.out.println(String.format("%s %s %s %s %s %s", swg.getSgName(), ad.getAdminName(), startDate, endDate, searchBy, name));
-		Map<String, String> map = new HashMap<>();
-		map.put("sgName", swg.getSgName());
-		map.put("adminName", ad.getAdminName());
-		map.put("startDate", startDate);
-		map.put("endDate", endDate);
-		map.put("searchBy", searchBy);
-		map.put("name", name);
-		List<SaleOrder> list = soService.findSaleOrderWithAllBySearch(map);
-		System.out.println(list);
-		pOrderTable.loadTableDatas(soService.findSaleOrderWithAllBySearch(map));
-		add(pOrderTable);
+	
+	public void reFreshList() {
+		List<SaleOrder> li = SaleOrderService.getInstance().findSaleOrderByAll();
+		pOrderTable.loadTableDatas(li);
 	}
 	
+	public void setListBySearchData(List<SaleOrder> searchData) {
+		pOrderTable.loadTableDatas(searchData);
+	}
 	
-	
+	/*public void setData(SaleOrder sr) {
+		AdminOrderRegister.setOrderData(sr);
+	}
+	*/
 }

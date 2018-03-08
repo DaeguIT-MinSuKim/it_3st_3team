@@ -1,8 +1,9 @@
 package kr.or.dgit.it_3st_3team.ui.admin.order;
 
-import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -16,28 +17,26 @@ import kr.or.dgit.it_3st_3team.dto.User;
 import kr.or.dgit.it_3st_3team.service.SaleOrderService;
 import kr.or.dgit.it_3st_3team.type.Payment;
 import kr.or.dgit.it_3st_3team.ui.component.CalenderTfComp;
-import kr.or.dgit.it_3st_3team.ui.component.LblCmbStringComp;
-import kr.or.dgit.it_3st_3team.ui.component.LblTfComp;
 import kr.or.dgit.it_3st_3team.ui.component.ImageComp;
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.awt.event.ActionEvent;
+import kr.or.dgit.it_3st_3team.ui.component.LblCmbStringComp;
+import kr.or.dgit.it_3st_3team.ui.component.LblSpinnerComp;
+import kr.or.dgit.it_3st_3team.ui.component.LblTfComp;
+import kr.or.dgit.it_3st_3team.utils.DefineUtil;
 
 @SuppressWarnings("serial")
 public class AdminOrderRegister extends JPanel implements ActionListener {
-
 	private LblTfComp pOrderNum;
 	private LblTfComp pUserName;
 	private LblTfComp pSwName;
 	private JLabel lblDate;
 	private CalenderTfComp pDate;
 	private LblCmbStringComp pPayment;
-	private LblTfComp pOrderCount;
-	private AdminOrder adOrder;
+	private AdminOrderContent adOrder;
 	private JPanel pOrderRegi;
 	private ImageComp pImg;
 	private JButton btnRewrite;
 	private JButton btnCancel;
+	private LblSpinnerComp pOrderCount;
 
 	public AdminOrderRegister() {
 
@@ -51,10 +50,6 @@ public class AdminOrderRegister extends JPanel implements ActionListener {
 		pOrderRegi.setBounds(0, 0, 1184, 201);
 		add(pOrderRegi);
 		pOrderRegi.setLayout(null);
-
-		pOrderCount = new LblTfComp("품목 수량");
-		pOrderCount.setBounds(278, 116, 170, 30);
-		pOrderRegi.add(pOrderCount);
 
 		pPayment = new LblCmbStringComp("결제수단");
 		String[] payli = {"카드","모바일","계좌이체","무통장","간편결제"};
@@ -76,10 +71,12 @@ public class AdminOrderRegister extends JPanel implements ActionListener {
 
 		pSwName = new LblTfComp("상품명");
 		pSwName.setBounds(601, 67, 260, 30);
+		pSwName.setTfEditable(false);
 		pOrderRegi.add(pSwName);
 
 		pUserName = new LblTfComp("상호명");
 		pUserName.setBounds(294, 69, 220, 30);
+		pUserName.setTfEditable(false);
 		pOrderRegi.add(pUserName);
 
 		pOrderNum = new LblTfComp("주문번호");
@@ -100,16 +97,25 @@ public class AdminOrderRegister extends JPanel implements ActionListener {
 		btnCancel.addActionListener(this);
 		btnCancel.setBounds(1005, 148, 97, 23);
 		pOrderRegi.add(btnCancel);
+		
+		pOrderCount = new LblSpinnerComp("품목 수량");
+		pOrderCount.setBounds(279, 116, 170, 30);
+		pOrderCount.setIntSpinner(1, 1, 999, 1);
+		pOrderRegi.add(pOrderCount);
 	}
 	
 	
 	public void setOrderData(SaleOrder saleOrder) {
 		pUserName.setTfText(saleOrder.getUser().getName());
-		pOrderCount.setTfText(Integer.toString(saleOrder.getOrdQuantity()));
+		pOrderCount.setSpnValue(saleOrder.getOrdQuantity());
 		pSwName.setTfText(saleOrder.getSoftware().getSwName());
 		pOrderNum.setTfText(Integer.toString(saleOrder.getOrdNo()));
 		
-		
+		if(saleOrder.getSoftware().getSwCoverImg() != null && !saleOrder.getSoftware().getSwCoverImg().equals("")) {
+			pImg.setImageIcon(saleOrder.getSoftware().getSwCoverImg());
+		}else {
+			pImg.setImageIcon(DefineUtil.DEFAULT_USER_IMG);
+		}
 		
 		if(saleOrder.getOrdPayment()==Payment.CARD) {
 			pPayment.setCmbSelectIndex(0);
@@ -127,9 +133,7 @@ public class AdminOrderRegister extends JPanel implements ActionListener {
 		btnRewrite.setText("수정");
 	}
 
-	public void setAdOrder(AdminOrder adOrder) {
-		this.adOrder = adOrder;
-	}
+	
 	
 	
 	public void actionPerformed(ActionEvent e) {
@@ -141,23 +145,29 @@ public class AdminOrderRegister extends JPanel implements ActionListener {
 		}
 	}
 	protected void actionPerformedBtnRewrite(ActionEvent e) {
-		if(pSwName.isTfEmpty("상품명을 입력해주세요")) {
-			return;
-		}if(pOrderCount.isTfEmpty("수량을 입력해주세요")) {
-			return;
-		}if(pUserName.isTfEmpty("상호명을 입력해주세요")) {
-			return;
-		}
 		
 		String swName = pSwName.getTfText().trim();
-		int orderCount = Integer.parseInt(pOrderCount.getTfText().trim());
+		int orderCount = pOrderCount.getSpnValue();
 		String userName = pUserName.getTfText().trim();
 		int orderNo = Integer.parseInt(pOrderNum.getTfText().trim());
-		Payment payment = (Payment) pPayment.getCmbSelectItem();
+		String payment =  (String) pPayment.getCmbSelectItem();
+		
 		
 		SaleOrder inputOrder = new SaleOrder();
 		inputOrder.setOrdNo(orderNo);//번호
-		inputOrder.setOrdPayment(payment);//결제수단
+		//결제수단
+		if(payment.equals("계좌이체")) {
+			inputOrder.setOrdPayment(Payment.ATM);
+		}else if(payment.equals("무통장")) {
+			inputOrder.setOrdPayment(Payment.BANK);
+		}else if(payment.equals("카드")) {
+			inputOrder.setOrdPayment(Payment.CARD);
+		}else if(payment.equals("모바일")) {
+			inputOrder.setOrdPayment(Payment.MOBILE);
+		}else if(payment.equals("간편결제")) {
+			inputOrder.setOrdPayment(Payment.SIMPLE);
+		}
+		
 		inputOrder.setOrdQuantity(orderCount);//수량
 		User user = new User();
 		user.setName(userName);
@@ -177,11 +187,29 @@ public class AdminOrderRegister extends JPanel implements ActionListener {
 		}
 		
 		if(commandType.equals("수정")) {
-			//result = SaleOrderService.getInstance().
+			result = SaleOrderService.getInstance().updateOrderManagementNo(inputOrder);
 		}
-		
-		
+		adOrder.reFreshList();
+		resetData();
 	}
+	
+	public void resetData() {
+		pDate.setDate("");
+		pImg.setImageIcon("nobody.png");
+		pOrderCount.setSpnValue(1);
+		pOrderNum.setTfText("");
+		pSwName.setTfText("");
+		pUserName.setTfText("");
+	}
+	
 	protected void actionPerformedBtnCancel(ActionEvent e) {
+		resetData();
 	}
+
+	public void setAdOrder(AdminOrderContent adOrder) {
+		this.adOrder = adOrder;
+	}
+	
+	
+	
 }

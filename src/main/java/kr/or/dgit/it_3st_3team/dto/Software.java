@@ -148,5 +148,11 @@ public class Software {
 		return new Object[] { swNo, swGroup.getSgName(), swName, swQuantity, swSupplyPrice, swSellPrice,
 				userNo.getName() };
 	}
+	
+	public Object[] toArrayOrder() {
+
+		return new Object[] { swNo, swGroup.getSgName(), swName, swQuantity, swSellPrice,
+				userNo.getName() };
+	}
 
 }

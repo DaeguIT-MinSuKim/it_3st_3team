@@ -1,51 +1,57 @@
 package kr.or.dgit.it_3st_3team.ui.user;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
+
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import kr.or.dgit.it_3st_3team.ui.component.CmbSoftwareGroupComp;
-import kr.or.dgit.it_3st_3team.ui.component.CmbUserComp;
-import kr.or.dgit.it_3st_3team.ui.component.TfBtnSearchComp;
-import kr.or.dgit.it_3st_3team.ui.component.PagingComp;
-import java.awt.Color;
+import javax.swing.JPopupMenu;
+
+import kr.or.dgit.it_3st_3team.dto.SaleOrder;
+import kr.or.dgit.it_3st_3team.dto.Software;
+import kr.or.dgit.it_3st_3team.service.SaleOrderService;
+import kr.or.dgit.it_3st_3team.service.SoftwareService;
+import kr.or.dgit.it_3st_3team.ui.table.CustomerOrderTable;
 
 @SuppressWarnings("serial")
 public class CustomerOrderContent extends JPanel {
-
+	private CustomerOrderTable pTable;
+	private CustromerOrderRegister pRegister;
+	private CustomerOrderSearch pSearch;
+	
+	
 	public CustomerOrderContent() {
 
 		initComponents();
 	}
 	private void initComponents() {
 		setLayout(null);
-		setBounds(0, 0, 1200, 800);
+		setBounds(0, 0, 1200, 900);
 		
-		CustromerOrderRegister panel = new CustromerOrderRegister();
-		panel.setBounds(12, 10, 1176, 166);
-		add(panel);
+		pRegister = new CustromerOrderRegister();
+		pRegister.setBounds(0, 0, 1200, 192);
+		add(pRegister);
 		
-		JPanel pSearchArea = new JPanel();
-		pSearchArea.setBackground(new Color(255, 255, 255));
-		pSearchArea.setBounds(12, 176, 1176, 50);
-		add(pSearchArea);
-		pSearchArea.setLayout(null);
-		
-		CmbSoftwareGroupComp pSwGroupCmb = new CmbSoftwareGroupComp();
-		pSwGroupCmb.setBounds(12, 10, 200, 30);
-		pSearchArea.add(pSwGroupCmb);
-		
-		CmbUserComp pUserCmb = new CmbUserComp();
-		pUserCmb.setBounds(233, 10, 200, 30);
-		pSearchArea.add(pUserCmb);
-		
-		TfBtnSearchComp pSearchTfBtn = new TfBtnSearchComp("검색");
-		pSearchTfBtn.setBounds(447, 10, 717, 30);
-		pSearchArea.add(pSearchTfBtn);
-		
-		JPanel pTable = new JPanel();
-		pTable.setBounds(12, 226, 1176, 519);
+		pTable = new CustomerOrderTable();
+		pTable.loadTableDatas(SoftwareService.getInstance().selectSoftwareByAll());
+		pTable.setBounds(12, 233, 1174, 612);
 		add(pTable);
 		
-		PagingComp pPaging = new PagingComp();
-		pPaging.setBounds(12, 755, 1176, 45);
-		add(pPaging);
+		
+		pSearch = new CustomerOrderSearch();
+		pSearch.setParent(this);
+		pSearch.setBounds(0, 191, 1200, 43);
+		add(pSearch);
+		
+	}
+
+	public void reFreshList() {
+		List<Software> li = SoftwareService.getInstance().selectSoftwareByAll();
+		pTable.loadTableDatas(li);
+	}
+	
+	public void setListBySearchData(List<Software> serachData) {
+		pTable.loadTableDatas(serachData);
 	}
 }
