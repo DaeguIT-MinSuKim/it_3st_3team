@@ -85,15 +85,18 @@ public class UserModifyContent extends JPanel implements ActionListener {
 	// 개인정보 수정 버튼
 	protected void actionPerformedBtnModifyUserInfo(ActionEvent e) {
 		User modifyUser = pUserInfo.getUserInfo();
-		String imgName = CommonUtil.getInstance().createRndImgName(modifyUser.getAvatar(), modifyUser.getUserId());
+		String imgFullPath = modifyUser.getAvatar();
+		String imgName = CommonUtil.getInstance().createRndImgName(imgFullPath, modifyUser.getUserId());
 		modifyUser.setAvatar(imgName);
 		
 		if (UserService.getInstance().modifyUser(modifyUser) != 1) {
 			JOptionPane.showMessageDialog(null, "회원정보 수정에 실패했습니다.");
 			return;
 		}
-		CommonUtil.getInstance().userImgSave(modifyUser.getAvatar(), imgName);
-		userUI.setUser(modifyUser);
+		CommonUtil.getInstance().userImgSave(imgFullPath, imgName);
+		
+		User changedUser = UserService.getInstance().findUserById(modifyUser);
+		userUI.setUser(changedUser);
 		userUI.setUserNameAndAvatar();
 		JOptionPane.showMessageDialog(null, "회원정보가 수정되었습니다.");
 	}
