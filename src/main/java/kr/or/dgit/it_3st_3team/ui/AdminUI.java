@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import kr.or.dgit.it_3st_3team.dto.Admin;
+import kr.or.dgit.it_3st_3team.ui.admin.chart.AdminChartContent;
 import kr.or.dgit.it_3st_3team.ui.admin.management.AdminManagementContent;
 import kr.or.dgit.it_3st_3team.ui.admin.order.AdminOrder;
 import kr.or.dgit.it_3st_3team.ui.admin.report.AdminStatusContent;
@@ -31,6 +32,7 @@ public class AdminUI extends JFrame implements ActionListener {
 	private JButton btnEmpManagement;
 	private Admin admin;
 	private JButton btnDbSetting;
+	private JButton btnSupplySaleStatusGraph;
 
 	public AdminUI(Admin admin) {
 		this.admin = admin;
@@ -96,7 +98,8 @@ public class AdminUI extends JFrame implements ActionListener {
 		btnSupplySaleStatus.setBackground(new Color(51, 153, 204));
 		pAdminMenu.add(btnSupplySaleStatus);
 
-		JButton btnSupplySaleStatusGraph = new JButton("공급 · 판매 현황(그래프)");
+		btnSupplySaleStatusGraph = new JButton("공급 · 판매 현황(그래프)");
+		btnSupplySaleStatusGraph.addActionListener(this);
 		btnSupplySaleStatusGraph.setForeground(Color.DARK_GRAY);
 		btnSupplySaleStatusGraph.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
 		btnSupplySaleStatusGraph.setBackground(new Color(51, 153, 204));
@@ -123,6 +126,9 @@ public class AdminUI extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnSupplySaleStatusGraph) {
+			actionPerformedBtnSupplySaleStatusGraph(e);
+		}
 		if (e.getSource() == btnDbSetting) {
 			actionPerformedBtnDbSetting(e);
 		}
@@ -189,4 +195,9 @@ public class AdminUI extends JFrame implements ActionListener {
 		pContent.repaint();
 	}
 
+	protected void actionPerformedBtnSupplySaleStatusGraph(ActionEvent e) {
+		AdminChartContent pMain = new AdminChartContent(admin);
+		pMain.setBounds(0, 0, 1186, 861);
+		changeMainPanel(pMain);
+	}
 }

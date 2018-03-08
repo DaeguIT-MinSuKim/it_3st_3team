@@ -16,6 +16,7 @@ import javax.swing.border.EmptyBorder;
 
 import kr.or.dgit.it_3st_3team.dto.User;
 import kr.or.dgit.it_3st_3team.type.UserGroup;
+import kr.or.dgit.it_3st_3team.ui.admin.chart.AdminChartContent;
 import kr.or.dgit.it_3st_3team.ui.admin.report.AdminStatusContent;
 import kr.or.dgit.it_3st_3team.ui.admin.software.AdminSoftwareContent;
 import kr.or.dgit.it_3st_3team.ui.user.CustomerOrderContent;
@@ -217,7 +218,9 @@ public class UserUI extends JFrame implements ActionListener {
 	}
 
 	protected void actionPerformedBtnSupplyStatusGraph(ActionEvent e) {
-
+		AdminChartContent pMain = new AdminChartContent(user);
+		pMain.setBounds(0, 0, 1186, 861);
+		changeMainPanel(pMain);
 	}
 
 	protected void actionPerformedBtnSupplyStatus(ActionEvent e) {
