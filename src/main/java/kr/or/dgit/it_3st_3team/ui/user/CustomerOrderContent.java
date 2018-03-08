@@ -15,12 +15,11 @@ import kr.or.dgit.it_3st_3team.service.SoftwareService;
 import kr.or.dgit.it_3st_3team.ui.table.CustomerOrderTable;
 
 @SuppressWarnings("serial")
-public class CustomerOrderContent extends JPanel implements ActionListener {
+public class CustomerOrderContent extends JPanel {
 	private CustomerOrderTable pTable;
 	private CustromerOrderRegister pRegister;
 	private CustomerOrderSearch pSearch;
-	private JMenuItem modifyMenu;
-	private JMenuItem deleteMenu;
+	
 	
 	public CustomerOrderContent() {
 
@@ -38,14 +37,7 @@ public class CustomerOrderContent extends JPanel implements ActionListener {
 		pTable.loadTableDatas(SoftwareService.getInstance().selectSoftwareByAll());
 		pTable.setBounds(12, 233, 1174, 612);
 		add(pTable);
-		JPopupMenu menu = new JPopupMenu();
-		modifyMenu = new JMenuItem("     주문   ");
-		modifyMenu.addActionListener(this);
-		menu.add(modifyMenu);
-		pTable.setPopupMenu(menu);
 		
-		List<Software> orderList = SoftwareService.getInstance().selectSoftwareByAll();
-		pTable.loadTableDatas(orderList);
 		
 		pSearch = new CustomerOrderSearch();
 		pSearch.setParent(this);
@@ -53,17 +45,7 @@ public class CustomerOrderContent extends JPanel implements ActionListener {
 		add(pSearch);
 		
 	}
-	
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == modifyMenu) {
-			actionPerformedBtnModifyMenu(e);
-		}
-	}
-	
-	private void actionPerformedBtnModifyMenu(ActionEvent e) {
-		
-	}
-	
+
 	public void reFreshList() {
 		List<Software> li = SoftwareService.getInstance().selectSoftwareByAll();
 		pTable.loadTableDatas(li);
