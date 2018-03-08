@@ -61,9 +61,7 @@ public class CustomerOrderContent extends JPanel implements ActionListener {
 	}
 	
 	private void actionPerformedBtnModifyMenu(ActionEvent e) {
-		int no = pTable.getSelectedNo();
-		Software software = SoftwareService.getInstance().selectSoftwareByNo(new Software(no));
-		//pTable.setOrderData(software);
+		
 	}
 	
 	public void reFreshList() {

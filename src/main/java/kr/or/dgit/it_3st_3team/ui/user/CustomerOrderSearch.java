@@ -98,8 +98,7 @@ public class CustomerOrderSearch extends JPanel implements ActionListener{
 			List<Software> software = SoftwareService.getInstance().selectSoftwareByNoCustomer(sw);
 			parent.setListBySearchData(software);
 			tfSearch.setText("");
-			swg.setSgName("분류");
-			us.setName("제작사");
+			
 		}if(!name.isEmpty()) {
 			swg.setSgName("");
 			us.setName("");
