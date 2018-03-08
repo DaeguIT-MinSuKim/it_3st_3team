@@ -33,7 +33,7 @@ public class AdminOrderRegister extends JPanel implements ActionListener {
 	private CalenderTfComp pDate;
 	private LblCmbStringComp pPayment;
 	private LblTfComp pOrderCount;
-	private AdminOrder adOrder;
+	private AdminOrderContent adOrder;
 	private JPanel pOrderRegi;
 	private ImageComp pImg;
 	private JButton btnRewrite;
@@ -76,10 +76,12 @@ public class AdminOrderRegister extends JPanel implements ActionListener {
 
 		pSwName = new LblTfComp("상품명");
 		pSwName.setBounds(601, 67, 260, 30);
+		pSwName.setTfEditable(false);
 		pOrderRegi.add(pSwName);
 
 		pUserName = new LblTfComp("상호명");
 		pUserName.setBounds(294, 69, 220, 30);
+		pUserName.setTfEditable(false);
 		pOrderRegi.add(pUserName);
 
 		pOrderNum = new LblTfComp("주문번호");
@@ -127,9 +129,7 @@ public class AdminOrderRegister extends JPanel implements ActionListener {
 		btnRewrite.setText("수정");
 	}
 
-	public void setAdOrder(AdminOrder adOrder) {
-		this.adOrder = adOrder;
-	}
+	
 	
 	
 	public void actionPerformed(ActionEvent e) {
@@ -141,11 +141,7 @@ public class AdminOrderRegister extends JPanel implements ActionListener {
 		}
 	}
 	protected void actionPerformedBtnRewrite(ActionEvent e) {
-		if(pSwName.isTfEmpty("상품명을 입력해주세요")) {
-			return;
-		}if(pOrderCount.isTfEmpty("수량을 입력해주세요")) {
-			return;
-		}if(pUserName.isTfEmpty("상호명을 입력해주세요")) {
+		if(pOrderCount.isTfEmpty("수량을 입력해주세요")) {
 			return;
 		}
 		
@@ -153,11 +149,24 @@ public class AdminOrderRegister extends JPanel implements ActionListener {
 		int orderCount = Integer.parseInt(pOrderCount.getTfText().trim());
 		String userName = pUserName.getTfText().trim();
 		int orderNo = Integer.parseInt(pOrderNum.getTfText().trim());
-		Payment payment = (Payment) pPayment.getCmbSelectItem();
+		String payment =  (String) pPayment.getCmbSelectItem();
+		System.out.println(payment);
 		
 		SaleOrder inputOrder = new SaleOrder();
 		inputOrder.setOrdNo(orderNo);//번호
-		inputOrder.setOrdPayment(payment);//결제수단
+		//결제수단
+		if(payment.equals("계좌이체")) {
+			inputOrder.setOrdPayment(Payment.ATM);
+		}else if(payment.equals("무통장")) {
+			inputOrder.setOrdPayment(Payment.BANK);
+		}else if(payment.equals("카드")) {
+			inputOrder.setOrdPayment(Payment.CARD);
+		}else if(payment.equals("모바일")) {
+			inputOrder.setOrdPayment(Payment.MOBILE);
+		}else if(payment.equals("간편결제")) {
+			inputOrder.setOrdPayment(Payment.SIMPLE);
+		}
+		
 		inputOrder.setOrdQuantity(orderCount);//수량
 		User user = new User();
 		user.setName(userName);
@@ -177,11 +186,29 @@ public class AdminOrderRegister extends JPanel implements ActionListener {
 		}
 		
 		if(commandType.equals("수정")) {
-			//result = SaleOrderService.getInstance().
+			result = SaleOrderService.getInstance().updateOrderManagementNo(inputOrder);
 		}
-		
-		
+		adOrder.reFreshList();
+		resetData();
 	}
+	
+	public void resetData() {
+		pDate.setDate("");
+		pImg.setImageIcon("nobody.png");
+		pOrderCount.setTfText("");
+		pOrderNum.setTfText("");
+		pSwName.setTfText("");
+		pUserName.setTfText("");
+	}
+	
 	protected void actionPerformedBtnCancel(ActionEvent e) {
+		resetData();
 	}
+
+	public void setAdOrder(AdminOrderContent adOrder) {
+		this.adOrder = adOrder;
+	}
+	
+	
+	
 }

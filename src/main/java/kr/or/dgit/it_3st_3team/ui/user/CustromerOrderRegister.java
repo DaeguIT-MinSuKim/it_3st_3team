@@ -1,19 +1,36 @@
 package kr.or.dgit.it_3st_3team.ui.user;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import kr.or.dgit.it_3st_3team.ui.admin.order.AdminOrderContent;
 import kr.or.dgit.it_3st_3team.ui.component.CalenderTfComp;
+import kr.or.dgit.it_3st_3team.ui.component.ImageComp;
+import kr.or.dgit.it_3st_3team.ui.component.LblCmbStringComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblTfComp;
 import kr.or.dgit.it_3st_3team.ui.component.StringLblCmbComponent;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 
 @SuppressWarnings("serial")
-public class CustromerOrderRegister extends JPanel {
+public class CustromerOrderRegister extends JPanel implements ActionListener{
+	private LblTfComp pOrderNum;
+	private LblTfComp pUserName;
+	private LblTfComp pSwName;
+	private JLabel lblDate;
+	private CalenderTfComp pDate;
+	private LblCmbStringComp pPayment;
+	private LblTfComp pOrderCount;
+	private AdminOrderContent adOrder;
+	private JPanel pUserOrder;
+	private ImageComp pImg;
+	private JButton btnRewrite;
+	private JButton btnCancel;
 
 	public CustromerOrderRegister() {
 
@@ -23,50 +40,73 @@ public class CustromerOrderRegister extends JPanel {
 	private void initComponents() {
 		setLayout(null);
 
-		JPanel pCorrection = new JPanel();
-		pCorrection.setBackground(new Color(255, 255, 255));
-		pCorrection.setBounds(0, 0, 1190, 166);
-		add(pCorrection);
-		pCorrection.setLayout(null);
+		pUserOrder = new JPanel();
+		pUserOrder.setBounds(0, 0, 1184, 201);
+		add(pUserOrder);
+		pUserOrder.setLayout(null);
 
-		JButton btnCorrection = new JButton("수정");
-		btnCorrection.setBounds(964, 117, 80, 30);
-		pCorrection.add(btnCorrection);
+		pOrderCount = new LblTfComp("품목 수량");
+		pOrderCount.setBounds(278, 116, 170, 30);
+		pUserOrder.add(pOrderCount);
 
-		JButton btnOrderCancel = new JButton("취소");
-		btnOrderCancel.setBounds(1056, 117, 80, 30);
-		pCorrection.add(btnOrderCancel);
+		pPayment = new LblCmbStringComp("결제수단");
+		String[] payli = {"카드","모바일","계좌이체","무통장","간편결제"};
+		pPayment.loadData(payli);
+		pPayment.setBounds(589, 116, 215, 30);
+		pUserOrder.add(pPayment);
 
-		LblTfComp pOrderCount = new LblTfComp("품목 수량");
-		pOrderCount.setBounds(335, 67, 199, 30);
-		pCorrection.add(pOrderCount);
+		pDate = new CalenderTfComp((String) null);
+		pDate.setBounds(649, 10, 215, 42);
+		pDate.setEnabled(false);
+		pUserOrder.add(pDate);
+		
 
-		StringLblCmbComponent pPayment = new StringLblCmbComponent("결제수단");
-		pPayment.setBounds(339, 111, 215, 30);
+		lblDate = new JLabel("주문일자");
+		lblDate.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblDate.setBounds(577, 21, 60, 22);
+		pUserOrder.add(lblDate);
 
-		pCorrection.add(pPayment);
+		pSwName = new LblTfComp("상품명");
+		pSwName.setBounds(601, 67, 260, 30);
+		pUserOrder.add(pSwName);
 
-		CalenderTfComp pOrderDate = new CalenderTfComp((String) null);
-		pOrderDate.setBounds(687, 11, 220, 42);
-		pCorrection.add(pOrderDate);
+		pUserName = new LblTfComp("상호명");
+		pUserName.setBounds(294, 69, 220, 30);
+		pUserName.setTfEditable(false);
+		pUserOrder.add(pUserName);
 
-		JLabel lblOrderDate = new JLabel("주문일자");
-		lblOrderDate.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblOrderDate.setBounds(615, 21, 60, 22);
-		pCorrection.add(lblOrderDate);
+		pOrderNum = new LblTfComp("주문번호");
+		pOrderNum.setBounds(282, 19, 170, 30);
 
-		LblTfComp pItemName = new LblTfComp("상품명");
-		pItemName.setBounds(634, 68, 253, 30);
-		pCorrection.add(pItemName);
 
-		LblTfComp pOrderNo = new LblTfComp("주문번호");
-		pOrderNo.setBounds(339, 19, 198, 30);
-		pCorrection.add(pOrderNo);
+		pImg = new ImageComp();
+		pImg.setBounds(58, 10, 170, 169);
+		pUserOrder.add(pImg);
+		
+		btnRewrite = new JButton("등록");
+		btnRewrite.addActionListener(this);
+		
+		btnRewrite.setBounds(896, 148, 97, 23);
+		pUserOrder.add(btnRewrite);
+		
+		btnCancel = new JButton("취소");
+		btnCancel.addActionListener(this);
+		
+		btnCancel.setBounds(1005, 148, 97, 23);
+		pUserOrder.add(btnCancel);
+	}
 
-		JLabel pItemImg = new JLabel("New label");
-		pItemImg
-				.setIcon(new ImageIcon("G:\\Programming\\workspaces\\workspace_java\\it_3st_3team\\DataImg\\sega.png"));
-		pItemImg.setBounds(80, 20, 128, 128);
-		pCorrection.add(pItemImg);
+	
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnCancel) {
+			actionPerformedBtnCancel(e);
+		}
+		if (e.getSource() == btnRewrite) {
+			actionPerformedBtnRewrite(e);
+		}
+	}
+	protected void actionPerformedBtnRewrite(ActionEvent e) {
+	}
+	protected void actionPerformedBtnCancel(ActionEvent e) {
 	}
 }
