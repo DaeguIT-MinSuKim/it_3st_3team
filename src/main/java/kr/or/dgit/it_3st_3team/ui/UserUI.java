@@ -172,7 +172,6 @@ public class UserUI extends JFrame implements ActionListener {
 
 	public void setUser(User user) {
 		this.user = user;
-		System.out.println(user);
 	}
 
 	public User getUser() {
@@ -180,10 +179,14 @@ public class UserUI extends JFrame implements ActionListener {
 	}
 
 	public void setUserNameAndAvatar() {
+		String imgPath = DefineUtil.DEFAULT_IMG_PATH;
 		if (user.getAvatar() == null || user.getAvatar().equals("")) {
 			user.setAvatar(DefineUtil.DEFAULT_USER_IMG);
 		}
-		lblImg.setIcon(new ImageIcon(DefineUtil.IMG_PATH + user.getAvatar()));
+		if (!user.getAvatar().equals(DefineUtil.DEFAULT_USER_IMG)) {
+			imgPath = DefineUtil.USER_IMG_PATH;
+		}
+		lblImg.setIcon(new ImageIcon(imgPath + user.getAvatar()));
 
 		lblName.setText(String.format("%s님 환영합니다.", user.getName()));
 	}

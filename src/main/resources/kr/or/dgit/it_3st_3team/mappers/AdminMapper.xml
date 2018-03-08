@@ -62,6 +62,23 @@
 	<select id="selectAdminAll" parameterType="Admin" resultMap="AdminWithAdminGroupResult">
 		<include refid="selectWtihAdminGroupSql" />
 	</select>
+	
+	<select id="selectAdminBySearch" parameterType="Admin" resultMap="AdminWithAdminGroupResult">
+		<include refid="selectWtihAdminGroupSql" />
+		<where>
+			<choose>
+				<when test="searchBy == 'id'">
+					adm_id like CONCAT(#{searchText}, "%")
+				</when>
+				<when test="searchBy == 'name'">
+					adm_name like CONCAT(#{searchText}, "%")
+				</when>
+				<when test="searchBy == 'agName'">
+					ag_name like CONCAT(#{searchText}, "%")
+				</when>
+			</choose>
+		</where>
+	</select>
 
 	<insert id="insertAdmin" parameterType="Admin">
 		<selectKey resultType="integer" keyProperty="adminNo" order="BEFORE">
