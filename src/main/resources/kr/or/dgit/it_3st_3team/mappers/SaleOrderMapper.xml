@@ -165,8 +165,12 @@
 	</select>
 	
 	<!-- 수정 -->
+	<sql id="updateSql">
+		update sale_order set ord_quantity=#{ordQuantity},ord_payment=#{ordPayment}
+	</sql>
 	<update id="updateOrderManagementNo" parameterType="SaleOrder">
-		
+		<include refid="updateSql"/>
+		<include refid="whereSql"/>
 	</update>
 	
 	<!-- 삭제 -->
