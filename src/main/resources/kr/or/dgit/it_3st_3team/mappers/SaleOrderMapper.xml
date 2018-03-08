@@ -47,46 +47,41 @@
 	join user as cu on sp.pc_no=cu.u_no
 	</sql>
 	
-	<!-- 차트 품목별 갯수 -->
-	<sql id="selectChartByType">
-	select ord_quantity, 
-	sum(if(sg.sg_name='게임',ord_quantity,0))as '게임',
-	sum(if(sg.sg_name='사무',ord_quantity,0))as '사무',
-	sum(if(sg.sg_name='그래픽',ord_quantity,0))as '그래픽',
-	sum(ord_quantity) as '합계'
-	from sale_order as so 
-	join software as sp on so.sw_no=sp.sw_no
-	join software_group as sg on sp.sg_no=sg.sg_no
-	join admin as ad on so.adm_no=ad.adm_no
-	</sql>
-	
-	<!-- <select id="test11" parameterType="" resultMap="">
-		select t.sg_name, sum(ord_quantity)
-		from sale_order as so 
-		     right join (select sw.*, sg_name from software sw right join software_group sg  on sg.sg_no=sw.sg_no) as t on so.sw_no = t.sw_no
-		     left join admin ad on so.adm_no = ad.adm_no
-		where ad.adm_name = #{adminName}
-		      and so.ord_datetime like #{}
-		group by t.sg_name
-		union
-		select '총합', sum(ord_quantity)
-		from sale_order so join admin ad on so.adm_no = ad.adm_no
-		where ad.adm_name = #{}
-		      and so.ord_datetime like #{}
-	</select> -->
-	
-	<!-- 품목종류 자동 업데이트 차트 -->
-	<select id="">
-		
-	select t.sg_name, ifnull(sum(ord_quantity),0)
-	from sale_order as so 
-    right join (select sw.*, sg_name from software sw right join software_group sg  on sg.sg_no=sw.sg_no) as t on so.sw_no = t.sw_no
-    left join admin ad on so.adm_no = ad.adm_no
+	<!-- 차트 품목별 갯수 조건:년도 -->
+	<select id="selectSgGroupYear" parameterType="map" resultType="map">
+	select t.sg_name as name, ifnull(sum(ord_quantity),0) as count
+	from (select sw.*, sg_name from software sw right join software_group sg  on sg.sg_no=sw.sg_no) as t
+    left join (select * from sale_order where ord_datetime like CONCAT(#{date},"%")) as so on so.sw_no = t.sw_no
 	group by t.sg_name
 	union
 	select '총합', sum(ord_quantity)
 	from sale_order so join admin ad on so.adm_no = ad.adm_no
-		
+	where so.ord_datetime like CONCAT(#{date},"%")
+	</select>
+	
+	<!-- 차트 품목별 갯수 조건:영업사원, 년도 -->
+	<select id="selectSgGroupNoOption" parameterType="map" resultType="map">
+	select t.sg_name as name, ifnull(sum(ord_quantity),0) as count
+	from (select sw.*, sg_name from software sw right join software_group sg  on sg.sg_no=sw.sg_no) as t
+    left join (select * from sale_order where ord_datetime like CONCAT(#{date},"%")) as so on so.sw_no = t.sw_no
+    left join (select * from admin ad where adm_name = #{adminName}) ad on so.adm_no = ad.adm_no
+	group by t.sg_name
+	union
+	select '총합', sum(ord_quantity)
+	from sale_order so join admin ad on so.adm_no = ad.adm_no
+	where ad.adm_name = #{adminName}
+    and so.ord_datetime like CONCAT(#{date},"%")
+	</select>
+	
+	<select id="selectPaymentChartOption" parameterType="map" resultType="map">
+	select ord_payment as typeofpayment, ifnull(sum(ord_quantity),0) as count
+	from sale_order
+	where ord_datetime like CONCAT(#{date},"%")
+	group by ord_payment
+	union
+	select '총합', sum(ord_quantity)
+	from sale_order
+	where ord_datetime like CONCAT(#{date},"%")
 	</select>
 	
 	<!-- SaleOrder 주문 삭제 -->
@@ -175,10 +170,10 @@
 		<include refid="whereSql"/>
 	</delete>
 
-	<!-- 차트 품목별 갯수 -->
+	<!-- 차트 품목별 갯수 
 	<select id="selectSaleOrderBySwgType" parameterType="map" resultType="map">
 		<include refid="selectChartByType"/>
 		<include refid="whereSwNameSqlChart"/>
-	</select>
+	</select>-->
 
 </mapper>

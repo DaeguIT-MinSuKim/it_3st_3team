@@ -75,11 +75,27 @@ public class SaleOrderService {
 		return res;
 	}
 	
-	// 차트
-	public Map<String, Integer> selectSaleOrderBySwgType(Map<String, String> map) {
-		log.debug("selectSaleOrderBySwgType()");
+	// 품목별 차트 조건:영업사원,년도
+	public List<Map<String, Integer>> selectSgGroupNoOption(Map<String, String> map) {
+		log.debug("selectSgGroupNoOption()");
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
-			return sqlSession.selectOne(namespace + "selectSaleOrderBySwgType", map);
+			return sqlSession.selectList(namespace + "selectSgGroupNoOption", map);
+		}
+	}
+	
+	// 품목별 차트 조건:년도
+		public List<Map<String, Integer>> selectSgGroupYear(Map<String, String> map) {
+			log.debug("selectSgGroupYear()");
+			try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+				return sqlSession.selectList(namespace + "selectSgGroupYear", map);
+			}
+		}
+	
+	// 결제방법 차트
+	public List<Map<String, Integer>> selectPaymentChartOption(Map<String, String> map) {
+		log.debug("selectPaymentChartOption()");
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectList(namespace + "selectPaymentChartOption", map);
 		}
 	}
 }
