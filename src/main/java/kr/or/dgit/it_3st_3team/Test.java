@@ -7,7 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import kr.or.dgit.it_3st_3team.ui.admin.chart.BarChartExample3D;
+import kr.or.dgit.it_3st_3team.ui.admin.chart.AdminChartBySwgType;
+import kr.or.dgit.it_3st_3team.ui.admin.chart.AdminChartBySwgTypeFullYear;
 
 public class Test extends JFrame {
 
@@ -39,7 +40,7 @@ public class Test extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		BarChartExample3D ss = new BarChartExample3D();
+		AdminChartBySwgTypeFullYear ss = new AdminChartBySwgTypeFullYear();
 		ss.setBorder(new EmptyBorder(30, 0, 0, 0));
 		setContentPane(ss);
 	}
