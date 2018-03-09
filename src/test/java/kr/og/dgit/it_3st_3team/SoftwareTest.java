@@ -128,6 +128,11 @@ public class SoftwareTest {
 	}
 	
 	@Test
+	public void testGdeleteSoftwareColumn() {
+		
+	}
+	
+	@Test
 	public void testFdeleteSoftware() {
 		int res = service.deleteSoftware(new Software("ㄴㄴㄴ"));
 		assertEquals(1, res);

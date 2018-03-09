@@ -29,7 +29,6 @@ import kr.or.dgit.it_3st_3team.utils.DefineUtil;
 
 @SuppressWarnings("serial")
 public class AdminSoftwareRegister extends JPanel implements ActionListener {
-	private JFileChooser chooser;
 	private JButton btnSubmitCF;
 	private LblCmbSoftwareGroupComp pSWsort;
 	private LblCmbUserComp pCompany;
@@ -39,7 +38,7 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 	private JButton btnRegister;
 	private JButton btnCancel;
 	
-	private AdminSoftwareContent ac;
+	private AdminSoftwareContent parent;
 	private JTextField upNum;
 	private ImageComp pSwRegisterImg;
 	private LblSpinnerComp pCount;
@@ -139,7 +138,7 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 	}
 
 	private void actionPerformedBtnCancel(ActionEvent e) {
-		resetDate();
+		resetData();
 		
 	}
 
@@ -192,8 +191,8 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 			SoftwareService.getInstance().updateSoftware(inputSw);
 			btnRegister.setText("등록");		
 		}
-		ac.reFreshList();
-		resetDate();
+		parent.reFreshList();
+		resetData();
 	
 	}
 
@@ -227,12 +226,12 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 	
 	
 	
-	private void resetDate() {
+	public void resetData() {
 		pSwRegisterImg.setImageIcon("nobody.png");
 		pCompany.setCmbSelectIndex(0);
-		pSalePrice.setSpnValue(1000);
+		pSalePrice.setSpnValue(0);
 		pCount.setSpnValue(1);
-		pSupplyPrice.setSpnValue(1000);
+		pSupplyPrice.setSpnValue(0);
 		pSWName.setTfText("");
 		pSWsort.setCmbSelectIndex(0);
 		upNum.setText("");
@@ -240,7 +239,9 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 	}
 
 	
-	public void setAc(AdminSoftwareContent ac) {
-		this.ac = ac;
+	
+	public void setParent(AdminSoftwareContent ac) {
+		this.parent = ac;
 	}
+
 }

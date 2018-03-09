@@ -40,68 +40,14 @@ public class AdminSoftwareTable extends AbtractTableComp<Software> {
 	private AdminSoftwareContent ac;
 
 	public AdminSoftwareTable() {
-		initComponents();
 	}
-
-	private void initComponents() {
-		table.setComponentPopupMenu(createPopUpMenu());
-
-	}
-
-	private JPopupMenu createPopUpMenu() {
-		JPopupMenu popMenu = new JPopupMenu();
-		JMenuItem delMenu = new JMenuItem("삭제");
-		popMenu.add(delMenu);
-		JMenuItem updateMenu = new JMenuItem("수정");
-		popMenu.add(updateMenu);
-		delMenu.addActionListener(menuListener);
-		updateMenu.addActionListener(menuListener);
-
-		return popMenu;
-	}
-
-	ActionListener menuListener = new ActionListener() {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			if (e.getActionCommand().equals("삭제")) {
-				int result = JOptionPane.showConfirmDialog(null, "삭제하시겠습니까?", "소프트웨어 삭제", JOptionPane.OK_CANCEL_OPTION);
-				if (result == 0) {
-					try {
-						actionDeleteItem();
-					} catch (PersistenceException e2) {
-						JOptionPane.showMessageDialog(null, "주문된 소프트웨어는 지울 수 없습니다.", "경고", JOptionPane.ERROR_MESSAGE);
-						return;
-					}
-				}
-			}
-			if (e.getActionCommand().equals("수정")) {
-					actionUpdateItem();
-			}
-		}
-		
-
-		private void actionDeleteItem() {
-			String val = table.getValueAt(table.getSelectedRow(), 2).toString();
-			Software sw = new Software();
-			SoftwareService.getInstance().deleteSoftware(new Software(val));
-			List<Software> lists = SoftwareService.getInstance().selectSoftwareByAll();
-			loadTableDatas(lists);
-		}
-
-		private void actionUpdateItem() {
-			
-			int no = getSelectedNo();
-			Software so = SoftwareService.getInstance().selectSoftwareByNo(new Software(no));
-			ac.setDate(so);
-		}
-	};
 
 	private Object[][] rows;
 
 	@Override
 	public void setTableAlignWidth() {
-		setTableCellAlign(SwingConstants.CENTER, 0, 1, 2, 3, 4, 5, 6);
+		setTableCellAlign(SwingConstants.CENTER, 0, 1, 2, 3, 6);
+		setTableCellAlign(SwingConstants.RIGHT,4,5);
 		setTableRowHeight(40);
 		setTableCellWidth(100, 100, 200, 100, 150, 150, 200);
 	}
@@ -121,8 +67,6 @@ public class AdminSoftwareTable extends AbtractTableComp<Software> {
 		return rows;
 	}
 
-	public void setAc(AdminSoftwareContent ac) {
-		this.ac = ac;
-	}
+
 
 }

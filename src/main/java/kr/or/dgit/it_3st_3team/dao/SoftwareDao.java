@@ -16,4 +16,5 @@ public interface SoftwareDao {
 	int insertSoftware(Software software);
 	int updateSoftware(Software software);
 	int deleteSoftware(Software swNo);
+	int deleteSoftwareColumn(Software software);
 }
