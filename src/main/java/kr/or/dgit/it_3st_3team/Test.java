@@ -40,7 +40,7 @@ public class Test extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		AdminChartBySwgTypeFullYear ss = new AdminChartBySwgTypeFullYear();
+		AdminChartBySwgTypeFullYear ss = new AdminChartBySwgTypeFullYear(new Object());
 		ss.setBorder(new EmptyBorder(30, 0, 0, 0));
 		setContentPane(ss);
 	}
