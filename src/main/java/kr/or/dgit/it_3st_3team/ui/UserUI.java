@@ -22,6 +22,7 @@ import kr.or.dgit.it_3st_3team.ui.admin.software.AdminSoftwareContent;
 import kr.or.dgit.it_3st_3team.ui.user.CustomerOrderContent;
 import kr.or.dgit.it_3st_3team.ui.user.UserModifyContent;
 import kr.or.dgit.it_3st_3team.utils.DefineUtil;
+import java.awt.SystemColor;
 
 @SuppressWarnings("serial")
 public class UserUI extends JFrame implements ActionListener {
@@ -55,7 +56,7 @@ public class UserUI extends JFrame implements ActionListener {
 
 		JPanel pImg = new JPanel();
 		pImg.setLayout(null);
-		pImg.setBackground(new Color(51, 153, 204));
+		pImg.setBackground(new Color(59, 89, 152));
 		pImg.setBounds(0, 0, 300, 231);
 		contentPane.add(pImg);
 
@@ -64,13 +65,14 @@ public class UserUI extends JFrame implements ActionListener {
 		pImg.add(lblImg);
 
 		lblName = new JLabel("");
+		lblName.setForeground(SystemColor.window);
 		lblName.setHorizontalAlignment(SwingConstants.CENTER);
-		lblName.setFont(new Font("나눔바른고딕", Font.PLAIN, 15));
+		lblName.setFont(new Font("나눔바른고딕", Font.PLAIN, 16));
 		lblName.setBounds(30, 188, 228, 33);
 		pImg.add(lblName);
 
 		pMenu = new JPanel();
-		pMenu.setBackground(new Color(51, 153, 204));
+		pMenu.setBackground(new Color(59, 89, 152));
 		pMenu.setBounds(0, 230, 300, 631);
 		contentPane.add(pMenu);
 		pMenu.setLayout(new GridLayout(6, 1, 0, 0));
@@ -87,9 +89,9 @@ public class UserUI extends JFrame implements ActionListener {
 		btnModify = new JButton("회원정보 수정");
 		btnModify.setBounds(0, 420, 298, 105);
 		btnModify.addActionListener(this);
-		btnModify.setForeground(Color.DARK_GRAY);
-		btnModify.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
-		btnModify.setBackground(new Color(51, 153, 204));
+		btnModify.setForeground(SystemColor.window);
+		btnModify.setFont(new Font("나눔바른고딕", Font.BOLD, 16));
+		btnModify.setBackground(new Color(59, 89, 152));
 		pMenu.add(btnModify);
 
 		pContent = new JPanel();
@@ -121,25 +123,25 @@ public class UserUI extends JFrame implements ActionListener {
 		btnSWRegister = new JButton("소프트웨어 등록");
 		btnSWRegister.setBounds(0, 105, 298, 105);
 		btnSWRegister.addActionListener(this);
-		btnSWRegister.setForeground(Color.DARK_GRAY);
-		btnSWRegister.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
-		btnSWRegister.setBackground(new Color(51, 153, 204));
+		btnSWRegister.setForeground(SystemColor.window);
+		btnSWRegister.setFont(new Font("나눔바른고딕", Font.BOLD, 16));
+		btnSWRegister.setBackground(new Color(59, 89, 152));
 		pMenu.add(btnSWRegister);
 
 		btnSupplyStatus = new JButton("소프트웨어 공급현황");
 		btnSupplyStatus.setBounds(0, 210, 298, 105);
 		btnSupplyStatus.addActionListener(this);
-		btnSupplyStatus.setForeground(Color.DARK_GRAY);
-		btnSupplyStatus.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
-		btnSupplyStatus.setBackground(new Color(51, 153, 204));
+		btnSupplyStatus.setForeground(SystemColor.window);
+		btnSupplyStatus.setFont(new Font("나눔바른고딕", Font.BOLD, 16));
+		btnSupplyStatus.setBackground(new Color(59, 89, 152));
 		pMenu.add(btnSupplyStatus);
 
 		btnSupplyStatusGraph = new JButton("소프트웨어 공급현황(그래프)");
 		btnSupplyStatusGraph.addActionListener(this);
 		btnSupplyStatusGraph.setBounds(0, 315, 298, 105);
-		btnSupplyStatusGraph.setForeground(Color.DARK_GRAY);
-		btnSupplyStatusGraph.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
-		btnSupplyStatusGraph.setBackground(new Color(51, 153, 204));
+		btnSupplyStatusGraph.setForeground(SystemColor.window);
+		btnSupplyStatusGraph.setFont(new Font("나눔바른고딕", Font.BOLD, 16));
+		btnSupplyStatusGraph.setBackground(new Color(59, 89, 152));
 		pMenu.add(btnSupplyStatusGraph);
 	}
 
@@ -147,25 +149,25 @@ public class UserUI extends JFrame implements ActionListener {
 		btnSWOrder = new JButton("소프트웨어 주문");
 		btnSWOrder.setBounds(0, 105, 298, 105);
 		btnSWOrder.addActionListener(this);
-		btnSWOrder.setForeground(Color.DARK_GRAY);
-		btnSWOrder.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
-		btnSWOrder.setBackground(new Color(51, 153, 204));
+		btnSWOrder.setForeground(SystemColor.window);
+		btnSWOrder.setFont(new Font("나눔바른고딕", Font.BOLD, 16));
+		btnSWOrder.setBackground(new Color(59, 89, 152));
 		pMenu.add(btnSWOrder);
 
 		btnSupplyStatus = new JButton("소프트웨어 주문현황");
 		btnSupplyStatus.addActionListener(this);
 		btnSupplyStatus.setBounds(0, 210, 298, 105);
-		btnSupplyStatus.setForeground(Color.DARK_GRAY);
-		btnSupplyStatus.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
-		btnSupplyStatus.setBackground(new Color(51, 153, 204));
+		btnSupplyStatus.setForeground(SystemColor.window);
+		btnSupplyStatus.setFont(new Font("나눔바른고딕", Font.BOLD, 16));
+		btnSupplyStatus.setBackground(new Color(59, 89, 152));
 		pMenu.add(btnSupplyStatus);
 
 		btnSupplyStatusGraph = new JButton("소프트웨어 주문현황(그래프)");
 		btnSupplyStatusGraph.addActionListener(this);
 		btnSupplyStatusGraph.setBounds(0, 315, 298, 105);
-		btnSupplyStatusGraph.setForeground(Color.DARK_GRAY);
-		btnSupplyStatusGraph.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
-		btnSupplyStatusGraph.setBackground(new Color(51, 153, 204));
+		btnSupplyStatusGraph.setForeground(SystemColor.window);
+		btnSupplyStatusGraph.setFont(new Font("나눔바른고딕", Font.BOLD, 16));
+		btnSupplyStatusGraph.setBackground(new Color(59, 89, 152));
 		pMenu.add(btnSupplyStatusGraph);
 	}
 

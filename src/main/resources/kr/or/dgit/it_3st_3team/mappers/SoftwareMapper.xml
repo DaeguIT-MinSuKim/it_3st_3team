@@ -119,31 +119,31 @@
 	<select id="selectSoftwareByNoCustomer" parameterType="Software" resultMap="SoftwarewithUserResult">
 		<include refid="selectWithGroupwithUserSql"/>
 		<include refid="whereSwCustomer"/>
-			AND sw_del = 0
+			AND sw_del = 0 order by sw_no desc
 	</select>
 	
 	<select id="selectSoftwareByNameCustomer" parameterType="Software" resultMap="SoftwarewithUserResult">
 		<include refid="selectWithGroupwithUserSql"/>
 		<include refid="wheredelUpSql"/>
-			AND sw_del = 0
+			AND sw_del = 0 order by sw_no desc
 	</select>
 	
 	
 	<select id="selectSoftwareByNo" parameterType="Software" resultMap="SoftwarewithUserResult">
 		<include refid="selectWithGroupwithUserSql"/>
 		<include refid="whereNoSql"/>
-			AND sw_del = 0
+			AND sw_del = 0 order by sw_no desc
 	</select>
 	
 	<select id="selectSoftwareByAll" parameterType="Software" resultMap="SoftwarewithUserResult">
 		<include refid="selectWithGroupwithUserSql"/>
-			where sw_del = 0
+			where sw_del = 0 order by sw_no desc
 	</select>
 	
 	<select id="selectSoftwareBySearch" parameterType="map" resultMap="SoftwarewithUserResult">
 		<include refid="selectWithGroupwithUserSql"/>
 		<include refid="whereBySearchSql"/>
-			AND sw_del = 0
+			AND sw_del = 0 order by sw_no desc
 	</select>
 	
 	<insert id="insertSoftware" parameterType="Software">
