@@ -92,7 +92,7 @@ public class UserUI extends JFrame implements ActionListener {
 		pMenu.add(btnModify);
 
 		pContent = new JPanel();
-		pContent.setBounds(298, 0, 1186, 861);
+		pContent.setBounds(300, 0, 1186, 861);
 		contentPane.add(pContent);
 		pContent.setLayout(null);
 

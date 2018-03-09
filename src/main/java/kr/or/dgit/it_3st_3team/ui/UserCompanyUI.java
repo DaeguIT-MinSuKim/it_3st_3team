@@ -17,6 +17,7 @@ import javax.swing.border.EmptyBorder;
 import kr.or.dgit.it_3st_3team.dto.User;
 import kr.or.dgit.it_3st_3team.ui.admin.chart.CompanyStatusContent;
 import kr.or.dgit.it_3st_3team.ui.admin.software.AdminSoftwareContent;
+import java.awt.GridLayout;
 
 @SuppressWarnings("serial")
 public class UserCompanyUI extends JFrame implements ActionListener {
@@ -65,14 +66,12 @@ public class UserCompanyUI extends JFrame implements ActionListener {
 		pMenu.setBackground(new Color(51, 153, 204));
 		pMenu.setBounds(0, 230, 300, 631);
 		contentPane.add(pMenu);
-		pMenu.setLayout(null);
+		pMenu.setLayout(new GridLayout(0, 1, 0, 0));
 
 		JLabel lblEmty_2_3 = new JLabel("");
-		lblEmty_2_3.setBounds(0, 0, 300, 105);
 		pMenu.add(lblEmty_2_3);
 		
 		btnRegister = new JButton("소프트웨어 등록");
-		btnRegister.setBounds(0, 105, 298, 105);
 		btnRegister.addActionListener(this);
 		btnRegister.setForeground(Color.DARK_GRAY);
 		btnRegister.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
@@ -80,7 +79,6 @@ public class UserCompanyUI extends JFrame implements ActionListener {
 		pMenu.add(btnRegister);
 
 		btnSupplyStatus = new JButton("소프트웨어 공급현황");
-		btnSupplyStatus.setBounds(0, 210, 298, 105);
 		btnSupplyStatus.addActionListener(this);
 		btnSupplyStatus.setForeground(Color.DARK_GRAY);
 		btnSupplyStatus.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
@@ -89,7 +87,6 @@ public class UserCompanyUI extends JFrame implements ActionListener {
 
 		btnSupplyStatusGraph = new JButton("소프트웨어 공급현황(그래프)");
 		btnSupplyStatusGraph.addActionListener(this);
-		btnSupplyStatusGraph.setBounds(0, 315, 298, 105);
 		btnSupplyStatusGraph.setForeground(Color.DARK_GRAY);
 		btnSupplyStatusGraph.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
 		btnSupplyStatusGraph.setBackground(new Color(51, 153, 204));
@@ -97,18 +94,16 @@ public class UserCompanyUI extends JFrame implements ActionListener {
 
 		btnUserModify = new JButton("회원정보 수정");
 		btnUserModify.addActionListener(this);
-		btnUserModify.setBounds(0, 420, 298, 105);
 		btnUserModify.setForeground(Color.DARK_GRAY);
 		btnUserModify.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
 		btnUserModify.setBackground(new Color(51, 153, 204));
 		pMenu.add(btnUserModify);
 
 		JLabel label = new JLabel("");
-		label.setBounds(0, 525, 300, 105);
 		pMenu.add(label);
 
 		pContent = new JPanel();
-		pContent.setBounds(298, 0, 1186, 861);
+		pContent.setBounds(300, 0, 1184, 861);
 		contentPane.add(pContent);
 		pContent.setLayout(null);
 

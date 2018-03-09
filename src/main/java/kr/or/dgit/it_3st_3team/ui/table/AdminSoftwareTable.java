@@ -70,7 +70,7 @@ public class AdminSoftwareTable extends AbtractTableComp<Software> {
 					try {
 						actionDeleteItem();
 					} catch (PersistenceException e2) {
-						JOptionPane.showMessageDialog(null, "기본 설정은 지울 수 없습니다.", "경고", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "주문된 소프트웨어는 지울 수 없습니다.", "경고", JOptionPane.ERROR_MESSAGE);
 						return;
 					}
 				}
