@@ -15,7 +15,6 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import kr.or.dgit.it_3st_3team.dto.User;
-import kr.or.dgit.it_3st_3team.ui.admin.chart.CompanyStatusContent;
 import kr.or.dgit.it_3st_3team.ui.admin.software.AdminSoftwareContent;
 
 @SuppressWarnings("serial")
@@ -139,21 +138,21 @@ public class UserCompanyUI extends JFrame implements ActionListener {
 	}
 
 	protected void actionPerformedBtnSupplyStatus(ActionEvent e) {
-		pContent.removeAll();
+		/*pContent.removeAll();
 		CompanyStatusContent panel = new CompanyStatusContent();
 		panel.setBounds(0, 0, 1186, 861);
 		pContent.add(panel);
 		pContent.revalidate();
-		pContent.repaint();
+		pContent.repaint();*/
 	}
 
 	protected void actionPerformedBtnSupplyStatusGraph(ActionEvent e) {
-		pContent.removeAll();
+		/*pContent.removeAll();
 		CompanyStatusContent panel = new CompanyStatusContent();
 		panel.setBounds(0, 0, 1186, 861);
 		pContent.add(panel);
 		pContent.revalidate();
-		pContent.repaint();
+		pContent.repaint();*/
 	}
 
 	protected void actionPerformedBtnUserModify(ActionEvent e) {
