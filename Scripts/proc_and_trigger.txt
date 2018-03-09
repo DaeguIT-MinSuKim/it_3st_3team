@@ -68,3 +68,13 @@ BEGIN
 END $$
 DELIMITER ;
 
+
+DROP TRIGGER IF EXISTS software_project.tri_admin_before_delete_user_update ;
+
+DELIMITER $$
+$$
+CREATE TRIGGER software_project.tri_admin_before_delete_user_update
+BEFORE DELETE
+ON software_project.admin FOR EACH ROW
+update `user` set adm_no = 1 where adm_no = old.adm_no $$
+DELIMITER ;
