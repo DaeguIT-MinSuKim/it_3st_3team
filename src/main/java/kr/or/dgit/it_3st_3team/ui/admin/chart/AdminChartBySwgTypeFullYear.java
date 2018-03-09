@@ -122,7 +122,7 @@ public class AdminChartBySwgTypeFullYear extends JPanel  {
 	// 영업사원
 	private void addSalesChartData(final DefaultCategoryDataset dataset, int year) {
 		Map<String, String> maps = new HashMap<>();
-		maps.put("adminName", admin.getAdminName());
+		maps.put("adminNo", String.valueOf(admin.getAdminNo()));
 		maps.put("date", String.valueOf(year));
 		List<Map<String, Integer>> listChart1 = saleOrder.selectSgGroupBySales(maps);
 		for(Map<String, Integer> map : listChart1) {
