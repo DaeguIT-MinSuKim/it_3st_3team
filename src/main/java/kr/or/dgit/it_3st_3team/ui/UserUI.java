@@ -36,6 +36,7 @@ public class UserUI extends JFrame implements ActionListener {
 	private JButton btnSWRegister;
 	private JLabel lblImg;
 	private JLabel lblName;
+	private JPanel pMenu;
 
 	public UserUI(User user) {
 		setUser(user);
@@ -68,7 +69,7 @@ public class UserUI extends JFrame implements ActionListener {
 		lblName.setBounds(30, 188, 228, 33);
 		pImg.add(lblName);
 
-		JPanel pMenu = new JPanel();
+		pMenu = new JPanel();
 		pMenu.setBackground(new Color(51, 153, 204));
 		pMenu.setBounds(0, 230, 300, 631);
 		contentPane.add(pMenu);
@@ -99,6 +100,21 @@ public class UserUI extends JFrame implements ActionListener {
 		pMain = new JPanel();
 		pMain.setBounds(0, 0, 1186, 861);
 		pContent.add(pMain);
+		
+		displayFirstview();
+	}
+	
+	private void displayFirstview() {
+		if(user.getUserGroup() == UserGroup.CUSTOMER) {
+			CustomerOrderContent pMain = new CustomerOrderContent();
+			pMain.setBounds(0,0,1186,861);
+			changeMainPanel(pMain);
+		}else {
+			AdminSoftwareContent pMain = new AdminSoftwareContent();
+			pMain.setBounds(0, 0, 1186, 841);
+			changeMainPanel(pMain);
+			
+		}
 	}
 
 	private void displayCompanyMenu(JPanel pMenu) {
