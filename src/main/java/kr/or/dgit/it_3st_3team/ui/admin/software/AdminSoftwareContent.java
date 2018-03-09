@@ -48,7 +48,7 @@ public class AdminSoftwareContent extends JPanel {
 
 		pTable = new AdminSoftwareTable();
 	
-		pTable.setBounds(0, 258, 1190, 604);
+		pTable.setBounds(10, 258, 1165, 594);
 		pTable.setAc(this);
 		pTable.loadTableDatas(SoftwareService.getInstance().selectSoftwareByAll());
 		add(pTable);

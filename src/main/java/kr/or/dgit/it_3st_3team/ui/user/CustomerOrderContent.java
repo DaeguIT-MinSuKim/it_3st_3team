@@ -35,7 +35,7 @@ public class CustomerOrderContent extends JPanel {
 		
 		pTable = new CustomerOrderTable();
 		pTable.loadTableDatas(SoftwareService.getInstance().selectSoftwareByAll());
-		pTable.setBounds(12, 233, 1174, 612);
+		pTable.setBounds(12, 233, 1164, 612);
 		add(pTable);
 		
 		

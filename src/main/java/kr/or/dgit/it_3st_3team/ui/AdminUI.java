@@ -163,7 +163,6 @@ public class AdminUI extends JFrame implements ActionListener {
 	}
 
 	protected void actionPerformedBtnSWRegister(ActionEvent e) {
-		System.out.println("ddd");
 		AdminSoftwareContent pMain = new AdminSoftwareContent();
 		pMain.setBounds(0, 0, 1186, 861);
 		changeMainPanel(pMain);
