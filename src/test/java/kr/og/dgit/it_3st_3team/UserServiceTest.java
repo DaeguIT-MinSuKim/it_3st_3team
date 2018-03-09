@@ -125,7 +125,15 @@ public class UserServiceTest {
 	}
 	
 	@Test
-	public void test7FindUserByLogin() {
+	public void test7RemoveRealUser() {
+		User user = new User("uid7");
+		int res = service.removeRealUser(user);
+		
+		assertEquals(1, res);
+	}
+	
+	@Test
+	public void test8FindUserByLogin() {
 		User user = new User("uid1", "uid1");
 		User findUser = service.findUserByLogin(user);
 		System.out.println(findUser);
@@ -135,7 +143,7 @@ public class UserServiceTest {
 	}
 	
 	@Test
-	public void test8FindUserBySearch() {
+	public void test9FindUserBySearch() {
 		Map<String, String> map = new HashMap<>();
 		//map.put("searchBy", "id");
 		map.put("searchBy", "name");
@@ -150,4 +158,6 @@ public class UserServiceTest {
 			System.out.println(u);
 		}
 	}
+	
+	
 }

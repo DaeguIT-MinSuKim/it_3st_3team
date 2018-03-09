@@ -23,4 +23,5 @@ public interface UserDao {
 	int updateUserPassword(Map<String, String> map);
 	
 	int deleteUser(User userNo);
+	int deleteRealUser(User userNo);
 }
