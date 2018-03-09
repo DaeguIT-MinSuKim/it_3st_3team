@@ -3,25 +3,24 @@ package kr.or.dgit.it_3st_3team.ui.admin.chart;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
 import kr.or.dgit.it_3st_3team.dto.Admin;
 import kr.or.dgit.it_3st_3team.dto.SoftwareGroup;
 import kr.or.dgit.it_3st_3team.dto.User;
 import kr.or.dgit.it_3st_3team.service.AdminService;
 import kr.or.dgit.it_3st_3team.service.SoftwareGroupService;
-import kr.or.dgit.it_3st_3team.ui.component.StartAndEndDate;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import java.awt.BorderLayout;
-import javax.swing.border.EmptyBorder;
-import java.awt.FlowLayout;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
-public class AdminChartSearch extends JPanel {
+public class AdminChartSearch extends JPanel implements ActionListener {
 	protected JTextField tfSearch;
 	protected DefaultComboBoxModel<SoftwareGroup> dcbm;
 	private SoftwareGroupService swgService;
@@ -43,7 +42,7 @@ public class AdminChartSearch extends JPanel {
 		initComponents();
 	}
 
-	
+	// get & set 메소드
 	public void setCmbAdGroup() {
 		// 관리자 콤보박스 넣는 코드
 		List<Admin> ad = new ArrayList<>();
@@ -56,6 +55,10 @@ public class AdminChartSearch extends JPanel {
 	}
 
 	
+	
+	public Admin getSelectedAdmin() {
+		return (Admin) cmbAdmin.getSelectedItem();
+	}
 
 	public void setUsingUser(Object who) {
 		if (who instanceof Admin) {
@@ -72,20 +75,14 @@ public class AdminChartSearch extends JPanel {
 		p1.setBorder(new EmptyBorder(0, 10, 0, 0));
 		add(p1);
 		p1.setLayout(null);
-
-		/*cmbAdmin = new JComboBox<>();
-		cmbAdmin.setBounds(10, 0, 125, 30);
-		p1.add(cmbAdmin);
-		setCmbAdGroup();*/
 		
 		p2 = new JPanel();
 		p2.setBorder(new EmptyBorder(0, 0, 0, 20));
 		add(p2);
 		p2.setLayout(null);
 		
-		
-		
 		btnType = new JButton("연도별 품목 판매갯수현황");
+		btnType.addActionListener(this);
 		btnType.setBounds(150, 0, 200, 30);
 		p1.add(btnType);
 		
@@ -103,9 +100,7 @@ public class AdminChartSearch extends JPanel {
 				btnPayment.setBounds(390, 0, 180, 30);
 				p2.add(btnPayment);
 			}else {
-				
 				btnType.setBounds(10, 0, 200, 30);
-				
 			}
 		} else {
 			if (user.getUserGroup().getValue() == 1) {
@@ -120,11 +115,7 @@ public class AdminChartSearch extends JPanel {
 		
 	}
 
-	// get 메소드
 	
-	public Admin getSelectedAdmin() {
-		return (Admin) cmbAdmin.getSelectedItem();
-	}
 	
 	// 초기화
 	public void clearItem() {
@@ -134,6 +125,30 @@ public class AdminChartSearch extends JPanel {
 				cmbAdmin.setSelectedIndex(0);
 			} else {
 		
+			}
+		} else {
+			// 사용자
+			if (user.getUserGroup().getValue() == 1) {
+		
+			} else {
+			
+			}
+		}
+	}
+	public void actionPerformed(ActionEvent arg0) {
+		if (arg0.getSource() == btnType) {
+			actionPerformedBtnType(arg0);
+		}
+	}
+	
+	//버튼을 누르면 
+	protected void actionPerformedBtnType(ActionEvent arg0) {
+		if (admin != null) {
+			// 관리자
+			if (admin.getAdminGroup().getAgNo() == 1) {
+				cmbAdmin.setSelectedIndex(0);
+			} else {
+				
 			}
 		} else {
 			// 사용자

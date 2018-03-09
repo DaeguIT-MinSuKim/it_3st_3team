@@ -1,10 +1,10 @@
 package kr.or.dgit.it_3st_3team.ui.admin.chart;
 
 import java.awt.Font;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import javax.swing.JPanel;
 
@@ -19,9 +19,9 @@ import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.chart.renderer.category.CategoryItemRenderer;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.ui.ApplicationFrame;
-import org.jfree.ui.RefineryUtilities;
 
+import kr.or.dgit.it_3st_3team.dto.Admin;
+import kr.or.dgit.it_3st_3team.dto.User;
 import kr.or.dgit.it_3st_3team.service.SaleOrderService;
 
 @SuppressWarnings("serial")
@@ -29,8 +29,12 @@ public class AdminChartBySwgTypeFullYear extends JPanel  {
 
 	private JFreeChart chart;
 	private SaleOrderService saleOrder;
+	private Admin admin;
+	private User user;
 	
-	public AdminChartBySwgTypeFullYear() {
+	
+	public AdminChartBySwgTypeFullYear(Object who) {
+		setUsingUser(who);
 		saleOrder = new SaleOrderService();
 		final CategoryDataset dataset = createDataset();
 		final JFreeChart chart = createChart(dataset);
@@ -38,6 +42,7 @@ public class AdminChartBySwgTypeFullYear extends JPanel  {
 		chartPanel.setPreferredSize(new java.awt.Dimension(1150, 600));
 		add(chartPanel);
 		setupKorean();
+		
 	}
 	
 	private void setupKorean() {
@@ -55,33 +60,85 @@ public class AdminChartBySwgTypeFullYear extends JPanel  {
 	private CategoryDataset createDataset() {
 
 		final DefaultCategoryDataset dataset1 = new DefaultCategoryDataset();
-		
-		
-		Map<String, String> maps1 = new HashMap<>();
-		maps1.put("date", "2016");
-		List<Map<String, Integer>> listChart1 = saleOrder.selectSgGroupYear(maps1);
-		
-		Map<String, String> maps2 = new HashMap<>();
-		maps2.put("date", "2017");
-		List<Map<String, Integer>> listChart2 = saleOrder.selectSgGroupYear(maps2);
-		
-		Map<String, String> maps3 = new HashMap<>();
-		maps3.put("date", "2018");
-		List<Map<String, Integer>> listChart3 = saleOrder.selectSgGroupYear(maps3);
-		
-		for(Map<String, Integer> map : listChart1) {
-			dataset1.addValue(map.get("count"), map.get("name"), maps1.get("date"));
-		}
-		
-		for(Map<String, Integer> map : listChart2) {
-			dataset1.addValue(map.get("count"), map.get("name"), maps2.get("date"));
-		}
-		
-		for(Map<String, Integer> map : listChart3) {
-			dataset1.addValue(map.get("count"), map.get("name"), maps3.get("date"));
-		}
-		return dataset1;
+		Calendar date = Calendar.getInstance();
+		int year = date.get(Calendar.YEAR);
 
+		
+		if (admin != null) {
+			// 관리자
+			if (admin.getAdminGroup().getAgNo() == 1) {
+				addAdminChartData(dataset1, year-2);//2년전
+				addAdminChartData(dataset1, year-1);
+				addAdminChartData(dataset1, year);		
+				
+				return dataset1;
+			} else {
+			// 영업사원	
+				addSalesChartData(dataset1, year-2);
+				addSalesChartData(dataset1, year-1);
+				addSalesChartData(dataset1, year);
+
+				return dataset1;
+			}
+		} else {
+			// 사용자
+			if (user.getUserGroup().getValue() == 1) {
+			/*	Map<String, String> maps1 = new HashMap<>();
+				maps1.put("userName", "");
+				maps1.put("date", lastYear[2]);
+				List<Map<String, Integer>> listChart1 = saleOrder.selectSgGroupCustomer(maps1);
+				
+				Map<String, String> maps2 = new HashMap<>();
+				maps2.put("userName", "");
+				maps2.put("date", lastYear[1]);
+				List<Map<String, Integer>> listChart2 = saleOrder.selectSgGroupCustomer(maps2);
+				
+				Map<String, String> maps3 = new HashMap<>();
+				maps3.put("userName", "");
+				maps3.put("date", thisYear);
+				List<Map<String, Integer>> listChart3 = saleOrder.selectSgGroupCustomer(maps3);
+				
+				for(Map<String, Integer> map : listChart1) {
+					dataset1.addValue(map.get("count"), map.get("name"), maps1.get("date"));
+				}
+				
+				for(Map<String, Integer> map : listChart2) {
+					dataset1.addValue(map.get("count"), map.get("name"), maps2.get("date"));
+				}
+				
+				for(Map<String, Integer> map : listChart3) {
+					dataset1.addValue(map.get("count"), map.get("name"), maps3.get("date"));
+				}*/
+				return dataset1;
+			} else {
+			// 공급회사
+				return dataset1;
+			}
+		}
+
+
+	}
+
+	// 영업사원
+	private void addSalesChartData(final DefaultCategoryDataset dataset, int year) {
+		Map<String, String> maps = new HashMap<>();
+		maps.put("adminName", admin.getAdminName());
+		maps.put("date", String.valueOf(year));
+		List<Map<String, Integer>> listChart1 = saleOrder.selectSgGroupBySales(maps);
+		for(Map<String, Integer> map : listChart1) {
+			dataset.addValue(map.get("count"), map.get("name"), maps.get("date"));
+		}
+		
+	}
+
+	// 관리자
+	private void addAdminChartData(final DefaultCategoryDataset dataset, int year) {
+		Map<String, String> maps = new HashMap<>();
+		maps.put("date", String.valueOf(year));
+		List<Map<String, Integer>> listChart = saleOrder.selectSgGroupForYears(maps);
+		for(Map<String, Integer> map : listChart) {
+			dataset.addValue(map.get("count"), map.get("name"), maps.get("date"));
+		}
 	}
 
 
@@ -107,5 +164,12 @@ public class AdminChartBySwgTypeFullYear extends JPanel  {
 		final BarRenderer r = (BarRenderer) renderer;
 		
 		return chart;
+	}
+	public void setUsingUser(Object who) {
+		if (who instanceof Admin) {
+			admin = (Admin) who;
+		} else {
+			user = (User) who;
+		}
 	}
 }

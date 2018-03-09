@@ -61,17 +61,17 @@ public class AdminChartBySwgType extends JPanel  {
 		Map<String, String> maps1 = new HashMap<>();
 		maps1.put("adminName", "영업1");
 		maps1.put("date", "2016");
-		List<Map<String, Integer>> listChart1 = saleOrder.selectSgGroupNoOption(maps1);
+		List<Map<String, Integer>> listChart1 = saleOrder.selectSgGroupBySales(maps1);
 		
 		Map<String, String> maps2 = new HashMap<>();
 		maps2.put("adminName", "영업1");
 		maps2.put("date", "2017");
-		List<Map<String, Integer>> listChart2 = saleOrder.selectSgGroupNoOption(maps2);
+		List<Map<String, Integer>> listChart2 = saleOrder.selectSgGroupBySales(maps2);
 		
 		Map<String, String> maps3 = new HashMap<>();
 		maps3.put("adminName", "영업1");
 		maps3.put("date", "2018");
-		List<Map<String, Integer>> listChart3 = saleOrder.selectSgGroupNoOption(maps3);
+		List<Map<String, Integer>> listChart3 = saleOrder.selectSgGroupBySales(maps3);
 		
 		for(Map<String, Integer> map : listChart1) {
 			dataset1.addValue(map.get("count"), map.get("name"), maps1.get("date"));
