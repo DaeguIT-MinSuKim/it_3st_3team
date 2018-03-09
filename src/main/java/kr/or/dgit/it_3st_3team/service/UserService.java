@@ -109,10 +109,20 @@ public class UserService {
 	}
 	
 	public int removeUser(User user) {
-		log.debug("modifyUser()");
+		log.debug("removeUser()");
 		int res = -1;
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
 			res = sqlSession.update(namespace + "deleteUser", user);
+			sqlSession.commit();
+		}
+		return res;
+	}
+	
+	public int removeRealUser(User user) {
+		log.debug("removeRealUser()");
+		int res = -1;
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			res = sqlSession.delete(namespace + "deleteRealUser", user);
 			sqlSession.commit();
 		}
 		return res;

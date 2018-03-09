@@ -89,4 +89,14 @@ public class SoftwareService {
 		return res;
 	}
 	
+	public int deleteSoftwareColumn(Software software) {
+		log.debug("deleteSoftwareColumn()");
+		int res=-1;
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			res= sqlSession.update(namespace + "deleteSoftwareColumn", software);
+			sqlSession.commit();
+		}
+		return res;
+	}
+	
 }

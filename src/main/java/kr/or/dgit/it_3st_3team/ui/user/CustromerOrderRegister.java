@@ -27,11 +27,11 @@ import kr.or.dgit.it_3st_3team.utils.DefineUtil;
 
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
+import kr.or.dgit.it_3st_3team.ui.component.LblCmbUserComp;
 
 @SuppressWarnings("serial")
 public class CustromerOrderRegister extends JPanel implements ActionListener{
 	private LblTfComp pOrderNum;
-	private LblTfComp pPcName;
 	private LblTfComp pSwName;
 	private LblCmbStringComp pPayment;
 	private AdminOrderContent adOrder;
@@ -40,6 +40,7 @@ public class CustromerOrderRegister extends JPanel implements ActionListener{
 	private JButton btnRewrite;
 	private JButton btnCancel;
 	private LblSpinnerComp pOrderCount;
+	private LblCmbUserComp pPcName;
 
 	public CustromerOrderRegister() {
 
@@ -66,11 +67,6 @@ public class CustromerOrderRegister extends JPanel implements ActionListener{
 		pSwName.setTfEditable(false);
 		pOrderRegi.add(pSwName);
 
-		pPcName = new LblTfComp("제작사");
-		pPcName.setBounds(287, 42, 220, 30);
-		pPcName.setTfEditable(false);
-		pOrderRegi.add(pPcName);
-
 		pImg = new ImageComp();
 		pImg.setBounds(58, 10, 170, 169);
 		pOrderRegi.add(pImg);
@@ -89,36 +85,29 @@ public class CustromerOrderRegister extends JPanel implements ActionListener{
 		pOrderCount.setBounds(272, 89, 170, 30);
 		pOrderCount.setIntSpinner(1, 1, 999, 1);
 		pOrderRegi.add(pOrderCount);
+		
+		pPcName = new LblCmbUserComp("제작사");
+		pPcName.setBounds(272, 42, 170, 30);
+		pOrderRegi.add(pPcName);
+		
+		pOrderNum = new LblTfComp("상품번호");
+		pOrderNum.setBounds(708,129,116,21);
+		
 	}
 	
 	
-	public void setOrderData(SaleOrder saleOrder) {
-		pPcName.setTfText(saleOrder.getUser().getName());
-		pOrderCount.setSpnValue(saleOrder.getOrdQuantity());
-		pSwName.setTfText(saleOrder.getSoftware().getSwName());
-		pOrderNum.setTfText(Integer.toString(saleOrder.getOrdNo()));
+	public void setOrderData(Software software) {
+		System.out.println(software.getUserNo());
+		pPcName.removeItem();
+		pPcName.addCmbItem(software.getUserNo());
+		//pOrderCount.setSpnValue(software.getOrdQuantity());
+		pSwName.setTfText(software.getSwName());
+		pOrderNum.setTfText(Integer.toString(software.getSwNo()));
 		
-		if(saleOrder.getSoftware().getSwCoverImg() != null && !saleOrder.getSoftware().getSwCoverImg().equals("")) {
-			pImg.setImageIcon(saleOrder.getSoftware().getSwCoverImg());
-		}else {
-			pImg.setImageIcon(DefineUtil.DEFAULT_USER_IMG);
-		}
-		
-		if(saleOrder.getOrdPayment()==Payment.CARD) {
-			pPayment.setCmbSelectIndex(0);
-		}else if(saleOrder.getOrdPayment()==Payment.MOBILE) {
-			pPayment.setCmbSelectIndex(1);
-		}else if(saleOrder.getOrdPayment()==Payment.ATM) {
-			pPayment.setCmbSelectIndex(2);
-		}else if(saleOrder.getOrdPayment()==Payment.BANK) {
-			pPayment.setCmbSelectIndex(3);
-		}else if(saleOrder.getOrdPayment()==Payment.SIMPLE) {
-			pPayment.setCmbSelectIndex(4);
-		}
-		
+	
 		btnRewrite.setText("수정");
 	}
-
+	
 	
 	
 	
@@ -134,7 +123,7 @@ public class CustromerOrderRegister extends JPanel implements ActionListener{
 		
 		String swName = pSwName.getTfText().trim();
 		int orderCount = pOrderCount.getSpnValue();
-		String userName = pPcName.getTfText().trim();
+		String userName = pPcName.getCmbSelectItem().toString();
 		int orderNo = Integer.parseInt(pOrderNum.getTfText().trim());
 		String payment =  (String) pPayment.getCmbSelectItem();
 		
@@ -185,7 +174,9 @@ public class CustromerOrderRegister extends JPanel implements ActionListener{
 		pOrderCount.setSpnValue(1);
 		pOrderNum.setTfText("");
 		pSwName.setTfText("");
-		pPcName.setTfText("");
+		User user = new User();
+		user.setName("");
+		pPcName.setCmbSelectItem(user);
 	}
 	
 

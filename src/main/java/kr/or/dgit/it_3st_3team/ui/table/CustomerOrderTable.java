@@ -1,19 +1,21 @@
 package kr.or.dgit.it_3st_3team.ui.table;
 
+import java.awt.event.MouseListener;
+import java.util.EventListener;
 import java.util.List;
 
 import javax.swing.SwingConstants;
 
 import kr.or.dgit.it_3st_3team.dto.Software;
 import kr.or.dgit.it_3st_3team.ui.component.AbtractTableComp;
+import kr.or.dgit.it_3st_3team.ui.user.CustomerOrderContent;
 
 @SuppressWarnings("serial")
 public class CustomerOrderTable extends AbtractTableComp<Software>{
-	
+	private CustomerOrderContent parent;
 	
 	
 	public CustomerOrderTable() {
-	
 	}
 	
 	private Object[][] rows;
@@ -41,5 +43,11 @@ public class CustomerOrderTable extends AbtractTableComp<Software>{
 		}
 		return rows;
 	}
-
+	
+	public void setEventListener(EventListener listener) {
+		if (listener instanceof MouseListener) {
+			table.addMouseListener((MouseListener)listener);
+		}
+	}
+	
 }

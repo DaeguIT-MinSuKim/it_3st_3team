@@ -44,7 +44,7 @@ public class AdminOrderContent extends JPanel implements ActionListener {
 	private void initComponents() {
 		setBackground(new Color(240, 240, 240));
 		setLayout(null);
-		setBounds(0, 0, 1187, 850);
+		setBounds(0, 0, 1187, 896);
 		
 		pOrderRegi = new AdminOrderRegister();
 		pOrderRegi.setBackground(new Color(240, 240, 240));
@@ -61,7 +61,7 @@ public class AdminOrderContent extends JPanel implements ActionListener {
 		
 		pOrderTable = new AdminOrderManagementLists();
 		pOrderTable.loadTableDatas(soService.findSaleOrderByAll());
-		pOrderTable.setBounds(0, 230, 1187, 630);
+		pOrderTable.setBounds(10, 230, 1165, 617);
 		add(pOrderTable);
 		JPopupMenu menu = new JPopupMenu();
 		modifyMenu = new JMenuItem("     수정   ");

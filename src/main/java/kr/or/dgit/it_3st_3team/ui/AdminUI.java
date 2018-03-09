@@ -19,6 +19,7 @@ import kr.or.dgit.it_3st_3team.ui.admin.order.AdminOrderContent;
 import kr.or.dgit.it_3st_3team.ui.admin.report.AdminStatusContent;
 import kr.or.dgit.it_3st_3team.ui.admin.software.AdminSoftwareContent;
 import kr.or.dgit.it_3st_3team.ui.admin.user.AdminUserContent;
+import java.awt.SystemColor;
 
 @SuppressWarnings("serial")
 public class AdminUI extends JFrame implements ActionListener {
@@ -59,7 +60,7 @@ public class AdminUI extends JFrame implements ActionListener {
 		pContent.add(pMain);
 
 		JPanel pAdminMenu = new JPanel();
-		pAdminMenu.setBackground(new Color(51, 153, 204));
+		pAdminMenu.setBackground(new Color(59, 89, 152));
 		pAdminMenu.setBounds(0, 0, 300, 861);
 		contentPane.add(pAdminMenu);
 		pAdminMenu.setLayout(new GridLayout(10, 1, 0, 0));
@@ -72,51 +73,51 @@ public class AdminUI extends JFrame implements ActionListener {
 
 		btnUserManager = new JButton("사용자 관리");
 		btnUserManager.addActionListener(this);
-		btnUserManager.setForeground(Color.DARK_GRAY);
-		btnUserManager.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
-		btnUserManager.setBackground(new Color(51, 153, 204));
+		btnUserManager.setForeground(SystemColor.window);
+		btnUserManager.setFont(new Font("나눔바른고딕", Font.BOLD, 16));
+		btnUserManager.setBackground(new Color(59, 89, 152));
 		pAdminMenu.add(btnUserManager);
 
 		btnSWRegister = new JButton("소프트웨어 등록");
 		btnSWRegister.addActionListener(this);
-		btnSWRegister.setForeground(Color.DARK_GRAY);
-		btnSWRegister.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
-		btnSWRegister.setBackground(new Color(51, 153, 204));
+		btnSWRegister.setForeground(SystemColor.window);
+		btnSWRegister.setFont(new Font("나눔바른고딕", Font.BOLD, 16));
+		btnSWRegister.setBackground(new Color(59, 89, 152));
 		pAdminMenu.add(btnSWRegister);
 
 		btnOrderManagement = new JButton("소프트웨어 주문 관리");
 		btnOrderManagement.addActionListener(this);
-		btnOrderManagement.setForeground(Color.DARK_GRAY);
-		btnOrderManagement.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
-		btnOrderManagement.setBackground(new Color(51, 153, 204));
+		btnOrderManagement.setForeground(SystemColor.window);
+		btnOrderManagement.setFont(new Font("나눔바른고딕", Font.BOLD, 16));
+		btnOrderManagement.setBackground(new Color(59, 89, 152));
 		pAdminMenu.add(btnOrderManagement);
 
 		btnSupplySaleStatus = new JButton("공급 · 판매 현황");
 		btnSupplySaleStatus.addActionListener(this);
-		btnSupplySaleStatus.setForeground(Color.DARK_GRAY);
-		btnSupplySaleStatus.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
-		btnSupplySaleStatus.setBackground(new Color(51, 153, 204));
+		btnSupplySaleStatus.setForeground(SystemColor.window);
+		btnSupplySaleStatus.setFont(new Font("나눔바른고딕", Font.BOLD, 16));
+		btnSupplySaleStatus.setBackground(new Color(59, 89, 152));
 		pAdminMenu.add(btnSupplySaleStatus);
 
 		btnSupplySaleStatusGraph = new JButton("공급 · 판매 현황(그래프)");
 		btnSupplySaleStatusGraph.addActionListener(this);
-		btnSupplySaleStatusGraph.setForeground(Color.DARK_GRAY);
-		btnSupplySaleStatusGraph.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
-		btnSupplySaleStatusGraph.setBackground(new Color(51, 153, 204));
+		btnSupplySaleStatusGraph.setForeground(SystemColor.window);
+		btnSupplySaleStatusGraph.setFont(new Font("나눔바른고딕", Font.BOLD, 16));
+		btnSupplySaleStatusGraph.setBackground(new Color(59, 89, 152));
 		pAdminMenu.add(btnSupplySaleStatusGraph);
 
 		btnEmpManagement = new JButton("직원 관리");
 		btnEmpManagement.addActionListener(this);
-		btnEmpManagement.setForeground(Color.DARK_GRAY);
-		btnEmpManagement.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
-		btnEmpManagement.setBackground(new Color(51, 153, 204));
+		btnEmpManagement.setForeground(SystemColor.window);
+		btnEmpManagement.setFont(new Font("나눔바른고딕", Font.BOLD, 16));
+		btnEmpManagement.setBackground(new Color(59, 89, 152));
 		pAdminMenu.add(btnEmpManagement);
 
 		btnDbSetting = new JButton("설정");
 		btnDbSetting.addActionListener(this);
-		btnDbSetting.setForeground(Color.DARK_GRAY);
-		btnDbSetting.setFont(new Font("나눔바른고딕", Font.BOLD, 14));
-		btnDbSetting.setBackground(new Color(51, 153, 204));
+		btnDbSetting.setForeground(SystemColor.window);
+		btnDbSetting.setFont(new Font("나눔바른고딕", Font.BOLD, 16));
+		btnDbSetting.setBackground(new Color(59, 89, 152));
 		pAdminMenu.add(btnDbSetting);
 
 		JLabel lblEmpty_1 = new JLabel("");
@@ -163,7 +164,6 @@ public class AdminUI extends JFrame implements ActionListener {
 	}
 
 	protected void actionPerformedBtnSWRegister(ActionEvent e) {
-		System.out.println("ddd");
 		AdminSoftwareContent pMain = new AdminSoftwareContent();
 		pMain.setBounds(0, 0, 1186, 861);
 		changeMainPanel(pMain);
