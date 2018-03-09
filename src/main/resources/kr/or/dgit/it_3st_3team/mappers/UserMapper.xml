@@ -58,21 +58,30 @@
 		</where>
 	</sql>
 	
+	<sql id="whereDelSql">
+		AND u_del = 0
+	</sql>
+	
 	<!-- User no 로 검색 -->
 	<select id="selectUserByNo" parameterType="User" resultMap="UserWithAdminResult">
 		<include refid="selectWithAdminSql" />
 		<include refid="whereByNoSql" />
+		<include refid="whereDelSql" />
 	</select>
 	
 	<!-- User Id 로 검색 -->
 	<select id="selectUserById" parameterType="User" resultMap="UserWithAdminResult">
 		<include refid="selectWithAdminSql" />
 		<include refid="whereByIdSql" />
+		<include refid="whereDelSql" />
 	</select>
 	
 	<!-- 모든 User 검색 -->
 	<select id="selectUserAll" resultMap="UserWithAdminResult">
 		<include refid="selectWithAdminSql" />
+		<where>
+			u_del = 0
+		</where>
 		order by u_no desc
 	</select>
 	
@@ -80,6 +89,7 @@
 	<select id="selectUserAllByUserGroup" parameterType="UserGroup" resultMap="UserWithAdminResult">
 		<include refid="selectWithAdminSql" />
 		where u.u_group = #{userGroup}
+		<include refid="whereDelSql" />
 	</select>
 
 	<sql id="whereSearchSql">
@@ -95,6 +105,7 @@
 					u_phone = #{searchText}
 				</when>
 			</choose>
+			<include refid="whereDelSql" />
 		</where>
 	</sql>
 	
@@ -108,16 +119,19 @@
 	<select id="selectUserByFindId" parameterType="User" resultMap="UserBasedResult">
 		<include refid="selectWithAdminSql" />
 		where u_name = #{name} and u_email = #{email}
+		<include refid="whereDelSql" />
 	</select>
 	
 	<select id="selectUserByFindPw" parameterType="User" resultMap="UserBasedResult">
 		<include refid="selectWithAdminSql" />
 		where u_id = #{userId} and u_phone = #{phone} and u_email = #{email}
+		<include refid="whereDelSql" />
 	</select>
 
 	<!-- Login 시 User 검색 -->
 	<sql id="whereLoginSql">
 		where u_id = #{userId} and u_pwd = password(#{userPwd})
+		<include refid="whereDelSql" />
 	</sql>
 	
 	<select id="selectUserByLogin" parameterType="User" resultMap="UserWithAdminResult">
@@ -126,8 +140,8 @@
 	</select>
 	
 	<sql id="insertSql">
-		insert into user(u_no, u_id, u_pwd, u_name, u_email, u_phone, u_zipcode, u_addr1, u_addr2, u_avatar, u_group, adm_no) values
-		(#{userNo}, #{userId},password(#{userPwd}), #{name}, #{email}, #{phone}, #{zipcode}, #{addr1}, #{addr2}, #{avatar}, #{userGroup.value}, #{admin.adminNo});
+		insert into user(u_no, u_id, u_pwd, u_name, u_email, u_phone, u_zipcode, u_addr1, u_addr2, u_avatar, u_group, u_del, adm_no) values
+		(#{userNo}, #{userId},password(#{userPwd}), #{name}, #{email}, #{phone}, #{zipcode}, #{addr1}, #{addr2}, #{avatar}, #{userGroup.value}, 0, #{admin.adminNo});
 	</sql>
 	
 	<!-- User 마지막 no + 1 후 insert -->
@@ -186,9 +200,15 @@
 		<include refid="whereLoginSql" />
 	</update>
 	
-	<!-- 삭제 User -->
-	<delete id="deleteUser" parameterType="User">
+	<!-- 논리 삭제 User -->
+	<update id="deleteUser" parameterType="User">
+		update user set u_del = 1 
+		<include refid="whereSql" />
+	</update>
+	
+	<!-- 실제 삭제 User -->
+	<update id="deleteRealUser" parameterType="User">
 		delete from user 
 		<include refid="whereSql" />
-	</delete>
+	</update>
 </mapper>
