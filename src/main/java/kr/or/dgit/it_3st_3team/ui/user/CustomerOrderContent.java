@@ -21,20 +21,20 @@ public class CustomerOrderContent extends JPanel {
 	private CustomerOrderTable pTable;
 	private CustromerOrderRegister pRegister;
 	private CustomerOrderSearch pSearch;
-	
-	
+
 	public CustomerOrderContent() {
 
 		initComponents();
 	}
+
 	private void initComponents() {
 		setLayout(null);
 		setBounds(0, 0, 1200, 900);
-		
+
 		pRegister = new CustromerOrderRegister();
 		pRegister.setBounds(0, 0, 1200, 192);
 		add(pRegister);
-		
+
 		pTable = new CustomerOrderTable();
 		pTable.loadTableDatas(SoftwareService.getInstance().selectSoftwareByAll());
 		pTable.setBounds(12, 233, 1164, 612);
@@ -42,34 +42,30 @@ public class CustomerOrderContent extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(e.getClickCount()==2) {
+				if (e.getClickCount() == 2) {
 					int no = pTable.getSelectedNo();
 					Software software = SoftwareService.getInstance().selectSoftwareByNo(new Software(no));
-					
+
 					pRegister.setOrderData(software);
-					
 				}
-				super.mouseClicked(e);
 			}
-			
+
 		});
-		
+
 		add(pTable);
-		
-			
-		
+
 		pSearch = new CustomerOrderSearch();
 		pSearch.setParent(this);
 		pSearch.setBounds(0, 191, 1200, 43);
 		add(pSearch);
-		
+
 	}
 
 	public void reFreshList() {
 		List<Software> li = SoftwareService.getInstance().selectSoftwareByAll();
 		pTable.loadTableDatas(li);
 	}
-	
+
 	public void setListBySearchData(List<Software> serachData) {
 		pTable.loadTableDatas(serachData);
 	}

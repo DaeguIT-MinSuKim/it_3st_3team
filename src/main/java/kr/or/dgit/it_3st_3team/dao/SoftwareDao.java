@@ -9,9 +9,7 @@ public interface SoftwareDao {
 	Software selectSoftwareByNo(Software software);
 	List<Software> selectSoftwareBySearch(Map<String, String> map);
 	List<Software> selectSoftwareByAll();
-	List<Software> selectSoftwareByNoCustomer(Software software);
-	List<Software> selectSoftwareByNameCustomer(Software software);
-	
+	List<Software> selectSoftwareByOrder(Software software);
 	
 	int insertSoftware(Software software);
 	int updateSoftware(Software software);

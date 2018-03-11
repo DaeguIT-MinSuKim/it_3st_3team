@@ -84,17 +84,18 @@
 	</sql>
 	
 	
-	<sql id="whereSwCustomer">
+	<sql id="whereSwOrder">
 		<where>
 			<if test="swGroup.sgName != null">
 				g.sg_name=#{swGroup.sgName}
 			</if>
 			<if test="userNo.name != null">
-				AND	p.u_name=#{userNo.name}
+				AND p.u_name=#{userNo.name}
 			</if>
-			<if test="swName !=null and swName !=''">
-				AND s.sw_name = #{swName}
+			<if test="swName !=null">
+				AND s.sw_name like CONCAT(#{swName}, "%")
 			</if>
+			AND s.sw_del = 0 order by s.sw_no desc
 		</where>
 	</sql>
 	
@@ -115,19 +116,11 @@
 	</sql>
 
 	
-	<!-- customerSearchSw -->
-	<select id="selectSoftwareByNoCustomer" parameterType="Software" resultMap="SoftwarewithUserResult">
+	<!-- selectSoftwareByOrder -->
+	<select id="selectSoftwareByOrder" parameterType="Software" resultMap="SoftwarewithUserResult">
 		<include refid="selectWithGroupwithUserSql"/>
-		<include refid="whereSwCustomer"/>
-			AND sw_del = 0 order by sw_no desc
+		<include refid="whereSwOrder"/>
 	</select>
-	
-	<select id="selectSoftwareByNameCustomer" parameterType="Software" resultMap="SoftwarewithUserResult">
-		<include refid="selectWithGroupwithUserSql"/>
-		<include refid="wheredelUpSql"/>
-			AND sw_del = 0 order by sw_no desc
-	</select>
-	
 	
 	<select id="selectSoftwareByNo" parameterType="Software" resultMap="SoftwarewithUserResult">
 		<include refid="selectWithGroupwithUserSql"/>
