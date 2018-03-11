@@ -131,6 +131,8 @@ public class LoginContent extends JPanel implements ActionListener {
 				UserUI showUI = new UserUI((User) loginUser);
 				showUI.setVisible(true);
 			}
+			
+			getTopLevelAncestor().setVisible(false);
 		}
 	}
 

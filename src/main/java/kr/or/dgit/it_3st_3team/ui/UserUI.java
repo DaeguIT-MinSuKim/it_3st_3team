@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
@@ -19,6 +20,7 @@ import kr.or.dgit.it_3st_3team.type.UserGroup;
 import kr.or.dgit.it_3st_3team.ui.admin.chart.AdminChartContent;
 import kr.or.dgit.it_3st_3team.ui.admin.report.AdminStatusContent;
 import kr.or.dgit.it_3st_3team.ui.admin.software.AdminSoftwareContent;
+import kr.or.dgit.it_3st_3team.ui.listener.ProgramCloseAdapter;
 import kr.or.dgit.it_3st_3team.ui.user.CustomerOrderContent;
 import kr.or.dgit.it_3st_3team.ui.user.UserModifyContent;
 import kr.or.dgit.it_3st_3team.utils.DefineUtil;
@@ -38,6 +40,7 @@ public class UserUI extends JFrame implements ActionListener {
 	private JLabel lblImg;
 	private JLabel lblName;
 	private JPanel pMenu;
+	private JButton btnLogout;
 
 	public UserUI(User user) {
 		setUser(user);
@@ -47,17 +50,19 @@ public class UserUI extends JFrame implements ActionListener {
 
 	private void initComponents() {
 		setTitle("사용자 - 소프트웨어");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 1500, 900);
+		
+		addWindowListener(new ProgramCloseAdapter());
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		setContentPane(contentPane);
 
 		JPanel pImg = new JPanel();
 		pImg.setLayout(null);
 		pImg.setBackground(new Color(59, 89, 152));
-		pImg.setBounds(0, 0, 300, 231);
+		pImg.setBounds(0, 0, 300, 270);
 		contentPane.add(pImg);
 
 		lblImg = new JLabel("");
@@ -70,6 +75,11 @@ public class UserUI extends JFrame implements ActionListener {
 		lblName.setFont(new Font("나눔바른고딕", Font.PLAIN, 16));
 		lblName.setBounds(30, 188, 228, 33);
 		pImg.add(lblName);
+
+		btnLogout = new JButton("로그아웃");
+		btnLogout.addActionListener(this);
+		btnLogout.setBounds(97, 237, 97, 23);
+		pImg.add(btnLogout);
 
 		pMenu = new JPanel();
 		pMenu.setBackground(new Color(59, 89, 152));
@@ -102,20 +112,20 @@ public class UserUI extends JFrame implements ActionListener {
 		pMain = new JPanel();
 		pMain.setBounds(0, 0, 1186, 861);
 		pContent.add(pMain);
-		
+
 		displayFirstview();
 	}
-	
+
 	private void displayFirstview() {
-		if(user.getUserGroup() == UserGroup.CUSTOMER) {
+		if (user.getUserGroup() == UserGroup.CUSTOMER) {
 			CustomerOrderContent pMain = new CustomerOrderContent();
-			pMain.setBounds(0,0,1186,861);
+			pMain.setBounds(0, 0, 1186, 861);
 			changeMainPanel(pMain);
-		}else {
+		} else {
 			AdminSoftwareContent pMain = new AdminSoftwareContent();
 			pMain.setBounds(0, 0, 1186, 841);
 			changeMainPanel(pMain);
-			
+
 		}
 	}
 
@@ -172,6 +182,9 @@ public class UserUI extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnLogout) {
+			actionPerformedBtnLogout(e);
+		}
 		if (e.getSource() == btnSupplyStatus) {
 			actionPerformedBtnSupplyStatus(e);
 		}
@@ -248,5 +261,14 @@ public class UserUI extends JFrame implements ActionListener {
 		AdminStatusContent pMain = new AdminStatusContent(user);
 		pMain.setBounds(0, 0, 1186, 861);
 		changeMainPanel(pMain);
+	}
+
+	protected void actionPerformedBtnLogout(ActionEvent e) {
+		int res = JOptionPane.showConfirmDialog(null, "로그아웃 하시겠습니까?", "사용자 로그아웃", JOptionPane.YES_NO_OPTION);
+		if (res == 0) {
+			LoginUI loginUI = new LoginUI();
+			loginUI.setVisible(true);
+			dispose();
+		}
 	}
 }
