@@ -75,11 +75,35 @@ public class SaleOrderService {
 		return res;
 	}
 	
-	// 차트
-	public Map<String, Integer> selectSaleOrderBySwgType(Map<String, String> map) {
-		log.debug("selectSaleOrderBySwgType()");
+	// 품목별 차트 조건:영업사원,년도
+	public List<Map<String, Integer>> selectSgGroupBySales(Map<String, String> map) {
+		log.debug("selectSgGroupBySales()");
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
-			return sqlSession.selectOne(namespace + "selectSaleOrderBySwgType", map);
+			return sqlSession.selectList(namespace + "selectSgGroupBySales", map);
+		}
+	}
+	
+	// 관리자 품목별 차트 조건:년도
+		public List<Map<String, Integer>> selectSgGroupForYears(Map<String, String> map) {
+			log.debug("selectSgGroupForYears()");
+			try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+				return sqlSession.selectList(namespace + "selectSgGroupForYears", map);
+			}
+		}
+		
+	// 고객 품목별 차트 조건:년도
+		public List<Map<String, Integer>> selectSgGroupCustomer(Map<String, String> map) {
+			log.debug("selectSgGroupCustomer()");
+			try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+				return sqlSession.selectList(namespace + "selectSgGroupCustomer", map);
+			}
+		}
+	
+	// 결제방법 차트
+	public List<Map<String, Integer>> selectPaymentChartOption(Map<String, String> map) {
+		log.debug("selectPaymentChartOption()");
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectList(namespace + "selectPaymentChartOption", map);
 		}
 	}
 }

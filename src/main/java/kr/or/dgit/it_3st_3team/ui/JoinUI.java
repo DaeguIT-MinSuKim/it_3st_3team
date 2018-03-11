@@ -110,7 +110,7 @@ public class JoinUI extends JFrame implements ActionListener {
 		pImgArea.setLayout(null);
 
 		lblUserImg = new JLabel("");
-		lblUserImg.setIcon(new ImageIcon(DefineUtil.IMG_PATH + DefineUtil.DEFAULT_USER_IMG));
+		lblUserImg.setIcon(new ImageIcon(DefineUtil.DEFAULT_IMG_PATH + DefineUtil.DEFAULT_USER_IMG));
 		lblUserImg.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUserImg.setBounds(0, 0, 128, 128);
 		pImgArea.add(lblUserImg);
@@ -308,7 +308,9 @@ public class JoinUI extends JFrame implements ActionListener {
 			return;
 		}
 		String userImgFullPath = lblUserImg.getIcon().toString();
-		joinUser.setAvatar(new File(userImgFullPath).getName());
+		String imgName = CommonUtil.getInstance().createRndImgName(userImgFullPath, joinUser.getUserId());
+		joinUser.setAvatar(imgName);
+		
 		// 일반회원은 기본적으로 총관리자가 관리
 		joinUser.setAdmin(new Admin(1));
 
@@ -317,7 +319,7 @@ public class JoinUI extends JFrame implements ActionListener {
 			return;
 		}
 
-		CommonUtil.getInstance().userImgSave(userImgFullPath);
+		CommonUtil.getInstance().userImgSave(userImgFullPath, imgName);
 		if (UserService.getInstance().addUser(joinUser) != 1) {
 			JOptionPane.showMessageDialog(null, "회원가입에 실패했습니다.");
 			return;
@@ -345,7 +347,7 @@ public class JoinUI extends JFrame implements ActionListener {
 
 	// (기본 셋팅으로 돌리기)
 	private void resetData() {
-		lblUserImg.setIcon(new ImageIcon(DefineUtil.IMG_PATH + DefineUtil.DEFAULT_USER_IMG));
+		lblUserImg.setIcon(new ImageIcon(DefineUtil.DEFAULT_IMG_PATH + DefineUtil.DEFAULT_USER_IMG));
 		tfUserId.setText("");
 		pfUserPwd.setText("");
 		pfUserPwdChk.setText("");

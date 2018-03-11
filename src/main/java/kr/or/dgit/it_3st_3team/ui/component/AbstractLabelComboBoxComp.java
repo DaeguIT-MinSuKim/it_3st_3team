@@ -49,6 +49,14 @@ public abstract class AbstractLabelComboBoxComp<T> extends JPanel {
 	public void setCmbSelectItem(T item) {
 		cmbBox.setSelectedItem(item);
 	}
+	
+	public void addCmbItem(T item) {
+		cmbBox.addItem(item);
+	}
+	
+	public void removeItem() {
+		cmbBox.removeAllItems();
+	}
 
 	public void loadData(T[] data) {
 		dcbm = new DefaultComboBoxModel<>(data);

@@ -2,13 +2,13 @@ package kr.or.dgit.it_3st_3team.ui.admin.software;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import kr.or.dgit.it_3st_3team.dto.Software;
 import kr.or.dgit.it_3st_3team.dto.SoftwareGroup;
@@ -21,27 +21,29 @@ import kr.or.dgit.it_3st_3team.ui.SoftwareGroupUI;
 import kr.or.dgit.it_3st_3team.ui.component.ImageComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblCmbSoftwareGroupComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblCmbUserComp;
+import kr.or.dgit.it_3st_3team.ui.component.LblSpinnerComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblTfComp;
 import kr.or.dgit.it_3st_3team.utils.CommonUtil;
+import kr.or.dgit.it_3st_3team.utils.DefineUtil;
 
-import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
 public class AdminSoftwareRegister extends JPanel implements ActionListener {
-	private JFileChooser chooser;
 	private JButton btnSubmitCF;
 	private LblCmbSoftwareGroupComp pSWsort;
 	private LblCmbUserComp pCompany;
 	private LblTfComp pSWName;
-	private LblTfComp pSupplyPrice;
-	private LblTfComp pSalePrice;
-	private LblTfComp pCount;
+	//private LblTfComp pSupplyPrice;
+
 	private JButton btnRegister;
 	private JButton btnCancel;
 	
-	private AdminSoftwareContent ac;
+	private AdminSoftwareContent parent;
 	private JTextField upNum;
 	private ImageComp pSwRegisterImg;
+	private LblSpinnerComp pCount;
+	private LblSpinnerComp pSalePrice;
+	private LblSpinnerComp pSupplyPrice;
 	
 	
 	
@@ -86,25 +88,11 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 		pSwRegisterImg = new ImageComp();
 		pSwRegisterImg.setBounds(25, 0, 183, 214);
 		pRegister.add(pSwRegisterImg);
-		
-		
 
 		pSWName = new LblTfComp("품목 명");
 		pSWName.setBounds(541, 73, 340, 30);
 		pRegister.add(pSWName);
 
-		pSupplyPrice = new LblTfComp("공급 가격");
-		pSupplyPrice.setBounds(239, 120, 242, 30);
-		pRegister.add(pSupplyPrice);
-
-		pSalePrice = new LblTfComp("판매 가격");
-		pSalePrice.setBounds(238, 73, 243, 30);
-		pRegister.add(pSalePrice);
-
-		pCount = new LblTfComp("수량");
-		pCount.setBounds(556, 120, 126, 30);
-		pRegister.add(pCount);
-		
 		btnCancel = new JButton("취소");
 		btnCancel.setBounds(1045, 168, 97, 23);
 		pRegister.add(btnCancel);	
@@ -113,11 +101,25 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 		btnRegister = new JButton("등록");
 		btnRegister.setBounds(929, 168, 97, 23);
 		pRegister.add(btnRegister);
+		
+		pCount = new LblSpinnerComp("수량");
+		pCount.setIntSpinner(1, 1, 999, 1);
+		pCount.setBounds(556, 120, 126, 30);
+		pRegister.add(pCount);
+		
+		pSalePrice = new LblSpinnerComp("판매가격");
+		pSalePrice.setIntSpinner(0, 0, 9999999, 1000);
+		pSalePrice.setBounds(238, 73, 243, 30);
+		pRegister.add(pSalePrice);
+		
+		pSupplyPrice = new LblSpinnerComp("공급가격");
+		pSupplyPrice.setIntSpinner(0, 0, 9999999, 1000);
+		pSupplyPrice.setBounds(238, 120, 243, 30);
+		pRegister.add(pSupplyPrice);
 		btnRegister.addActionListener(this);
 		
 		upNum = new JTextField();
 		upNum.setBounds(708, 129, 116, 21);
-		
 		upNum.setColumns(10);
 		
 	}
@@ -136,48 +138,44 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 	}
 
 	private void actionPerformedBtnCancel(ActionEvent e) {
-		resetDate();
+		resetData();
 		
 	}
 
 	private void actionPerformedBtnRegister(ActionEvent e) {
-		if(pCount.isTfEmpty("수량을 입력해주세요")) {
-			return;
-		}
-		if(pSalePrice.isTfEmpty("판매가격을 입력해주세요")) {
-			return;
-		}if(pSupplyPrice.isTfEmpty("공급가격을 입력해주세요")) {
-			return;
-		}if(pSWName.isTfEmpty("품목명을 입력해주세요")) {
+		if(pSWName.isTfEmpty("품목명을 입력해주세요")) {
 			return;
 		}
 		
 		
 		User Company = (User) pCompany.getCmbSelectItem();
 		SoftwareGroup swGroup = (SoftwareGroup) pSWsort.getCmbSelectItem();
-		int count = Integer.parseInt(pCount.getTfText().trim());
-		int salePrice = Integer.parseInt(pSalePrice.getTfText().trim());
-		int supplyPrice = Integer.parseInt(pSupplyPrice.getTfText().trim());
+		int salePrice = pSalePrice.getSpnValue();
+		int supplyPrice = pSupplyPrice.getSpnValue();
 		String swName = pSWName.getTfText().trim();
 		int swNo = 0;
 		if(!upNum.getText().equals("")) {
 			swNo = Integer.parseInt(upNum.getText());
 		}
+		int count = pCount.getSpnValue();
+		
 		
 		Software inputSw = new Software();
 		inputSw.setSwGroup(swGroup);
 		inputSw.setSwName(swName);
 		inputSw.setSwNo(swNo);
 		inputSw.setUserNo(Company);
-		inputSw.setSwQuantity(count);
 		inputSw.setSwSellPrice(salePrice);
 		inputSw.setSwSupplyPrice(supplyPrice);
+		inputSw.setSwQuantity(count);
 		
 		
 		String softwareImgFullPath = pSwRegisterImg.getImageIcon().toString();
-		inputSw.setSwCoverImg(new File(softwareImgFullPath).getName());
+		String imgName = CommonUtil.getInstance().createRndImgName(softwareImgFullPath, String.format("software%04d", inputSw.getSwNo()));
+		inputSw.setSwCoverImg(imgName);
 		/*System.out.println(softwareImgFullPath);
 		System.out.println(new File(softwareImgFullPath).getName());*/
+
 		
 		String commandType = e.getActionCommand();
 		String commandMessage = String.format("사용자 %s", commandType);
@@ -185,7 +183,7 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 		if(result == JOptionPane.CANCEL_OPTION || result == JOptionPane.NO_OPTION) {
 			return;
 		}
-		CommonUtil.getInstance().userImgSave(softwareImgFullPath);
+		CommonUtil.getInstance().userImgSave(softwareImgFullPath, imgName);
 		
 		if(commandType.equals("등록")) {
 			result = SoftwareService.getInstance().insertSoftware(inputSw);
@@ -193,8 +191,8 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 			SoftwareService.getInstance().updateSoftware(inputSw);
 			btnRegister.setText("등록");		
 		}
-		ac.reFreshList();
-		resetDate();
+		parent.reFreshList();
+		resetData();
 	
 	}
 
@@ -212,40 +210,38 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 		if(sw.getSwCoverImg() != null && !sw.getSwCoverImg().equals("")) {
 			pSwRegisterImg.setImageIcon(sw.getSwCoverImg());
 		}else {
-			pSwRegisterImg.setImageIcon("nobody.png");
+			pSwRegisterImg.setImageIcon(DefineUtil.DEFAULT_USER_IMG);
 		}
 		
 		pCompany.setCmbSelectItem(sw.getUserNo());
 		pSWsort.setCmbSelectItem(sw.getSwGroup());
-		pCount.setTfText(Integer.toString(sw.getSwQuantity()));
-		pSalePrice.setTfText(Integer.toString(sw.getSwSellPrice()));
-		pSupplyPrice.setTfText(Integer.toString(sw.getSwSupplyPrice()));
+		pCount.setSpnValue(sw.getSwQuantity());
+		pSalePrice.setSpnValue(sw.getSwSellPrice());
+		pSupplyPrice.setSpnValue(sw.getSwSupplyPrice());
 		pSWName.setTfText(sw.getSwName());
 		upNum.setText(Integer.toString(sw.getSwNo()));
-		
+
 		btnRegister.setText("수정");
-		
-		
 	}
 	
 	
 	
-	private void resetDate() {
+	public void resetData() {
 		pSwRegisterImg.setImageIcon("nobody.png");
 		pCompany.setCmbSelectIndex(0);
-		pCount.setTfText("");
-		pSalePrice.setTfText("");
-		pSupplyPrice.setTfText("");
+		pSalePrice.setSpnValue(0);
+		pCount.setSpnValue(1);
+		pSupplyPrice.setSpnValue(0);
 		pSWName.setTfText("");
 		pSWsort.setCmbSelectIndex(0);
 		upNum.setText("");
+
 	}
 
 	
-	public void setAc(AdminSoftwareContent ac) {
-		this.ac = ac;
+	
+	public void setParent(AdminSoftwareContent ac) {
+		this.parent = ac;
 	}
 
-
-	
 }

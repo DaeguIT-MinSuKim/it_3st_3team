@@ -26,7 +26,8 @@ CREATE TABLE `software_project`.`admin` (
   CONSTRAINT `FK_admin_group_TO_admin` FOREIGN KEY (`ag_no`) REFERENCES `admin_group` (`ag_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='관리자';
 
-CREATE TABLE `software_project`.`user` (
+
+CREATE TABLE `user` (
   `u_no` int(11) NOT NULL COMMENT '사용자번호',
   `u_id` varchar(20) NOT NULL COMMENT '아이디',
   `u_pwd` varchar(64) NOT NULL COMMENT '비밀번호',
@@ -38,11 +39,13 @@ CREATE TABLE `software_project`.`user` (
   `u_addr2` varchar(100) DEFAULT NULL COMMENT '상세주소',
   `u_avatar` varchar(100) DEFAULT NULL COMMENT '사진',
   `u_group` enum('CUSTOMER','COMPANY') DEFAULT NULL COMMENT '사용자구분',
+  `u_del` char(1) DEFAULT '0' COMMENT '삭제된사용자',
   `adm_no` int(11) DEFAULT NULL COMMENT '관리자',
   PRIMARY KEY (`u_no`),
   KEY `FK_admin_TO_user` (`adm_no`),
   CONSTRAINT `FK_admin_TO_user` FOREIGN KEY (`adm_no`) REFERENCES `admin` (`adm_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='사용자';
+
 
 CREATE TABLE `software_project`.`software_group` (
   `sg_no` int(11) NOT NULL COMMENT '그룹번호',
@@ -51,7 +54,7 @@ CREATE TABLE `software_project`.`software_group` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='소프트웨어 분류';
 
 
-CREATE TABLE `software_project`.`software` (
+CREATE TABLE `software` (
   `sw_no` int(11) NOT NULL COMMENT '품목번호',
   `sg_no` int(11) DEFAULT NULL COMMENT '품목분류',
   `sw_name` varchar(20) DEFAULT NULL COMMENT '품목명',
@@ -59,6 +62,7 @@ CREATE TABLE `software_project`.`software` (
   `sw_supply_price` int(11) DEFAULT NULL COMMENT '공급가격',
   `sw_sell_price` int(11) DEFAULT NULL COMMENT '판매가격',
   `sw_cover_img` varchar(100) DEFAULT NULL COMMENT '상품표지',
+  `sw_del` char(1) DEFAULT '0' COMMENT '삭제된상품',
   `pc_no` int(11) DEFAULT NULL COMMENT '공급회사',
   PRIMARY KEY (`sw_no`),
   KEY `FK_software_group_TO_software` (`sg_no`),
@@ -66,6 +70,7 @@ CREATE TABLE `software_project`.`software` (
   CONSTRAINT `FK_software_group_TO_software` FOREIGN KEY (`sg_no`) REFERENCES `software_group` (`sg_no`),
   CONSTRAINT `FK_user_TO_software` FOREIGN KEY (`pc_no`) REFERENCES `user` (`u_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='소프트웨어';
+
 
 CREATE TABLE `software_project`.`sale_order` (
   `ord_no` int(11) NOT NULL COMMENT '주문번호',

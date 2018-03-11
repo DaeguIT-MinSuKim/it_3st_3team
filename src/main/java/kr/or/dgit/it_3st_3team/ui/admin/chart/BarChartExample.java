@@ -2,6 +2,7 @@ package kr.or.dgit.it_3st_3team.ui.admin.chart;
 
 import java.awt.Font;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.swing.JFrame;
@@ -37,9 +38,9 @@ public class BarChartExample extends JFrame {
 		CategoryDataset dataset = createDataset();
 
 		chart = ChartFactory.createBarChart(
-				"소프트웨어 분류별 판매현황", // Chart Title
-				"분류", // Category axis
-				"판매이윤", // Value axis
+				"소프트웨어 결제타입별 판매현황", // Chart Title
+				"결제타입", // Category axis
+				"결제횟수", // Value axis
 		dataset, PlotOrientation.VERTICAL, true, true, false);
 		
 		// 한글세팅
@@ -49,50 +50,44 @@ public class BarChartExample extends JFrame {
 	}
 
 	private void setupKorean() {
-		chart.getTitle().setFont(new Font("굴림", Font.BOLD, 15));
-		chart.getLegend().setItemFont(new Font("굴림", Font.BOLD, 15));
+		chart.getTitle().setFont(new Font("굴림", Font.BOLD, 20));
+		chart.getLegend().setItemFont(new Font("굴림", Font.BOLD, 20));
 		
 		CategoryPlot plot = chart.getCategoryPlot();
-		plot.getDomainAxis().setLabelFont(new Font("굴림", Font.BOLD, 13));
-		plot.getDomainAxis().setTickLabelFont(new Font("굴림", Font.BOLD, 8));
-		plot.getRangeAxis().setLabelFont(new Font("굴림", Font.BOLD, 13));
-		plot.getRangeAxis().setTickLabelFont(new Font("굴림", Font.BOLD, 8));
+		plot.getDomainAxis().setLabelFont(new Font("굴림", Font.BOLD, 17));
+		plot.getDomainAxis().setTickLabelFont(new Font("굴림", Font.BOLD, 15));
+		plot.getRangeAxis().setLabelFont(new Font("굴림", Font.BOLD, 17));
+		plot.getRangeAxis().setTickLabelFont(new Font("굴림", Font.BOLD, 15));
 	}
 
 	private CategoryDataset createDataset() {
 		DefaultCategoryDataset dataset1 = new DefaultCategoryDataset();
 		
 		Map<String, String> maps1 = new HashMap<>();
-		maps1.put("adminName", "영업1");
 		maps1.put("date", "2016");
-		Map<String, Integer> listChart1 = saleOrder.selectSaleOrderBySwgType(maps1);
+		List<Map<String, Integer>> listChart1 = saleOrder.selectPaymentChartOption(maps1);
 		System.out.println(listChart1);
 		
 		
 		Map<String, String> maps2 = new HashMap<>();
-		maps2.put("adminName", "영업1");
 		maps2.put("date", "2017");
-		Map<String, Integer> listChart2 = saleOrder.selectSaleOrderBySwgType(maps2);
+		List<Map<String, Integer>> listChart2 = saleOrder.selectPaymentChartOption(maps2);
 		
 		Map<String, String> maps3 = new HashMap<>();
-		maps3.put("adminName", "영업1");
 		maps3.put("date", "2018");
-		Map<String, Integer> listChart3 = saleOrder.selectSaleOrderBySwgType(maps3);
+		List<Map<String, Integer>> listChart3 = saleOrder.selectPaymentChartOption(maps3);
 		
-		dataset1.addValue(listChart1.get("사무"), "사무", "2016");
-		dataset1.addValue(listChart1.get("게임"), "게임", "2016");
-		dataset1.addValue(listChart1.get("그래픽"), "그래픽", "2016");
-
+		for(Map<String, Integer> map : listChart1) {
+			dataset1.addValue(map.get("count"), map.get("typeofpayment"), maps1.get("date"));
+		}
+		for(Map<String, Integer> map : listChart2) {
+			dataset1.addValue(map.get("count"), map.get("typeofpayment"), maps2.get("date"));
+		}
 		
-		dataset1.addValue(listChart2.get("사무"), "사무", "2017");
-		dataset1.addValue(listChart2.get("게임"), "게임", "2017");
-		dataset1.addValue(listChart2.get("그래픽"), "그래픽", "2017");
-
+		for(Map<String, Integer> map : listChart3) {
+			dataset1.addValue(map.get("count"), map.get("typeofpayment"), maps3.get("date"));
+		}
 		
-		dataset1.addValue(listChart3.get("사무"), "사무", "2018");
-		dataset1.addValue(listChart3.get("게임"), "게임", "2018");
-		dataset1.addValue(listChart3.get("그래픽"), "그래픽", "2018");
-
 		return dataset1;
 	}
 

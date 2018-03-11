@@ -145,7 +145,13 @@ public class Software {
 
 	public Object[] toArray() {
 
-		return new Object[] { swNo, swGroup.getSgName(), swName, swQuantity, swSupplyPrice, swSellPrice,
+		return new Object[] { swNo, swGroup.getSgName(), swName, String.format("%,d",swQuantity),  String.format("%,d",swSupplyPrice), String.format("%,d",swSellPrice),
+				userNo.getName() };
+	}
+	
+	public Object[] toArrayOrder() {
+
+		return new Object[] { swNo, swGroup.getSgName(), swName, String.format("%,d",swQuantity), String.format("%,d",swSellPrice),
 				userNo.getName() };
 	}
 

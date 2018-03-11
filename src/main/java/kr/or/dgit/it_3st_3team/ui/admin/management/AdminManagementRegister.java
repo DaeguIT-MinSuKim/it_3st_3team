@@ -2,7 +2,6 @@ package kr.or.dgit.it_3st_3team.ui.admin.management;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -201,7 +200,7 @@ public class AdminManagementRegister extends JPanel implements ActionListener {
 		joinAdmin.setAdminGroup(adminGroup);
 		
 		String userImgFullPath = pImg.getImageIcon().toString();
-		String imgName = new File(userImgFullPath).getName();
+		String imgName = CommonUtil.getInstance().createRndImgName(userImgFullPath, joinAdmin.getAdminId());
 		boolean isChangeImg = false;
 		if (!imgName.equals(DefineUtil.DEFAULT_USER_IMG)) {
 			isChangeImg = true;
@@ -226,7 +225,7 @@ public class AdminManagementRegister extends JPanel implements ActionListener {
 			return;
 		}
 		if (isChangeImg) {
-			CommonUtil.getInstance().userImgSave(userImgFullPath);
+			CommonUtil.getInstance().userImgSave(userImgFullPath, imgName);
 		}
 		
 		JOptionPane.showMessageDialog(null, String.format("%s이 완료되었습니다.", commandMessage));

@@ -66,6 +66,7 @@ public class AdminStatusSearch extends JPanel {
 	}
 
 	public void setUsingUser(Object who) {
+		System.out.println(who);
 		if (who instanceof Admin) {
 			admin = (Admin) who;
 		} else {

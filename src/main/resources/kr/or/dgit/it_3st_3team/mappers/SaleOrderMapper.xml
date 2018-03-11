@@ -20,6 +20,7 @@
 		<result property="user.nameCu" column="공급회사명" />
 		<result property="software.swNo" column="sw_no" />
 		<result property="software.swName" column="sw_name" />
+		<result property="software.swCoverImg" column="sw_cover_img"/>
 		<result property="admin.adminNo" column="adm_no" />
 		<result property="admin.adminId" column="adm_id" />
 		<result property="admin.adminName" column="adm_name" />
@@ -36,7 +37,7 @@
 	<!-- SaleOrder 현황관리 관리자 조건검색 -->
 	<sql id="selectParameterSql">
 	select us.u_group as '고객타입', us.u_name as '고객명', cu.u_group as '공급타입', cu.u_name as '공급회사명',
-	so.ord_no, ad.adm_name, sg.sg_name, sp.sw_name, so.ord_quantity,
+	so.ord_no, ad.adm_name, sg.sg_name, sp.sw_name, sp.sw_cover_img, so.ord_quantity,
 	so.ord_supply_price, so.ord_sell_price, so.ord_tax, so.ord_sell_profit,
 	so.ord_payment,so.ord_datetime, ad.adm_name 
 	from sale_order as so 
@@ -47,46 +48,41 @@
 	join user as cu on sp.pc_no=cu.u_no
 	</sql>
 	
-	<!-- 차트 품목별 갯수 -->
-	<sql id="selectChartByType">
-	select ord_quantity, 
-	sum(if(sg.sg_name='게임',ord_quantity,0))as '게임',
-	sum(if(sg.sg_name='사무',ord_quantity,0))as '사무',
-	sum(if(sg.sg_name='그래픽',ord_quantity,0))as '그래픽',
-	sum(ord_quantity) as '합계'
-	from sale_order as so 
-	join software as sp on so.sw_no=sp.sw_no
-	join software_group as sg on sp.sg_no=sg.sg_no
-	join admin as ad on so.adm_no=ad.adm_no
-	</sql>
-	
-	<!-- <select id="test11" parameterType="" resultMap="">
-		select t.sg_name, sum(ord_quantity)
-		from sale_order as so 
-		     right join (select sw.*, sg_name from software sw right join software_group sg  on sg.sg_no=sw.sg_no) as t on so.sw_no = t.sw_no
-		     left join admin ad on so.adm_no = ad.adm_no
-		where ad.adm_name = #{adminName}
-		      and so.ord_datetime like #{}
-		group by t.sg_name
-		union
-		select '총합', sum(ord_quantity)
-		from sale_order so join admin ad on so.adm_no = ad.adm_no
-		where ad.adm_name = #{}
-		      and so.ord_datetime like #{}
-	</select> -->
-	
-	<!-- 품목종류 자동 업데이트 차트 -->
-	<select id="">
-		
-	select t.sg_name, ifnull(sum(ord_quantity),0)
-	from sale_order as so 
-    right join (select sw.*, sg_name from software sw right join software_group sg  on sg.sg_no=sw.sg_no) as t on so.sw_no = t.sw_no
-    left join admin ad on so.adm_no = ad.adm_no
+	<!-- 관리자차트 품목별 갯수 조건:년도 -->
+	<select id="selectSgGroupForYears" parameterType="map" resultType="map">
+	select t.sg_name as name, ifnull(sum(ord_quantity),0) as count
+	from (select sw.*, sg_name from software sw right join software_group sg  on sg.sg_no=sw.sg_no) as t
+    left join (select * from sale_order where ord_datetime like CONCAT(#{date},"%")) as so on so.sw_no = t.sw_no
 	group by t.sg_name
 	union
 	select '총합', sum(ord_quantity)
 	from sale_order so join admin ad on so.adm_no = ad.adm_no
-		
+	where so.ord_datetime like CONCAT(#{date},"%")
+	</select>
+	
+	<!-- 차트 품목별 갯수 조건:영업사원, 년도 -->
+	<select id="selectSgGroupBySales" parameterType="map" resultType="map">
+	select t.sg_name as name, ifnull(sum(ord_quantity),0) as count
+	from (select sw.*, sg_name from software sw right join software_group sg  on sg.sg_no=sw.sg_no) as t
+    left join (select * from sale_order where ord_datetime like CONCAT(#{date},"%") and adm_no=#{adminNo}) as so on so.sw_no = t.sw_no
+	group by t.sg_name
+	union
+	select '총합', sum(ord_quantity)
+	from sale_order 
+	where adm_no=#{adminNo}
+    and ord_datetime like CONCAT(#{date},"%")
+	</select>
+	
+
+	<select id="selectPaymentChartOption" parameterType="map" resultType="map">
+	select ord_payment as typeofpayment, ifnull(sum(ord_quantity),0) as count
+	from sale_order
+	where ord_datetime like CONCAT(#{date},"%")
+	group by ord_payment
+	union
+	select '총합', sum(ord_quantity)
+	from sale_order
+	where ord_datetime like CONCAT(#{date},"%")
 	</select>
 	
 	<!-- SaleOrder 주문 삭제 -->
@@ -165,9 +161,15 @@
 	</select>
 	
 	<!-- 수정 -->
+	<sql id="updateSql">
+		update sale_order set ord_quantity=#{ordQuantity},ord_payment=#{ordPayment}
+	</sql>
 	<update id="updateOrderManagementNo" parameterType="SaleOrder">
-		
+		<include refid="updateSql"/>
+		<include refid="whereSql"/>
 	</update>
+	
+	
 	
 	<!-- 삭제 -->
 	<delete id="deleteSaleOrderByNo" parameterType="SaleOrder">
@@ -175,10 +177,5 @@
 		<include refid="whereSql"/>
 	</delete>
 
-	<!-- 차트 품목별 갯수 -->
-	<select id="selectSaleOrderBySwgType" parameterType="map" resultType="map">
-		<include refid="selectChartByType"/>
-		<include refid="whereSwNameSqlChart"/>
-	</select>
 
 </mapper>

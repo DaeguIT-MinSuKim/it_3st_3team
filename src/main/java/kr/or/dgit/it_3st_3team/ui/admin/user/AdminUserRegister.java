@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.io.File;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -251,8 +250,10 @@ public class AdminUserRegister extends JPanel implements ActionListener {
 			user.setUserGroup(UserGroup.COMPANY);
 		}
 
+		// 선택한 이미지의 실제경로
 		String userImgFullPath = pImgArea.getImageIcon().toString();
-		user.setAvatar(new File(userImgFullPath).getName());
+		String imgName = CommonUtil.getInstance().createRndImgName(userImgFullPath, user.getUserId());
+		user.setAvatar(imgName);
 
 		String commandType = e.getActionCommand();
 		String commandMessage = String.format("사용자 %s", commandType);
@@ -262,7 +263,7 @@ public class AdminUserRegister extends JPanel implements ActionListener {
 			return;
 		}
 
-		CommonUtil.getInstance().userImgSave(userImgFullPath);
+		CommonUtil.getInstance().userImgSave(userImgFullPath, imgName);
 		if (commandType.equals("등록")) {
 			result = UserService.getInstance().addUser(user);
 		} else {
@@ -303,7 +304,7 @@ public class AdminUserRegister extends JPanel implements ActionListener {
 		if (user.getAvatar() != null && !user.getAvatar().equals("")) {
 			pImgArea.setImageIcon(user.getAvatar());
 		} else {
-			pImgArea.setImageIcon("nobody.png");
+			pImgArea.setImageIcon(DefineUtil.DEFAULT_USER_IMG);
 		}
 		pUserId.setTfText(user.getUserId());
 		pUserId.setTfEditable(false);
