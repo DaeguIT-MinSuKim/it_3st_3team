@@ -15,6 +15,7 @@ import kr.or.dgit.it_3st_3team.dto.Admin;
 import kr.or.dgit.it_3st_3team.dto.Software;
 import kr.or.dgit.it_3st_3team.dto.User;
 import kr.or.dgit.it_3st_3team.service.SoftwareService;
+import kr.or.dgit.it_3st_3team.service.UserService;
 import kr.or.dgit.it_3st_3team.type.AdminGroupAuth;
 import kr.or.dgit.it_3st_3team.ui.table.AdminSoftwareTable;
 
@@ -42,6 +43,17 @@ public class AdminSoftwareContent extends JPanel implements ActionListener {
 		pRegister.setBounds(0, 0, 1191, 245);
 		pRegister.setParent(this);
 		add(pRegister);
+		
+		Map<String, String> map = new HashMap<>();
+		if (admin != null && admin.getAdminGroup().getAgAuth() == AdminGroupAuth.SALESMAN) {
+			map.put("adminId", admin.getAdminId());
+		}
+		if (user != null) {
+			map.put("userId", user.getUserId());
+		}
+		List<User> uslist = UserService.getInstance().listUserBySearch(map);
+		User[] usDatas = uslist.toArray(new User[uslist.size()]);
+		pRegister.loadDataByUserType(usDatas);
 
 		pSearch = new AdminSoftwareSearch();
 		pSearch.setBounds(0, 245, 1191, 50);
@@ -67,13 +79,14 @@ public class AdminSoftwareContent extends JPanel implements ActionListener {
 
 	public void reFreshList() {
 		Map<String, String> map = new HashMap<>();
-		System.out.println("admin : " + admin);
-		System.out.println("user : " + user);
+		
 		if (admin != null && admin.getAdminGroup().getAgAuth() == AdminGroupAuth.SALESMAN) {
 			map.put("adminId", admin.getAdminId());
+			pSearch.setUser(admin);
 		}
 		if (user != null) {
 			map.put("userId", user.getUserId());
+			pSearch.setUser(user);
 		}
 		List<Software> li = SoftwareService.getInstance().findSoftwareAllByType(map);
 		pTable.loadTableDatas(li);

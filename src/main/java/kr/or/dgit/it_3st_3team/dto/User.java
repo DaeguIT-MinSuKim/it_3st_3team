@@ -195,7 +195,6 @@ public class User {
 		this.nameCu = nameCu;
 	}
 	
-	
 
 	@Override
 	public int hashCode() {

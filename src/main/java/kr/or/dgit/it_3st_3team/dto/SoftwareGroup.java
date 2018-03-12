@@ -3,9 +3,7 @@ package kr.or.dgit.it_3st_3team.dto;
 public class SoftwareGroup {
 	private int sgNo;
 	private String sgName;
-	
-	
-	
+
 	public SoftwareGroup(int sgNo) {
 		super();
 		this.sgNo = sgNo;
@@ -39,8 +37,6 @@ public class SoftwareGroup {
 		this.sgName = sgName;
 	}
 	
-	
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -71,9 +67,8 @@ public class SoftwareGroup {
 
 	public Object[] toArray() {
 		// TODO Auto-generated method stub
-		return new Object[] {String.format("%s",sgName)};
+		return new Object[] { String.format("%s", sgName) };
 
 	}
 
-	
 }
