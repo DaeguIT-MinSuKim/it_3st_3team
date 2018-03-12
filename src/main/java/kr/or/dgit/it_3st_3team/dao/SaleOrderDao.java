@@ -23,7 +23,7 @@ public interface SaleOrderDao {
 	List<Map<String, Integer>> selectPaymentChartOption(Map<String, String> map);
 	
 	// 현황관리 모든 데이터
-	List<SaleOrder> selectSaleOrderByAll();
+	List<SaleOrder> selectSaleOrderByAll(Map<String, String> map);
 	
 	// 소프트웨어 주문 관리
 
