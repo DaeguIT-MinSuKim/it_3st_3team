@@ -76,34 +76,50 @@ public class SaleOrderService {
 	}
 	
 	// 품목별 차트 조건:영업사원,년도
-	public List<Map<String, Integer>> selectSgGroupBySales(Map<String, String> map) {
-		log.debug("selectSgGroupBySales()");
+	public List<Map<String, Integer>> selectSwGroupBySales(Map<String, String> map) {
+		log.debug("selectSwGroupBySales()");
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
-			return sqlSession.selectList(namespace + "selectSgGroupBySales", map);
+			return sqlSession.selectList(namespace + "selectSwGroupBySales", map);
 		}
 	}
 	
 	// 관리자 품목별 차트 조건:년도
-		public List<Map<String, Integer>> selectSgGroupForYears(Map<String, String> map) {
-			log.debug("selectSgGroupForYears()");
+		public List<Map<String, Integer>> selectSwGroupByAdmin(Map<String, String> map) {
+			log.debug("selectSwGroupByAdmin()");
 			try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
-				return sqlSession.selectList(namespace + "selectSgGroupForYears", map);
+				return sqlSession.selectList(namespace + "selectSwGroupByAdmin", map);
 			}
 		}
 		
 	// 고객 품목별 차트 조건:년도
-		public List<Map<String, Integer>> selectSgGroupCustomer(Map<String, String> map) {
-			log.debug("selectSgGroupCustomer()");
+		public List<Map<String, Integer>> selectSwGroupByCustomer(Map<String, String> map) {
+			log.debug("selectSwGroupByCustomer()");
 			try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
-				return sqlSession.selectList(namespace + "selectSgGroupCustomer", map);
+				return sqlSession.selectList(namespace + "selectSwGroupByCustomer", map);
 			}
 		}
 	
-	// 결제방법 차트
-	public List<Map<String, Integer>> selectPaymentChartOption(Map<String, String> map) {
-		log.debug("selectPaymentChartOption()");
+	// 공급회사 품목별 차트 조건:년도
+		public List<Map<String, Integer>> selectSwGroupByCompany(Map<String, String> map) {
+			log.debug("selectSwGroupByCompany()");
+			try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+				return sqlSession.selectList(namespace + "selectSwGroupByCompany", map);
+			}
+		}
+	
+	// 관리자 결제타입 차트
+	public List<Map<String, Integer>> selectPaymentChartByAdmin(Map<String, String> map) {
+		log.debug("selectPaymentChartByAdmin()");
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
-			return sqlSession.selectList(namespace + "selectPaymentChartOption", map);
+			return sqlSession.selectList(namespace + "selectPaymentChartByAdmin", map);
+		}
+	}
+	
+	// 관리자 결제타입 차트
+	public List<Map<String, Integer>> selectPaymentChartBySales(Map<String, String> map) {
+		log.debug("selectPaymentChartBySales()");
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectList(namespace + "selectPaymentChartBySales", map);
 		}
 	}
 }

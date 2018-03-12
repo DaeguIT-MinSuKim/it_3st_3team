@@ -73,14 +73,15 @@ public class SaleOrderServiceTest {
 		System.out.println(res);
 	}
 	
+	// 영업사원 차트 품목별 판매갯수
 	@Test
-	public void test5SelectSgGroupBySales() {
+	public void test5SelectSwGroupBySales() {
 		Map<String, String> maps = new HashMap<>();
 		
 		maps.put("adminName", "영업1");
 		maps.put("date", "2018");
 		
-		List<Map<String, Integer>> listChart = service.selectSgGroupBySales(maps);
+		List<Map<String, Integer>> listChart = service.selectSwGroupBySales(maps);
 		Assert.assertNotNull(listChart);
 		
 		for(Map<String, Integer> map : listChart) {
@@ -90,13 +91,46 @@ public class SaleOrderServiceTest {
 		}
 	}
 
-	//관리자 차트 품목별 판매갯수 3년별
+	// 관리자 차트 품목별 판매갯수 3년별
 	@Test
-	public void test6SelectSgGroupForYears() {
+	public void test6SelectSwGroupByAdmin() {
 		Map<String, String> maps = new HashMap<>();
 		maps.put("date", "2018");
 		
-		List<Map<String, Integer>> listChart = service.selectSgGroupForYears(maps);
+		List<Map<String, Integer>> listChart = service.selectSwGroupByAdmin(maps);
+		Assert.assertNotNull(listChart);
+		
+		for(Map<String, Integer> map : listChart) {
+			for(Entry<String, Integer> e : map.entrySet()) {
+				System.out.printf("%s - %s%n", e.getKey(), e.getValue());
+			}
+		}
+	}
+	
+	
+	@Test //고객차트
+	public void test7SelectSwGroupCustomer() {
+		Map<String, String> maps = new HashMap<>();
+		maps.put("userNo", "2");
+		maps.put("date", "2017");
+		
+		List<Map<String, Integer>> listChart = service.selectSwGroupByCustomer(maps);
+		Assert.assertNotNull(listChart);
+		
+		for(Map<String, Integer> map : listChart) {
+			for(Entry<String, Integer> e : map.entrySet()) {
+				System.out.printf("%s - %s%n", e.getKey(), e.getValue());
+			}
+		}
+	}
+	
+	@Test //공급회사 차트
+	public void test8SelectSwGroupByCompany() {
+		Map<String, String> maps = new HashMap<>();
+		maps.put("companyNo", "1");
+		maps.put("date", "2017");
+		
+		List<Map<String, Integer>> listChart = service.selectSwGroupByCompany(maps);
 		Assert.assertNotNull(listChart);
 		
 		for(Map<String, Integer> map : listChart) {
@@ -107,12 +141,12 @@ public class SaleOrderServiceTest {
 	}
 	
 	@Test
-	public void test7SelectPaymentChartOption() {
+	public void test9SelectPaymentChartByAdmin() {
 		Map<String, String> maps = new HashMap<>();
 
 		maps.put("date", "2016");
 		
-		List<Map<String, Integer>> listChart = service.selectPaymentChartOption(maps);
+		List<Map<String, Integer>> listChart = service.selectPaymentChartByAdmin(maps);
 		Assert.assertNotNull(listChart);
 		
 		for(Map<String, Integer> map : listChart) {
@@ -122,13 +156,13 @@ public class SaleOrderServiceTest {
 		}
 	}
 	
-	@Test //고객차트
-	public void test8SelectSgGroupCustomer() {
+	@Test
+	public void test10SelectPaymentChartBySales() {
 		Map<String, String> maps = new HashMap<>();
-		maps.put("userId", "uid1");
-		maps.put("date", "2017");
+
+		maps.put("date", "2016");
 		
-		List<Map<String, Integer>> listChart = service.selectSgGroupCustomer(maps);
+		List<Map<String, Integer>> listChart = service.selectPaymentChartBySales(maps);
 		Assert.assertNotNull(listChart);
 		
 		for(Map<String, Integer> map : listChart) {
