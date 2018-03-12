@@ -27,7 +27,6 @@ public class CustomerOrderSearch extends JPanel implements ActionListener {
 	private CmbUserComp pCmbPC;
 	private JButton btnSearch;
 	private CustomerOrderContent parent;
-	private CustomerOrderContent2 parent2;
 	private JButton btnClear;
 
 
@@ -115,10 +114,6 @@ public class CustomerOrderSearch extends JPanel implements ActionListener {
 	public void setParent(CustomerOrderContent customer) {
 		this.parent = customer;
 	}
-	public void setParent2(CustomerOrderContent2 parent2) {
-		this.parent2 = parent2;
-	}
-	
 	
 
 	public void clearData() {

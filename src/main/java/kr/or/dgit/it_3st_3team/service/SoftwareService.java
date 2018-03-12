@@ -43,6 +43,7 @@ public class SoftwareService {
 		}
 	}
 	
+	
 	public List<Software> selectSoftwareByAll(){
 		log.debug("selectSoftwareByAll()");
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {

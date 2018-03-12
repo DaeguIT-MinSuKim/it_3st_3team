@@ -11,6 +11,7 @@ public interface SoftwareDao {
 	List<Software> selectSoftwareByAll();
 	List<Software> selectSoftwareByOrder(Software software);
 	
+	
 	int insertSoftware(Software software);
 	int updateSoftware(Software software);
 	int deleteSoftware(Software swNo);

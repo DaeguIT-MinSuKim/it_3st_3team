@@ -8,6 +8,7 @@
 		<result property="swSellPrice" column="sw_sell_price"/>
 		<result property="swQuantity" column="sw_quantity"/>
 		<result property="swCoverImg" column="sw_cover_img"/>
+		<result property="swIntro" column="sw_intro"/>
 	</resultMap>
 	
 	<resultMap type="Software" id="SoftwarewithGroupResult" extends="SoftwareBasedResult">
@@ -19,6 +20,12 @@
 		<result property="userNo.userNo" column="pc_no"/>
 		<result property="userNo.name" column="u_name" />
 		<result property="userNo.userGroup" column="u_group" />
+		
+	</resultMap>
+	
+	<resultMap type="Software" id="SoftwarewithAdminResult" extends="SoftwarewithUserResult">
+		<result property="userNo.admin.adminNo" column="adm_no"/>
+		<result property="userNo.admin.adminId" column="adm_no"/>
 	</resultMap>
 	
 	<!-- software기본 정보 -->
@@ -27,7 +34,7 @@
 	</sql>
 	
 	<sql id="selectWithGroupwithUserSql">
-		select sw_no, sw_name, sw_supply_price, sw_sell_price, sw_quantity, sw_cover_img,g.sg_no, s.pc_no, g.sg_name, p.u_name from software s 
+		select sw_no, sw_name, sw_supply_price, sw_sell_price, sw_quantity, sw_cover_img,g.sg_no, s.pc_no, g.sg_name, p.u_name, sw_intro from software s 
 		join software_group g on s.sg_no = g.sg_no join `user` p on s.pc_no = p.u_no
 	</sql>
 	
@@ -98,6 +105,7 @@
 			AND s.sw_del = 0 order by s.sw_no desc
 		</where>
 	</sql>
+	
 	
 	<!-- software 등록 -->
 	<sql id="insertSql">
