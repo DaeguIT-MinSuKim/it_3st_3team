@@ -68,8 +68,8 @@ public class AdminChartBySwgTypeFullYear extends JPanel  {
 			// 관리자
 			if (admin.getAdminGroup().getAgNo() == 1) {
 				addAdminChartData(dataset1, year-2);//2년전
-				addAdminChartData(dataset1, year-1);
-				addAdminChartData(dataset1, year);		
+				addAdminChartData(dataset1, year-1);//1년전
+				addAdminChartData(dataset1, year);//올해		
 				
 				return dataset1;
 			} else {
@@ -83,35 +83,16 @@ public class AdminChartBySwgTypeFullYear extends JPanel  {
 		} else {
 			// 사용자
 			if (user.getUserGroup().getValue() == 1) {
-			/*	Map<String, String> maps1 = new HashMap<>();
-				maps1.put("userName", "");
-				maps1.put("date", lastYear[2]);
-				List<Map<String, Integer>> listChart1 = saleOrder.selectSgGroupCustomer(maps1);
-				
-				Map<String, String> maps2 = new HashMap<>();
-				maps2.put("userName", "");
-				maps2.put("date", lastYear[1]);
-				List<Map<String, Integer>> listChart2 = saleOrder.selectSgGroupCustomer(maps2);
-				
-				Map<String, String> maps3 = new HashMap<>();
-				maps3.put("userName", "");
-				maps3.put("date", thisYear);
-				List<Map<String, Integer>> listChart3 = saleOrder.selectSgGroupCustomer(maps3);
-				
-				for(Map<String, Integer> map : listChart1) {
-					dataset1.addValue(map.get("count"), map.get("name"), maps1.get("date"));
-				}
-				
-				for(Map<String, Integer> map : listChart2) {
-					dataset1.addValue(map.get("count"), map.get("name"), maps2.get("date"));
-				}
-				
-				for(Map<String, Integer> map : listChart3) {
-					dataset1.addValue(map.get("count"), map.get("name"), maps3.get("date"));
-				}*/
+				addCustomerChartData(dataset1, year-2);
+				addCustomerChartData(dataset1, year-1);
+				addCustomerChartData(dataset1, year);
+			
 				return dataset1;
 			} else {
 			// 공급회사
+				addCompanyChartData(dataset1, year-2);
+				addCompanyChartData(dataset1, year-1);
+				addCompanyChartData(dataset1, year);
 				return dataset1;
 			}
 		}
@@ -119,12 +100,36 @@ public class AdminChartBySwgTypeFullYear extends JPanel  {
 
 	}
 
+	//공급회사
+	private void addCompanyChartData(final DefaultCategoryDataset dataset, int year) {
+		Map<String, String> maps = new HashMap<>();
+		maps.put("companyNo", String.valueOf(user.getUserNo()));
+		maps.put("date", String.valueOf(year));
+		List<Map<String, Integer>> listChart1 = saleOrder.selectSwGroupByCompany(maps);
+		for(Map<String, Integer> map : listChart1) {
+			dataset.addValue(map.get("count"), map.get("name"), maps.get("date"));
+		}
+		
+	}
+
+	//고객
+	private void addCustomerChartData(final DefaultCategoryDataset dataset, int year) {
+		Map<String, String> maps = new HashMap<>();
+		maps.put("userNo", String.valueOf(user.getUserNo()));
+		maps.put("date", String.valueOf(year));
+		List<Map<String, Integer>> listChart1 = saleOrder.selectSwGroupByCustomer(maps);
+		for(Map<String, Integer> map : listChart1) {
+			dataset.addValue(map.get("count"), map.get("name"), maps.get("date"));
+		}
+		
+	}
+
 	// 영업사원
 	private void addSalesChartData(final DefaultCategoryDataset dataset, int year) {
 		Map<String, String> maps = new HashMap<>();
 		maps.put("adminNo", String.valueOf(admin.getAdminNo()));
 		maps.put("date", String.valueOf(year));
-		List<Map<String, Integer>> listChart1 = saleOrder.selectSgGroupBySales(maps);
+		List<Map<String, Integer>> listChart1 = saleOrder.selectSwGroupBySales(maps);
 		for(Map<String, Integer> map : listChart1) {
 			dataset.addValue(map.get("count"), map.get("name"), maps.get("date"));
 		}
@@ -135,7 +140,7 @@ public class AdminChartBySwgTypeFullYear extends JPanel  {
 	private void addAdminChartData(final DefaultCategoryDataset dataset, int year) {
 		Map<String, String> maps = new HashMap<>();
 		maps.put("date", String.valueOf(year));
-		List<Map<String, Integer>> listChart = saleOrder.selectSgGroupForYears(maps);
+		List<Map<String, Integer>> listChart = saleOrder.selectSwGroupByAdmin(maps);
 		for(Map<String, Integer> map : listChart) {
 			dataset.addValue(map.get("count"), map.get("name"), maps.get("date"));
 		}
