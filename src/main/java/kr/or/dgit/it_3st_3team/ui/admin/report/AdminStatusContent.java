@@ -12,6 +12,8 @@ import kr.or.dgit.it_3st_3team.dto.Admin;
 import kr.or.dgit.it_3st_3team.dto.SoftwareGroup;
 import kr.or.dgit.it_3st_3team.dto.User;
 import kr.or.dgit.it_3st_3team.service.SaleOrderService;
+import kr.or.dgit.it_3st_3team.type.AdminGroupAuth;
+import kr.or.dgit.it_3st_3team.type.UserGroup;
 import kr.or.dgit.it_3st_3team.ui.SalesReportUI;
 import kr.or.dgit.it_3st_3team.ui.component.StartAndEndDate;
 import kr.or.dgit.it_3st_3team.ui.table.AdminSalesStatusLists;
@@ -209,26 +211,32 @@ public class AdminStatusContent extends JPanel implements ActionListener {
 
 	private void resetAll() {
 		pSearch.clearItem();
+		Map<String, String> map = new HashMap<>();
 		if (admin != null) {
-			if (admin.getAdminGroup().getAgNo() == 1) {
+			if (admin.getAdminGroup().getAgAuth() == AdminGroupAuth.ADMINISTRATOR) {
 				// 총관리자
 				pAllListTable.setBounds(12, 116, 1157, 670);
-				pAllListTable.loadTableDatas(soService.findSaleOrderByAll());
+				pAllListTable.loadTableDatas(soService.findSaleOrderAllByType(map));
 				add(pAllListTable);
 			} else {
 				// 영업사원
+				map.put("adminId", admin.getAdminId());
 				pSalesAllListTable.setBounds(12, 116, 1157, 670);
-				pSalesAllListTable.loadTableDatas(soService.findSaleOrderByAll());
+				pSalesAllListTable.loadTableDatas(soService.findSaleOrderAllByType(map));
 				add(pSalesAllListTable);
 			}
 		} else {
-			if (user.getUserGroup().getValue() == 1) {
+			if (user.getUserGroup() == UserGroup.CUSTOMER) {
+				// 고객
+				map.put("userId", user.getUserId());
 				pCustomerListTable.setBounds(12, 116, 1157, 670);
-				pCustomerListTable.loadTableDatas(soService.findSaleOrderByAll());
+				pCustomerListTable.loadTableDatas(soService.findSaleOrderAllByType(map));
 				add(pCustomerListTable);
 			} else {
+				// 회사
+				map.put("comId", user.getUserId());
 				pCompanyListTable.setBounds(12, 116, 1157, 670);
-				pCompanyListTable.loadTableDatas(soService.findSaleOrderByAll());
+				pCompanyListTable.loadTableDatas(soService.findSaleOrderAllByType(map));
 				add(pCompanyListTable);
 			}
 		}

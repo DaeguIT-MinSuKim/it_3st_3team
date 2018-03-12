@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import kr.or.dgit.it_3st_3team.dto.Admin;
+import kr.or.dgit.it_3st_3team.type.AdminGroupAuth;
 import kr.or.dgit.it_3st_3team.ui.admin.chart.AdminChartContent;
 import kr.or.dgit.it_3st_3team.ui.admin.management.AdminManagementContent;
 import kr.or.dgit.it_3st_3team.ui.admin.order.AdminOrderContent;
@@ -136,19 +137,21 @@ public class AdminUI extends JFrame implements ActionListener {
 		btnSupplySaleStatusGraph.setBackground(new Color(59, 89, 152));
 		pAdminMenu.add(btnSupplySaleStatusGraph);
 
-		btnEmpManagement = new JButton("직원 관리");
-		btnEmpManagement.addActionListener(this);
-		btnEmpManagement.setForeground(SystemColor.window);
-		btnEmpManagement.setFont(new Font("나눔바른고딕", Font.BOLD, 16));
-		btnEmpManagement.setBackground(new Color(59, 89, 152));
-		pAdminMenu.add(btnEmpManagement);
-
-		btnDbSetting = new JButton("설정");
-		btnDbSetting.addActionListener(this);
-		btnDbSetting.setForeground(SystemColor.window);
-		btnDbSetting.setFont(new Font("나눔바른고딕", Font.BOLD, 16));
-		btnDbSetting.setBackground(new Color(59, 89, 152));
-		pAdminMenu.add(btnDbSetting);
+		if (admin.getAdminGroup().getAgAuth() == AdminGroupAuth.ADMINISTRATOR) {
+			btnEmpManagement = new JButton("직원 관리");
+			btnEmpManagement.addActionListener(this);
+			btnEmpManagement.setForeground(SystemColor.window);
+			btnEmpManagement.setFont(new Font("나눔바른고딕", Font.BOLD, 16));
+			btnEmpManagement.setBackground(new Color(59, 89, 152));
+			pAdminMenu.add(btnEmpManagement);
+	
+			btnDbSetting = new JButton("설정");
+			btnDbSetting.addActionListener(this);
+			btnDbSetting.setForeground(SystemColor.window);
+			btnDbSetting.setFont(new Font("나눔바른고딕", Font.BOLD, 16));
+			btnDbSetting.setBackground(new Color(59, 89, 152));
+			pAdminMenu.add(btnDbSetting);
+		}
 
 		displayFirstView();
 	}
@@ -203,7 +206,7 @@ public class AdminUI extends JFrame implements ActionListener {
 
 	// 처음에 기본적으로 주문관리 보여줌
 	private void displayFirstView() {
-		AdminOrderContent pMain = new AdminOrderContent();
+		AdminOrderContent pMain = new AdminOrderContent(admin);
 		pMain.setBounds(0, 0, 1186, 861);
 		changeMainPanel(pMain);
 	}
@@ -215,7 +218,7 @@ public class AdminUI extends JFrame implements ActionListener {
 	}
 
 	protected void actionPerformedBtnSWRegister(ActionEvent e) {
-		AdminSoftwareContent pMain = new AdminSoftwareContent();
+		AdminSoftwareContent pMain = new AdminSoftwareContent(admin);
 		pMain.setBounds(0, 0, 1186, 861);
 		changeMainPanel(pMain);
 	}

@@ -21,14 +21,21 @@
 		<result property="userNo.userGroup" column="u_group" />
 	</resultMap>
 	
+	<resultMap type="Software" id="SoftwarewithAdminResult" extends="SoftwarewithUserResult">
+		<result property="userNo.admin.adminId" column="adm_id"/>
+		<result property="userNo.admin.adminName" column="adm_name" />
+	</resultMap>
+	
 	<!-- software기본 정보 -->
 	<sql id="selectSql">
 		select sw_no,sg_no, sw_name, sw_supply_price, sw_sell_price, sw_quantity,pc_no from software
 	</sql>
 	
 	<sql id="selectWithGroupwithUserSql">
-		select sw_no, sw_name, sw_supply_price, sw_sell_price, sw_quantity, sw_cover_img,g.sg_no, s.pc_no, g.sg_name, p.u_name from software s 
+		select sw_no, sw_name, sw_supply_price, sw_sell_price, sw_quantity, sw_cover_img,g.sg_no, s.pc_no, g.sg_name, p.u_name, adm.adm_id, adm.adm_name
+		from software s 
 		join software_group g on s.sg_no = g.sg_no join `user` p on s.pc_no = p.u_no
+		join admin adm on p.adm_no = adm.adm_no
 	</sql>
 	
 	
@@ -131,6 +138,21 @@
 	<select id="selectSoftwareByAll" parameterType="Software" resultMap="SoftwarewithUserResult">
 		<include refid="selectWithGroupwithUserSql"/>
 			where sw_del = 0 order by sw_no desc
+	</select>
+	
+	<select id="selectSoftwareAllByType" parameterType="map" resultMap="SoftwarewithAdminResult">
+		<include refid="selectWithGroupwithUserSql"/>
+		<where>
+			<choose>
+				<when test="userId != null and userId != ''">
+					p.u_id = #{userId} and
+				</when>
+				<when test="adminId != null and adminId != ''">
+					adm.adm_id = #{adminId} and
+				</when>
+			</choose>
+			sw_del = 0 order by sw_no desc
+		</where> 
 	</select>
 	
 	<select id="selectSoftwareBySearch" parameterType="map" resultMap="SoftwarewithUserResult">
