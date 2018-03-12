@@ -19,6 +19,7 @@ public class AdminChartContent extends JPanel {
 	private SoftwareGroup swg;
 	private Admin ad;
 	private AdminChartBySwgTypeFullYear sWgTypeFullYear;
+	private AdminChartByPayment chartPayment;
 	
 	
 	public AdminChartContent(Object who) {
@@ -34,9 +35,9 @@ public class AdminChartContent extends JPanel {
 		pSearch.setBounds(0, 10, 1190, 96);
 		add(pSearch);
 		
-		sWgTypeFullYear = new AdminChartBySwgTypeFullYear(who); 
-		sWgTypeFullYear.setBounds(12, 116, 1157, 670);
-		add(sWgTypeFullYear);
+		chartPayment = new AdminChartByPayment(who);
+		chartPayment.setBounds(12, 116, 1157, 670);
+		add(chartPayment);
 	}
 
 	public void setUsingUser(Object who) {
