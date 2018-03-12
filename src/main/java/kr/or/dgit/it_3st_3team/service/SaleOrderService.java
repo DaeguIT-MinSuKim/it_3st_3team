@@ -76,18 +76,26 @@ public class SaleOrderService {
 	}
 	
 	// 품목별 차트 조건:영업사원,년도
-	public List<Map<String, Integer>> selectSgGroupNoOption(Map<String, String> map) {
-		log.debug("selectSgGroupNoOption()");
+	public List<Map<String, Integer>> selectSgGroupBySales(Map<String, String> map) {
+		log.debug("selectSgGroupBySales()");
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
-			return sqlSession.selectList(namespace + "selectSgGroupNoOption", map);
+			return sqlSession.selectList(namespace + "selectSgGroupBySales", map);
 		}
 	}
 	
-	// 품목별 차트 조건:년도
-		public List<Map<String, Integer>> selectSgGroupYear(Map<String, String> map) {
-			log.debug("selectSgGroupYear()");
+	// 관리자 품목별 차트 조건:년도
+		public List<Map<String, Integer>> selectSgGroupForYears(Map<String, String> map) {
+			log.debug("selectSgGroupForYears()");
 			try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
-				return sqlSession.selectList(namespace + "selectSgGroupYear", map);
+				return sqlSession.selectList(namespace + "selectSgGroupForYears", map);
+			}
+		}
+		
+	// 고객 품목별 차트 조건:년도
+		public List<Map<String, Integer>> selectSgGroupCustomer(Map<String, String> map) {
+			log.debug("selectSgGroupCustomer()");
+			try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+				return sqlSession.selectList(namespace + "selectSgGroupCustomer", map);
 			}
 		}
 	

@@ -6,9 +6,11 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -19,7 +21,11 @@ import kr.or.dgit.it_3st_3team.ui.admin.order.AdminOrderContent;
 import kr.or.dgit.it_3st_3team.ui.admin.report.AdminStatusContent;
 import kr.or.dgit.it_3st_3team.ui.admin.software.AdminSoftwareContent;
 import kr.or.dgit.it_3st_3team.ui.admin.user.AdminUserContent;
+import kr.or.dgit.it_3st_3team.ui.listener.ProgramCloseAdapter;
+import kr.or.dgit.it_3st_3team.utils.DefineUtil;
+
 import java.awt.SystemColor;
+import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class AdminUI extends JFrame implements ActionListener {
@@ -34,15 +40,20 @@ public class AdminUI extends JFrame implements ActionListener {
 	private Admin admin;
 	private JButton btnDbSetting;
 	private JButton btnSupplySaleStatusGraph;
+	private JLabel lblImg;
+	private JLabel lblName;
+	private JButton button;
 
 	public AdminUI(Admin admin) {
-		this.admin = admin;
+		setAdmin(admin);
 		initComponents();
+		setAdminNameAndAvatar();
 	}
 
 	private void initComponents() {
 		setTitle("관리자 - 소프트웨어");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		addWindowListener(new ProgramCloseAdapter());
 		setBounds(100, 100, 1500, 900);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
@@ -59,14 +70,33 @@ public class AdminUI extends JFrame implements ActionListener {
 		pMain.setBounds(0, 0, 1184, 861);
 		pContent.add(pMain);
 
+		JPanel panel_1 = new JPanel();
+		panel_1.setLayout(null);
+		panel_1.setBackground(new Color(59, 89, 152));
+		panel_1.setBounds(0, 0, 300, 270);
+		contentPane.add(panel_1);
+
+		lblImg = new JLabel("");
+		lblImg.setBounds(85, 38, 128, 128);
+		panel_1.add(lblImg);
+
+		lblName = new JLabel("");
+		lblName.setHorizontalAlignment(SwingConstants.CENTER);
+		lblName.setForeground(Color.WHITE);
+		lblName.setFont(new Font("나눔바른고딕", Font.PLAIN, 16));
+		lblName.setBounds(30, 188, 228, 33);
+		panel_1.add(lblName);
+
+		button = new JButton("로그아웃");
+		button.addActionListener(this);
+		button.setBounds(97, 237, 97, 23);
+		panel_1.add(button);
+
 		JPanel pAdminMenu = new JPanel();
 		pAdminMenu.setBackground(new Color(59, 89, 152));
-		pAdminMenu.setBounds(0, 0, 300, 861);
+		pAdminMenu.setBounds(0, 270, 300, 591);
 		contentPane.add(pAdminMenu);
 		pAdminMenu.setLayout(new GridLayout(10, 1, 0, 0));
-
-		JLabel lblEmpty = new JLabel("");
-		pAdminMenu.add(lblEmpty);
 
 		JLabel lblEmpty_2 = new JLabel("");
 		pAdminMenu.add(lblEmpty_2);
@@ -120,13 +150,34 @@ public class AdminUI extends JFrame implements ActionListener {
 		btnDbSetting.setBackground(new Color(59, 89, 152));
 		pAdminMenu.add(btnDbSetting);
 
-		JLabel lblEmpty_1 = new JLabel("");
-		pAdminMenu.add(lblEmpty_1);
-
 		displayFirstView();
 	}
 
+	public void setAdmin(Admin admin) {
+		this.admin = admin;
+	}
+
+	public Admin getAdmin() {
+		return admin;
+	}
+
+	public void setAdminNameAndAvatar() {
+		String imgPath = DefineUtil.DEFAULT_IMG_PATH;
+		if (admin.getAvatar() == null || admin.getAvatar().equals("")) {
+			admin.setAvatar(DefineUtil.DEFAULT_USER_IMG);
+		}
+		if (!admin.getAvatar().equals(DefineUtil.DEFAULT_USER_IMG)) {
+			imgPath = DefineUtil.USER_IMG_PATH;
+		}
+		lblImg.setIcon(new ImageIcon(imgPath + admin.getAvatar()));
+
+		lblName.setText(String.format("%s님 환영합니다.", admin.getAdminName()));
+	}
+
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == button) {
+			actionPerformedButton(e);
+		}
 		if (e.getSource() == btnSupplySaleStatusGraph) {
 			actionPerformedBtnSupplySaleStatusGraph(e);
 		}
@@ -199,5 +250,14 @@ public class AdminUI extends JFrame implements ActionListener {
 		AdminChartContent pMain = new AdminChartContent(admin);
 		pMain.setBounds(0, 0, 1186, 861);
 		changeMainPanel(pMain);
+	}
+
+	protected void actionPerformedButton(ActionEvent e) {
+		int res = JOptionPane.showConfirmDialog(null, "로그아웃 하시겠습니까?", "사용자 로그아웃", JOptionPane.YES_NO_OPTION);
+		if (res == 0) {
+			LoginUI loginUI = new LoginUI();
+			loginUI.setVisible(true);
+			dispose();
+		}
 	}
 }

@@ -9,6 +9,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.ui.ApplicationFrame; 
 import org.jfree.ui.RefineryUtilities; 
 
+@SuppressWarnings("serial")
 public class BarChart_AWT extends ApplicationFrame {
 	public BarChart_AWT( String applicationTitle , String chartTitle ) {
 	      super( applicationTitle );        

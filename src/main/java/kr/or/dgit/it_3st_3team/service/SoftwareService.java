@@ -36,17 +36,10 @@ public class SoftwareService {
 		}
 	}
 	
-	public List<Software> selectSoftwareByNoCustomer(Software software){
-		log.debug(" selectSoftwareByNoCustomer()");
+	public List<Software> findSoftwareByOrder(Software software){
+		log.debug(" findSoftwareByOrder()");
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
-			return sqlSession.selectList(namespace + "selectSoftwareByNoCustomer",software);
-		}
-	}
-	
-	public List<Software> selectSoftwareByNameCustomer(Software software){
-		log.debug(" selectSoftwareByNameCustomer()");
-		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
-			return sqlSession.selectList(namespace + "selectSoftwareByNameCustomer",software);
+			return sqlSession.selectList(namespace + "selectSoftwareByOrder",software);
 		}
 	}
 	

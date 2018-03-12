@@ -4,8 +4,6 @@ import javax.swing.JPanel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import java.awt.BorderLayout;
-import java.awt.event.ItemListener;
-import java.awt.event.ItemEvent;
 
 @SuppressWarnings("serial")
 public abstract class AbstractComboboxComp<T> extends JPanel {
@@ -39,5 +37,9 @@ public abstract class AbstractComboboxComp<T> extends JPanel {
 	
 	public Object getCmbItem() {
 		return comboBox.getSelectedItem();
+	}
+	
+	public void setCmbSelectIndex(int index) {
+		comboBox.setSelectedIndex(index);
 	}
 }

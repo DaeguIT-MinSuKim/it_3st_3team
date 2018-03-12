@@ -12,10 +12,12 @@ public interface SaleOrderDao {
 	List<SaleOrder> selectSaleOrderWithAllBySearch(Map<String, String> map);
 
 	// 차트 영업사원,품목별 판매갯수- 조건:영업사원별,년도별
-	List<Map<String, Integer>> selectSgGroupNoOption(Map<String, String> map);
+	List<Map<String, Integer>> selectSgGroupBySales(Map<String, String> map);
 	
-	// 차트 년도별 품목 판매갯수
-	List<Map<String, Integer>> selectSgGroupYear(Map<String, String> map);
+	// 관리자차트 년도별 품목 판매갯수
+	List<Map<String, Integer>> selectSgGroupForYears(Map<String, String> map);
+	
+	
 	
 	// 차트 결제타입별 갯수
 	List<Map<String, Integer>> selectPaymentChartOption(Map<String, String> map);
