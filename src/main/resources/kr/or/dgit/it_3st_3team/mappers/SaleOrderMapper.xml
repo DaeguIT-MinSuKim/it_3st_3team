@@ -103,27 +103,32 @@
 	
 	<!-- 관리자차트 결제타입 -->
 	<select id="selectPaymentChartByAdmin" parameterType="map" resultType="map">
-	select ifnull(ord_payment, 'SIMPLE') as payment, ifnull(sum(ord_quantity),0) as count
+	select ifnull(ord_payment, 'SIMPLE') as payment, ifnull(count(ord_quantity),0) as count
 	from (select sw.*, sg_name from software sw right join software_group sg  on sg.sg_no=sw.sg_no) as t
     left join (select * from sale_order where ord_datetime like CONCAT(#{date},"%")) as so on so.sw_no = t.sw_no
 	group by ord_payment
 	union
-	select '총합', sum(ord_quantity)
-	from sale_order so join admin ad on so.adm_no = ad.adm_no
-	where so.ord_datetime like CONCAT(#{date},"%")
+	select '총합', count(ord_quantity)
+	from sale_order 
+	where ord_datetime like CONCAT(#{date},"%")
 	</select>
 	
 	<!-- 영업사원차트 결제타입 -->
 	<select id="selectPaymentChartBySales" parameterType="map" resultType="map">
-	select ifnull(ord_payment, 'SIMPLE') as payment, ifnull(sum(ord_quantity),0) as count
+	select ifnull(ord_payment, 'SIMPLE') as payment, ifnull(count(ord_quantity),0) as count
 	from (select sw.*, sg_name from software sw right join software_group sg  on sg.sg_no=sw.sg_no) as t
     left join (select * from sale_order where ord_datetime like CONCAT(#{date},"%") and adm_no=#{adminNo}) as so on so.sw_no = t.sw_no
 	group by ord_payment
 	union
-	select '총합', sum(ord_quantity)
+	select 'BANK', 0
 	from sale_order 
 	where adm_no=#{adminNo}
     and ord_datetime like CONCAT(#{date},"%")
+	union
+	select '총합', count(ord_quantity)
+	from sale_order 
+	where adm_no=#{adminNo}
+    and ord_datetime like CONCAT(#{date},"%")	
 	</select>
 	
 	<!-- SaleOrder 주문 삭제 -->

@@ -3,8 +3,10 @@ package kr.or.dgit.it_3st_3team.ui.admin.chart;
 import java.awt.Font;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.swing.JPanel;
 
@@ -144,6 +146,8 @@ public class AdminChartByPayment extends JPanel  {
 		for(Map<String, Integer> map : listChart) {
 			dataset.addValue(map.get("count"), map.get("payment"), maps.get("date"));
 		}
+		
+		
 	}
 
 
