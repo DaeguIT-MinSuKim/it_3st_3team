@@ -104,6 +104,12 @@
 				<when test="searchBy == 'phone'">
 					u_phone = #{searchText}
 				</when>
+				<when test="userId != null and userId != ''">
+					u_id = #{userId}
+				</when>
+				<when test="adminId != null and adminId != ''">
+					a.adm_id = #{adminId}
+				</when>
 			</choose>
 			<include refid="whereDelSql" />
 		</where>

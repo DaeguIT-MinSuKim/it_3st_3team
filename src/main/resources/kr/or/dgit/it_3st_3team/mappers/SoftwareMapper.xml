@@ -78,15 +78,24 @@
 		<where>
 			<choose>
 				<when test="searchBy == 'company'">
-					p.u_name = #{searchText}
+					p.u_name like CONCAT(#{searchText}, "%") and
 				</when>
 				<when test="searchBy == 'swName'">
-					s.sw_name = #{searchText}
+					s.sw_name like CONCAT(#{searchText}, "%") and
 				</when>
 				<when test="searchBy == 'swGroup'">
-					g.sg_name = #{searchText}
+					g.sg_name like CONCAT(#{searchText}, "%") and
 				</when>
 			</choose>
+			<choose>
+				<when test="userId != null and userId != ''">
+					p.u_id = #{userId} and
+				</when>
+				<when test="adminId != null and adminId != ''">
+					adm.adm_id = #{adminId} and
+				</when>
+			</choose>
+			sw_del = 0 order by sw_no desc
 		</where>
 	</sql>
 	
@@ -155,10 +164,9 @@
 		</where> 
 	</select>
 	
-	<select id="selectSoftwareBySearch" parameterType="map" resultMap="SoftwarewithUserResult">
+	<select id="selectSoftwareBySearch" parameterType="map" resultMap="SoftwarewithAdminResult">
 		<include refid="selectWithGroupwithUserSql"/>
 		<include refid="whereBySearchSql"/>
-			AND sw_del = 0 order by sw_no desc
 	</select>
 	
 	<insert id="insertSoftware" parameterType="Software">
