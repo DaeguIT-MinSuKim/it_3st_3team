@@ -35,7 +35,7 @@
 	</sql>
 	
 	<sql id="selectLastNo">
-		select max(u_no) as last_id from user;
+		select max(u_no) as last_id from user
 	</sql>
 
 
