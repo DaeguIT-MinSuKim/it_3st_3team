@@ -2,7 +2,10 @@ package kr.or.dgit.it_3st_3team.ui.user;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseListener;
 import java.io.File;
+import java.util.EventListener;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -18,23 +21,27 @@ import kr.or.dgit.it_3st_3team.ui.component.ImageComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblCmbStringComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblSpinnerComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblTfComp;
-
+import kr.or.dgit.it_3st_3team.utils.DefineUtil;
 import kr.or.dgit.it_3st_3team.ui.component.LblCmbUserComp;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 
 @SuppressWarnings("serial")
-public class CustromerOrderRegister extends JPanel implements ActionListener {
+public class CustomerOrderRegister extends JPanel implements ActionListener {
 	private LblTfComp pOrderNum;
 	private LblTfComp pSwName;
 	private LblCmbStringComp pPayment;
 	private AdminOrderContent adOrder;
 	private JPanel pOrderRegi;
 	private ImageComp pImg;
-	private JButton btnRewrite;
+	private JButton btnRegi;
 	private JButton btnCancel;
 	private LblSpinnerComp pOrderCount;
 	private LblCmbUserComp pPcName;
+	private JLabel lbldown;
+	private CustomerOrderContent co;
 
-	public CustromerOrderRegister() {
+	public CustomerOrderRegister() {
 
 		initComponents();
 	}
@@ -63,10 +70,10 @@ public class CustromerOrderRegister extends JPanel implements ActionListener {
 		pImg.setBounds(58, 10, 170, 169);
 		pOrderRegi.add(pImg);
 
-		btnRewrite = new JButton("주문");
-		btnRewrite.addActionListener(this);
-		btnRewrite.setBounds(868, 156, 97, 23);
-		pOrderRegi.add(btnRewrite);
+		btnRegi = new JButton("주문");
+		btnRegi.addActionListener(this);
+		btnRegi.setBounds(868, 156, 97, 23);
+		pOrderRegi.add(btnRegi);
 
 		btnCancel = new JButton("취소");
 		btnCancel.addActionListener(this);
@@ -81,11 +88,31 @@ public class CustromerOrderRegister extends JPanel implements ActionListener {
 		pPcName = new LblCmbUserComp("제작사");
 		pPcName.setBounds(272, 42, 170, 30);
 		pOrderRegi.add(pPcName);
+		
+		lbldown = new JLabel("소프트웨어 소개");
+		lbldown.setIcon(new ImageIcon(DefineUtil.DEFAULT_IMG_PATH + "arrowdown.png"));
+		lbldown.setBounds(271, 145, 120, 15);
+		pOrderRegi.add(lbldown);
 
 		pOrderNum = new LblTfComp("상품번호");
 		pOrderNum.setBounds(708, 129, 116, 21);
 
 	}
+	
+	public void setSWIntroName(String str) {
+		lbldown.setText(str);
+	}
+	
+
+	
+	
+
+	public void setEventListener(EventListener listener) {
+		if(listener instanceof MouseListener) {
+			lbldown.addMouseListener((MouseListener)listener);
+		}
+	}
+
 
 	public void setOrderData(Software software) {
 		pPcName.removeItem();
@@ -93,15 +120,21 @@ public class CustromerOrderRegister extends JPanel implements ActionListener {
 		// pOrderCount.setSpnValue(software.getOrdQuantity());
 		pSwName.setTfText(software.getSwName());
 		pOrderNum.setTfText(Integer.toString(software.getSwNo()));
-
-		btnRewrite.setText("수정");
+		if(software.getSwCoverImg() != null && !software.getSwCoverImg().equals("")) {
+			pImg.setImageIcon(software.getSwCoverImg());
+		}else {
+			pImg.setImageIcon(DefineUtil.DEFAULT_USER_IMG);
+		}
+		co.setTfIntro(software.getSwIntro());
+		
+		//tfIntroduce.setText(software.getSwIntro());
 	}
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnCancel) {
 			actionPerformedBtnCancel(e);
 		}
-		if (e.getSource() == btnRewrite) {
+		if (e.getSource() == btnRegi) {
 			actionPerformedBtnRewrite(e);
 		}
 	}
@@ -173,4 +206,10 @@ public class CustromerOrderRegister extends JPanel implements ActionListener {
 	public void setAdOrder(AdminOrderContent adOrder) {
 		this.adOrder = adOrder;
 	}
+
+	public void setCo(CustomerOrderContent co) {
+		this.co = co;
+	}
+	
+	
 }

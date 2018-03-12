@@ -51,6 +51,13 @@ public class SaleOrderService {
 			return sqlSession.selectList(namespace + "selectSaleOrderByAll");
 		}
 	}
+	
+	public List<SaleOrder> findSaleOrderAllByType(Map<String, String> map) {
+		log.debug("findSaleOrderByAll()");
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectList(namespace + "selectSaleOrderAllByType", map);
+		}
+	}
 
 	// 주문관리
 	public int updateOrderManagementNo(SaleOrder saleOrder) {

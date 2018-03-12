@@ -187,6 +187,22 @@
 		</where>
 	</sql>
 	
+	<sql id="whereUserSql">
+		<where>
+			<choose>
+				<when test="userId != null and userId != ''">
+					us.u_id = #{userId}
+				</when>
+				<when test="comId != null and comId != ''">
+					cu.u_id = #{comId}
+				</when>
+				<when test="adminId != null and adminId != ''">
+					ad.adm_id = #{adminId}
+				</when>
+			</choose>
+		</where>
+	</sql>
+	
 	<select id="selectSaleOrderByNo" parameterType="SaleOrder" resultMap="selectSaleOrderWithAll">
 		<include refid="selectParameterSql"/>
 		<include refid="whereSql"/>
@@ -201,8 +217,14 @@
 	</select>
 	
 	<!-- 모든List -->
-	<select id="selectSaleOrderByAll"  resultMap="selectSaleOrderWithAll">
+	<select id="selectSaleOrderByAll" resultMap="selectSaleOrderWithAll">
 		<include refid="selectParameterSql"/>
+		order by ord_datetime desc
+	</select>
+	
+	<select id="selectSaleOrderAllByType" parameterType="Map" resultMap="selectSaleOrderWithAll">
+		<include refid="selectParameterSql"/>
+		<include refid="whereUserSql"/>
 		order by ord_datetime desc
 	</select>
 	
@@ -215,13 +237,10 @@
 		<include refid="whereSql"/>
 	</update>
 	
-	
-	
 	<!-- 삭제 -->
 	<delete id="deleteSaleOrderByNo" parameterType="SaleOrder">
 		<include refid="deleteSql"/>
 		<include refid="whereSql"/>
 	</delete>
-
 
 </mapper>

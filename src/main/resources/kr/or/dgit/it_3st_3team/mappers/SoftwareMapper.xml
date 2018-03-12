@@ -8,6 +8,7 @@
 		<result property="swSellPrice" column="sw_sell_price"/>
 		<result property="swQuantity" column="sw_quantity"/>
 		<result property="swCoverImg" column="sw_cover_img"/>
+		<result property="swIntro" column="sw_intro"/>
 	</resultMap>
 	
 	<resultMap type="Software" id="SoftwarewithGroupResult" extends="SoftwareBasedResult">
@@ -21,14 +22,21 @@
 		<result property="userNo.userGroup" column="u_group" />
 	</resultMap>
 	
+	<resultMap type="Software" id="SoftwarewithAdminResult" extends="SoftwarewithUserResult">
+		<result property="userNo.admin.adminId" column="adm_id"/>
+		<result property="userNo.admin.adminName" column="adm_name" />
+	</resultMap>
+	
 	<!-- software기본 정보 -->
 	<sql id="selectSql">
-		select sw_no,sg_no, sw_name, sw_supply_price, sw_sell_price, sw_quantity,pc_no from software
+		select sw_no,sg_no, sw_name, sw_supply_price, sw_sell_price, sw_quantity,pc_no, sw_intro from software
 	</sql>
 	
 	<sql id="selectWithGroupwithUserSql">
-		select sw_no, sw_name, sw_supply_price, sw_sell_price, sw_quantity, sw_cover_img,g.sg_no, s.pc_no, g.sg_name, p.u_name from software s 
+		select sw_no, sw_name, sw_supply_price, sw_sell_price, sw_quantity, sw_cover_img, sw_intro, g.sg_no, s.pc_no, g.sg_name, p.u_name, adm.adm_id, adm.adm_name
+		from software s 
 		join software_group g on s.sg_no = g.sg_no join `user` p on s.pc_no = p.u_no
+		join admin adm on p.adm_no = adm.adm_no
 	</sql>
 	
 	
@@ -101,13 +109,13 @@
 	
 	<!-- software 등록 -->
 	<sql id="insertSql">
-		insert into software(sw_no,sg_no,sw_name,sw_supply_price,sw_sell_price,sw_quantity,pc_no,sw_cover_img) 
-		values(#{swNo},#{swGroup.sgNo},#{swName},#{swSupplyPrice},#{swSellPrice},#{swQuantity},#{userNo.userNo},#{swCoverImg})
+		insert into software(sw_no,sg_no,sw_name,sw_supply_price,sw_sell_price,sw_quantity,pc_no,sw_cover_img,sw_intro) 
+		values(#{swNo},#{swGroup.sgNo},#{swName},#{swSupplyPrice},#{swSellPrice},#{swQuantity},#{userNo.userNo},#{swCoverImg},#{swIntro})
 	</sql>
 	
 	<!-- software 수정  -->
 	<sql id="updateSql">
-		update software set sg_no=#{swGroup.sgNo}, sw_name=#{swName}, sw_quantity=#{swQuantity}, sw_supply_price=#{swSupplyPrice}, sw_sell_price=#{swSellPrice}, pc_no=#{userNo.userNo},sw_cover_img=#{swCoverImg}
+		update software set sg_no=#{swGroup.sgNo}, sw_name=#{swName}, sw_quantity=#{swQuantity}, sw_supply_price=#{swSupplyPrice}, sw_sell_price=#{swSellPrice}, pc_no=#{userNo.userNo},sw_cover_img=#{swCoverImg},sw_intro=#{swIntro}
 	</sql>
 
 	<!-- software 삭제 -->
@@ -131,6 +139,21 @@
 	<select id="selectSoftwareByAll" parameterType="Software" resultMap="SoftwarewithUserResult">
 		<include refid="selectWithGroupwithUserSql"/>
 			where sw_del = 0 order by sw_no desc
+	</select>
+	
+	<select id="selectSoftwareAllByType" parameterType="map" resultMap="SoftwarewithAdminResult">
+		<include refid="selectWithGroupwithUserSql"/>
+		<where>
+			<choose>
+				<when test="userId != null and userId != ''">
+					p.u_id = #{userId} and
+				</when>
+				<when test="adminId != null and adminId != ''">
+					adm.adm_id = #{adminId} and
+				</when>
+			</choose>
+			sw_del = 0 order by sw_no desc
+		</where> 
 	</select>
 	
 	<select id="selectSoftwareBySearch" parameterType="map" resultMap="SoftwarewithUserResult">

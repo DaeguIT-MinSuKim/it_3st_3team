@@ -13,6 +13,7 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import kr.or.dgit.it_3st_3team.dto.Admin;
 import kr.or.dgit.it_3st_3team.dto.SaleOrder;
 import kr.or.dgit.it_3st_3team.dto.Software;
 import kr.or.dgit.it_3st_3team.dto.SoftwareGroup;
@@ -114,18 +115,13 @@ public class SoftwareTest {
 		assertEquals(1, res);*/
 	}
 	
-	@Test
-	public void testGdeleteSoftwareColumn() {
-		
-	}
-	
+
 	@Test
 	public void testFdeleteSoftware() {
 		int res = service.deleteSoftware(new Software("ㄴㄴㄴ"));
 		assertEquals(1, res);
 	}
-	
-	
+
 
 	
 

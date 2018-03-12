@@ -29,6 +29,7 @@ public class CustomerOrderSearch extends JPanel implements ActionListener {
 	private CustomerOrderContent parent;
 	private JButton btnClear;
 
+
 	public CustomerOrderSearch() {
 		initComponents();
 	}
@@ -113,6 +114,7 @@ public class CustomerOrderSearch extends JPanel implements ActionListener {
 	public void setParent(CustomerOrderContent customer) {
 		this.parent = customer;
 	}
+	
 
 	public void clearData() {
 		pCmbSwgroup.setCmbSelectIndex(0);

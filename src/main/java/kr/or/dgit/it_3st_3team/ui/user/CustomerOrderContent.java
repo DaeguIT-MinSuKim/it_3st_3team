@@ -1,26 +1,31 @@
 package kr.or.dgit.it_3st_3team.ui.user;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 
-import javax.swing.JMenuItem;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
-import kr.or.dgit.it_3st_3team.dto.SaleOrder;
+import org.w3c.dom.events.EventTarget;
+import org.w3c.dom.views.AbstractView;
+
 import kr.or.dgit.it_3st_3team.dto.Software;
-import kr.or.dgit.it_3st_3team.service.SaleOrderService;
 import kr.or.dgit.it_3st_3team.service.SoftwareService;
 import kr.or.dgit.it_3st_3team.ui.table.CustomerOrderTable;
+import kr.or.dgit.it_3st_3team.utils.DefineUtil;
 
 @SuppressWarnings("serial")
 public class CustomerOrderContent extends JPanel {
 	private CustomerOrderTable pTable;
-	private CustromerOrderRegister pRegister;
+	private CustomerOrderRegister pRegister;
 	private CustomerOrderSearch pSearch;
+	private JTextArea tfIntroduce;
+	private JScrollPane scrollPane;
 
 	public CustomerOrderContent() {
 
@@ -31,9 +36,40 @@ public class CustomerOrderContent extends JPanel {
 		setLayout(null);
 		setBounds(0, 0, 1200, 900);
 
-		pRegister = new CustromerOrderRegister();
+		pRegister = new CustomerOrderRegister();
 		pRegister.setBounds(0, 0, 1200, 192);
+		pRegister.setCo(this);
 		add(pRegister);
+		pRegister.setEventListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JLabel target = (JLabel) e.getSource();
+				if(target.getText() == "소프트웨어 소개") {
+					scrollPane = new JScrollPane();
+					scrollPane.setBounds(272, 197, 531, 117);
+					pRegister.add(scrollPane);
+					
+					tfIntroduce = new JTextArea();
+					scrollPane.setViewportView(tfIntroduce);
+					
+					pRegister.setBounds(0, 0, 1200, 338);
+					pSearch.setBounds(0, 338, 1200, 43);
+					pTable.setBounds(12, 381, 1164, 460);
+					
+					target.setText("닫기");
+					target.setIcon(new ImageIcon(DefineUtil.DEFAULT_IMG_PATH+"arrowup.png"));
+				} else {
+					pRegister.remove(scrollPane);
+					pRegister.setBounds(0, 0, 1200, 192);
+					pSearch.setBounds(0, 191, 1200, 43);
+					pTable.setBounds(12, 233, 1164, 612);
+					
+					target.setIcon(new ImageIcon(DefineUtil.DEFAULT_IMG_PATH+"arrowdown.png"));
+					target.setText("소프트웨어 소개");
+				}
+			}
+		});
+		
 
 		pTable = new CustomerOrderTable();
 		pTable.loadTableDatas(SoftwareService.getInstance().selectSoftwareByAll());
@@ -47,6 +83,7 @@ public class CustomerOrderContent extends JPanel {
 					Software software = SoftwareService.getInstance().selectSoftwareByNo(new Software(no));
 
 					pRegister.setOrderData(software);
+					
 				}
 			}
 
@@ -69,4 +106,10 @@ public class CustomerOrderContent extends JPanel {
 	public void setListBySearchData(List<Software> serachData) {
 		pTable.loadTableDatas(serachData);
 	}
+	
+
+	public void setTfIntro(String str) {
+		tfIntroduce.setText(str);
+	}
+	
 }

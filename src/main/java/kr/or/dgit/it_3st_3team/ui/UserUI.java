@@ -118,15 +118,21 @@ public class UserUI extends JFrame implements ActionListener {
 
 	private void displayFirstview() {
 		if (user.getUserGroup() == UserGroup.CUSTOMER) {
-			CustomerOrderContent pMain = new CustomerOrderContent();
-			pMain.setBounds(0, 0, 1186, 861);
-			changeMainPanel(pMain);
+			displayUserOrder();
 		} else {
-			AdminSoftwareContent pMain = new AdminSoftwareContent();
-			pMain.setBounds(0, 0, 1186, 841);
-			changeMainPanel(pMain);
-
+			displayAdminSoftware();
 		}
+	}
+	
+	private void displayUserOrder() {
+		CustomerOrderContent pMain = new CustomerOrderContent();
+		pMain.setBounds(0, 0, 1186, 861);
+		changeMainPanel(pMain);
+	}
+	private void displayAdminSoftware() {
+		AdminSoftwareContent pMain = new AdminSoftwareContent(user);
+		pMain.setBounds(0, 0, 1186, 841);
+		changeMainPanel(pMain);
 	}
 
 	private void displayCompanyMenu(JPanel pMenu) {
@@ -224,16 +230,11 @@ public class UserUI extends JFrame implements ActionListener {
 	}
 
 	protected void actionPerformedbtnSWOrder(ActionEvent e) {
-		CustomerOrderContent pMain = new CustomerOrderContent();
-		pMain.setBounds(0, 0, 1186, 861);
-		changeMainPanel(pMain);
+		displayUserOrder();
 	}
 
 	protected void actionPerformedBtnSWRegister(ActionEvent e) {
-		AdminSoftwareContent pMain = new AdminSoftwareContent();
-		pMain.setBounds(0, 0, 1186, 861);
-
-		changeMainPanel(pMain);
+		displayAdminSoftware();
 	}
 
 	protected void actionPerformedbtnModify(ActionEvent e) {

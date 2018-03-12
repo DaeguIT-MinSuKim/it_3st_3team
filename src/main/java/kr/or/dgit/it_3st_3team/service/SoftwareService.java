@@ -21,37 +21,43 @@ public class SoftwareService {
 
 	private SoftwareService() {
 	}
-	
+
 	public Software selectSoftwareByNo(Software software) {
 		log.debug("selectSoftwareByNo()");
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
 			return sqlSession.selectOne(namespace + "selectSoftwareByNo", software);
 		}
 	}
-	
-	public List<Software> selectSoftwareBySearch(Map<String, String> map){
+
+	public List<Software> selectSoftwareBySearch(Map<String, String> map) {
 		log.debug(" selectSoftwareBySearch()");
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
-			return sqlSession.selectList(namespace + "selectSoftwareBySearch",map);
+			return sqlSession.selectList(namespace + "selectSoftwareBySearch", map);
 		}
 	}
-	
-	public List<Software> findSoftwareByOrder(Software software){
+
+	public List<Software> findSoftwareByOrder(Software software) {
 		log.debug(" findSoftwareByOrder()");
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
-			return sqlSession.selectList(namespace + "selectSoftwareByOrder",software);
+			return sqlSession.selectList(namespace + "selectSoftwareByOrder", software);
 		}
 	}
-	
-	public List<Software> selectSoftwareByAll(){
+
+
+	public List<Software> selectSoftwareByAll() {
 		log.debug("selectSoftwareByAll()");
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
 			return sqlSession.selectList(namespace + "selectSoftwareByAll");
 		}
 	}
-	
-	
-	
+
+	public List<Software> findSoftwareAllByType(Map<String, String> map) {
+		log.debug("findSoftwareAllByType()");
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectList(namespace + "selectSoftwareAllByType", map);
+		}
+	}
+
 	public int insertSoftware(Software software) {
 		log.debug("insertSoftware()");
 		int res = -1;
@@ -61,35 +67,35 @@ public class SoftwareService {
 		}
 		return res;
 	}
-	
+
 	public int deleteSoftware(Software swNo) {
 		log.debug("deleteSoftware()");
-		int res=-1;
+		int res = -1;
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
-			res= sqlSession.delete(namespace + "deleteSoftware", swNo);
+			res = sqlSession.delete(namespace + "deleteSoftware", swNo);
 			sqlSession.commit();
 		}
 		return res;
 	}
-	
+
 	public int updateSoftware(Software software) {
 		log.debug("updateSoftware()");
-		int res=-1;
+		int res = -1;
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
-			res= sqlSession.update(namespace + "updateSoftware", software);
+			res = sqlSession.update(namespace + "updateSoftware", software);
 			sqlSession.commit();
 		}
 		return res;
 	}
-	
+
 	public int deleteSoftwareColumn(Software software) {
 		log.debug("deleteSoftwareColumn()");
-		int res=-1;
+		int res = -1;
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
-			res= sqlSession.update(namespace + "deleteSoftwareColumn", software);
+			res = sqlSession.update(namespace + "deleteSoftwareColumn", software);
 			sqlSession.commit();
 		}
 		return res;
 	}
-	
+
 }

@@ -9,7 +9,33 @@ public class Software {
 	private SoftwareGroup swGroup;
 	private int swQuantity;
 	private String swCoverImg;
+	private String swIntro;
 	private User userNo;
+	
+	
+	
+
+	public Software(int swNo, String swName, int swSupplyPrice, int swSellPrice, SoftwareGroup swGroup, int swQuantity,
+			String swCoverImg, String swIntro, User userNo) {
+		super();
+		this.swNo = swNo;
+		this.swName = swName;
+		this.swSupplyPrice = swSupplyPrice;
+		this.swSellPrice = swSellPrice;
+		this.swGroup = swGroup;
+		this.swQuantity = swQuantity;
+		this.swCoverImg = swCoverImg;
+		this.swIntro = swIntro;
+		this.userNo = userNo;
+	}
+
+	public String getSwIntro() {
+		return swIntro;
+	}
+
+	public void setSwIntro(String swIntro) {
+		this.swIntro = swIntro;
+	}
 
 	public Software(User userNo) {
 

@@ -62,14 +62,16 @@ CREATE TABLE `software` (
   `sw_supply_price` int(11) DEFAULT NULL COMMENT '공급가격',
   `sw_sell_price` int(11) DEFAULT NULL COMMENT '판매가격',
   `sw_cover_img` varchar(100) DEFAULT NULL COMMENT '상품표지',
-  `sw_del` char(1) DEFAULT '0' COMMENT '삭제된상품',
   `pc_no` int(11) DEFAULT NULL COMMENT '공급회사',
+  `sw_intro` text COMMENT '소프트웨어소개',
+  `sw_del` char(1) DEFAULT '0' COMMENT '삭제된상품',
   PRIMARY KEY (`sw_no`),
   KEY `FK_software_group_TO_software` (`sg_no`),
   KEY `FK_user_TO_software` (`pc_no`),
   CONSTRAINT `FK_software_group_TO_software` FOREIGN KEY (`sg_no`) REFERENCES `software_group` (`sg_no`),
   CONSTRAINT `FK_user_TO_software` FOREIGN KEY (`pc_no`) REFERENCES `user` (`u_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='소프트웨어';
+
 
 
 CREATE TABLE `software_project`.`sale_order` (
