@@ -34,8 +34,8 @@ insert into software_group values
 
 select * from software_group;
 
-insert into software(sw_no, sg_no, sw_name, sw_quantity,sw_supply_price, sw_sell_price, pc_no) values
-(1, 1, '바람의 제국', 100, 25000, 40000, 1), -- 알럽
+insert into software(sw_no, sg_no, sw_name, sw_quantity,sw_supply_price, sw_sell_price, pc_no,sw_intro,sw_cover_img) values
+(1, 1, '바람의 제국', 100, 25000, 40000, 1,null,null), -- 알럽
 (2, 2, '국제무역', 100, 30000, 48000, 4),    -- 인디넷
 (3, 1, 'FIFA2018', 100, 27000, 40500, 5),   -- 참빛
 (4, 1, '삼국지', 100, 32000, 48000, 7),    -- 소프트마켓

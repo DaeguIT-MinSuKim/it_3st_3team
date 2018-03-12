@@ -2,6 +2,7 @@ package kr.or.dgit.it_3st_3team.ui.user;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.util.EventListener;
@@ -33,11 +34,12 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 	private AdminOrderContent adOrder;
 	private JPanel pOrderRegi;
 	private ImageComp pImg;
-	private JButton btnRewrite;
+	private JButton btnRegi;
 	private JButton btnCancel;
 	private LblSpinnerComp pOrderCount;
 	private LblCmbUserComp pPcName;
 	private JLabel lbldown;
+	private CustomerOrderContent co;
 
 	public CustomerOrderRegister() {
 
@@ -68,10 +70,10 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 		pImg.setBounds(58, 10, 170, 169);
 		pOrderRegi.add(pImg);
 
-		btnRewrite = new JButton("주문");
-		btnRewrite.addActionListener(this);
-		btnRewrite.setBounds(868, 156, 97, 23);
-		pOrderRegi.add(btnRewrite);
+		btnRegi = new JButton("주문");
+		btnRegi.addActionListener(this);
+		btnRegi.setBounds(868, 156, 97, 23);
+		pOrderRegi.add(btnRegi);
 
 		btnCancel = new JButton("취소");
 		btnCancel.addActionListener(this);
@@ -88,8 +90,8 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 		pOrderRegi.add(pPcName);
 		
 		lbldown = new JLabel("소프트웨어 소개");
-		lbldown.setIcon(new ImageIcon("D:\\D\\workspace\\workspace_java\\it_3st_3team\\resources\\arrowdown.png"));
-		lbldown.setBounds(272, 141, 120, 15);
+		lbldown.setIcon(new ImageIcon(DefineUtil.DEFAULT_IMG_PATH + "arrowdown.png"));
+		lbldown.setBounds(271, 145, 120, 15);
 		pOrderRegi.add(lbldown);
 
 		pOrderNum = new LblTfComp("상품번호");
@@ -97,7 +99,14 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 
 	}
 	
+	public void setSWIntroName(String str) {
+		lbldown.setText(str);
+	}
 	
+
+	
+	
+
 	public void setEventListener(EventListener listener) {
 		if(listener instanceof MouseListener) {
 			lbldown.addMouseListener((MouseListener)listener);
@@ -116,14 +125,16 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 		}else {
 			pImg.setImageIcon(DefineUtil.DEFAULT_USER_IMG);
 		}
-		btnRewrite.setText("수정");
+		co.setTfIntro(software.getSwIntro());
+		
+		//tfIntroduce.setText(software.getSwIntro());
 	}
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnCancel) {
 			actionPerformedBtnCancel(e);
 		}
-		if (e.getSource() == btnRewrite) {
+		if (e.getSource() == btnRegi) {
 			actionPerformedBtnRewrite(e);
 		}
 	}
@@ -195,4 +206,10 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 	public void setAdOrder(AdminOrderContent adOrder) {
 		this.adOrder = adOrder;
 	}
+
+	public void setCo(CustomerOrderContent co) {
+		this.co = co;
+	}
+	
+	
 }

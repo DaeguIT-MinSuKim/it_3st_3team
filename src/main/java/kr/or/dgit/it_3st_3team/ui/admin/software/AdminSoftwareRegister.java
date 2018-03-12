@@ -25,6 +25,9 @@ import kr.or.dgit.it_3st_3team.ui.component.LblSpinnerComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblTfComp;
 import kr.or.dgit.it_3st_3team.utils.CommonUtil;
 import kr.or.dgit.it_3st_3team.utils.DefineUtil;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 
 @SuppressWarnings("serial")
@@ -44,6 +47,8 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 	private LblSpinnerComp pCount;
 	private LblSpinnerComp pSalePrice;
 	private LblSpinnerComp pSupplyPrice;
+	private JLabel lblIntro;
+	private JTextArea tfIntroduce;
 	
 	
 	
@@ -94,12 +99,12 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 		pRegister.add(pSWName);
 
 		btnCancel = new JButton("취소");
-		btnCancel.setBounds(1045, 168, 97, 23);
+		btnCancel.setBounds(1045, 218, 97, 23);
 		pRegister.add(btnCancel);	
 		btnCancel.addActionListener(this);
 		
 		btnRegister = new JButton("등록");
-		btnRegister.setBounds(929, 168, 97, 23);
+		btnRegister.setBounds(929, 218, 97, 23);
 		pRegister.add(btnRegister);
 		
 		pCount = new LblSpinnerComp("수량");
@@ -116,6 +121,14 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 		pSupplyPrice.setIntSpinner(0, 0, 9999999, 1000);
 		pSupplyPrice.setBounds(238, 120, 243, 30);
 		pRegister.add(pSupplyPrice);
+		
+		lblIntro = new JLabel("소프트웨어 소개");
+		lblIntro.setBounds(236, 185, 97, 15);
+		pRegister.add(lblIntro);
+		
+		tfIntroduce = new JTextArea();
+		tfIntroduce.setBounds(345, 166, 568, 48);
+		pRegister.add(tfIntroduce);
 		btnRegister.addActionListener(this);
 		
 		upNum = new JTextField();
@@ -158,6 +171,7 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 			swNo = Integer.parseInt(upNum.getText());
 		}
 		int count = pCount.getSpnValue();
+		String tfIntro = tfIntroduce.getText().trim();
 		
 		
 		Software inputSw = new Software();
@@ -168,6 +182,7 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 		inputSw.setSwSellPrice(salePrice);
 		inputSw.setSwSupplyPrice(supplyPrice);
 		inputSw.setSwQuantity(count);
+		inputSw.setSwIntro(tfIntro);
 		
 		
 		String softwareImgFullPath = pSwRegisterImg.getImageIcon().toString();
@@ -220,6 +235,7 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 		pSupplyPrice.setSpnValue(sw.getSwSupplyPrice());
 		pSWName.setTfText(sw.getSwName());
 		upNum.setText(Integer.toString(sw.getSwNo()));
+		tfIntroduce.setText(sw.getSwIntro());
 
 		btnRegister.setText("수정");
 	}
@@ -235,6 +251,7 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 		pSWName.setTfText("");
 		pSWsort.setCmbSelectIndex(0);
 		upNum.setText("");
+		tfIntroduce.setText("");
 
 	}
 

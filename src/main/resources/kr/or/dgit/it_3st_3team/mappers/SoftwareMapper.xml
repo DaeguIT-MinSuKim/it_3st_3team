@@ -20,12 +20,6 @@
 		<result property="userNo.userNo" column="pc_no"/>
 		<result property="userNo.name" column="u_name" />
 		<result property="userNo.userGroup" column="u_group" />
-		
-	</resultMap>
-	
-	<resultMap type="Software" id="SoftwarewithAdminResult" extends="SoftwarewithUserResult">
-		<result property="userNo.admin.adminNo" column="adm_no"/>
-		<result property="userNo.admin.adminId" column="adm_no"/>
 	</resultMap>
 	
 	<resultMap type="Software" id="SoftwarewithAdminResult" extends="SoftwarewithUserResult">
@@ -35,16 +29,12 @@
 	
 	<!-- software기본 정보 -->
 	<sql id="selectSql">
-		select sw_no,sg_no, sw_name, sw_supply_price, sw_sell_price, sw_quantity,pc_no from software
+		select sw_no,sg_no, sw_name, sw_supply_price, sw_sell_price, sw_quantity,pc_no, sw_intro from software
 	</sql>
 	
 	<sql id="selectWithGroupwithUserSql">
-<<<<<<< HEAD
-		select sw_no, sw_name, sw_supply_price, sw_sell_price, sw_quantity, sw_cover_img,g.sg_no, s.pc_no, g.sg_name, p.u_name, sw_intro from software s 
-=======
-		select sw_no, sw_name, sw_supply_price, sw_sell_price, sw_quantity, sw_cover_img,g.sg_no, s.pc_no, g.sg_name, p.u_name, adm.adm_id, adm.adm_name
+		select sw_no, sw_name, sw_supply_price, sw_sell_price, sw_quantity, sw_cover_img, sw_intro, g.sg_no, s.pc_no, g.sg_name, p.u_name, adm.adm_id, adm.adm_name
 		from software s 
->>>>>>> refs/remotes/origin/master
 		join software_group g on s.sg_no = g.sg_no join `user` p on s.pc_no = p.u_no
 		join admin adm on p.adm_no = adm.adm_no
 	</sql>
@@ -117,16 +107,15 @@
 		</where>
 	</sql>
 	
-	
 	<!-- software 등록 -->
 	<sql id="insertSql">
-		insert into software(sw_no,sg_no,sw_name,sw_supply_price,sw_sell_price,sw_quantity,pc_no,sw_cover_img) 
-		values(#{swNo},#{swGroup.sgNo},#{swName},#{swSupplyPrice},#{swSellPrice},#{swQuantity},#{userNo.userNo},#{swCoverImg})
+		insert into software(sw_no,sg_no,sw_name,sw_supply_price,sw_sell_price,sw_quantity,pc_no,sw_cover_img,sw_intro) 
+		values(#{swNo},#{swGroup.sgNo},#{swName},#{swSupplyPrice},#{swSellPrice},#{swQuantity},#{userNo.userNo},#{swCoverImg},#{swIntro})
 	</sql>
 	
 	<!-- software 수정  -->
 	<sql id="updateSql">
-		update software set sg_no=#{swGroup.sgNo}, sw_name=#{swName}, sw_quantity=#{swQuantity}, sw_supply_price=#{swSupplyPrice}, sw_sell_price=#{swSellPrice}, pc_no=#{userNo.userNo},sw_cover_img=#{swCoverImg}
+		update software set sg_no=#{swGroup.sgNo}, sw_name=#{swName}, sw_quantity=#{swQuantity}, sw_supply_price=#{swSupplyPrice}, sw_sell_price=#{swSellPrice}, pc_no=#{userNo.userNo},sw_cover_img=#{swCoverImg},sw_intro=#{swIntro}
 	</sql>
 
 	<!-- software 삭제 -->

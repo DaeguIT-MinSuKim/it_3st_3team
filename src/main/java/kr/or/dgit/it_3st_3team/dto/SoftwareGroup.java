@@ -38,6 +38,30 @@ public class SoftwareGroup {
 	public void setSgName(String sgName) {
 		this.sgName = sgName;
 	}
+	
+	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + sgNo;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		SoftwareGroup other = (SoftwareGroup) obj;
+		if (sgNo != other.sgNo)
+			return false;
+		return true;
+	}
 
 	@Override
 	public String toString() {

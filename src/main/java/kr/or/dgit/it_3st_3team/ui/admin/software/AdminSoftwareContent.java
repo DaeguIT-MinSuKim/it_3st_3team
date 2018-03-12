@@ -39,17 +39,17 @@ public class AdminSoftwareContent extends JPanel implements ActionListener {
 		setLayout(null);
 
 		pRegister = new AdminSoftwareRegister();
-		pRegister.setBounds(0, 0, 1191, 209);
+		pRegister.setBounds(0, 0, 1191, 245);
 		pRegister.setParent(this);
 		add(pRegister);
 
 		pSearch = new AdminSoftwareSearch();
-		pSearch.setBounds(0, 208, 1191, 50);
+		pSearch.setBounds(0, 245, 1191, 50);
 		pSearch.setParent(this);
 		add(pSearch);
 
 		pTable = new AdminSoftwareTable();
-		pTable.setBounds(10, 258, 1165, 594);
+		pTable.setBounds(10, 295, 1165, 554);
 		add(pTable);
 
 		JPopupMenu menu = new JPopupMenu();
