@@ -60,7 +60,6 @@ public class AdminChartBySwgTypeFullYear extends JPanel  {
 		plot.getDomainAxis().setTickLabelFont(new Font("굴림", Font.BOLD, 18));
 		plot.getRangeAxis().setLabelFont(new Font("굴림", Font.BOLD, 20));
 		plot.getRangeAxis().setTickLabelFont(new Font("굴림", Font.BOLD, 18));
-		
 	}
 
 	private CategoryDataset createDataset() {
@@ -69,21 +68,18 @@ public class AdminChartBySwgTypeFullYear extends JPanel  {
 		Calendar date = Calendar.getInstance();
 		int year = date.get(Calendar.YEAR);
 
-		
 		if (admin != null) {
 			// 관리자
 			if (admin.getAdminGroup().getAgNo() == 1) {
 				addAdminChartData(dataset1, year-2);//2년전
 				addAdminChartData(dataset1, year-1);//1년전
 				addAdminChartData(dataset1, year);//올해		
-				
 				return dataset1;
 			} else {
 			// 영업사원	
 				addSalesChartData(dataset1, year-2);
 				addSalesChartData(dataset1, year-1);
 				addSalesChartData(dataset1, year);
-
 				return dataset1;
 			}
 		} else {
@@ -92,7 +88,6 @@ public class AdminChartBySwgTypeFullYear extends JPanel  {
 				addCustomerChartData(dataset1, year-2);
 				addCustomerChartData(dataset1, year-1);
 				addCustomerChartData(dataset1, year);
-			
 				return dataset1;
 			} else {
 			// 공급회사
@@ -102,8 +97,6 @@ public class AdminChartBySwgTypeFullYear extends JPanel  {
 				return dataset1;
 			}
 		}
-
-
 	}
 
 	//공급회사
@@ -115,7 +108,6 @@ public class AdminChartBySwgTypeFullYear extends JPanel  {
 		for(Map<String, Integer> map : listChart1) {
 			dataset.addValue(map.get("count"), map.get("name"), maps.get("date"));
 		}
-		
 	}
 
 	//고객
@@ -127,7 +119,6 @@ public class AdminChartBySwgTypeFullYear extends JPanel  {
 		for(Map<String, Integer> map : listChart1) {
 			dataset.addValue(map.get("count"), map.get("name"), maps.get("date"));
 		}
-		
 	}
 
 	// 영업사원
@@ -139,7 +130,6 @@ public class AdminChartBySwgTypeFullYear extends JPanel  {
 		for(Map<String, Integer> map : listChart1) {
 			dataset.addValue(map.get("count"), map.get("name"), maps.get("date"));
 		}
-		
 	}
 
 	// 관리자
@@ -151,7 +141,6 @@ public class AdminChartBySwgTypeFullYear extends JPanel  {
 			dataset.addValue(map.get("count"), map.get("name"), maps.get("date"));
 		}
 	}
-
 
 	private JFreeChart createChart(final CategoryDataset dataset) {
 		chart = ChartFactory.createBarChart3D("소프트웨어 분류별 판매현황", // chart
