@@ -234,7 +234,9 @@ public class AdminUserRegister extends JPanel implements ActionListener {
 
 		User user = new User();
 		user.setUserId(id);
-		user.setUserPwd(pwd);
+		if (pUserPwd.isVisible()) {
+			user.setUserPwd(pwd);
+		}
 		user.setName(name);
 		user.setEmail(email);
 		user.setPhone(new PhoneNumber(phone));

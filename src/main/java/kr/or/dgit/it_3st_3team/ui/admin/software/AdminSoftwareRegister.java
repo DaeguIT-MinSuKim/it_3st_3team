@@ -225,7 +225,7 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 		if (sw.getSwCoverImg() != null && !sw.getSwCoverImg().equals("")) {
 			pSwRegisterImg.setImageIcon(sw.getSwCoverImg());
 		} else {
-			pSwRegisterImg.setImageIcon(DefineUtil.DEFAULT_USER_IMG);
+			pSwRegisterImg.setImageIcon(DefineUtil.DEFAULT_SOFTWARE_IMG);
 		}
 
 		pCompany.setCmbSelectItem(sw.getUserNo());

@@ -1,30 +1,32 @@
 package kr.or.dgit.it_3st_3team.ui.user;
 
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.regex.Pattern;
 
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import kr.or.dgit.it_3st_3team.dto.PhoneNumber;
 import kr.or.dgit.it_3st_3team.dto.User;
-import kr.or.dgit.it_3st_3team.ui.component.AbstractLblTfBtnComp;
+import kr.or.dgit.it_3st_3team.ui.SearchPostUI;
 import kr.or.dgit.it_3st_3team.ui.component.ImageComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblAddressComp;
-import kr.or.dgit.it_3st_3team.ui.component.LblTfBtnPostSearchComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblTfComp;
 import kr.or.dgit.it_3st_3team.utils.CommonUtil;
 import kr.or.dgit.it_3st_3team.utils.DefineUtil;
 
 @SuppressWarnings("serial")
-public class UserInfoContent extends JPanel {
+public class UserInfoContent extends JPanel implements ActionListener {
 	private ImageComp pImg;
 	private LblTfComp pUserId;
 	private LblTfComp pUserName;
 	private LblTfComp pUserPhone;
-	private AbstractLblTfBtnComp pZipcode;
+	private LblTfComp pZipcode;
 	private LblAddressComp pAddress;
 	private LblTfComp pUserEmail;
+	private JButton btnNewButton;
 
 	public UserInfoContent() {
 		initComponents();
@@ -44,7 +46,7 @@ public class UserInfoContent extends JPanel {
 		pUserName = new LblTfComp("상호명");
 		pUserName.setBounds(245, 61, 240, 38);
 		add(pUserName);
-		
+
 		pUserEmail = new LblTfComp("이메일");
 		pUserEmail.setBounds(244, 111, 240, 38);
 		add(pUserEmail);
@@ -53,7 +55,7 @@ public class UserInfoContent extends JPanel {
 		pUserPhone.setBounds(233, 161, 252, 38);
 		add(pUserPhone);
 
-		pZipcode = new LblTfBtnPostSearchComp("우편번호", "검색");
+		pZipcode = new LblTfComp("우편번호");
 		pZipcode.setBounds(233, 211, 237, 38);
 		pZipcode.setTfEnable(false);
 		add(pZipcode);
@@ -61,11 +63,16 @@ public class UserInfoContent extends JPanel {
 		pAddress = new LblAddressComp("주소");
 		pAddress.setBounds(256, 261, 333, 84);
 		add(pAddress);
+
+		btnNewButton = new JButton("검색");
+		btnNewButton.addActionListener(this);
+		btnNewButton.setBounds(490, 214, 80, 30);
+		add(btnNewButton);
 	}
 
 	public void setUserInfo(User user) {
 		// TODO Auto-generated method stub
-		//pImg.setImagesIcon(avatar);
+		// pImg.setImagesIcon(avatar);
 		pImg.setImageIcon(user.getAvatar());
 		pUserId.setTfText(user.getUserId());
 		pUserId.setTfEnable(false);
@@ -76,9 +83,9 @@ public class UserInfoContent extends JPanel {
 		pAddress.setTfAddress1(user.getAddr1());
 		pAddress.setTfAddress2(user.getAddr2());
 	}
-	
+
 	public User getUserInfo() {
-		
+
 		if (pUserName.isTfEmpty("상호명을 입력해주세요.")) {
 			return null;
 		}
@@ -90,7 +97,7 @@ public class UserInfoContent extends JPanel {
 		}
 		String id = pUserId.getTfText().trim();
 		String name = pUserName.getTfText().trim();
-		
+
 		String email = pUserEmail.getTfText().trim();
 		if (!Pattern.matches(DefineUtil.PATTERN_EMAIL, email)) {
 			JOptionPane.showMessageDialog(null, "이메일 형식이 아닙니다. ex) aaa@test.com");
@@ -98,7 +105,7 @@ public class UserInfoContent extends JPanel {
 			pUserEmail.requestTfFocus();
 			return null;
 		}
-		
+
 		String phone = pUserPhone.getTfText().trim();
 		if (!Pattern.matches(DefineUtil.PATTERN_PHONE, phone)) {
 			JOptionPane.showMessageDialog(null, "전화번호 형식이 아닙니다. ex) 02-223-1123, 022231122");
@@ -107,12 +114,25 @@ public class UserInfoContent extends JPanel {
 			return null;
 		}
 		phone = CommonUtil.getInstance().phoneNumberHyphenAdd(phone, false);
-		
+
 		String zipcode = pZipcode.getTfText().trim();
 		String addr1 = pAddress.getTfAddress1().trim();
 		String addr2 = pAddress.getTfAddress2().trim();
 		String avatar = pImg.getImageIcon();
-		
+
 		return new User(id, name, email, new PhoneNumber(phone), zipcode, addr1, addr2, avatar);
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnNewButton) {
+			actionPerformedBtnNewButton(e);
+		}
+	}
+
+	protected void actionPerformedBtnNewButton(ActionEvent e) {
+		SearchPostUI postUI = new SearchPostUI();
+		// 우편번호 필드, 주소 필드를 넘겨줌.
+		postUI.setParentInComp(pZipcode, pAddress);
+		postUI.setVisible(true);
 	}
 }

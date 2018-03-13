@@ -125,7 +125,7 @@ public class UserUI extends JFrame implements ActionListener {
 	}
 	
 	private void displayUserOrder() {
-		CustomerOrderContent pMain = new CustomerOrderContent();
+		CustomerOrderContent pMain = new CustomerOrderContent(user);
 		pMain.setBounds(0, 0, 1186, 861);
 		changeMainPanel(pMain);
 	}

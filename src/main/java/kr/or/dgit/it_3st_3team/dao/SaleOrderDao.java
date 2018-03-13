@@ -36,7 +36,8 @@ public interface SaleOrderDao {
 	List<Map<String, Integer>> selectPaymentChartBySales(Map<String, String> map);
 	
 	// 소프트웨어 주문 관리
-
+	int insertOrderByProc(SaleOrder saleOrder);
+	
 	int updateOrderManagementNo(SaleOrder saleOrder);
 
 	int deleteSaleOrderByNo(SaleOrder ordNo);

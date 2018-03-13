@@ -52,6 +52,16 @@ public class SaleOrderService {
 		}
 	}
 
+	public int orderSoftwareByProc(SaleOrder saleOrder) {
+		log.debug("orderSoftwareByProc()");
+		int res = -1;
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			res = sqlSession.update(namespace + "insertOrderByProc", saleOrder);
+			sqlSession.commit();
+		}
+		return res;
+	}
+	
 	// 주문관리
 	public int updateOrderManagementNo(SaleOrder saleOrder) {
 		log.debug("updateOrderManagementNo()");

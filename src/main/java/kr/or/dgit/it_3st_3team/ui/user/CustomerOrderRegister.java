@@ -2,12 +2,12 @@ package kr.or.dgit.it_3st_3team.ui.user;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseListener;
-import java.io.File;
 import java.util.EventListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -16,15 +16,12 @@ import kr.or.dgit.it_3st_3team.dto.Software;
 import kr.or.dgit.it_3st_3team.dto.User;
 import kr.or.dgit.it_3st_3team.service.SaleOrderService;
 import kr.or.dgit.it_3st_3team.type.Payment;
-import kr.or.dgit.it_3st_3team.ui.admin.order.AdminOrderContent;
 import kr.or.dgit.it_3st_3team.ui.component.ImageComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblCmbStringComp;
+import kr.or.dgit.it_3st_3team.ui.component.LblCmbUserComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblSpinnerComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblTfComp;
 import kr.or.dgit.it_3st_3team.utils.DefineUtil;
-import kr.or.dgit.it_3st_3team.ui.component.LblCmbUserComp;
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
 
 @SuppressWarnings("serial")
 public class CustomerOrderRegister extends JPanel implements ActionListener {
@@ -39,9 +36,12 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 	private LblCmbUserComp pPcName;
 	private JLabel lbldown;
 	private CustomerOrderContent co;
+	private User user;
+	
+	private int swLimitValue;
 
-	public CustomerOrderRegister() {
-
+	public CustomerOrderRegister(User user) {
+		this.user = user;
 		initComponents();
 	}
 
@@ -67,6 +67,7 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 
 		pImg = new ImageComp();
 		pImg.setBounds(58, 10, 170, 169);
+		pImg.setImageIcon("software.png");
 		pOrderRegi.add(pImg);
 
 		btnRegi = new JButton("주문");
@@ -87,7 +88,7 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 		pPcName = new LblCmbUserComp("제작사");
 		pPcName.setBounds(272, 42, 170, 30);
 		pOrderRegi.add(pPcName);
-		
+
 		lbldown = new JLabel("소프트웨어 소개");
 		lbldown.setIcon(new ImageIcon(DefineUtil.DEFAULT_IMG_PATH + "arrowdown.png"));
 		lbldown.setBounds(271, 145, 120, 15);
@@ -95,23 +96,17 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 
 		pOrderNum = new LblTfComp("상품번호");
 		pOrderNum.setBounds(708, 129, 116, 21);
-
 	}
-	
+
 	public void setSWIntroName(String str) {
 		lbldown.setText(str);
 	}
-	
-
-	
-	
 
 	public void setEventListener(EventListener listener) {
-		if(listener instanceof MouseListener) {
-			lbldown.addMouseListener((MouseListener)listener);
+		if (listener instanceof MouseListener) {
+			lbldown.addMouseListener((MouseListener) listener);
 		}
 	}
-
 
 	public void setOrderData(Software software) {
 		pPcName.removeItem();
@@ -119,11 +114,12 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 		// pOrderCount.setSpnValue(software.getOrdQuantity());
 		pSwName.setTfText(software.getSwName());
 		pOrderNum.setTfText(Integer.toString(software.getSwNo()));
-		if(software.getSwCoverImg() != null && !software.getSwCoverImg().equals("")) {
+		if (software.getSwCoverImg() != null && !software.getSwCoverImg().equals("")) {
 			pImg.setImageIcon(software.getSwCoverImg());
-		}else {
+		} else {
 			pImg.setImageIcon(DefineUtil.DEFAULT_USER_IMG);
 		}
+		swLimitValue = software.getSwQuantity();
 		//co.setTfIntro(software.getSwIntro());
 		
 		//tfIntroduce.setText(software.getSwIntro());
@@ -140,14 +136,25 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 
 	protected void actionPerformedBtnRegi(ActionEvent e) {
 
+		String swNoText = pOrderNum.getTfText().trim();
 		String swName = pSwName.getTfText().trim();
-		int orderCount = pOrderCount.getSpnValue();
-		String userName = pPcName.getCmbSelectItem().toString();
-		int orderNo = Integer.parseInt(pOrderNum.getTfText().trim());
+		
+		User company = (User) pPcName.getCmbSelectItem();
+		
 		String payment = (String) pPayment.getCmbSelectItem();
-
+		int orderCount = pOrderCount.getSpnValue();
+		
+		if (swName.isEmpty() || company == null || swNoText.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "주문할 상품을 선택해주세요.");
+			return;
+		}
+		
+		if (orderCount < 1 || swLimitValue < orderCount) {
+			JOptionPane.showMessageDialog(null, String.format("상품 주문 수량은 1개 이상 %s개 이하여야 합니다.", swLimitValue));
+			return;
+		}
+		
 		SaleOrder inputOrder = new SaleOrder();
-		inputOrder.setOrdNo(orderNo);// 번호
 		// 결제수단
 		if (payment.equals("계좌이체")) {
 			inputOrder.setOrdPayment(Payment.ATM);
@@ -160,52 +167,45 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 		} else if (payment.equals("간편결제")) {
 			inputOrder.setOrdPayment(Payment.SIMPLE);
 		}
-
+		
 		inputOrder.setOrdQuantity(orderCount);// 수량
-		User user = new User();
-		user.setName(userName);
-		inputOrder.setUser(user);// 상호명
-		inputOrder.setSoftware(new Software(swName));
-
-		String softwareImgFullPath = pImg.getImageIcon().toString();
-		Software sw = new Software();
-		sw.setSwCoverImg(new File(softwareImgFullPath).getName());
-		inputOrder.setSoftware(sw);
+		inputOrder.setSoftware(new Software(Integer.parseInt(swNoText)));
+		inputOrder.setUser(user); // 고객
+		System.out.println(inputOrder);
 
 		String commandType = e.getActionCommand();
-		String commandMessage = String.format("사용자 %s", commandType);
+		String commandMessage = String.format("소프트웨어 %s", commandType);
 		int result = JOptionPane.showConfirmDialog(null, String.format("%s을 하시겠습니까?", commandMessage), commandMessage,
 				JOptionPane.YES_NO_OPTION);
 		if (result == JOptionPane.CANCEL_OPTION || result == JOptionPane.NO_OPTION) {
 			return;
 		}
 
-		if (commandType.equals("등록")) {
-			result = SaleOrderService.getInstance().updateOrderManagementNo(inputOrder);
+		result = SaleOrderService.getInstance().orderSoftwareByProc(inputOrder);
+		if (result != 1) {
+			JOptionPane.showMessageDialog(null, "소프트웨어 주문에 실패했습니다.");
+			return;
 		}
-		
+
+		JOptionPane.showMessageDialog(null, "선택한 소프트웨어를 주문하였습니다.");
+
 		resetData();
 	}
 
 	public void resetData() {
-
-		pImg.setImageIcon("nobody.png");
+		pImg.setImageIcon("software.png");
 		pOrderCount.setSpnValue(1);
 		pOrderNum.setTfText("");
 		pSwName.setTfText("");
-		User user = new User();
-		user.setName("");
-		pPcName.setCmbSelectItem(user);
+		pPcName.removeItem();
 	}
 
 	protected void actionPerformedBtnCancel(ActionEvent e) {
 		resetData();
 	}
 
-
 	public void setCo(CustomerOrderContent co) {
 		this.co = co;
 	}
-	
-	
+
 }

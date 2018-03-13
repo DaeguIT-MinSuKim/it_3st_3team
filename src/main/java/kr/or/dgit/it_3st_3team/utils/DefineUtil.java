@@ -6,4 +6,5 @@ public class DefineUtil {
 	public static final String USER_IMG_PATH = System.getProperty("user.dir") + "\\DataImg\\";
 	public static final String DEFAULT_IMG_PATH = System.getProperty("user.dir") + "\\resources\\";
 	public static final String DEFAULT_USER_IMG = "nobody.png";
+	public static final String DEFAULT_SOFTWARE_IMG = "software.png";
 }
