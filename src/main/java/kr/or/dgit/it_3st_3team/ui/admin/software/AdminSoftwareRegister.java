@@ -94,10 +94,8 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 		pRegister.add(pSWName);
 
 		btnCancel = new JButton("취소");
-		btnCancel.setBounds(1045, 218, 97, 23);
+		btnCancel.setBounds(1047, 218, 97, 23);
 		pRegister.add(btnCancel);	
-		btnCancel.setBounds(1045, 168, 97, 23);
-		pRegister.add(btnCancel);
 		btnCancel.addActionListener(this);
 
 		btnRegister = new JButton("등록");

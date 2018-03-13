@@ -120,9 +120,10 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 		} else {
 			pImg.setImageIcon(DefineUtil.DEFAULT_USER_IMG);
 		}
-		co.setTfIntro(software.getSwIntro());
 
-		// tfIntroduce.setText(software.getSwIntro());
+		//co.setTfIntro(software.getSwIntro());
+		
+		//tfIntroduce.setText(software.getSwIntro());
 	}
 
 	public void actionPerformed(ActionEvent e) {
