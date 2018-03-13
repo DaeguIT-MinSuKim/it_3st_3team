@@ -33,6 +33,7 @@ public class AdminChartSearch extends JPanel implements ActionListener {
 	private JButton btnType;
 	private JButton btnPayment;
 	private JPanel p2;
+	private AdminChartContent parent;
 
 	public AdminChartSearch(Object who) {
 		setUsingUser(who);
@@ -47,7 +48,6 @@ public class AdminChartSearch extends JPanel implements ActionListener {
 		// 관리자 콤보박스 넣는 코드
 		List<Admin> ad = new ArrayList<>();
 		ad = adService.listAdminAll();
-		ad.add(0, new Admin("관리자"));
 		Admin[] items = new Admin[ad.size()];
 		ad.toArray(items);
 		DefaultComboBoxModel<Admin> dcbm = new DefaultComboBoxModel<>(items);
@@ -86,9 +86,16 @@ public class AdminChartSearch extends JPanel implements ActionListener {
 		btnType.setBounds(150, 0, 200, 30);
 		p1.add(btnType);
 		
+		
+		
 		if (admin != null) {
 			System.out.println(admin);
 			// 관리자
+			
+			btnPayment = new JButton("결제타입별 구매현황");
+			btnPayment.addActionListener(this);
+			btnPayment.setBounds(365, 0, 200, 30);
+			p1.add(btnPayment);
 			if (admin.getAdminGroup().getAgNo() == 1) {
 				// 총관리자
 				cmbAdmin = new JComboBox<>();
@@ -96,12 +103,12 @@ public class AdminChartSearch extends JPanel implements ActionListener {
 				p1.add(cmbAdmin);
 				setCmbAdGroup();
 				
-				btnPayment = new JButton("결제타입별 구매현황");
-				btnPayment.setBounds(390, 0, 180, 30);
-				p2.add(btnPayment);
+				
 			}else {
 				btnType.setBounds(10, 0, 200, 30);
+				btnPayment.setBounds(225, 0, 200, 30);
 			}
+			
 		} else {
 			if (user.getUserGroup().getValue() == 1) {
 				// 고객
@@ -115,7 +122,9 @@ public class AdminChartSearch extends JPanel implements ActionListener {
 		
 	}
 
-	
+	public void setParent(AdminChartContent parent) {
+		this.parent = parent;
+	}
 	
 	// 초기화
 	public void clearItem() {
@@ -139,24 +148,39 @@ public class AdminChartSearch extends JPanel implements ActionListener {
 		if (arg0.getSource() == btnType) {
 			actionPerformedBtnType(arg0);
 		}
+		if (arg0.getSource() == btnPayment) {
+			actionPerformedBtnPayment(arg0);
+		}
 	}
 	
+	private void actionPerformedBtnPayment(ActionEvent arg0) {
+		if (admin != null) {
+			// 관리자
+			if (admin.getAdminGroup().getAgNo() == 1) {
+				Admin who = (Admin) cmbAdmin.getSelectedItem();
+				parent.createChartByPayment(who);
+			} else {
+				//영업사원
+				parent.createChartByPayment(admin);
+			}
+		}
+		
+	}
+
 	//버튼을 누르면 
 	protected void actionPerformedBtnType(ActionEvent arg0) {
 		if (admin != null) {
 			// 관리자
 			if (admin.getAdminGroup().getAgNo() == 1) {
-				cmbAdmin.setSelectedIndex(0);
+				Admin who = (Admin) cmbAdmin.getSelectedItem();
+				parent.createChartByType(who);
 			} else {
-				
+				//영업사원
+				parent.createChartByType(admin);
 			}
 		} else {
 			// 사용자
-			if (user.getUserGroup().getValue() == 1) {
-		
-			} else {
-			
-			}
+			parent.createChartByType(user);
 		}
 	}
 }

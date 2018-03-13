@@ -15,7 +15,7 @@ public interface SaleOrderDao {
 	List<SaleOrder> selectSaleOrderWithAllBySearch(Map<String, String> map);
 
 	// 관리자차트 연도별 품목 판매갯수
-	List<Map<String, Integer>> selectSwGroupByAdmin(Map<String, String> map);
+	List<Map<String, Integer>> selectSwGroupForYears(Map<String, String> map);
 		
 	// 영업사원차트 품목별 판매갯수- 조건:영업사원별,년도별
 	List<Map<String, Integer>> selectSwGroupBySales(Map<String, String> map);
