@@ -31,7 +31,6 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 	private LblTfComp pOrderNum;
 	private LblTfComp pSwName;
 	private LblCmbStringComp pPayment;
-	private AdminOrderContent adOrder;
 	private JPanel pOrderRegi;
 	private ImageComp pImg;
 	private JButton btnRegi;
@@ -135,11 +134,11 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 			actionPerformedBtnCancel(e);
 		}
 		if (e.getSource() == btnRegi) {
-			actionPerformedBtnRewrite(e);
+			actionPerformedBtnRegi(e);
 		}
 	}
 
-	protected void actionPerformedBtnRewrite(ActionEvent e) {
+	protected void actionPerformedBtnRegi(ActionEvent e) {
 
 		String swName = pSwName.getTfText().trim();
 		int orderCount = pOrderCount.getSpnValue();
@@ -184,7 +183,7 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 		if (commandType.equals("등록")) {
 			result = SaleOrderService.getInstance().updateOrderManagementNo(inputOrder);
 		}
-		adOrder.reFreshList();
+		
 		resetData();
 	}
 
@@ -203,9 +202,6 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 		resetData();
 	}
 
-	public void setAdOrder(AdminOrderContent adOrder) {
-		this.adOrder = adOrder;
-	}
 
 	public void setCo(CustomerOrderContent co) {
 		this.co = co;
