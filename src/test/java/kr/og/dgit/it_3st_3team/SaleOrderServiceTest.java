@@ -98,11 +98,11 @@ public class SaleOrderServiceTest {
 
 	// 관리자 차트 품목별 판매갯수 3년별
 	@Test
-	public void test6SelectSwGroupByAdmin() {
+	public void test6SelectSwGroupForYears() {
 		Map<String, String> maps = new HashMap<>();
 		maps.put("date", "2018");
 		
-		List<Map<String, Integer>> listChart = service.selectSwGroupByAdmin(maps);
+		List<Map<String, Integer>> listChart = service.selectSwGroupForYears(maps);
 		Assert.assertNotNull(listChart);
 		
 		for(Map<String, Integer> map : listChart) {

@@ -120,15 +120,10 @@
     left join (select * from sale_order where ord_datetime like CONCAT(#{date},"%") and adm_no=#{adminNo}) as so on so.sw_no = t.sw_no
 	group by ord_payment
 	union
-	select 'BANK', 0
-	from sale_order 
-	where adm_no=#{adminNo}
-    and ord_datetime like CONCAT(#{date},"%")
-	union
 	select '총합', count(ord_quantity)
 	from sale_order 
 	where adm_no=#{adminNo}
-    and ord_datetime like CONCAT(#{date},"%")	
+    and ord_datetime like CONCAT(#{date},"%")
 	</select>
 	
 	<!-- SaleOrder 주문 삭제 -->

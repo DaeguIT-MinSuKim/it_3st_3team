@@ -130,11 +130,11 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 			actionPerformedBtnCancel(e);
 		}
 		if (e.getSource() == btnRegi) {
-			actionPerformedBtnRewrite(e);
+			actionPerformedBtnRegi(e);
 		}
 	}
 
-	protected void actionPerformedBtnRewrite(ActionEvent e) {
+	protected void actionPerformedBtnRegi(ActionEvent e) {
 
 		String swNoText = pOrderNum.getTfText().trim();
 		String swName = pSwName.getTfText().trim();
@@ -186,6 +186,7 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 			JOptionPane.showMessageDialog(null, "소프트웨어 주문에 실패했습니다.");
 			return;
 		}
+
 		JOptionPane.showMessageDialog(null, "선택한 소프트웨어를 주문하였습니다.");
 
 		resetData();

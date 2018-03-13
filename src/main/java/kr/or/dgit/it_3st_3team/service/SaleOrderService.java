@@ -101,10 +101,10 @@ public class SaleOrderService {
 	}
 	
 	// 관리자 품목별 차트 조건:년도
-		public List<Map<String, Integer>> selectSwGroupByAdmin(Map<String, String> map) {
-			log.debug("selectSwGroupByAdmin()");
+		public List<Map<String, Integer>> selectSwGroupForYears(Map<String, String> map) {
+			log.debug("selectSwGroupForYears()");
 			try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
-				return sqlSession.selectList(namespace + "selectSwGroupByAdmin", map);
+				return sqlSession.selectList(namespace + "selectSwGroupForYears", map);
 			}
 		}
 		
