@@ -91,7 +91,7 @@ public class SaleOrderServiceTest {
 		}
 	}
 
-	// 관리자 차트 품목별 판매갯수 3년별
+	// 관리자 차트 품목별 판매갯수
 	@Test
 	public void test6SelectSwGroupForYears() {
 		Map<String, String> maps = new HashMap<>();
@@ -108,7 +108,7 @@ public class SaleOrderServiceTest {
 	}
 	
 	
-	@Test //고객차트
+	@Test // 고객차트 차트 품목별 판매갯수
 	public void test7SelectSwGroupCustomer() {
 		Map<String, String> maps = new HashMap<>();
 		maps.put("userNo", "2");
@@ -124,7 +124,7 @@ public class SaleOrderServiceTest {
 		}
 	}
 	
-	@Test //공급회사 차트
+	@Test // 공급회사 차트 품목별 판매갯수
 	public void test8SelectSwGroupByCompany() {
 		Map<String, String> maps = new HashMap<>();
 		maps.put("companyNo", "1");
@@ -140,6 +140,7 @@ public class SaleOrderServiceTest {
 		}
 	}
 	
+	// 관리자 결제타입별 사용횟수 
 	@Test
 	public void test9SelectPaymentChartByAdmin() {
 		Map<String, String> maps = new HashMap<>();
@@ -156,6 +157,7 @@ public class SaleOrderServiceTest {
 		}
 	}
 	
+	// 영업사원 결제타입별 사용횟수 
 	@Test
 	public void test10SelectPaymentChartBySales() {
 		Map<String, String> maps = new HashMap<>();
