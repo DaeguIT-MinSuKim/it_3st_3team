@@ -237,5 +237,6 @@
 		<include refid="deleteSql"/>
 		<include refid="whereSql"/>
 	</delete>
+	
 
 </mapper>

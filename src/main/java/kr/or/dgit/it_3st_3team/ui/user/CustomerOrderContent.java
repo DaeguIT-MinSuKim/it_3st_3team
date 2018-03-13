@@ -46,16 +46,20 @@ public class CustomerOrderContent extends JPanel {
 				JLabel target = (JLabel) e.getSource();
 				if(target.getText() == "소프트웨어 소개") {
 					scrollPane = new JScrollPane();
-					scrollPane.setBounds(272, 197, 531, 117);
+					scrollPane.setBounds(272, 197, 563, 117);
 					pRegister.add(scrollPane);
 					
 					tfIntroduce = new JTextArea();
 					scrollPane.setViewportView(tfIntroduce);
+					tfIntroduce.setEditable(false);
 					
 					pRegister.setBounds(0, 0, 1200, 338);
 					pSearch.setBounds(0, 338, 1200, 43);
 					pTable.setBounds(12, 381, 1164, 460);
 					
+					int no = pTable.getSelectedNo();
+					Software software = SoftwareService.getInstance().selectSoftwareByNo(new Software(no));
+					tfIntroduce.setText(software.getSwIntro());
 					target.setText("닫기");
 					target.setIcon(new ImageIcon(DefineUtil.DEFAULT_IMG_PATH+"arrowup.png"));
 				} else {
@@ -83,6 +87,7 @@ public class CustomerOrderContent extends JPanel {
 					Software software = SoftwareService.getInstance().selectSoftwareByNo(new Software(no));
 
 					pRegister.setOrderData(software);
+					
 					
 				}
 			}
