@@ -48,7 +48,8 @@ public interface SaleOrderDao {
 
 	
 	// 소프트웨어 주문 관리
-
+	int insertOrderByProc(SaleOrder saleOrder);
+	
 	int updateOrderManagementNo(SaleOrder saleOrder);
 
 	int deleteSaleOrderByNo(SaleOrder ordNo);

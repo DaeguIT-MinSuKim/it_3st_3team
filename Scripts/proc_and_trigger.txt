@@ -4,17 +4,20 @@ DROP PROCEDURE IF EXISTS software_project.proc_insert_sale_order ;
 
 DELIMITER $$
 $$
-CREATE PROCEDURE software_project.proc_insert_sale_order(
-	in P_ORD_NO int,
+CREATE DEFINER=`user_software`@`%` PROCEDURE `software_project`.`proc_insert_sale_order`(
 	in P_ORD_QUANTITY int,
 	in P_ORD_PAYMENT varchar(20),
 	in P_SW_NO int,
 	in P_U_NO int
 )
 BEGIN
+	DECLARE p_ord_no int;
 	DECLARE sw_supply_price int;
 	DECLARE sw_sell_price int;
 	DECLARE admin_no int;
+	
+	select MAX(ord_no)+1 into p_ord_no
+	from sale_order ;
 	
 	select s.sw_supply_price, s.sw_sell_price, u.adm_no into sw_supply_price, sw_sell_price, admin_no 
 	from software s join user u on s.pc_no = u.u_no 
@@ -27,10 +30,12 @@ BEGIN
 	
 	insert into sale_order(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price,
 						ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-	values (P_ORD_NO, P_U_NO, P_SW_NO, P_ORD_QUANTITY, @ord_supply_price, @ord_sell_price, @ord_tax, @ord_sell_profit,
+	values (p_ord_no, P_U_NO, P_SW_NO, P_ORD_QUANTITY, @ord_supply_price, @ord_sell_price, @ord_tax, @ord_sell_profit,
 			P_ORD_PAYMENT, now(), admin_no);
 END $$
 DELIMITER ;
+
+
 
 
 

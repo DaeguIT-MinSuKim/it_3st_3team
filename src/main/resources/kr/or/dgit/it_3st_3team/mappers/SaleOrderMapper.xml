@@ -228,6 +228,15 @@
 		order by ord_datetime desc
 	</select>
 	
+	<insert id="insertOrderByProc" statementType="CALLABLE" parameterType="SaleOrder">
+		{ call proc_insert_sale_order(
+			#{ordQuantity},
+			#{ordPayment},
+			#{software.swNo},
+			#{user.userNo}
+		) }
+	</insert>
+	
 	<!-- 수정 -->
 	<sql id="updateSql">
 		update sale_order set ord_quantity=#{ordQuantity},ord_payment=#{ordPayment}

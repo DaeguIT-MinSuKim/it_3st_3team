@@ -42,7 +42,7 @@ public class ImageComp extends JPanel implements ActionListener {
 
 	public void setImageIcon(String imgFileName) {
 		String imgPath = DefineUtil.DEFAULT_IMG_PATH;
-		if (!imgFileName.equals(DefineUtil.DEFAULT_USER_IMG)) {
+		if (! (imgFileName.equals(DefineUtil.DEFAULT_USER_IMG) || imgFileName.equals(DefineUtil.DEFAULT_SOFTWARE_IMG))) {
 			imgPath = DefineUtil.USER_IMG_PATH;
 		}
 		lblImg.setIcon(new ImageIcon(imgPath + imgFileName));

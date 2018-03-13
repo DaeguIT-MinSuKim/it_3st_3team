@@ -12,12 +12,17 @@ import java.util.Map.Entry;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import kr.or.dgit.it_3st_3team.dto.SaleOrder;
+import kr.or.dgit.it_3st_3team.dto.Software;
+import kr.or.dgit.it_3st_3team.dto.User;
 import kr.or.dgit.it_3st_3team.service.SaleOrderService;
 import kr.or.dgit.it_3st_3team.type.Payment;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class SaleOrderServiceTest {
 	private static SaleOrderService service;
 
@@ -182,4 +187,17 @@ public class SaleOrderServiceTest {
 		assertEquals(1, res);
 		
 	}
+	/*
+	@Test
+	public void testAOrderSoftwareByProc() {
+		SaleOrder so = new SaleOrder();
+		so.setSoftware(new Software(6));
+		so.setOrdQuantity(10);
+		so.setOrdPayment(Payment.SIMPLE);
+		so.setUser(new User(2));
+		
+		int res = service.orderSoftwareByProc(so);
+		assertEquals(1, res);
+		
+	}*/
 }

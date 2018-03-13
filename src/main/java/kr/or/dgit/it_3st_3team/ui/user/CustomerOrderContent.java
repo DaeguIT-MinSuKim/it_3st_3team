@@ -11,6 +11,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import kr.or.dgit.it_3st_3team.dto.Software;
+import kr.or.dgit.it_3st_3team.dto.User;
 import kr.or.dgit.it_3st_3team.service.SoftwareService;
 import kr.or.dgit.it_3st_3team.ui.table.CustomerOrderTable;
 import kr.or.dgit.it_3st_3team.utils.DefineUtil;
@@ -22,9 +23,10 @@ public class CustomerOrderContent extends JPanel {
 	private CustomerOrderSearch pSearch;
 	private JTextArea tfIntroduce;
 	private JScrollPane scrollPane;
+	private User user;
 
-	public CustomerOrderContent() {
-
+	public CustomerOrderContent(User user) {
+		this.user = user;
 		initComponents();
 	}
 
@@ -32,7 +34,7 @@ public class CustomerOrderContent extends JPanel {
 		setLayout(null);
 		setBounds(0, 0, 1200, 900);
 
-		pRegister = new CustomerOrderRegister();
+		pRegister = new CustomerOrderRegister(user);
 		pRegister.setBounds(0, 0, 1200, 192);
 		pRegister.setCo(this);
 		add(pRegister);
