@@ -35,15 +35,21 @@ public class AdminChartByPayment extends JPanel  {
 	private User user;
 	
 	
-	public AdminChartByPayment(Object who) {
-		setUsingUser(who);
+	public AdminChartByPayment() {
 		saleOrder = new SaleOrderService();
+	}
+	
+	public void createChart(Object who) {
+		setUsingUser(who);
 		final CategoryDataset dataset = createDataset();
 		final JFreeChart chart = createChart(dataset);
 		final ChartPanel chartPanel = new ChartPanel(chart);
 		chartPanel.setPreferredSize(new java.awt.Dimension(1150, 600));
-		add(chartPanel);
 		setupKorean();
+		removeAll();
+		add(chartPanel);
+		revalidate();
+		repaint();
 		
 	}
 	
@@ -85,16 +91,16 @@ public class AdminChartByPayment extends JPanel  {
 		} else {
 			// 사용자
 			if (user.getUserGroup().getValue() == 1) {
-				addCustomerChartData(dataset1, year-2);
+			/*	addCustomerChartData(dataset1, year-2);
 				addCustomerChartData(dataset1, year-1);
-				addCustomerChartData(dataset1, year);
+				addCustomerChartData(dataset1, year);*/
 			
 				return dataset1;
 			} else {
 			// 공급회사
-				addCompanyChartData(dataset1, year-2);
+			/*	addCompanyChartData(dataset1, year-2);
 				addCompanyChartData(dataset1, year-1);
-				addCompanyChartData(dataset1, year);
+				addCompanyChartData(dataset1, year);*/
 				return dataset1;
 			}
 		}
@@ -181,4 +187,6 @@ public class AdminChartByPayment extends JPanel  {
 			user = (User) who;
 		}
 	}
+
+	
 }

@@ -33,11 +33,18 @@ public class AdminChartContent extends JPanel {
 
 		pSearch = new AdminChartSearch(who);
 		pSearch.setBounds(0, 10, 1190, 96);
+		pSearch.setParent(this);
 		add(pSearch);
 		
-		chartPayment = new AdminChartByPayment(who);
+		sWgTypeFullYear = new AdminChartBySwgTypeFullYear();
+		sWgTypeFullYear.setBounds(12, 116, 1157, 670);
+		add(sWgTypeFullYear);
+		
+		chartPayment = new AdminChartByPayment();
 		chartPayment.setBounds(12, 116, 1157, 670);
 		add(chartPayment);
+		
+		createChartByType(who);
 	}
 
 	public void setUsingUser(Object who) {
@@ -46,5 +53,17 @@ public class AdminChartContent extends JPanel {
 		} else {
 			user = (User) who;
 		}
+	}
+	
+	public void createChartByType(Object who) {
+		chartPayment.setVisible(false);
+		sWgTypeFullYear.createChart(who);
+		sWgTypeFullYear.setVisible(true);
+	}
+	
+	public void createChartByPayment(Object who) {
+		sWgTypeFullYear.setVisible(false);
+		chartPayment.createChart(who);
+		chartPayment.setVisible(true);
 	}
 }

@@ -33,16 +33,22 @@ public class AdminChartBySwgTypeFullYear extends JPanel  {
 	private User user;
 	
 	
-	public AdminChartBySwgTypeFullYear(Object who) {
-		setUsingUser(who);
+	public AdminChartBySwgTypeFullYear() {
 		saleOrder = new SaleOrderService();
+	}
+	
+	public void createChart(Object who) {
+		System.out.println(who);
+		setUsingUser(who);
 		final CategoryDataset dataset = createDataset();
 		final JFreeChart chart = createChart(dataset);
 		final ChartPanel chartPanel = new ChartPanel(chart);
 		chartPanel.setPreferredSize(new java.awt.Dimension(1150, 600));
-		add(chartPanel);
 		setupKorean();
-		
+		removeAll();
+		add(chartPanel);
+		revalidate();
+		repaint();
 	}
 	
 	private void setupKorean() {
@@ -140,7 +146,7 @@ public class AdminChartBySwgTypeFullYear extends JPanel  {
 	private void addAdminChartData(final DefaultCategoryDataset dataset, int year) {
 		Map<String, String> maps = new HashMap<>();
 		maps.put("date", String.valueOf(year));
-		List<Map<String, Integer>> listChart = saleOrder.selectSwGroupByAdmin(maps);
+		List<Map<String, Integer>> listChart = saleOrder.selectSwGroupForYears(maps);
 		for(Map<String, Integer> map : listChart) {
 			dataset.addValue(map.get("count"), map.get("name"), maps.get("date"));
 		}
