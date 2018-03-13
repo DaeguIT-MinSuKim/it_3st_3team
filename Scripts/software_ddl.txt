@@ -13,6 +13,7 @@ CREATE TABLE `software_project`.`admin_group` (
   PRIMARY KEY (`ag_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='관리자 분류';
 
+
 CREATE TABLE `software_project`.`admin` (
   `adm_no` int(11) NOT NULL COMMENT '관리자번호',
   `adm_name` varchar(20) NOT NULL COMMENT '관리자명',
@@ -71,7 +72,6 @@ CREATE TABLE `software` (
   CONSTRAINT `FK_software_group_TO_software` FOREIGN KEY (`sg_no`) REFERENCES `software_group` (`sg_no`),
   CONSTRAINT `FK_user_TO_software` FOREIGN KEY (`pc_no`) REFERENCES `user` (`u_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='소프트웨어';
-
 
 
 CREATE TABLE `software_project`.`sale_order` (

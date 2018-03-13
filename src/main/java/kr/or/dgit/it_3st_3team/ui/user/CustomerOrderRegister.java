@@ -88,7 +88,7 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 		pPcName = new LblCmbUserComp("제작사");
 		pPcName.setBounds(272, 42, 170, 30);
 		pOrderRegi.add(pPcName);
-		
+
 		lbldown = new JLabel("소프트웨어 소개");
 		lbldown.setIcon(new ImageIcon(DefineUtil.DEFAULT_IMG_PATH + "arrowdown.png"));
 		lbldown.setBounds(271, 145, 120, 15);
@@ -98,21 +98,16 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 		pOrderNum.setBounds(708, 129, 116, 21);
 
 	}
-	
+
 	public void setSWIntroName(String str) {
 		lbldown.setText(str);
 	}
-	
-
-	
-	
 
 	public void setEventListener(EventListener listener) {
-		if(listener instanceof MouseListener) {
-			lbldown.addMouseListener((MouseListener)listener);
+		if (listener instanceof MouseListener) {
+			lbldown.addMouseListener((MouseListener) listener);
 		}
 	}
-
 
 	public void setOrderData(Software software) {
 		pPcName.removeItem();
@@ -120,14 +115,14 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 		// pOrderCount.setSpnValue(software.getOrdQuantity());
 		pSwName.setTfText(software.getSwName());
 		pOrderNum.setTfText(Integer.toString(software.getSwNo()));
-		if(software.getSwCoverImg() != null && !software.getSwCoverImg().equals("")) {
+		if (software.getSwCoverImg() != null && !software.getSwCoverImg().equals("")) {
 			pImg.setImageIcon(software.getSwCoverImg());
-		}else {
+		} else {
 			pImg.setImageIcon(DefineUtil.DEFAULT_USER_IMG);
 		}
 		co.setTfIntro(software.getSwIntro());
-		
-		//tfIntroduce.setText(software.getSwIntro());
+
+		// tfIntroduce.setText(software.getSwIntro());
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -174,15 +169,16 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 		inputOrder.setSoftware(sw);
 
 		String commandType = e.getActionCommand();
-		String commandMessage = String.format("사용자 %s", commandType);
+		String commandMessage = String.format("소프트웨어 %s", commandType);
 		int result = JOptionPane.showConfirmDialog(null, String.format("%s을 하시겠습니까?", commandMessage), commandMessage,
 				JOptionPane.YES_NO_OPTION);
 		if (result == JOptionPane.CANCEL_OPTION || result == JOptionPane.NO_OPTION) {
 			return;
 		}
 
-		if (commandType.equals("수정")) {
-			result = SaleOrderService.getInstance().updateOrderManagementNo(inputOrder);
+		if (commandType.equals("주문")) {
+			System.out.println("주문이다");
+			//result = SaleOrderService.getInstance().updateOrderManagementNo(inputOrder);
 		}
 		adOrder.reFreshList();
 		resetData();
@@ -210,6 +206,5 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 	public void setCo(CustomerOrderContent co) {
 		this.co = co;
 	}
-	
-	
+
 }
