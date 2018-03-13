@@ -53,11 +53,11 @@ public class UserModifyContent extends JPanel implements ActionListener {
 		currentPwd.setBounds(178, 29, 280, 38);
 		pModifyPassword.add(currentPwd);
 		
-		newPwd = new LblPwdTfComp("바꿀 비밀번호");
+		newPwd = new LblPwdTfComp("새 비밀번호");
 		newPwd.setBounds(178, 77, 280, 38);
 		pModifyPassword.add(newPwd);
 
-		newPwdChk = new LblPwdTfComp("바꿀 비밀번호 확인");
+		newPwdChk = new LblPwdTfComp("새 비밀번호 확인");
 		newPwdChk.setBounds(150, 125, 308, 38);
 		pModifyPassword.add(newPwdChk);
 

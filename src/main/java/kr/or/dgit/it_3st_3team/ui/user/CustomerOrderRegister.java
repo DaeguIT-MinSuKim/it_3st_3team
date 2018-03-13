@@ -125,7 +125,7 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 		}else {
 			pImg.setImageIcon(DefineUtil.DEFAULT_USER_IMG);
 		}
-		co.setTfIntro(software.getSwIntro());
+		//co.setTfIntro(software.getSwIntro());
 		
 		//tfIntroduce.setText(software.getSwIntro());
 	}
@@ -181,7 +181,7 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 			return;
 		}
 
-		if (commandType.equals("수정")) {
+		if (commandType.equals("등록")) {
 			result = SaleOrderService.getInstance().updateOrderManagementNo(inputOrder);
 		}
 		adOrder.reFreshList();
