@@ -13,6 +13,9 @@ public interface SaleOrderDao {
 	
 	// 현황관리 조건검색
 	List<SaleOrder> selectSaleOrderWithAllBySearch(Map<String, String> map);
+	
+	// 현황관리 모든 데이터
+	List<SaleOrder> selectSaleOrderByAll(Map<String, String> map);
 
 	// 관리자차트 연도별 품목 판매갯수
 	List<Map<String, Integer>> selectSwGroupForYears(Map<String, String> map);
@@ -31,21 +34,6 @@ public interface SaleOrderDao {
 	
 	// 영업사원차트 결제타입별
 	List<Map<String, Integer>> selectPaymentChartBySales(Map<String, String> map);
-	
-	// 고객별차트 결제타입별
-	List<Map<String, Integer>> selectPaymentChartByCustomer(Map<String, String> map);
-	
-	// 공급회사별차트 결제타입별
-	List<Map<String, Integer>> selectPaymentChartByCompany(Map<String, String> map);
-	
-	
-
-	// 차트 결제타입별 갯수
-	List<Map<String, Integer>> selectPaymentChartOption(Map<String, String> map);
-	
-	// 현황관리 모든 데이터
-	List<SaleOrder> selectSaleOrderByAll(Map<String, String> map);
-
 	
 	// 소프트웨어 주문 관리
 	int insertOrderByProc(SaleOrder saleOrder);

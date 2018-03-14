@@ -38,13 +38,6 @@ public class SaleOrderService {
 		}
 	}
 	
-	public List<SaleOrder> findSaleOrderWithoutadminName(Map<String, String> map) {
-		log.debug("findSaleOrderWithoutadminName()");
-		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
-			return sqlSession.selectList(namespace + "selectSaleOrderWithoutadminName", map);
-		}
-	}
-	
 	public List<SaleOrder> findSaleOrderByAll() {
 		log.debug("findSaleOrderByAll()");
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
@@ -132,7 +125,7 @@ public class SaleOrderService {
 		}
 	}
 	
-	// 관리자 결제타입 차트
+	// 영업사원 결제타입 차트
 	public List<Map<String, Integer>> selectPaymentChartBySales(Map<String, String> map) {
 		log.debug("selectPaymentChartBySales()");
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
