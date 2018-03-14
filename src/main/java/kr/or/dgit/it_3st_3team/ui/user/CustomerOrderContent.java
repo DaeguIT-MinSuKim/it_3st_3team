@@ -35,7 +35,7 @@ public class CustomerOrderContent extends JPanel {
 		setBounds(0, 0, 1200, 900);
 
 		pRegister = new CustomerOrderRegister(user);
-		pRegister.setBounds(0, 0, 1200, 192);
+		pRegister.setBounds(0, 0, 1200, 181);
 		pRegister.setCo(this);
 		add(pRegister);
 		pRegister.setEventListener(new MouseAdapter() {
@@ -43,29 +43,15 @@ public class CustomerOrderContent extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				JLabel target = (JLabel) e.getSource();
 				if(target.getText() == "소프트웨어 소개") {
-					scrollPane = new JScrollPane();
-					scrollPane.setBounds(272, 197, 563, 117);
-					pRegister.add(scrollPane);
-					
-					tfIntroduce = new JTextArea();
-					scrollPane.setViewportView(tfIntroduce);
-					tfIntroduce.setEditable(false);
-					
+					pRegister.setSWIntroName("닫기");
+					target.setIcon(new ImageIcon(DefineUtil.DEFAULT_IMG_PATH+"arrowup.png"));
 					pRegister.setBounds(0, 0, 1200, 338);
 					pSearch.setBounds(0, 338, 1200, 43);
 					pTable.setBounds(12, 381, 1164, 460);
-					
-					int no = pTable.getSelectedNo();
-					Software software = SoftwareService.getInstance().selectSoftwareByNo(new Software(no));
-					tfIntroduce.setText(software.getSwIntro());
-					target.setText("닫기");
-					target.setIcon(new ImageIcon(DefineUtil.DEFAULT_IMG_PATH+"arrowup.png"));
 				} else {
-					pRegister.remove(scrollPane);
-					pRegister.setBounds(0, 0, 1200, 192);
+					pRegister.setBounds(0, 0, 1200,181);
 					pSearch.setBounds(0, 191, 1200, 43);
-					pTable.setBounds(12, 233, 1164, 612);
-					
+					pTable.setBounds(12, 233, 1164, 621);
 					target.setIcon(new ImageIcon(DefineUtil.DEFAULT_IMG_PATH+"arrowdown.png"));
 					target.setText("소프트웨어 소개");
 				}
@@ -75,7 +61,7 @@ public class CustomerOrderContent extends JPanel {
 
 		pTable = new CustomerOrderTable();
 		pTable.loadTableDatas(SoftwareService.getInstance().selectSoftwareByAll());
-		pTable.setBounds(12, 233, 1164, 612);
+		pTable.setBounds(12, 224, 1164, 621);
 		pTable.setEventListener(new MouseAdapter() {
 
 			@Override
@@ -96,7 +82,7 @@ public class CustomerOrderContent extends JPanel {
 
 		pSearch = new CustomerOrderSearch();
 		pSearch.setParent(this);
-		pSearch.setBounds(0, 191, 1200, 43);
+		pSearch.setBounds(0, 180, 1200, 43);
 		add(pSearch);
 
 	}
@@ -111,8 +97,6 @@ public class CustomerOrderContent extends JPanel {
 	}
 	
 
-	public void setTfIntro(String str) {
-		tfIntroduce.setText(str);
-	}
+	
 	
 }

@@ -68,13 +68,14 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 		btnSubmitCF.setBounds(779, 29, 97, 23);
 		pRegister.add(btnSubmitCF);
 		
-		/*
+		
 		List<User> lists1 = UserService.getInstance().listUserAllByUserGroup(UserGroup.COMPANY);
-		User[] usDatas = lists1.toArray(new User[lists1.size()]);*/
+		User[] usDatas = lists1.toArray(new User[lists1.size()]);
 
 		pCompany = new LblCmbUserComp("공급회사");
 		pCompany.setBorder(null);
 		pCompany.setBounds(238, 27, 243, 30);
+		pCompany.loadData(usDatas);
 		pRegister.add(pCompany);
 
 		List<SoftwareGroup> lists = SoftwareGroupService.getInstance().selectSoftwareGroupByAll();
