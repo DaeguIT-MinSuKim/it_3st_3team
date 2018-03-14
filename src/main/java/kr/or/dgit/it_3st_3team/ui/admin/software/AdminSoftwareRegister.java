@@ -16,6 +16,8 @@ import kr.or.dgit.it_3st_3team.dto.SoftwareGroup;
 import kr.or.dgit.it_3st_3team.dto.User;
 import kr.or.dgit.it_3st_3team.service.SoftwareGroupService;
 import kr.or.dgit.it_3st_3team.service.SoftwareService;
+import kr.or.dgit.it_3st_3team.service.UserService;
+import kr.or.dgit.it_3st_3team.type.UserGroup;
 import kr.or.dgit.it_3st_3team.ui.SoftwareGroupUI;
 import kr.or.dgit.it_3st_3team.ui.component.ImageComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblCmbSoftwareGroupComp;
@@ -66,13 +68,13 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 		pRegister.add(btnSubmitCF);
 		
 		
-		List<User> lists1 = UserService.getInstance().listUserAllByUserGroup(UserGroup.COMPANY);
-		User[] usDatas = lists1.toArray(new User[lists1.size()]);
+		/*List<User> lists1 = UserService.getInstance().listUserAllByUserGroup(UserGroup.COMPANY);
+		User[] usDatas = lists1.toArray(new User[lists1.size()]);*/
 
 		pCompany = new LblCmbUserComp("공급회사");
 		pCompany.setBorder(null);
 		pCompany.setBounds(238, 27, 243, 30);
-		pCompany.loadData(usDatas);
+	//	pCompany.loadData(usDatas);
 		pRegister.add(pCompany);
 
 		List<SoftwareGroup> lists = SoftwareGroupService.getInstance().selectSoftwareGroupByAll();
