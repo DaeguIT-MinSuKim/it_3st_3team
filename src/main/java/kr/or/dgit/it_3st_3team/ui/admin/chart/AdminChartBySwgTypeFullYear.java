@@ -143,10 +143,28 @@ public class AdminChartBySwgTypeFullYear extends JPanel  {
 	}
 
 	private JFreeChart createChart(final CategoryDataset dataset) {
-		chart = ChartFactory.createBarChart3D("소프트웨어 분류별 판매현황", // chart
+		String axisLabel=null;
+		String chartTitle=null;
+		
+		if (admin != null) {
+			// 관리자
+			axisLabel = "판매갯수";
+			chartTitle = "소프트웨어 분류별 판매현황";
+		} else {
+			// 사용자
+			if (user.getUserGroup().getValue() == 1) {
+				axisLabel = "구매갯수";
+				chartTitle = "소프트웨어 분류별 구매현황";
+			} else {
+				axisLabel = "판매갯수";
+				chartTitle = "소프트웨어 분류별 판매현황";
+			}
+		}
+	
+		chart = ChartFactory.createBarChart3D(chartTitle, // chart
 				// title
 				"", // domain axis label
-				"판매갯수", // range axis label
+				axisLabel , // range axis label
 				dataset, // data
 				PlotOrientation.VERTICAL, // orientation
 				true, // include legend
