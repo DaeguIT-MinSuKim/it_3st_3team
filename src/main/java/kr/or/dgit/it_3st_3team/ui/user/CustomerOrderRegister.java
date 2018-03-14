@@ -104,9 +104,6 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 		pOrderNum.setBounds(708, 129, 116, 21);
 	}
 	
-	public void setSWIntroText(String str) {
-		tfIntroduce.setText(str);
-	}
 
 	public void setSWIntroName(String str) {
 		lbldown.setText(str);
