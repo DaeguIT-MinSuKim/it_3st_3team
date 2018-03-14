@@ -150,7 +150,7 @@ public class AdminUI extends JFrame implements ActionListener {
 			btnDbSetting.setForeground(SystemColor.window);
 			btnDbSetting.setFont(new Font("나눔바른고딕", Font.BOLD, 16));
 			btnDbSetting.setBackground(new Color(59, 89, 152));
-			pAdminMenu.add(btnDbSetting);
+			//pAdminMenu.add(btnDbSetting);
 		}
 
 		displayFirstView();
