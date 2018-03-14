@@ -178,7 +178,6 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 		inputOrder.setOrdQuantity(orderCount);// 수량
 		inputOrder.setSoftware(new Software(Integer.parseInt(swNoText)));
 		inputOrder.setUser(user); // 고객
-		System.out.println(inputOrder);
 
 		String commandType = e.getActionCommand();
 		String commandMessage = String.format("소프트웨어 %s", commandType);

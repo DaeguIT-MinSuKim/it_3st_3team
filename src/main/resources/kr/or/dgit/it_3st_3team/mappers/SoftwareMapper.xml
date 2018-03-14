@@ -136,6 +136,11 @@
 			AND sw_del = 0 order by sw_no desc
 	</select>
 	
+	<select id="selectSoftwareByName" parameterType="Software" resultMap="SoftwarewithUserResult">
+		<include refid="selectWithGroupwithUserSql"/>
+		where s.sw_name = #{swName} AND sw_del = 0 order by sw_no desc
+	</select>
+	
 	<select id="selectSoftwareByAll" parameterType="Software" resultMap="SoftwarewithUserResult">
 		<include refid="selectWithGroupwithUserSql"/>
 			where sw_del = 0 order by sw_no desc

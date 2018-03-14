@@ -232,6 +232,14 @@
 		) }
 	</insert>
 	
+	<update id="updateOrderByProc" statementType="CALLABLE" parameterType="SaleOrder">
+		{ call proc_update_sale_order(
+			#{ordNo},
+			#{ordQuantity},
+			#{ordPayment}
+		) }
+	</update>
+	
 	<!-- 수정 -->
 	<sql id="updateSql">
 		update sale_order set ord_quantity=#{ordQuantity},ord_payment=#{ordPayment}

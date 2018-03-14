@@ -5,8 +5,10 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import kr.or.dgit.it_3st_3team.dto.Software;
@@ -14,8 +16,6 @@ import kr.or.dgit.it_3st_3team.dto.SoftwareGroup;
 import kr.or.dgit.it_3st_3team.dto.User;
 import kr.or.dgit.it_3st_3team.service.SoftwareGroupService;
 import kr.or.dgit.it_3st_3team.service.SoftwareService;
-import kr.or.dgit.it_3st_3team.service.UserService;
-import kr.or.dgit.it_3st_3team.type.UserGroup;
 import kr.or.dgit.it_3st_3team.ui.SoftwareGroupUI;
 import kr.or.dgit.it_3st_3team.ui.component.ImageComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblCmbSoftwareGroupComp;
@@ -24,9 +24,6 @@ import kr.or.dgit.it_3st_3team.ui.component.LblSpinnerComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblTfComp;
 import kr.or.dgit.it_3st_3team.utils.CommonUtil;
 import kr.or.dgit.it_3st_3team.utils.DefineUtil;
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 
 
 @SuppressWarnings("serial")
@@ -104,7 +101,7 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 		pRegister.add(btnRegister);
 
 		pCount = new LblSpinnerComp("수량");
-		pCount.setIntSpinner(1, 1, 999, 1);
+		pCount.setIntSpinner(1, 1, 99999, 1);
 		pCount.setBounds(556, 120, 126, 30);
 		pRegister.add(pCount);
 
