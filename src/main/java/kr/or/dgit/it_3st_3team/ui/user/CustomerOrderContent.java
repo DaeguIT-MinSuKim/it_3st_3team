@@ -36,7 +36,6 @@ public class CustomerOrderContent extends JPanel {
 
 		pRegister = new CustomerOrderRegister(user);
 		pRegister.setBounds(0, 0, 1200, 181);
-		pRegister.setCo(this);
 		add(pRegister);
 		pRegister.setEventListener(new MouseAdapter() {
 			@Override
