@@ -4,7 +4,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import kr.or.dgit.it_3st_3team.type.Payment;
-import kr.or.dgit.it_3st_3team.type.UserGroup;
 
 public class SaleOrder {
 	private int ordNo;

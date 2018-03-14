@@ -28,6 +28,13 @@ public class SoftwareService {
 			return sqlSession.selectOne(namespace + "selectSoftwareByNo", software);
 		}
 	}
+	
+	public Software findSoftwareByName(Software software) {
+		log.debug("findSoftwareByName()");
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectOne(namespace + "selectSoftwareByName", software);
+		}
+	}
 
 	public List<Software> selectSoftwareBySearch(Map<String, String> map) {
 		log.debug(" selectSoftwareBySearch()");

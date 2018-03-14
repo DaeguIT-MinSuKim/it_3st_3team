@@ -56,7 +56,17 @@ public class SaleOrderService {
 		log.debug("orderSoftwareByProc()");
 		int res = -1;
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
-			res = sqlSession.update(namespace + "insertOrderByProc", saleOrder);
+			res = sqlSession.insert(namespace + "insertOrderByProc", saleOrder);
+			sqlSession.commit();
+		}
+		return res;
+	}
+	
+	public int updateOrderSoftwareByProc(SaleOrder saleOrder) {
+		log.debug("updateOrderSoftwareByProc()");
+		int res = -1;
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			res = sqlSession.update(namespace + "updateOrderByProc", saleOrder);
 			sqlSession.commit();
 		}
 		return res;
