@@ -36,7 +36,6 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 	private LblSpinnerComp pOrderCount;
 	private LblCmbUserComp pPcName;
 	private JLabel lbldown;
-	private CustomerOrderContent co;
 	private User user;
 	
 	private int swLimitValue;
@@ -208,7 +207,4 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 		resetData();
 	}
 
-	public void setCo(CustomerOrderContent co) {
-		this.co = co;
-	}
 }
