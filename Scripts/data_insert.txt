@@ -49,28 +49,30 @@ INSERT INTO `software_group` VALUES
 select * from software_group;
 
 insert into software(sw_no, sg_no, sw_name, sw_quantity,sw_supply_price, sw_sell_price,sw_cover_img, pc_no,sw_intro,sw_del) values
-(1,1,'바람의 제국',100,29000,46000,'software0001_1520575743375.png',1,NULL,'0'),
-(2,2,'국제무역',100,30000,48000,NULL,4,NULL,'0'),(3,1,'FIFA2018',100,27000,40500,NULL,5,NULL,'0'),
-(4,1,'삼국지',100,32000,48000,'software0004_1520841609313.png',7,'삼국지 게임입니다.','0'),
-(5,1,'아마겟돈',100,35000,50750,NULL,10,NULL,'1'),(6,2,'한컴오피스',100,1370000,1918000,NULL,12,NULL,'0'),
-(7,1,'포토샵',100,980000,1519000,'software0007_1520554855768.png',7,NULL,'0'),
-(8,1,'오토캐드2018',100,2340000,3978000,'software0008_1520554846113.png',12,NULL,'0'),
-(9,1,'인디자인',100,1380000,2180400,'software0009_1520554766426.png',5,NULL,'0'),
-(10,1,'Windows10',100,2470000,3334500,'software0010_1520576553187.png',1,NULL,'0'),
-(13,5,'반디집',100,41000,64000,'software0013_1520842277004.png',14,'멀티코어를 활용하여 \'최대 6배\'까지 빠른 속도로 압축이 가능한 고성능 무료 압축프로그램으로 \n대용량 파일 압축과 분할 압축 및 해제 기능이 뛰어나고 다양한 압축 포맷을 지원합니다.','0'),
-(14,8,'꿀뷰',100,52000,34000,'software0014_1520842256957.png',14,'꿀뷰는 압축파일을 지원하는 매우 빠르고 편리한 그림보기 프로그램 입니다.\r\n여러개의 이미지 파일을 하나의 압축파일로 만들었을 경우에도, 압축을 풀지 않고 바로 보는게 가능합니다.','0'),
-(15,5,'압축파일-암호복구',100,46000,61000,'software0015_1520842223452.png',14,'알집의 ALZ, EGG뿐 아니라, ZIP, 7Z, RAR 파일도 암호 찾기가 가능한지 \n무료로 확인해 볼 수 있는 프로그램입니다.','0'),
-(16,8,'반디카메라',100,24000,36000,'software0016_1520842193164.png',14,'컴퓨터 화면을 원하는 사각형 창틀을 이용해서 쉽고 빠르게 저장할 수 있는 화면 캡처 프로그램입니다. \n긴 웹페이지를 한 번에 캡처하기, 원하는 특정 프로그램만 선택해서 캡처하기, \n클립보드에 이미지 복사 후 바로 붙여넣기 등 여러가지 편리한 기능들을 경험하실 수 있습니다.','0'),
-(17,5,'셧다운8',100,76000,140000,'software0017_1520842176252.png',14,'간단하게 10분/30분/1시간/2시간 중 원하는 시간을 선택 지정하여 \n누구나 손쉽게 컴퓨터의 시스템의 예약종료가 가능하게 해주는 프로그램입니다.','0'),
-(18,2,'알PDF',100,34000,42000,'software0018_1520842161989.png',15,'PDF 문서를 생성, 편집, 검토하고 한글, MS오피스의 형식으로 변환할 수 있어 \n문서 작업의 시간을 효과적으로 단축시키는 통합 PDF 프로그램입니다.','0'),
-(19,11,'알Drive',100,54000,78000,'software0019_1520842147979.png',15,'기존 알FTP에서 지원했던 FTP접속 기능 외에 다양한 프로토콜 파일 전송을 지원하는 \n파일전송 클라이언트 프로그램입니다.','0'),
-(20,7,'알송',100,26000,41000,'software0020_1520842132036.png',15,'음악과 가사를 동시에 즐길 수 있는 알송은 실시간 싱크가사를 제공하는 음악 재생 프로그램입니다.','0'),
-(21,5,'알약',100,270000,560000,'software0021_1520842119748.png',15,'대한민국의 대표 백신 프로그램으로 악성코드의 탐지와 치료 기능을 제공하며, \n높은 탐지율과 빠른 검사 속도를 자랑합니다.','0'),
-(22,5,'V3 365 클리닉 프리미엄',100,39600,71500,'software0022_1520900766769.png',16,'V3 365 클리닉 프리미엄은 V3 365 클리닉 스탠다드+ PC주치의+자녀PC보호+명의도용차단 서비스를 \n모두 사용할 수 있어 안전한 PC생활을 돕는 토털 PC케어 제품입니다.','0'),
-(23,5,'미뮤',100,67000,140000,'software0023_1520842082860.png',17,'스마트폰과 태블릿PC에서만 사용이 가능했던 수많은 안드로이드\n 앱들을 이제 PC에서도 미뮤 앱플레이어를 통해 보다 쾌적하고 편리한 환경을 제공하는 프로그램입니다.','0'),
-(24,6,'곰플레이어',100,34000,88000,'software0024_1520900747718.png',18,'다양한 형식의 동영상을 재생하고 자막 찾기, 화면 캡처, \n코덱 찾기 및 360도 VR 영상을 감상할 수 있는 동영상 재생 프로그램입니다.','0'),
-(25,7,'곰녹음기',100,16000,34000,'software0025_1520842055625.png',18,'컴퓨터에서 나는 모든 소리를 WAV, MP3, OGG파일로 저장할 수 있게 만들어 주는 프로그램입니다.','0'),
-(26,5,'알키퍼',100,34000,68000,'software0000_1520903536577.png',15,'PC 안에 존재하는 개인정보가 포함된 다양한 확장자의 문서를 검색하고, \n암호, 삭제, 예외처리 등의 작업을 통하여 개인정보를 안전하게 보호할 수 있도록 도와주는 프로그램입니다.','0');
+(1,1,'바람의 제국',100,29000,46000,NULL,1,NULL,'0'),
+(2,2,'국제무역',100,30000,48000,NULL,4,NULL,'0'),
+(3,1,'FIFA2018',100,27000,40500,NULL,5,NULL,'0'),
+(4,1,'삼국지',100,32000,48000,NULL,7,'삼국지 게임입니다.','0'),
+(5,1,'아마겟돈',100,35000,50750,NULL,10,NULL,'1'),
+(6,2,'한컴오피스',100,1370000,1918000,NULL,12,NULL,'0'),
+(7,1,'포토샵',100,980000,1519000,NULL,7,NULL,'0'),
+(8,1,'오토캐드2018',100,2340000,3978000,NULL,12,NULL,'0'),
+(9,1,'인디자인',100,1380000,2180400,NULL,5,NULL,'0'),
+(10,1,'Windows10',100,2470000,3334500,NULL,1,NULL,'0'),
+(13,5,'반디집',100,41000,64000,NULL,14,'멀티코어를 활용하여 \'최대 6배\'까지 빠른 속도로 압축이 가능한 고성능 무료 압축프로그램으로 \n대용량 파일 압축과 분할 압축 및 해제 기능이 뛰어나고 다양한 압축 포맷을 지원합니다.','0'),
+(14,8,'꿀뷰',100,52000,34000,NULL,14,'꿀뷰는 압축파일을 지원하는 매우 빠르고 편리한 그림보기 프로그램 입니다.\r\n여러개의 이미지 파일을 하나의 압축파일로 만들었을 경우에도, 압축을 풀지 않고 바로 보는게 가능합니다.','0'),
+(15,5,'압축파일-암호복구',100,46000,61000,NULL,14,'알집의 ALZ, EGG뿐 아니라, ZIP, 7Z, RAR 파일도 암호 찾기가 가능한지 \n무료로 확인해 볼 수 있는 프로그램입니다.','0'),
+(16,8,'반디카메라',100,24000,36000,NULL,14,'컴퓨터 화면을 원하는 사각형 창틀을 이용해서 쉽고 빠르게 저장할 수 있는 화면 캡처 프로그램입니다. \n긴 웹페이지를 한 번에 캡처하기, 원하는 특정 프로그램만 선택해서 캡처하기, \n클립보드에 이미지 복사 후 바로 붙여넣기 등 여러가지 편리한 기능들을 경험하실 수 있습니다.','0'),
+(17,5,'셧다운8',100,76000,140000,NULL,14,'간단하게 10분/30분/1시간/2시간 중 원하는 시간을 선택 지정하여 \n누구나 손쉽게 컴퓨터의 시스템의 예약종료가 가능하게 해주는 프로그램입니다.','0'),
+(18,2,'알PDF',100,34000,42000,NULL,15,'PDF 문서를 생성, 편집, 검토하고 한글, MS오피스의 형식으로 변환할 수 있어 \n문서 작업의 시간을 효과적으로 단축시키는 통합 PDF 프로그램입니다.','0'),
+(19,11,'알Drive',100,54000,78000,NULL,15,'기존 알FTP에서 지원했던 FTP접속 기능 외에 다양한 프로토콜 파일 전송을 지원하는 \n파일전송 클라이언트 프로그램입니다.','0'),
+(20,7,'알송',100,26000,41000,NULL,15,'음악과 가사를 동시에 즐길 수 있는 알송은 실시간 싱크가사를 제공하는 음악 재생 프로그램입니다.','0'),
+(21,5,'알약',100,270000,560000,NULL,15,'대한민국의 대표 백신 프로그램으로 악성코드의 탐지와 치료 기능을 제공하며, \n높은 탐지율과 빠른 검사 속도를 자랑합니다.','0'),
+(22,5,'V3 365 클리닉 프리미엄',100,39600,71500,NULL,16,'V3 365 클리닉 프리미엄은 V3 365 클리닉 스탠다드+ PC주치의+자녀PC보호+명의도용차단 서비스를 \n모두 사용할 수 있어 안전한 PC생활을 돕는 토털 PC케어 제품입니다.','0'),
+(23,5,'미뮤',100,67000,140000,NULL,17,'스마트폰과 태블릿PC에서만 사용이 가능했던 수많은 안드로이드\n 앱들을 이제 PC에서도 미뮤 앱플레이어를 통해 보다 쾌적하고 편리한 환경을 제공하는 프로그램입니다.','0'),
+(24,6,'곰플레이어',100,34000,88000,NULL,18,'다양한 형식의 동영상을 재생하고 자막 찾기, 화면 캡처, \n코덱 찾기 및 360도 VR 영상을 감상할 수 있는 동영상 재생 프로그램입니다.','0'),
+(25,7,'곰녹음기',100,16000,34000,NULL,18,'컴퓨터에서 나는 모든 소리를 WAV, MP3, OGG파일로 저장할 수 있게 만들어 주는 프로그램입니다.','0'),
+(26,5,'알키퍼',100,34000,68000,NULL,15,'PC 안에 존재하는 개인정보가 포함된 다양한 확장자의 문서를 검색하고, \n암호, 삭제, 예외처리 등의 작업을 통하여 개인정보를 안전하게 보호할 수 있도록 도와주는 프로그램입니다.','0');
 
 
 
@@ -87,155 +89,57 @@ insert into software(sw_no, sg_no, sw_name, sw_quantity,sw_supply_price, sw_sell
 
 
 INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(1, 2, 1, 25, 625000, 1000000, 100000, 375000, 'BANK', '2017-02-27 22:27:59.000', 2);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(2, 3, 5, 25, 875000, 1268750, 126875, 393750, 'ATM', '2016-02-27 22:28:00.000', 2);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(3, 2, 4, 20, 640000, 960000, 96000, 320000, 'SIMPLE', '2016-02-27 22:28:01.000', 3);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(4, 6, 4, 20, 640000, 960000, 96000, 320000, 'MOBILE', '2017-02-27 22:28:01.000', 3);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(5, 8, 9, 150, 207000000, 327060000, 32706000, 120060000, 'ATM', '2018-02-27 22:28:02.000', 2);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(6, 6, 9, 30, 41400000, 65412000, 6541200, 24012000, 'SIMPLE', '2016-02-27 22:28:03.000', 2);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(7, 3, 1, 52, 1300000, 2080000, 208000, 780000, 'SIMPLE', '2018-02-27 22:28:04.000', 2);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(8, 9, 7, 28, 27440000, 42532000, 4253200, 15092000, 'MOBILE', '2018-02-27 22:28:04.000', 3);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(9, 6, 7, 37, 36260000, 56203000, 5620300, 19943000, 'SIMPLE', '2018-02-27 22:28:05.000', 3);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(10, 11, 10, 245, 605150000, 816952500, 81695250, 211802500, 'BANK', '2018-02-27 22:28:06.000', 2);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(11, 2, 1, 15, 375000, 600000, 60000, 225000, 'MOBILE', '2017-03-05 20:00:36.000', 2);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(12, 3, 5, 5, 175000, 253750, 25375, 78750, 'ATM', '2017-03-05 20:00:37.000', 2);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(13, 2, 4, 40, 1280000, 1920000, 192000, 640000, 'CARD', '2017-03-05 20:00:38.000', 3);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(14, 6, 2, 40, 1200000, 1920000, 192000, 720000, 'CARD', '2017-03-05 20:00:39.000', 2);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(15, 8, 5, 10, 350000, 507500, 50750, 157500, 'BANK', '2017-03-05 20:00:39.000', 2);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(16, 6, 9, 20, 27600000, 43608000, 4360800, 16008000, 'BANK', '2017-03-05 20:00:40.000', 3);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(17, 3, 1, 52, 1300000, 2080000, 208000, 780000, 'ATM', '2017-03-05 20:00:41.000', 3);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(18, 9, 3, 28, 756000, 1134000, 113400, 378000, 'CARD', '2017-03-05 20:00:41.000', 3);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(19, 6, 7, 37, 36260000, 56203000, 5620300, 19943000, 'SIMPLE', '2017-03-05 20:00:42.000', 2);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(20, 11, 5, 123, 4305000, 6242250, 624225, 1937250, 'ATM', '2018-03-05 20:00:43.000', 3);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(21, 2, 7, 67, 65660000, 101773000, 10177300, 36113000, 'MOBILE', '2016-03-05 20:00:44.000', 3);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(22, 3, 5, 26, 910000, 1319500, 131950, 409500, 'MOBILE', '2016-03-05 20:00:45.000', 2);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(23, 2, 8, 12, 28080000, 47736000, 4773600, 19656000, 'ATM', '2016-03-05 20:00:46.000', 3);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(24, 6, 10, 20, 49400000, 66690000, 6669000, 17290000, 'SIMPLE', '2016-03-05 20:00:47.000', 2);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(25, 8, 9, 13, 17940000, 28345200, 2834520, 10405200, 'ATM', '2016-03-05 20:00:48.000', 2);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(26, 6, 6, 142, 194540000, 272356000, 27235600, 77816000, 'BANK', '2016-03-05 20:00:48.000', 3);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(27, 3, 4, 75, 2400000, 3600000, 360000, 1200000, 'CARD', '2016-03-05 20:00:49.000', 3);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(28, 9, 10, 28, 69160000, 93366000, 9336600, 24206000, 'CARD', '2016-03-05 20:00:50.000', 2);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(29, 6, 7, 37, 36260000, 56203000, 5620300, 19943000, 'ATM', '2016-03-05 20:00:51.000', 3);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(30, 11, 10, 63, 155610000, 210073500, 21007350, 54463500, 'BANK', '2016-03-05 20:00:52.000', 2);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(31, 2, 4, 2, 64000, 96000, 9600, 32000, 'BANK', '2018-03-05 20:00:53.000', 3);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(32, 3, 5, 86, 3010000, 4364500, 436450, 1354500, 'ATM', '2018-03-05 20:00:54.000', 2);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(33, 2, 9, 62, 85560000, 135184800, 13518480, 49624800, 'BANK', '2017-03-05 20:00:55.000', 2);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(34, 6, 10, 10, 24700000, 33345000, 3334500, 8645000, 'MOBILE', '2018-03-05 20:00:56.000', 2);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(35, 9, 9, 8, 11040000, 17443200, 1744320, 6403200, 'BANK', '2018-03-05 20:00:56.000', 2);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(36, 6, 6, 252, 345240000, 483336000, 48333600, 138096000, 'BANK', '2017-03-05 20:00:57.000', 2);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(37, 3, 4, 83, 2656000, 3984000, 398400, 1328000, 'MOBILE', '2018-03-05 20:00:58.000', 3);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(38, 9, 10, 45, 111150000, 150052500, 15005250, 38902500, 'CARD', '2018-03-05 20:00:59.000', 2);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(39, 6, 8, 37, 86580000, 147186000, 14718600, 60606000, 'MOBILE', '2018-03-05 20:01:00.000', 3);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(40, 11, 10, 136, 335920000, 453492000, 45349200, 117572000, 'BANK', '2018-03-05 20:01:01.000', 2);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(41, 2, 7, 244, 239120000, 370636000, 37063600, 131516000, 'SIMPLE', '2018-03-05 20:01:03.000', 3);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(42, 3, 3, 23, 621000, 931500, 93150, 310500, 'MOBILE', '2016-03-05 20:01:03.000', 3);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(43, 2, 8, 9, 21060000, 35802000, 3580200, 14742000, 'ATM', '2018-03-05 20:01:04.000', 3);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(44, 6, 5, 22, 770000, 1116500, 111650, 346500, 'CARD', '2017-03-05 20:01:05.000', 2);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(45, 8, 9, 33, 45540000, 71953200, 7195320, 26413200, 'ATM', '2018-03-05 20:01:06.000', 2);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(46, 6, 6, 8, 10960000, 15344000, 1534400, 4384000, 'BANK', '2018-03-05 20:01:07.000', 2);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(47, 3, 4, 65, 2080000, 3120000, 312000, 1040000, 'SIMPLE', '2017-03-05 20:01:07.000', 3);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(48, 9, 3, 144, 3888000, 5832000, 583200, 1944000, 'CARD', '2018-03-05 20:01:08.000', 3);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(49, 6, 5, 37, 1295000, 1877750, 187775, 582750, 'SIMPLE', '2018-03-05 20:01:09.000', 2);
-INSERT INTO software_project.sale_order
-(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
-VALUES(50, 11, 6, 63, 86310000, 120834000, 12083400, 34524000, 'MOBILE', '2018-03-05 20:01:10.000', 2);
+(ord_no, u_no, sw_no, ord_quantity, ord_supply_price, ord_sell_price, ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no) VALUES
+(1, 2, 1, 25, 625000, 1000000, 100000, 375000, 'BANK', '2017-02-27 22:27:59.000', 2),
+(2, 3, 5, 25, 875000, 1268750, 126875, 393750, 'ATM', '2016-02-27 22:28:00.000', 2),
+(3, 2, 4, 20, 640000, 960000, 96000, 320000, 'SIMPLE', '2016-02-27 22:28:01.000', 3),
+(4, 6, 4, 20, 640000, 960000, 96000, 320000, 'MOBILE', '2017-02-27 22:28:01.000', 3),
+(5, 8, 9, 150, 207000000, 327060000, 32706000, 120060000, 'ATM', '2018-02-27 22:28:02.000', 2),
+(6, 6, 9, 30, 41400000, 65412000, 6541200, 24012000, 'SIMPLE', '2016-02-27 22:28:03.000', 2),
+(7, 3, 1, 52, 1300000, 2080000, 208000, 780000, 'SIMPLE', '2018-02-27 22:28:04.000', 2),
+(8, 9, 7, 28, 27440000, 42532000, 4253200, 15092000, 'MOBILE', '2018-02-27 22:28:04.000', 3),
+(9, 6, 7, 37, 36260000, 56203000, 5620300, 19943000, 'SIMPLE', '2018-02-27 22:28:05.000', 3),
+(10, 11, 10, 245, 605150000, 816952500, 81695250, 211802500, 'BANK', '2018-02-27 22:28:06.000', 2),
+(11, 2, 1, 15, 375000, 600000, 60000, 225000, 'MOBILE', '2017-03-05 20:00:36.000', 2),
+(12, 3, 5, 5, 175000, 253750, 25375, 78750, 'ATM', '2017-03-05 20:00:37.000', 2),
+(13, 2, 4, 40, 1280000, 1920000, 192000, 640000, 'CARD', '2017-03-05 20:00:38.000', 3),
+(14, 6, 2, 40, 1200000, 1920000, 192000, 720000, 'CARD', '2017-03-05 20:00:39.000', 2),
+(15, 8, 5, 10, 350000, 507500, 50750, 157500, 'BANK', '2017-03-05 20:00:39.000', 2),
+(16, 6, 9, 20, 27600000, 43608000, 4360800, 16008000, 'BANK', '2017-03-05 20:00:40.000', 3),
+(17, 3, 1, 52, 1300000, 2080000, 208000, 780000, 'ATM', '2017-03-05 20:00:41.000', 3),
+(18, 9, 3, 28, 756000, 1134000, 113400, 378000, 'CARD', '2017-03-05 20:00:41.000', 3),
+(19, 6, 7, 37, 36260000, 56203000, 5620300, 19943000, 'SIMPLE', '2017-03-05 20:00:42.000', 2),
+(20, 11, 5, 123, 4305000, 6242250, 624225, 1937250, 'ATM', '2018-03-05 20:00:43.000', 3),
+(21, 2, 7, 67, 65660000, 101773000, 10177300, 36113000, 'MOBILE', '2016-03-05 20:00:44.000', 3),
+(22, 3, 5, 26, 910000, 1319500, 131950, 409500, 'MOBILE', '2016-03-05 20:00:45.000', 2),
+(23, 2, 8, 12, 28080000, 47736000, 4773600, 19656000, 'ATM', '2016-03-05 20:00:46.000', 3),
+(24, 6, 10, 20, 49400000, 66690000, 6669000, 17290000, 'SIMPLE', '2016-03-05 20:00:47.000', 2),
+(25, 8, 9, 13, 17940000, 28345200, 2834520, 10405200, 'ATM', '2016-03-05 20:00:48.000', 2),
+(26, 6, 6, 142, 194540000, 272356000, 27235600, 77816000, 'BANK', '2016-03-05 20:00:48.000', 3),
+(27, 3, 4, 75, 2400000, 3600000, 360000, 1200000, 'CARD', '2016-03-05 20:00:49.000', 3),
+(28, 9, 10, 28, 69160000, 93366000, 9336600, 24206000, 'CARD', '2016-03-05 20:00:50.000', 2),
+(29, 6, 7, 37, 36260000, 56203000, 5620300, 19943000, 'ATM', '2016-03-05 20:00:51.000', 3),
+(30, 11, 10, 63, 155610000, 210073500, 21007350, 54463500, 'BANK', '2016-03-05 20:00:52.000', 2),
+(31, 2, 4, 2, 64000, 96000, 9600, 32000, 'BANK', '2018-03-05 20:00:53.000', 3),
+(32, 3, 5, 86, 3010000, 4364500, 436450, 1354500, 'ATM', '2018-03-05 20:00:54.000', 2),
+(33, 2, 9, 62, 85560000, 135184800, 13518480, 49624800, 'BANK', '2017-03-05 20:00:55.000', 2),
+(34, 6, 10, 10, 24700000, 33345000, 3334500, 8645000, 'MOBILE', '2018-03-05 20:00:56.000', 2),
+(35, 9, 9, 8, 11040000, 17443200, 1744320, 6403200, 'BANK', '2018-03-05 20:00:56.000', 2),
+(36, 6, 6, 252, 345240000, 483336000, 48333600, 138096000, 'BANK', '2017-03-05 20:00:57.000', 2),
+(37, 3, 4, 83, 2656000, 3984000, 398400, 1328000, 'MOBILE', '2018-03-05 20:00:58.000', 3),
+(38, 9, 10, 45, 111150000, 150052500, 15005250, 38902500, 'CARD', '2018-03-05 20:00:59.000', 2),
+(39, 6, 8, 37, 86580000, 147186000, 14718600, 60606000, 'MOBILE', '2018-03-05 20:01:00.000', 3),
+(40, 11, 10, 136, 335920000, 453492000, 45349200, 117572000, 'BANK', '2018-03-05 20:01:01.000', 2),
+(41, 2, 7, 244, 239120000, 370636000, 37063600, 131516000, 'SIMPLE', '2018-03-05 20:01:03.000', 3),
+(42, 3, 3, 23, 621000, 931500, 93150, 310500, 'MOBILE', '2016-03-05 20:01:03.000', 3),
+(43, 2, 8, 9, 21060000, 35802000, 3580200, 14742000, 'ATM', '2018-03-05 20:01:04.000', 3),
+(44, 6, 5, 22, 770000, 1116500, 111650, 346500, 'CARD', '2017-03-05 20:01:05.000', 2),
+(45, 8, 9, 33, 45540000, 71953200, 7195320, 26413200, 'ATM', '2018-03-05 20:01:06.000', 2),
+(46, 6, 6, 8, 10960000, 15344000, 1534400, 4384000, 'BANK', '2018-03-05 20:01:07.000', 2),
+(47, 3, 4, 65, 2080000, 3120000, 312000, 1040000, 'SIMPLE', '2017-03-05 20:01:07.000', 3),
+(48, 9, 3, 144, 3888000, 5832000, 583200, 1944000, 'CARD', '2018-03-05 20:01:08.000', 3),
+(49, 6, 5, 37, 1295000, 1877750, 187775, 582750, 'SIMPLE', '2018-03-05 20:01:09.000', 2),
+(50, 11, 6, 63, 86310000, 120834000, 12083400, 34524000, 'MOBILE', '2018-03-05 20:01:10.000', 2);
 
 
 select * from sale_order;
