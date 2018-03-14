@@ -47,11 +47,11 @@ public class CustomerOrderContent extends JPanel {
 					target.setIcon(new ImageIcon(DefineUtil.DEFAULT_IMG_PATH+"arrowup.png"));
 					pRegister.setBounds(0, 0, 1200, 338);
 					pSearch.setBounds(0, 338, 1200, 43);
-					pTable.setBounds(12, 381, 1164, 460);
+					pTable.setBounds(12, 381, 1164, 470);
 				} else {
 					pRegister.setBounds(0, 0, 1200,181);
 					pSearch.setBounds(0, 191, 1200, 43);
-					pTable.setBounds(12, 233, 1164, 621);
+					pTable.setBounds(12, 233, 1164, 618);
 					target.setIcon(new ImageIcon(DefineUtil.DEFAULT_IMG_PATH+"arrowdown.png"));
 					target.setText("소프트웨어 소개");
 				}
@@ -61,7 +61,7 @@ public class CustomerOrderContent extends JPanel {
 
 		pTable = new CustomerOrderTable();
 		pTable.loadTableDatas(SoftwareService.getInstance().selectSoftwareByAll());
-		pTable.setBounds(12, 224, 1164, 621);
+		pTable.setBounds(12, 224, 1164, 626);
 		pTable.setEventListener(new MouseAdapter() {
 
 			@Override

@@ -201,6 +201,7 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 		pOrderNum.setTfText("");
 		pSwName.setTfText("");
 		pPcName.removeItem();
+		tfIntroduce.setText("");
 	}
 
 	protected void actionPerformedBtnCancel(ActionEvent e) {
