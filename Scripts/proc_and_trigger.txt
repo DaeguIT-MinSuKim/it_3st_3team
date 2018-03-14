@@ -4,7 +4,7 @@ DROP PROCEDURE IF EXISTS software_project.proc_insert_sale_order ;
 
 DELIMITER $$
 $$
-CREATE DEFINER=`user_software`@`%` PROCEDURE `software_project`.`proc_insert_sale_order`(
+CREATE PROCEDURE `software_project`.`proc_insert_sale_order`(
 	in P_ORD_QUANTITY int,
 	in P_ORD_PAYMENT varchar(20),
 	in P_SW_NO int,
@@ -43,7 +43,7 @@ DROP PROCEDURE IF EXISTS software_project.proc_update_sale_order ;
 
 DELIMITER $$
 $$
-CREATE DEFINER=`user_software`@`%` PROCEDURE `software_project`.`proc_update_sale_order`(
+CREATE PROCEDURE `software_project`.`proc_update_sale_order`(
 	in P_ORD_NO int,
 	in P_ORD_QUANTITY int,
 	in P_ORD_PAYMENT varchar(20)
