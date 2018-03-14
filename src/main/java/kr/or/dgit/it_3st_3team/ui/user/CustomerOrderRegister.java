@@ -22,6 +22,7 @@ import kr.or.dgit.it_3st_3team.ui.component.LblCmbUserComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblSpinnerComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblTfComp;
 import kr.or.dgit.it_3st_3team.utils.DefineUtil;
+import javax.swing.JTextArea;
 
 @SuppressWarnings("serial")
 public class CustomerOrderRegister extends JPanel implements ActionListener {
@@ -39,6 +40,7 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 	private User user;
 	
 	private int swLimitValue;
+	private JTextArea tfIntroduce;
 
 	public CustomerOrderRegister(User user) {
 		this.user = user;
@@ -49,7 +51,7 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 		setLayout(null);
 
 		pOrderRegi = new JPanel();
-		pOrderRegi.setBounds(0, 0, 1184, 189);
+		pOrderRegi.setBounds(0, 0, 1184, 377);
 		add(pOrderRegi);
 		pOrderRegi.setLayout(null);
 
@@ -72,12 +74,12 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 
 		btnRegi = new JButton("주문");
 		btnRegi.addActionListener(this);
-		btnRegi.setBounds(868, 156, 97, 23);
+		btnRegi.setBounds(855, 141, 97, 23);
 		pOrderRegi.add(btnRegi);
 
 		btnCancel = new JButton("취소");
 		btnCancel.addActionListener(this);
-		btnCancel.setBounds(977, 156, 97, 23);
+		btnCancel.setBounds(961, 141, 97, 23);
 		pOrderRegi.add(btnCancel);
 
 		pOrderCount = new LblSpinnerComp("품목 수량");
@@ -93,10 +95,15 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 		lbldown.setIcon(new ImageIcon(DefineUtil.DEFAULT_IMG_PATH + "arrowdown.png"));
 		lbldown.setBounds(271, 145, 120, 15);
 		pOrderRegi.add(lbldown);
+		
+		tfIntroduce = new JTextArea();
+		tfIntroduce.setBounds(276, 189, 591, 139);
+		pOrderRegi.add(tfIntroduce);
 
 		pOrderNum = new LblTfComp("상품번호");
 		pOrderNum.setBounds(708, 129, 116, 21);
 	}
+	
 
 	public void setSWIntroName(String str) {
 		lbldown.setText(str);
@@ -111,7 +118,6 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 	public void setOrderData(Software software) {
 		pPcName.removeItem();
 		pPcName.addCmbItem(software.getUserNo());
-		// pOrderCount.setSpnValue(software.getOrdQuantity());
 		pSwName.setTfText(software.getSwName());
 		pOrderNum.setTfText(Integer.toString(software.getSwNo()));
 		if (software.getSwCoverImg() != null && !software.getSwCoverImg().equals("")) {
@@ -120,9 +126,7 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 			pImg.setImageIcon(DefineUtil.DEFAULT_USER_IMG);
 		}
 		swLimitValue = software.getSwQuantity();
-		//co.setTfIntro(software.getSwIntro());
-		
-		//tfIntroduce.setText(software.getSwIntro());
+		tfIntroduce.setText(software.getSwIntro());
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -206,5 +210,4 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 	public void setCo(CustomerOrderContent co) {
 		this.co = co;
 	}
-
 }
