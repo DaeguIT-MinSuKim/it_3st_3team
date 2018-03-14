@@ -141,7 +141,7 @@
 	</sql>
 	
 	<!-- 관리자 현황관리 Where 모든조건 -->
-	<sql id="whereSwNameSql">
+	<sql id="whereSearchSql">
 		<where>
 			<if test="sgName != null and sgName != ''">
 				sg_name = #{sgName}
@@ -157,13 +157,13 @@
 			</if>
 				<choose>
 					<when test="searchBy=='customer' and name != ''">
-						and us.u_name = #{name} and us.u_group = 'CUSTOMER'
+						and us.u_name like CONCAT(#{name}, "%") and us.u_group = 'CUSTOMER'
 					</when>
 					<when test="searchBy=='company' and name != ''">
-						and cu.u_name = #{name} and cu.u_group = 'COMPANY'
+						and cu.u_name like CONCAT(#{name}, "%") and cu.u_group = 'COMPANY'
 					</when>
 					<when test="searchBy=='softwarename' and name != ''">
-						and sw_name = #{name}
+						and sw_name like CONCAT(#{name}, "%")
 					</when>
 				</choose>
 		</where>
@@ -207,7 +207,7 @@
 	<!-- 총관리자 -->
 	<select id="selectSaleOrderWithAllBySearch" parameterType="Map" resultMap="selectSaleOrderWithAll">
 		<include refid="selectParameterSql"/>
-		<include refid="whereSwNameSql"/>
+		<include refid="whereSearchSql"/>
 		order by ord_datetime desc
 	</select>
 	

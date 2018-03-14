@@ -43,7 +43,7 @@ DROP PROCEDURE IF EXISTS software_project.proc_update_sale_order ;
 
 DELIMITER $$
 $$
-CREATE PROCEDURE software_project.proc_update_sale_order(
+CREATE DEFINER=`user_software`@`%` PROCEDURE `software_project`.`proc_update_sale_order`(
 	in P_ORD_NO int,
 	in P_ORD_QUANTITY int,
 	in P_ORD_PAYMENT varchar(20)
@@ -67,11 +67,11 @@ BEGIN
 	ord_sell_price = @ord_sell_price,
 	ord_tax = @ord_tax,
 	ord_sell_profit= @ord_sell_profit,
-	ord_payment = P_ORD_PAYMENT,
-	ord_datetime = now()
+	ord_payment = P_ORD_PAYMENT
 	where ord_no = P_ORD_NO;
 END $$
 DELIMITER ;
+
 
 
 DROP TRIGGER IF EXISTS software_project.tri_admin_before_delete_user_update ;
