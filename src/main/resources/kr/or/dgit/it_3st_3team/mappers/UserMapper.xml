@@ -110,6 +110,9 @@
 				<when test="adminId != null and adminId != ''">
 					a.adm_id = #{adminId}
 				</when>
+				<when test="userGroup != null and userGroup != ''">
+					u.u_group = #{userGroup}
+				</when>
 			</choose>
 			<include refid="whereDelSql" />
 		</where>

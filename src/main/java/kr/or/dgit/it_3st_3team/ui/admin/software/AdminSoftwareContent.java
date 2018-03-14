@@ -17,6 +17,7 @@ import kr.or.dgit.it_3st_3team.dto.User;
 import kr.or.dgit.it_3st_3team.service.SoftwareService;
 import kr.or.dgit.it_3st_3team.service.UserService;
 import kr.or.dgit.it_3st_3team.type.AdminGroupAuth;
+import kr.or.dgit.it_3st_3team.type.UserGroup;
 import kr.or.dgit.it_3st_3team.ui.table.AdminSoftwareTable;
 
 @SuppressWarnings("serial")
@@ -43,10 +44,13 @@ public class AdminSoftwareContent extends JPanel implements ActionListener {
 		pRegister.setBounds(0, 0, 1191, 245);
 		pRegister.setParent(this);
 		add(pRegister);
-		
+
 		Map<String, String> map = new HashMap<>();
-		if (admin != null && admin.getAdminGroup().getAgAuth() == AdminGroupAuth.SALESMAN) {
-			map.put("adminId", admin.getAdminId());
+		if (admin != null) {
+			map.put("userGroup", UserGroup.COMPANY.toString());
+			if (admin.getAdminGroup().getAgAuth() == AdminGroupAuth.SALESMAN) {
+				map.put("adminId", admin.getAdminId());
+			}
 		}
 		if (user != null) {
 			map.put("userId", user.getUserId());
