@@ -37,11 +37,10 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 	private LblCmbUserComp pPcName;
 	private JLabel lbldown;
 	private User user;
-
+	private CustomerOrderContent parent;
 	private int swLimitValue;
 	private JTextArea tfIntroduce;
 
-	private CustomerOrderContent parent;
 
 	public CustomerOrderRegister(User user) {
 		this.user = user;
@@ -103,10 +102,6 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 
 		pOrderNum = new LblTfComp("상품번호");
 		pOrderNum.setBounds(708, 129, 116, 21);
-	}
-
-	public void setParent(CustomerOrderContent parent) {
-		this.parent = parent;
 	}
 
 	public void setSWIntroName(String str) {
@@ -211,6 +206,14 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 
 	protected void actionPerformedBtnCancel(ActionEvent e) {
 		resetData();
+		parent.setClearSize(lbldown);
+		
 	}
+
+	public void setParent(CustomerOrderContent parent) {
+		this.parent = parent;
+	}
+	
+	
 
 }

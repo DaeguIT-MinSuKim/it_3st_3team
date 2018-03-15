@@ -115,7 +115,6 @@ public class AdminStatusContent extends JPanel implements ActionListener {
 			map.put("searchBy", searchBy);
 			
 			if (admin.getAdminGroup().getAgNo() == 1) {
-				
 				Admin ad = pSearch.getSelectedAdmin();
 
 				if (!ad.getAdminName().equals("관리자")) {
@@ -127,7 +126,7 @@ public class AdminStatusContent extends JPanel implements ActionListener {
 			} else {
 				// 영업
 				map.put("adminId", admin.getAdminId());
-				
+
 				pSalesAllListTable.loadTableDatas(soService.findSaleOrderWithAllBySearch(map));
 				add(pSalesAllListTable);
 			}
@@ -143,14 +142,14 @@ public class AdminStatusContent extends JPanel implements ActionListener {
 			if (user.getUserGroup().getValue() == 1) {
 				// 사용자 고객이라면
 				map.put("userId", user.getUserId());
-				
+
 				pCustomerListTable.loadTableDatas(soService.findSaleOrderWithAllBySearch(map));
 				add(pCustomerListTable);
 
 			} else {
 				// 사용자 공급회사라면
 				map.put("comId", user.getUserId());
-				
+
 				pCompanyListTable.loadTableDatas(soService.findSaleOrderWithAllBySearch(map));
 				add(pCompanyListTable);
 			}

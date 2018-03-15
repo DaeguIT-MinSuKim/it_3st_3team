@@ -81,7 +81,7 @@ public class AdminChartSearch extends JPanel implements ActionListener {
 		add(p2);
 		p2.setLayout(null);
 		
-		btnType = new JButton("연도별 품목 판매갯수현황");
+		btnType = new JButton("품목별 판매갯수현황");
 		btnType.addActionListener(this);
 		btnType.setBounds(150, 0, 200, 30);
 		p1.add(btnType);
@@ -92,7 +92,7 @@ public class AdminChartSearch extends JPanel implements ActionListener {
 			System.out.println(admin);
 			// 관리자
 			
-			btnPayment = new JButton("결제타입별 구매현황");
+			btnPayment = new JButton("결제타입별 사용현황");
 			btnPayment.addActionListener(this);
 			btnPayment.setBounds(365, 0, 200, 30);
 			p1.add(btnPayment);
@@ -113,6 +113,7 @@ public class AdminChartSearch extends JPanel implements ActionListener {
 			if (user.getUserGroup().getValue() == 1) {
 				// 고객
 				btnType.setBounds(10, 0, 200, 30);
+				btnType.setText("품목별 구매갯수현황");
 			} else {
 				// 공급회사
 				btnType.setBounds(10, 0, 200, 30);

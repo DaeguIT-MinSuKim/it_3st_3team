@@ -49,13 +49,10 @@ public class CustomerOrderContent extends JPanel {
 					pSearch.setBounds(0, 338, 1200, 43);
 					pTable.setBounds(12, 381, 1164, 470);
 				} else {
-					pRegister.setBounds(0, 0, 1200,181);
-					pSearch.setBounds(0, 191, 1200, 43);
-					pTable.setBounds(12, 233, 1164, 618);
-					target.setIcon(new ImageIcon(DefineUtil.DEFAULT_IMG_PATH+"arrowdown.png"));
-					target.setText("소프트웨어 소개");
+					setClearSize(target);
 				}
 			}
+
 		});
 		
 
@@ -96,7 +93,12 @@ public class CustomerOrderContent extends JPanel {
 		pTable.loadTableDatas(serachData);
 	}
 	
-
-	
+	public void setClearSize(JLabel target) {
+		pRegister.setBounds(0, 0, 1200,181);
+		pSearch.setBounds(0, 191, 1200, 43);
+		pTable.setBounds(12, 233, 1164, 618);
+		target.setIcon(new ImageIcon(DefineUtil.DEFAULT_IMG_PATH+"arrowdown.png"));
+		target.setText("소프트웨어 소개");
+	}
 	
 }
