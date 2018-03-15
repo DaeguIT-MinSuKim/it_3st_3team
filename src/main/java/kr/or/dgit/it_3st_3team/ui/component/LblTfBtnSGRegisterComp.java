@@ -15,24 +15,24 @@ import kr.or.dgit.it_3st_3team.ui.SoftwareGroupUI;
 public class LblTfBtnSGRegisterComp extends AbstractLblTfBtnComp {
 
 	private SoftwareGroupUI ui;
-	
+
 	/**
 	 * Create the panel.
 	 */
 	public LblTfBtnSGRegisterComp(String title, String btnName) {
 		super(title, btnName);
 	}
+
 	public String rgTf() {
 		String a = ui.getpSgTable().table.getValueAt(ui.getpSgTable().table.getSelectedRow(), 0).toString();
-		
+
 		return a;
 	}
 
 	@Override
 	protected void actionPerformedBtn(ActionEvent e) {
-		
+
 		String tfSgName = getTfText();
-		
 
 		if (e.getActionCommand() == "등록") {
 			if (tfSgName.equals("")) {
@@ -41,30 +41,25 @@ public class LblTfBtnSGRegisterComp extends AbstractLblTfBtnComp {
 			}
 
 			SoftwareGroupService.getInstance().insertSoftwareGroup(new SoftwareGroup(tfSgName));
-			
-		}else {
+
+		} else {
 			Map<String, String> map = new HashMap<>();
 			map.put("changeSgName", tfSgName);
-			map.put("oriSgName",rgTf());
-			
+			map.put("oriSgName", rgTf());
+
 			SoftwareGroupService.getInstance().updateSoftwareGroup(map);
 			setBtnTitle("등록");
 		}
-		
-		
+
 		List<SoftwareGroup> lists = SoftwareGroupService.getInstance().selectSoftwareGroupByAll();
 		ui.getpSgTable().loadTableDatas(lists);
 		setTfText("");
-		
+
 		SoftwareGroup[] sgDatas = lists.toArray(new SoftwareGroup[lists.size()]);
 		ui.getParentUi().getpSWsort().loadData(sgDatas);
-		
-		
-		
-		
-		
+
 	}
-	
+
 	public void setUI(SoftwareGroupUI ui) {
 		this.ui = ui;
 	}

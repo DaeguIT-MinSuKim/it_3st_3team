@@ -19,5 +19,5 @@ public class LblCmbSoftwareGroupComp extends AbstractLabelComboBoxComp<SoftwareG
 		cmbBox.setModel(dcbm);
 
 	}
-
+	
 }

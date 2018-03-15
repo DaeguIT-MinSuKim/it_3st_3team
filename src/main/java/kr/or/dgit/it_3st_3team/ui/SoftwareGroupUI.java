@@ -1,19 +1,13 @@
 package kr.or.dgit.it_3st_3team.ui;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
 
 import kr.or.dgit.it_3st_3team.service.SoftwareGroupService;
-import kr.or.dgit.it_3st_3team.service.SoftwareService;
 import kr.or.dgit.it_3st_3team.ui.admin.software.AdminSoftwareRegister;
-import kr.or.dgit.it_3st_3team.ui.component.AbstractLblTfBtnComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblTfBtnSGRegisterComp;
 import kr.or.dgit.it_3st_3team.ui.table.AdminSoftwareGroupTable;
 
@@ -41,7 +35,6 @@ public class SoftwareGroupUI extends JFrame {
 
 		pSgTable = new AdminSoftwareGroupTable();
 		pSgTable.setBackground(new Color(240, 240, 240));
-		pSgTable.loadTableDatas(SoftwareGroupService.getInstance().selectSoftwareGroupByAll());
 		pSgTable.setBounds(12, 50, 410, 201);
 		pSgTable.setUI(this);
 		contentPane.add(pSgTable);
@@ -52,19 +45,21 @@ public class SoftwareGroupUI extends JFrame {
 
 		contentPane.add(pInput);
 
+		reFreshList();
 	}
 	
+	public void reFreshList() {
+		pSgTable.loadTableDatas(SoftwareGroupService.getInstance().selectSoftwareGroupByAll());
+	}
 
 	public LblTfBtnSGRegisterComp getpInput() {
 		return pInput;
 	}
 
-	
-
 	public AdminSoftwareGroupTable getpSgTable() {
 		return pSgTable;
 	}
-	
+
 	public AdminSoftwareRegister getParentUi() {
 		return parentUi;
 	}
