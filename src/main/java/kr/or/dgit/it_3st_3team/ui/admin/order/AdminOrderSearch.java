@@ -53,7 +53,7 @@ public class AdminOrderSearch extends JPanel implements ActionListener {
 		SoftwareGroup[] sgDatas = lists.toArray(new SoftwareGroup[lists.size()]);
 
 		pSearchSoftwareSort = new CmbSoftwareGroupComp();
-		pSearchSoftwareSort.setBounds(12, 10, 120, 30);
+		pSearchSoftwareSort.setBounds(144, 10, 120, 30);
 		pSearchSoftwareSort.loadData(sgDatas);
 		pOrderSearch.add(pSearchSoftwareSort);
 
@@ -62,7 +62,8 @@ public class AdminOrderSearch extends JPanel implements ActionListener {
 		Admin[] adDatas = adli.toArray(new Admin[adli.size()]);
 
 		pAdmin = new CmbAdminComp();
-		pAdmin.setBounds(144, 10, 120, 30);
+		pAdmin.setBounds(12, 10, 120, 30);
+		
 
 		pAdmin.loadData(adDatas);
 		pOrderSearch.add(pAdmin);
