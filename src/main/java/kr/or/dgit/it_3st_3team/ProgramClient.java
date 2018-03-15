@@ -4,7 +4,7 @@ import java.awt.EventQueue;
 
 import kr.or.dgit.it_3st_3team.ui.LoginUI;
 
-public class Client {
+public class ProgramClient {
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
