@@ -100,7 +100,7 @@ public class AdminSoftwareGroupTable extends AbtractTableComp<SoftwareGroup> {
 		List<SoftwareGroup> lists = SoftwareGroupService.getInstance().selectSoftwareGroupByAll();
 		loadTableDatas(lists);
 
-		ui.reFreshList();
+		ui.reFreshSoftwareGroup();
 	}
 	
 	@Override

@@ -51,6 +51,10 @@ public class SoftwareGroupUI extends JFrame {
 	public void reFreshList() {
 		pSgTable.loadTableDatas(SoftwareGroupService.getInstance().selectSoftwareGroupByAll());
 	}
+	
+	public void reFreshSoftwareGroup() {
+		parentUi.reFreshSoftwareGroup();
+	}
 
 	public LblTfBtnSGRegisterComp getpInput() {
 		return pInput;
