@@ -79,6 +79,7 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 
 		List<SoftwareGroup> lists = SoftwareGroupService.getInstance().selectSoftwareGroupByAll();
 		SoftwareGroup[] sgDatas = lists.toArray(new SoftwareGroup[lists.size()]);
+		
 
 		pSWsort = new LblCmbSoftwareGroupComp("분류");
 		pSWsort.setBounds(556, 27, 183, 30);
