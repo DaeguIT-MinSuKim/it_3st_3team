@@ -49,8 +49,8 @@ INSERT INTO `software_group` VALUES
 select * from software_group;
 
 insert into software(sw_no, sg_no, sw_name, sw_quantity,sw_supply_price, sw_sell_price,sw_cover_img, pc_no,sw_intro,sw_del) values
-(1,1,'바람의 제국',100,29000,46000,NULL,1,NULL,'0'),
-(2,2,'국제무역',100,30000,48000,NULL,4,NULL,'0'),
+(1,1,'바람의 제국',1000,29000,46000,NULL,1,NULL,'0'),
+(2,2,'국제무역',450,30000,48000,NULL,4,NULL,'0'),
 (3,1,'FIFA2018',100,27000,40500,NULL,5,NULL,'0'),
 (4,1,'삼국지',100,32000,48000,NULL,7,'삼국지 게임입니다.','0'),
 (5,1,'아마겟돈',100,35000,50750,NULL,10,NULL,'1'),

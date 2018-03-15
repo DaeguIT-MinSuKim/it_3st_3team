@@ -32,10 +32,10 @@ BEGIN
 						ord_tax, ord_sell_profit, ord_payment, ord_datetime, adm_no)
 	values (p_ord_no, P_U_NO, P_SW_NO, P_ORD_QUANTITY, @ord_supply_price, @ord_sell_price, @ord_tax, @ord_sell_profit,
 			P_ORD_PAYMENT, now(), admin_no);
+
+	update software set sw_quantity = (sw_quantity - P_ORD_QUANTITY) where sw_no = P_SW_NO;
 END $$
 DELIMITER ;
-
-
 
 
 
