@@ -129,6 +129,7 @@ public class AdminStatusContent extends JPanel implements ActionListener {
 				map.put("startDate", startDate);
 				map.put("endDate", endDate);
 				map.put("name", name);
+				map.put("adminId", admin.getAdminId());
 
 				if (!swg.getSgName().equals("분류")) {
 					map.put("sgName", swg.getSgName());
@@ -157,6 +158,8 @@ public class AdminStatusContent extends JPanel implements ActionListener {
 				map.put("startDate", startDate);
 				map.put("endDate", endDate);
 				map.put("name", name);
+				map.put("userId", user.getUserId());
+				
 				if (!swg.getSgName().equals("분류")) {
 					map.put("sgName", swg.getSgName());
 				}
@@ -181,6 +184,7 @@ public class AdminStatusContent extends JPanel implements ActionListener {
 				map.put("startDate", startDate);
 				map.put("endDate", endDate);
 				map.put("name", name);
+				map.put("userId", user.getUserId());
 
 				if (!swg.getSgName().equals("분류")) {
 					map.put("sgName", swg.getSgName());
