@@ -71,10 +71,7 @@ public class AdminSoftwareGroupTable extends AbtractTableComp<SoftwareGroup> {
 
 			}
 			if (e.getActionCommand().equals("수정")) {
-				int result = JOptionPane.showConfirmDialog(null, "수정하시겠습니까?", "분류명 수정", JOptionPane.OK_CANCEL_OPTION);
-				if (result == 0) {
 					actionUpdateItem();
-				}
 
 			}
 		}
