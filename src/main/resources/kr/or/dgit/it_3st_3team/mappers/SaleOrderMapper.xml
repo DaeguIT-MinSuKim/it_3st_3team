@@ -155,17 +155,28 @@
 			<if test="endDate != null and endDate != ''">
 				and ord_datetime &lt;= CONCAT(#{endDate}," 23:59:59")
 			</if>
-				<choose>
-					<when test="searchBy=='customer' and name != ''">
-						and us.u_name like CONCAT(#{name}, "%") and us.u_group = 'CUSTOMER'
-					</when>
-					<when test="searchBy=='company' and name != ''">
-						and cu.u_name like CONCAT(#{name}, "%") and cu.u_group = 'COMPANY'
-					</when>
-					<when test="searchBy=='softwarename' and name != ''">
-						and sw_name like CONCAT(#{name}, "%")
-					</when>
-				</choose>
+			<choose>
+				<when test="searchBy=='customer' and name != ''">
+					and us.u_name like CONCAT(#{name}, "%") and us.u_group = 'CUSTOMER'
+				</when>
+				<when test="searchBy=='company' and name != ''">
+					and cu.u_name like CONCAT(#{name}, "%") and cu.u_group = 'COMPANY'
+				</when>
+				<when test="searchBy=='softwarename' and name != ''">
+					and sw_name like CONCAT(#{name}, "%")
+				</when>
+			</choose>
+			<choose>
+				<when test="userId != null and userId != ''">
+					and us.u_id = #{userId}
+				</when>
+				<when test="comId != null and comId != ''">
+					and cu.u_id = #{comId}
+				</when>
+				<when test="adminId != null and adminId != ''">
+					and ad.adm_id = #{adminId}
+				</when>
+			</choose>
 		</where>
 	</sql>
 	
@@ -208,6 +219,17 @@
 	<select id="selectSaleOrderWithAllBySearch" parameterType="Map" resultMap="selectSaleOrderWithAll">
 		<include refid="selectParameterSql"/>
 		<include refid="whereSearchSql"/>
+		<choose>
+				<when test="userId != null and userId != ''">
+					and us.u_id = #{userId}
+				</when>
+				<when test="comId != null and comId != ''">
+					and cu.u_id = #{comId}
+				</when>
+				<when test="adminId != null and adminId != ''">
+					and ad.adm_id = #{adminId}
+				</when>
+			</choose>
 		order by ord_datetime desc
 	</select>
 	

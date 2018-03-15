@@ -87,110 +87,69 @@ public class AdminStatusContent extends JPanel implements ActionListener {
 	}
 
 	private void callGetSelectedValues() {
+		SoftwareGroup swg = pSearch.getSelectedSoftwareGrp();
+		startDate = pSearch.getStartDate();
+		endDate = pSearch.getEndDate();
+		name = pSearch.getSearchText();
+		searchBy = pSearch.getSelectedString();
+		
+		Map<String, String> map = new HashMap<>();
+		map.put("startDate", startDate);
+		map.put("endDate", endDate);
+		map.put("name", name);
+		
+		if (!swg.getSgName().equals("분류")) {
+			map.put("sgName", swg.getSgName());
+		}
+		
 		if (admin != null) {
 			// 총관리자라면
-			if (admin.getAdminGroup().getAgNo() == 1) {
-				SoftwareGroup swg = pSearch.getSelectedSoftwareGrp();
-				startDate = pSearch.getStartDate();
-				endDate = pSearch.getEndDate();
-				name = pSearch.getSearchText();
-				searchBy = pSearch.getSelectedString();
-				Admin ad = pSearch.getSelectedAdmin();
 
-				Map<String, String> map = new HashMap<>();
-				map.put("startDate", startDate);
-				map.put("endDate", endDate);
-				map.put("name", name);
+			if (searchBy.equals("고객명")) {
+				searchBy = "customer";
+			} else if (searchBy.equals("공급회사명")) {
+				searchBy = "company";
+			} else if (searchBy.equals("품목명")) {
+				searchBy = "softwarename";
+			}
+			map.put("searchBy", searchBy);
+			
+			if (admin.getAdminGroup().getAgNo() == 1) {
+				Admin ad = pSearch.getSelectedAdmin();
 
 				if (!ad.getAdminName().equals("관리자")) {
 					map.put("adminName", ad.getAdminName());
 				}
-				if (!swg.getSgName().equals("분류")) {
-					map.put("sgName", swg.getSgName());
-				}
-				if (searchBy.equals("고객명")) {
-					searchBy = "customer";
-				} else if (searchBy.equals("공급회사명")) {
-					searchBy = "company";
-				} else if (searchBy.equals("품목명")) {
-					searchBy = "softwarename";
-				}
-				map.put("searchBy", searchBy);
+				
 				pAllListTable.loadTableDatas(soService.findSaleOrderWithAllBySearch(map));
 				add(pAllListTable);
 			} else {
-				swg = pSearch.getSelectedSoftwareGrp();
-				startDate = pSearch.getStartDate();
-				endDate = pSearch.getEndDate();
-				name = pSearch.getSearchText();
-				searchBy = pSearch.getSelectedString();
+				// 영업
+				map.put("adminId", admin.getAdminId());
 
-				Map<String, String> map = new HashMap<>();
-				map.put("startDate", startDate);
-				map.put("endDate", endDate);
-				map.put("name", name);
-
-				if (!swg.getSgName().equals("분류")) {
-					map.put("sgName", swg.getSgName());
-				}
-				if (searchBy.equals("고객명")) {
-					searchBy = "customer";
-				} else if (searchBy.equals("공급회사명")) {
-					searchBy = "company";
-				} else if (searchBy.equals("품목명")) {
-					searchBy = "softwarename";
-				}
-				map.put("searchBy", searchBy);
 				pSalesAllListTable.loadTableDatas(soService.findSaleOrderWithAllBySearch(map));
 				add(pSalesAllListTable);
 			}
 		} else {
-			// 사용자 고객이라면
-			if (user.getUserGroup().getValue() == 1) {
-				swg = pSearch.getSelectedSoftwareGrp();
-				startDate = pSearch.getStartDate();
-				endDate = pSearch.getEndDate();
-				name = pSearch.getSearchText();
-				searchBy = pSearch.getSelectedString();
 
-				Map<String, String> map = new HashMap<>();
-				map.put("startDate", startDate);
-				map.put("endDate", endDate);
-				map.put("name", name);
-				if (!swg.getSgName().equals("분류")) {
-					map.put("sgName", swg.getSgName());
-				}
-				if (searchBy.equals("공급회사명")) {
-					searchBy = "company";
-				} else if (searchBy.equals("품목명")) {
-					searchBy = "softwarename";
-				}
-				map.put("searchBy", searchBy);
+			if (searchBy.equals("고객명")) {
+				searchBy = "customer";
+			} else if (searchBy.equals("품목명")) {
+				searchBy = "softwarename";
+			}
+			map.put("searchBy", searchBy);
+			
+			if (user.getUserGroup().getValue() == 1) {
+				// 사용자 고객이라면
+				map.put("userId", user.getUserId());
+
 				pCustomerListTable.loadTableDatas(soService.findSaleOrderWithAllBySearch(map));
 				add(pCustomerListTable);
 
 			} else {
 				// 사용자 공급회사라면
-				swg = pSearch.getSelectedSoftwareGrp();
-				startDate = pSearch.getStartDate();
-				endDate = pSearch.getEndDate();
-				name = pSearch.getSearchText();
-				searchBy = pSearch.getSelectedString();
+				map.put("comId", user.getUserId());
 
-				Map<String, String> map = new HashMap<>();
-				map.put("startDate", startDate);
-				map.put("endDate", endDate);
-				map.put("name", name);
-
-				if (!swg.getSgName().equals("분류")) {
-					map.put("sgName", swg.getSgName());
-				}
-				if (searchBy.equals("고객명")) {
-					searchBy = "customer";
-				} else if (searchBy.equals("품목명")) {
-					searchBy = "softwarename";
-				}
-				map.put("searchBy", searchBy);
 				pCompanyListTable.loadTableDatas(soService.findSaleOrderWithAllBySearch(map));
 				add(pCompanyListTable);
 			}
