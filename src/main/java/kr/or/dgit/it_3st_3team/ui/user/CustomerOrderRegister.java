@@ -38,9 +38,9 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 	private JLabel lbldown;
 	private User user;
 	private CustomerOrderContent parent;
-	
 	private int swLimitValue;
 	private JTextArea tfIntroduce;
+
 
 	public CustomerOrderRegister(User user) {
 		this.user = user;
@@ -95,7 +95,7 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 		lbldown.setIcon(new ImageIcon(DefineUtil.DEFAULT_IMG_PATH + "arrowdown.png"));
 		lbldown.setBounds(271, 145, 120, 15);
 		pOrderRegi.add(lbldown);
-		
+
 		tfIntroduce = new JTextArea();
 		tfIntroduce.setBounds(276, 189, 591, 139);
 		pOrderRegi.add(tfIntroduce);
@@ -103,7 +103,6 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 		pOrderNum = new LblTfComp("상품번호");
 		pOrderNum.setBounds(708, 129, 116, 21);
 	}
-	
 
 	public void setSWIntroName(String str) {
 		lbldown.setText(str);
@@ -142,22 +141,22 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 
 		String swNoText = pOrderNum.getTfText().trim();
 		String swName = pSwName.getTfText().trim();
-		
+
 		User company = (User) pPcName.getCmbSelectItem();
-		
+
 		String payment = (String) pPayment.getCmbSelectItem();
 		int orderCount = pOrderCount.getSpnValue();
-		
+
 		if (swName.isEmpty() || company == null || swNoText.isEmpty()) {
 			JOptionPane.showMessageDialog(null, "주문할 상품을 선택해주세요.");
 			return;
 		}
-		
+
 		if (orderCount < 1 || swLimitValue < orderCount) {
 			JOptionPane.showMessageDialog(null, String.format("상품 주문 수량은 1개 이상 %s개 이하여야 합니다.", swLimitValue));
 			return;
 		}
-		
+
 		SaleOrder inputOrder = new SaleOrder();
 		// 결제수단
 		if (payment.equals("계좌이체")) {
@@ -171,7 +170,7 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 		} else if (payment.equals("간편결제")) {
 			inputOrder.setOrdPayment(Payment.SIMPLE);
 		}
-		
+
 		inputOrder.setOrdQuantity(orderCount);// 수량
 		inputOrder.setSoftware(new Software(Integer.parseInt(swNoText)));
 		inputOrder.setUser(user); // 고객
@@ -192,6 +191,7 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 
 		JOptionPane.showMessageDialog(null, "선택한 소프트웨어를 주문하였습니다.");
 
+		parent.reFreshList();
 		resetData();
 	}
 
