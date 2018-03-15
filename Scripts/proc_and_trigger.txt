@@ -16,7 +16,7 @@ BEGIN
 	DECLARE sw_sell_price int;
 	DECLARE admin_no int;
 	
-	select MAX(ord_no)+1 into p_ord_no
+	select ifnull(MAX(ord_no)+1, 1) into p_ord_no
 	from sale_order ;
 	
 	select s.sw_supply_price, s.sw_sell_price, u.adm_no into sw_supply_price, sw_sell_price, admin_no 

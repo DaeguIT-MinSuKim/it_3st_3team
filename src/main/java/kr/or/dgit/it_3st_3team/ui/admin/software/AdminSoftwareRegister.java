@@ -99,17 +99,17 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 		pRegister.add(btnRegister);
 
 		pCount = new LblSpinnerComp("수량");
-		pCount.setIntSpinner(1, 1, 99999, 1);
+		pCount.setIntSpinner(1, 1, 99999999, 1);
 		pCount.setBounds(556, 120, 126, 30);
 		pRegister.add(pCount);
 
 		pSalePrice = new LblSpinnerComp("판매가격");
-		pSalePrice.setIntSpinner(0, 0, 9999999, 1000);
+		pSalePrice.setIntSpinner(0, 0, 99999999, 1000);
 		pSalePrice.setBounds(238, 73, 243, 30);
 		pRegister.add(pSalePrice);
 
 		pSupplyPrice = new LblSpinnerComp("공급가격");
-		pSupplyPrice.setIntSpinner(0, 0, 9999999, 1000);
+		pSupplyPrice.setIntSpinner(0, 0, 99999999, 1000);
 		pSupplyPrice.setBounds(238, 120, 243, 30);
 		pRegister.add(pSupplyPrice);
 		
