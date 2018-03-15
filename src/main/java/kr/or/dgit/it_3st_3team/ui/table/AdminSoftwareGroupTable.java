@@ -17,14 +17,13 @@ import org.apache.ibatis.exceptions.PersistenceException;
 import kr.or.dgit.it_3st_3team.dto.SoftwareGroup;
 import kr.or.dgit.it_3st_3team.service.SoftwareGroupService;
 import kr.or.dgit.it_3st_3team.ui.SoftwareGroupUI;
-import kr.or.dgit.it_3st_3team.ui.component.AbstractLblTfBtnComp;
 import kr.or.dgit.it_3st_3team.ui.component.AbtractTableComp;
 
 @SuppressWarnings("serial")
 public class AdminSoftwareGroupTable extends AbtractTableComp<SoftwareGroup> {
 	private SoftwareGroupUI ui;
+	private Object[][] rows;
 
-	
 	public AdminSoftwareGroupTable() {
 		initComponents();
 	}
@@ -56,58 +55,54 @@ public class AdminSoftwareGroupTable extends AbtractTableComp<SoftwareGroup> {
 
 	ActionListener menuListener = new ActionListener() {
 
-		private String sg;
-
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getActionCommand().equals("삭제")) {
 				int result = JOptionPane.showConfirmDialog(null, "삭제하시겠습니까?", "분류삭제", JOptionPane.OK_CANCEL_OPTION);
-				if(result==0) {
+				if (result == 0) {
 					try {
 						actionDeleteItem();
 					} catch (PersistenceException e2) {
 						JOptionPane.showMessageDialog(null, "기본 설정은 지울 수 없습니다.", "경고", JOptionPane.ERROR_MESSAGE);
 						return;
 					}
-					
+
 				}
-				
+
 			}
 			if (e.getActionCommand().equals("수정")) {
 				int result = JOptionPane.showConfirmDialog(null, "수정하시겠습니까?", "분류명 수정", JOptionPane.OK_CANCEL_OPTION);
-				if(result==0) {
+				if (result == 0) {
 					actionUpdateItem();
 				}
-				
 
 			}
 		}
 
-		private void actionUpdateItem() {
-			ui.getpInput().setBtnTitle("수정");
-			sg = table.getValueAt(table.getSelectedRow(), 0).toString();
-			ui.getpInput().setTfText(sg);
-			
-			
-			
-		}
-
-		private void actionDeleteItem() {
-			
-			String sg = table.getValueAt(table.getSelectedRow(), 0).toString();
-			
-			SoftwareGroupService.getInstance().deleteSoftwareGroup(new SoftwareGroup(sg));
-
-			List<SoftwareGroup> lists = SoftwareGroupService.getInstance().selectSoftwareGroupByAll();
-			loadTableDatas(lists);
-
-		}
-
 		
+
 	};
 
-	private Object[][] rows;
 
+	private void actionUpdateItem() {
+		ui.getpInput().setBtnTitle("수정");
+		String sg = table.getValueAt(table.getSelectedRow(), 0).toString();
+		ui.getpInput().setTfText(sg);
+
+	}
+
+	private void actionDeleteItem() {
+
+		String sg = table.getValueAt(table.getSelectedRow(), 0).toString();
+
+		SoftwareGroupService.getInstance().deleteSoftwareGroup(new SoftwareGroup(sg));
+
+		List<SoftwareGroup> lists = SoftwareGroupService.getInstance().selectSoftwareGroupByAll();
+		loadTableDatas(lists);
+
+		ui.reFreshSoftwareGroup();
+	}
+	
 	@Override
 	public void setTableAlignWidth() {
 		setTableCellAlign(SwingConstants.CENTER, 0);

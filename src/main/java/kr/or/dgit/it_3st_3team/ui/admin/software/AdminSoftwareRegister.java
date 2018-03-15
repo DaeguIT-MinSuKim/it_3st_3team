@@ -16,8 +16,6 @@ import kr.or.dgit.it_3st_3team.dto.SoftwareGroup;
 import kr.or.dgit.it_3st_3team.dto.User;
 import kr.or.dgit.it_3st_3team.service.SoftwareGroupService;
 import kr.or.dgit.it_3st_3team.service.SoftwareService;
-import kr.or.dgit.it_3st_3team.service.UserService;
-import kr.or.dgit.it_3st_3team.type.UserGroup;
 import kr.or.dgit.it_3st_3team.ui.SoftwareGroupUI;
 import kr.or.dgit.it_3st_3team.ui.component.ImageComp;
 import kr.or.dgit.it_3st_3team.ui.component.LblCmbSoftwareGroupComp;
@@ -77,14 +75,11 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 	//	pCompany.loadData(usDatas);
 		pRegister.add(pCompany);
 
-		List<SoftwareGroup> lists = SoftwareGroupService.getInstance().selectSoftwareGroupByAll();
-		SoftwareGroup[] sgDatas = lists.toArray(new SoftwareGroup[lists.size()]);
-		
 
 		pSWsort = new LblCmbSoftwareGroupComp("분류");
 		pSWsort.setBounds(556, 27, 183, 30);
-		pSWsort.loadData(sgDatas);
 		pRegister.add(pSWsort);
+		reFreshSoftwareGroup();
 
 		pSwRegisterImg = new ImageComp();
 		pSwRegisterImg.setBounds(25, 0, 183, 214);
@@ -133,6 +128,13 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 
 	}
 
+	public void reFreshSoftwareGroup() {
+		List<SoftwareGroup> lists = SoftwareGroupService.getInstance().selectSoftwareGroupByAll();
+		SoftwareGroup[] sgDatas = lists.toArray(new SoftwareGroup[lists.size()]);
+		
+		pSWsort.loadData(sgDatas);
+	}
+	
 	public void loadDataByUserType(User[] usDatas) {
 		pCompany.loadData(usDatas);
 	}
