@@ -111,17 +111,17 @@ public class AdminSoftwareContent extends JPanel implements ActionListener {
 
 	private void actionPerformedBtnDeleteMenu(ActionEvent e) {
 		int no = pTable.getSelectedNo();
-
-		int res = JOptionPane.showConfirmDialog(null, "사용자를 삭제하시겠습니까?", "사용자 삭제", JOptionPane.OK_CANCEL_OPTION);
+		
+		int res = JOptionPane.showConfirmDialog(null, "소프트웨어를 삭제하시겠습니까?", "소프트웨어 삭제", JOptionPane.OK_CANCEL_OPTION);
 		if (res == JOptionPane.OK_OPTION) {
 			int result = SoftwareService.getInstance().deleteSoftwareColumn(new Software(no));
 			if (result != 1) {
-				JOptionPane.showMessageDialog(null, "사용자를 삭제하지 못했습니다.");
+				JOptionPane.showMessageDialog(null, "소프트웨어를 삭제하지 못했습니다.");
 				return;
 			}
 			reFreshList();
 			pRegister.resetData();
-			JOptionPane.showMessageDialog(null, "사용자를 삭제하였습니다.");
+			JOptionPane.showMessageDialog(null, "소프트웨어를 삭제하였습니다.");
 		}
 	}
 

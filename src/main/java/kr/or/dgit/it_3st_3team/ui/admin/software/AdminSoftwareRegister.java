@@ -192,7 +192,7 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 		 */
 
 		String commandType = e.getActionCommand();
-		String commandMessage = String.format("사용자 %s", commandType);
+		String commandMessage = String.format("소프트웨어 %s", commandType);
 		int result = JOptionPane.showConfirmDialog(null, String.format("%s을 하시겠습니까?", commandMessage), commandMessage,
 				JOptionPane.YES_NO_OPTION);
 		if (result == JOptionPane.CANCEL_OPTION || result == JOptionPane.NO_OPTION) {
@@ -241,7 +241,7 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 	}
 
 	public void resetData() {
-		pSwRegisterImg.setImageIcon("nobody.png");
+		pSwRegisterImg.setImageIcon(DefineUtil.DEFAULT_SOFTWARE_IMG);
 		pCompany.setCmbSelectIndex(0);
 		pSalePrice.setSpnValue(0);
 		pCount.setSpnValue(1);
@@ -250,7 +250,7 @@ public class AdminSoftwareRegister extends JPanel implements ActionListener {
 		pSWsort.setCmbSelectIndex(0);
 		upNum.setText("");
 		tfIntroduce.setText("");
-
+		btnRegister.setText("등록");
 	}
 
 	public void setParent(AdminSoftwareContent ac) {
