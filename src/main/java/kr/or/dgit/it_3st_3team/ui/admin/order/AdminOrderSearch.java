@@ -17,6 +17,7 @@ import kr.or.dgit.it_3st_3team.dto.SoftwareGroup;
 import kr.or.dgit.it_3st_3team.service.AdminService;
 import kr.or.dgit.it_3st_3team.service.SaleOrderService;
 import kr.or.dgit.it_3st_3team.service.SoftwareGroupService;
+import kr.or.dgit.it_3st_3team.type.AdminGroupAuth;
 import kr.or.dgit.it_3st_3team.ui.component.CmbAdminComp;
 import kr.or.dgit.it_3st_3team.ui.component.CmbSoftwareGroupComp;
 import kr.or.dgit.it_3st_3team.ui.component.CmbStringComp;
@@ -31,9 +32,10 @@ public class AdminOrderSearch extends JPanel implements ActionListener {
 	private CmbStringComp pSortUserNameSWName;
 	private JButton btnSearch;
 	private AdminOrderContent parent;
+	private Admin admin;
 
-	public AdminOrderSearch() {
-
+	public AdminOrderSearch(Admin admin) {
+		this.admin = admin;
 		initComponents();
 	}
 
@@ -64,6 +66,10 @@ public class AdminOrderSearch extends JPanel implements ActionListener {
 
 		pAdmin.loadData(adDatas);
 		pOrderSearch.add(pAdmin);
+		
+		if (admin.getAdminGroup().getAgAuth() == AdminGroupAuth.SALESMAN) {
+			pAdmin.setVisible(false);
+		}
 
 		pDate = new StartAndEndDate();
 		pDate.setBackground(new Color(240, 240, 240));
@@ -95,15 +101,19 @@ public class AdminOrderSearch extends JPanel implements ActionListener {
 
 	protected void actionPerformedBtnSearch(ActionEvent e) {
 		SoftwareGroup swg = (SoftwareGroup) pSearchSoftwareSort.getCmbItem();
-		Admin ad = (Admin) pAdmin.getCmbItem();
 		String searchBy = (String) pSortUserNameSWName.getCmbItem();
 
 		Map<String, String> map = new HashMap<>();
 		if (!swg.getSgName().equals("분류")) {
 			map.put("sgName", swg.getSgName());
 		}
-		if (!ad.getAdminName().equals("관리자")) {
-			map.put("adminName", ad.getAdminName());
+		if (pAdmin.isVisible()) {
+			Admin ad = (Admin) pAdmin.getCmbItem();
+			if (!ad.getAdminName().equals("관리자")) {
+				map.put("adminName", ad.getAdminName());
+			}
+		} else {
+			map.put("adminName", admin.getAdminName());
 		}
 		if (searchBy.equals("고객명")) {
 			searchBy = "customer";

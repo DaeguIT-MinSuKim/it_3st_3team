@@ -44,7 +44,7 @@ public class AdminOrderContent extends JPanel implements ActionListener {
 		add(pOrderRegi);
 		pOrderRegi.setLayout(null);
 
-		pOrderSearch = new AdminOrderSearch();
+		pOrderSearch = new AdminOrderSearch(admin);
 		pOrderSearch.setBackground(new Color(240, 240, 240));
 		pOrderSearch.setBounds(0, 180, 1187, 50);
 		pOrderSearch.setParent(this);
