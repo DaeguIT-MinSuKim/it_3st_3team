@@ -37,6 +37,7 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 	private LblCmbUserComp pPcName;
 	private JLabel lbldown;
 	private User user;
+	private CustomerOrderContent parent;
 	
 	private int swLimitValue;
 	private JTextArea tfIntroduce;
@@ -205,6 +206,14 @@ public class CustomerOrderRegister extends JPanel implements ActionListener {
 
 	protected void actionPerformedBtnCancel(ActionEvent e) {
 		resetData();
+		parent.setClearSize(lbldown);
+		
 	}
+
+	public void setParent(CustomerOrderContent parent) {
+		this.parent = parent;
+	}
+	
+	
 
 }
