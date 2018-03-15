@@ -43,12 +43,16 @@ public class LblTfBtnSGRegisterComp extends AbstractLblTfBtnComp {
 			SoftwareGroupService.getInstance().insertSoftwareGroup(new SoftwareGroup(tfSgName));
 
 		} else {
+			int result = JOptionPane.showConfirmDialog(null, "수정하시겠습니까?", "분류명 수정", JOptionPane.OK_CANCEL_OPTION);
+			if (result == 0) {
+			
 			Map<String, String> map = new HashMap<>();
 			map.put("changeSgName", tfSgName);
 			map.put("oriSgName", rgTf());
-
+				
 			SoftwareGroupService.getInstance().updateSoftwareGroup(map);
 			setBtnTitle("등록");
+			}
 		}
 
 		List<SoftwareGroup> lists = SoftwareGroupService.getInstance().selectSoftwareGroupByAll();

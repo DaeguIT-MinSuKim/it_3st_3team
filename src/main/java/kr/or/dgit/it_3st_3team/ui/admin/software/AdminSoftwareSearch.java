@@ -56,6 +56,7 @@ public class AdminSoftwareSearch extends JPanel implements ActionListener {
 		btnSearch.addActionListener(this);
 		pSWSearch.add(btnSearch);
 	}
+	
 
 	public String getTfSearch() {
 		return tfSearch.getText().trim();

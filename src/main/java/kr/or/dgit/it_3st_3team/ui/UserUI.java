@@ -131,6 +131,7 @@ public class UserUI extends JFrame implements ActionListener {
 	}
 	private void displayAdminSoftware() {
 		AdminSoftwareContent pMain = new AdminSoftwareContent(user);
+		
 		pMain.setBounds(0, 0, 1186, 841);
 		changeMainPanel(pMain);
 	}
