@@ -79,13 +79,13 @@
 		<where>
 			<choose>
 				<when test="searchBy == 'company'">
-					p.u_name = #{searchText}
+					p.u_name LIKE CONCAT(#{searchText}, "%")
 				</when>
 				<when test="searchBy == 'swName'">
-					s.sw_name = #{searchText}
+					s.sw_name LIKE CONCAT(#{searchText}, "%")
 				</when>
 				<when test="searchBy == 'swGroup'">
-					g.sg_name = #{searchText}
+					g.sg_name LIKE CONCAT(#{searchText}, "%")
 				</when>
 			</choose>
 		</where>

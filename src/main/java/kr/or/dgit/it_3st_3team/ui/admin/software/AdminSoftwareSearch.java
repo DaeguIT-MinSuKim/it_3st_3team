@@ -27,8 +27,8 @@ public class AdminSoftwareSearch extends JPanel implements ActionListener {
 	private Admin admin;
 	private User user;
 
-	public AdminSoftwareSearch() {
-
+	public AdminSoftwareSearch(Object who) {
+		setUser(who);
 		initComponents();
 	}
 
@@ -42,7 +42,12 @@ public class AdminSoftwareSearch extends JPanel implements ActionListener {
 
 		pCmbSearch = new CmbStringComp(); // 분류별,품목명
 		pCmbSearch.setBounds(148, 9, 137, 25);
-		String[] st = { "공급회사명", "품목명", "분류" };
+		String[] st = null;
+		if (admin != null) {
+			st = new String[] { "공급회사명", "품목명", "분류" };
+		} else {
+			st = new String[] { "품목명", "분류" };
+		}
 		pCmbSearch.loadData(st);
 		pSWSearch.add(pCmbSearch);
 
