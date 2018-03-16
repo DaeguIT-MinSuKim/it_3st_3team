@@ -59,7 +59,12 @@ public class AdminSoftwareContent extends JPanel implements ActionListener {
 		User[] usDatas = uslist.toArray(new User[uslist.size()]);
 		pRegister.loadDataByUserType(usDatas);
 
-		pSearch = new AdminSoftwareSearch();
+		if (admin != null) {
+			pSearch = new AdminSoftwareSearch(admin);
+		} else {
+			pSearch = new AdminSoftwareSearch(user);
+		}
+		
 		pSearch.setBounds(0, 245, 1191, 50);
 		pSearch.setParent(this);
 		add(pSearch);

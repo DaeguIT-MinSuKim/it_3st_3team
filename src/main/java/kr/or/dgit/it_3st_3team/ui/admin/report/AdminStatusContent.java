@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -101,19 +102,22 @@ public class AdminStatusContent extends JPanel implements ActionListener {
 		if (!swg.getSgName().equals("분류")) {
 			map.put("sgName", swg.getSgName());
 		}
+		String searchByText = null;
+		if (searchBy.equals("고객명")) {
+			searchByText = "customer";
+		} else if (searchBy.equals("공급회사명")) {
+			searchByText = "company";
+		} else if (searchBy.equals("품목명")) {
+			searchByText = "softwarename";
+		}
+		map.put("searchBy", searchByText);
 		
 		if (admin != null) {
 			// 총관리자라면
 
-			if (searchBy.equals("고객명")) {
-				searchBy = "customer";
-			} else if (searchBy.equals("공급회사명")) {
-				searchBy = "company";
-			} else if (searchBy.equals("품목명")) {
-				searchBy = "softwarename";
+			for (Entry<String, String> e : map.entrySet()) {
+				System.out.println(e.getKey() + " " + e.getValue());
 			}
-			map.put("searchBy", searchBy);
-			
 			if (admin.getAdminGroup().getAgNo() == 1) {
 				Admin ad = pSearch.getSelectedAdmin();
 
@@ -131,14 +135,6 @@ public class AdminStatusContent extends JPanel implements ActionListener {
 				add(pSalesAllListTable);
 			}
 		} else {
-
-			if (searchBy.equals("고객명")) {
-				searchBy = "customer";
-			} else if (searchBy.equals("품목명")) {
-				searchBy = "softwarename";
-			}
-			map.put("searchBy", searchBy);
-			
 			if (user.getUserGroup().getValue() == 1) {
 				// 사용자 고객이라면
 				map.put("userId", user.getUserId());
