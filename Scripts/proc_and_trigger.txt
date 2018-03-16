@@ -1,5 +1,4 @@
 
-
 DROP PROCEDURE IF EXISTS software_project.proc_insert_sale_order ;
 
 DELIMITER $$
@@ -36,6 +35,7 @@ BEGIN
 	update software set sw_quantity = (sw_quantity - P_ORD_QUANTITY) where sw_no = P_SW_NO;
 END $$
 DELIMITER ;
+
 
 
 

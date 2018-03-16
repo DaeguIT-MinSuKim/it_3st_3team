@@ -148,15 +148,15 @@ public class AdminChartBySwgTypeFullYear extends JPanel  {
 		
 		if (admin != null) {
 			// 관리자
-			axisLabel = "판매갯수";
+			axisLabel = "판매개수";
 			chartTitle = "소프트웨어 분류별 판매현황";
 		} else {
 			// 사용자
 			if (user.getUserGroup().getValue() == 1) {
-				axisLabel = "구매갯수";
+				axisLabel = "구매개수";
 				chartTitle = "소프트웨어 분류별 구매현황";
 			} else {
-				axisLabel = "판매갯수";
+				axisLabel = "판매개수";
 				chartTitle = "소프트웨어 분류별 판매현황";
 			}
 		}

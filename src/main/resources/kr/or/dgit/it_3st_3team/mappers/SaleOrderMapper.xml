@@ -55,10 +55,6 @@
 	from (select sw.*, sg_name from software sw right join software_group sg  on sg.sg_no=sw.sg_no) as t
     left join (select * from sale_order where ord_datetime like CONCAT(#{date},"%")) as so on so.sw_no = t.sw_no
 	group by t.sg_name
-	union
-	select '총합', sum(ord_quantity)
-	from sale_order so join admin ad on so.adm_no = ad.adm_no
-	where so.ord_datetime like CONCAT(#{date},"%")
 	</select>
 	
 	<!-- 영업사원차트 품목별 갯수 조건 -->
@@ -67,11 +63,6 @@
 	from (select sw.*, sg_name from software sw right join software_group sg  on sg.sg_no=sw.sg_no) as t
     left join (select * from sale_order where ord_datetime like CONCAT(#{date},"%") and adm_no=#{adminNo}) as so on so.sw_no = t.sw_no
 	group by t.sg_name
-	union
-	select '총합', sum(ord_quantity)
-	from sale_order 
-	where adm_no=#{adminNo}
-    and ord_datetime like CONCAT(#{date},"%")
 	</select>
 	
 	<!-- 고객차트 품목별 갯수 조건 -->
@@ -80,11 +71,6 @@
 	from (select sw.*, sg_name from software sw right join software_group sg  on sg.sg_no=sw.sg_no) as t
     left join (select * from sale_order where ord_datetime like CONCAT(#{date},"%") and u_no=#{userNo}) as so on so.sw_no = t.sw_no
 	group by t.sg_name
-	union
-	select '총합', sum(ord_quantity)
-	from sale_order 
-	where u_no=#{userNo}
-    and ord_datetime like CONCAT(#{date},"%")
 	</select>
 	
 	<!-- 공급회사차트 품목별 갯수 조건:공급회사 -->
@@ -94,11 +80,6 @@
     left join (select sw.sw_no,so.ord_quantity from software sw 
     left join sale_order so on sw.sw_no = so.sw_no where pc_no = #{companyNo} and so.ord_datetime like CONCAT(#{date},"%")) so on so.sw_no=sw.sw_no
 	group by sg.sg_name
-	union
-	select '총합', sum(ord_quantity)
-	from sale_order so join software sw on so.sw_no=sw.sw_no
-	where sw.pc_no=#{companyNo}
-	and so.ord_datetime like CONCAT(#{date},"%")
 	</select>
 	
 	<!-- 관리자차트 결제타입 -->
@@ -107,10 +88,6 @@
 	from (select sw.*, sg_name from software sw right join software_group sg  on sg.sg_no=sw.sg_no) as t
     left join (select * from sale_order where ord_datetime like CONCAT(#{date},"%")) as so on so.sw_no = t.sw_no
 	group by ord_payment
-	union
-	select '총합', count(ord_quantity)
-	from sale_order 
-	where ord_datetime like CONCAT(#{date},"%")
 	</select>
 	
 	<!-- 영업사원차트 결제타입 -->
@@ -119,11 +96,6 @@
 	from (select sw.*, sg_name from software sw right join software_group sg  on sg.sg_no=sw.sg_no) as t
     left join (select * from sale_order where ord_datetime like CONCAT(#{date},"%") and adm_no=#{adminNo}) as so on so.sw_no = t.sw_no
 	group by ord_payment
-	union
-	select '총합', count(ord_quantity)
-	from sale_order 
-	where adm_no=#{adminNo}
-    and ord_datetime like CONCAT(#{date},"%")
 	</select>
 	
 	<!-- SaleOrder 주문 삭제 -->
