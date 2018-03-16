@@ -98,7 +98,7 @@ public class AdminOrderRegister extends JPanel implements ActionListener {
 
 		pOrderCount = new LblSpinnerComp("품목 수량");
 		pOrderCount.setBounds(279, 116, 170, 30);
-		pOrderCount.setIntSpinner(1, 1, 999, 1);
+		pOrderCount.setIntSpinner(1, 1, 9999999, 1);
 		pOrderRegi.add(pOrderCount);
 	}
 
@@ -109,7 +109,7 @@ public class AdminOrderRegister extends JPanel implements ActionListener {
 			return;
 		}
 		
-		swLimitValue = sw.getSwQuantity();
+		swLimitValue = saleOrder.getOrdQuantity() + sw.getSwQuantity();
 		pUserName.setTfText(saleOrder.getUser().getName());
 		pOrderCount.setSpnValue(saleOrder.getOrdQuantity());
 		pSwName.setTfText(sw.getSwName());
@@ -156,7 +156,7 @@ public class AdminOrderRegister extends JPanel implements ActionListener {
 
 		String payment = (String) pPayment.getCmbSelectItem();
 		int orderCount = pOrderCount.getSpnValue();
-		
+		System.out.println(orderCount + " " + swLimitValue);
 		if (orderCount < 1 || swLimitValue < orderCount) {
 			JOptionPane.showMessageDialog(null, String.format("상품 주문 수량은 1개 이상 %s개 이하여야 합니다.", swLimitValue));
 			return;
